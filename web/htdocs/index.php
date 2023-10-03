@@ -3,13 +3,17 @@
  *   Licence               : Swings (C) DE-MO Studio in Taiwan 
  ***************************************************************************/
  
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+
 require_once( 'includes/dm_config.php');
 require_once( INCLUDE_PATH . 'dm.class.template_generator.php' );
 require_once( INCLUDE_PATH . 'dm_db.php' );
 require_once( INCLUDE_PATH . 'dm_savant2.php' );
 
-$TPL_generator = &new FunctionBlock();
-$TG = &new TemplateGenerator();
+$TPL_generator = new FunctionBlock();
+$TG = new TemplateGenerator();
 
 // Quick view
 $tpl_quickitem = $TPL_generator->create_template('block_quick_itemsearch.html');

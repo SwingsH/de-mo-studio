@@ -28,7 +28,7 @@ if( !empty($arr_tpl[$_GET['d']]) )
 else
 	$tpl_name = $arr_tpl["mon"];
 
-$block = &new FunctionBlock();
+$block = new FunctionBlock();
 
 $tpl = $block->skin( 'home' );
 $tpl_content = $block->create_template( $tpl_name );

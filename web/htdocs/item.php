@@ -46,7 +46,7 @@ $total_row;	// Total db result in this page
 $page_links = list_page_urls( $page,ITEM_PAGE_NUM , $total_row );
 
 #======== Template =========
-$TPL_generator = &new FunctionBlock();
+$TPL_generator = new FunctionBlock();
 
 // Template : PageNum Section
 $tpl_pagenum = $TPL_generator->create_template( 'block_pagenum.html' );
@@ -54,7 +54,7 @@ $tpl_pagenum->assign('page_links' , $page_links);
 $tpl_pagenum->assign('current_page',$page);
 
 // Template : Set Main Content
-$TPL_generator = &new FunctionBlock ;
+$TPL_generator = new FunctionBlock ;
 $tpl_content = $TPL_generator->create_template( 'page_content_itemsearch_list.html' );
 $tpl_content->assign('brands' , $brands );
 $tpl_content->assign('gender',$sex);

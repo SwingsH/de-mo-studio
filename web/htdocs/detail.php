@@ -158,7 +158,7 @@ function check_voted($did){
 // Actually , Template functions works as MovieClip and Liberary in ActionScript 
 // Loading, initial, and display . One page could contains duplicated implements (from Liberary)
 
-$TPL_generator = &new FunctionBlock();
+$TPL_generator = new FunctionBlock();
 
 $tpl_content = $TPL_generator->create_template( 'page_content_styledetail.html' );
 // Brand Datas
@@ -199,13 +199,13 @@ $tpl->assign( 'page_title' , 'DE-MO街拍流行情報站： Street Snap  ');
 $tpl->display();
 
 /*
-$tpl_detail_brand = &new Template( ROOT_PATH.'template/detail_profile_brand.tpl');
+$tpl_detail_brand = new Template( ROOT_PATH.'template/detail_profile_brand.tpl');
 $tpl_detail_brand->set('brands',$brands);
 $tpl_detail_brand->set('voted' ,$voted);
 $tpl_detail_brand->set('vote_did' ,$_GET['did']);
 $tpl_detail_brand->set('profile_vote' ,$profile_row['profile_vote']);
 
-$tpl_detail = & new Template( ROOT_PATH.'template/detail_profile.tpl');
+$tpl_detail =  new Template( ROOT_PATH.'template/detail_profile.tpl');
 $tpl_detail->set('title','My DE-MO : 街拍資訊');
 $tpl_detail->set('detail_content', $tpl_detail_brand);
 $tpl_detail->set('imgcache', $imgcache);
@@ -228,7 +228,7 @@ $tpl_detail->set('day',$day);
 // echo $tpl_detail->fetch();
 
 // Page TPL
-$tpl_page = &new Template( ROOT_PATH.'template/index_skin.tpl');
+$tpl_page = new Template( ROOT_PATH.'template/index_skin.tpl');
 $tpl_page->set('page_title','DE-MO街拍流行情報站： Street Snap ' );
 $tpl_page->set('page_contain',$tpl_detail );
 echo $tpl_page->fetch();

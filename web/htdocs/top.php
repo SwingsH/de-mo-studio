@@ -16,14 +16,14 @@ require_once($root_path . 'includes/dm_db.php');
 $arr_tpl = array("about"=>"top_about.tpl" , "street"=>"top_street.tpl","qa"=>"top_qa.tpl","contact"=>"top_contact.tpl");
 $tpl_name = $arr_tpl[$_GET['b']];
 
-$tpl_kind = &new Template('template/' . $tpl_name);
+$tpl_kind = new Template('template/' . $tpl_name);
 $tpl_kind->set('a', "no" );
 
 
 // Page TPL
 
 
-$tpl_page = &new Template('template/index_skin.tpl');
+$tpl_page = new Template('template/index_skin.tpl');
 $tpl_page->set('page_title', 'DEMO流行情報站：風格總覽' );
 $tpl_page->set('page_contain',$tpl_kind );
 

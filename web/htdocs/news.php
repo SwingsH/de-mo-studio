@@ -43,7 +43,7 @@ $page_links = list_page_urls( $page,BULLETIN_PAGE_NUM , $total_row );
 // This page should be work as function 
 if( !isset( $_GET['nodisplay'] ) ){
 #======== Template =========
-$TPL_generator = &new FunctionBlock();
+$TPL_generator = new FunctionBlock();
 
 // Template : PageNum Section
 
@@ -87,7 +87,7 @@ function fetch_bulletin_articles( $page , $article_id , $article_type ){
 		$type_query." ORDER BY post_date DESC ".
 		" LIMIT ". ( $page-1)*BULLETIN_PAGE_NUM . " , " .BULLETIN_PAGE_NUM ;
 
-	//$log = &new ErrorLog(INCLUDE_PATH.'log/');
+	//$log = new ErrorLog(INCLUDE_PATH.'log/');
 	//$log->save('$query:'.$query);
 
 	if( !($result = $db->sql_query($query)) ){

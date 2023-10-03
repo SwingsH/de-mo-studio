@@ -100,9 +100,9 @@ function update_online( $number ){
 /*
 echo $_SERVER['REMOTE_ADDR'];
 
-  echo ">>> ²Ä ¤@ ­¶ <<< <br />";
+  echo ">>> ï¿½ï¿½ ï¿½@ ï¿½ï¿½ <<< <br />";
   if ( !empty($_SERVER["HTTP_X_FORWARDED_FOR"]) )    {
-    echo "¦³¸g¹L´Á¥L¥N²z¥D¾÷¡G".$_SERVER["HTTP_X_FORWARDED_FOR"];
+    echo "ï¿½ï¿½ï¿½gï¿½Lï¿½ï¿½ï¿½Lï¿½Nï¿½zï¿½Dï¿½ï¿½ï¿½G".$_SERVER["HTTP_X_FORWARDED_FOR"];
     $temp_ip = split(",", $_SERVER["HTTP_X_FORWARDED_FOR"]);
     $user_ip = $temp_ip[0];
   } else {

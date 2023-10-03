@@ -36,7 +36,7 @@ define('STYLE_PAGE_NUM', 20 );
 $Page = $_GET['page'] ? (integer) $_GET['page'] : 1 ;
 
 //
-$TPLgenerator = &new FunctionBlock();
+$TPLgenerator = new FunctionBlock();
 
 // Fetch TPL by row
 $arr_stylehtmls = fetch_style_data($_GET['tid'],$Page);
@@ -60,18 +60,18 @@ $tpl->assign( 'page_title' , 'DE-MO街拍流行情報站： 風格穿搭總覽 '
 $tpl->display();
 
 /*
-$tpl_style = &new Template( $root_path.'template/style_profile.tpl');
+$tpl_style = new Template( $root_path.'template/style_profile.tpl');
 $tpl_style->set('profile_rows', $arr_tpls );
 // handle_stlpage_counts
 $tpl_style->set( 'urls',handle_stlpage_counts( $Page , STYLE_PAGE_NUM) );
 $tpl_style->set( 'curren_page', $Page );
 
 // Page Scroll TPL
-$tpl_page_scroll = &new Template( $root_path.'template/index_page_scroll.tpl');
+$tpl_page_scroll = new Template( $root_path.'template/index_page_scroll.tpl');
 $tpl_page_scroll->set('page_contain',$tpl_style );
 
 // Page TPL
-$tpl_page = &new Template( $root_path .'template/index_skin.tpl');
+$tpl_page = new Template( $root_path .'template/index_skin.tpl');
 $tpl_page->set('page_title', 'DEMO流行情報站：風格總覽' );
 $tpl_page->set('page_contain',$tpl_page_scroll );
 
@@ -213,7 +213,7 @@ function handle_one_row( &$db, &$result , &$rowid  ){
 	//echo "Path:".$path ."  row ID:".$rowid."<p> " ;
 	
 	// Start Setup Template
-	$tpl_style_row = &new Template( $root_path .'template/style_profile_row.tpl');
+	$tpl_style_row = new Template( $root_path .'template/style_profile_row.tpl');
 	$tpl_style_row->set('style_link',$link);
 	$tpl_style_row->set('style_path',$path);
 	
@@ -236,7 +236,7 @@ function fetch_row2template( $db , $result){
 	$row['pic'] = $pic ; 
 	
 	/* set template
-	$tpl_style = &new Template('template/style_profile.tpl');
+	$tpl_style = new Template('template/style_profile.tpl');
 	$tpl_style->set('pro_image',$row['pic']);
 	$tpl_style->set('pro_name' ,$row['profile_name']);
 	$tpl_style->set('pro_location' ,$row['profile_location']);

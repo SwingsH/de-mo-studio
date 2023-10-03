@@ -14,7 +14,7 @@ require_once( INCLUDE_PATH . 'dm.class.template_generator.php' );	//Fast Load te
 // Outcomming Variable
 $book_id = $_GET['bid'] ;
 
-$TPL_generator = &new FunctionBlock();
+$TPL_generator = new FunctionBlock();
 
 $tpl = $TPL_generator->skin( 'home' );
 $tpl_content = $TPL_generator->create_template( 'page_content_magazine.html' );

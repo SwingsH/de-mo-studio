@@ -11,7 +11,7 @@
 require_once( 'includes/dm_config.php');
 require_once( INCLUDE_PATH . 'dm.class.template_generator.php' );	//Fast Load template
 
-$TPL_generator = &new FunctionBlock();
+$TPL_generator = new FunctionBlock();
 
 $tpl = $TPL_generator->skin( 'home' );
 $tpl_content = $TPL_generator->create_template( 'page_content_vote.html' );

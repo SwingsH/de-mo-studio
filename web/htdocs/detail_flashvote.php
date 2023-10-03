@@ -16,7 +16,8 @@ $number = $_GET['number'];
 $voted = $_GET['voted'];
 $did = $_GET['did'];
 
-$TPL_Generator = &new FunctionBlock();
+$TPL_Generator = new FunctionBlock();
+
 
 $tpl_vote = $TPL_Generator->create_template( 'content_flash_vote.html' );
 $tpl_vote->assign('number',$number);
@@ -39,7 +40,7 @@ function check_voted($did){
 
 function check_votelog( $did , $sid , $ip){
 	$db = db_connect();
-	$log = &new ErrorLog( INCLUDE_PATH . 'log/');
+	$log = new ErrorLog( INCLUDE_PATH . 'log/');
 	$is_voted = false ;
 	
 	// Check Log

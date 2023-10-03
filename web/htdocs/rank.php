@@ -35,7 +35,7 @@ $sex = $_GET['s'] ? $_GET['s'] : 'f' ;
 $profiles = fetch_rank_data( $sex , $page);
 //print_r( $profiles );
 #======== Template =========
-$TPL_generator = &new FunctionBlock();
+$TPL_generator = new FunctionBlock();
 
 // Template : Set Main Content
 $tpl_content = $TPL_generator->create_template( 'page_content_ranklist.html' );
@@ -117,7 +117,7 @@ function handle_one_row( &$db, &$result , &$rowid  ){
 	
 	
 	// Start Setup Template
-	$tpl_rank_row = &new Template( $root_path .'template/rank_profile_row.tpl');
+	$tpl_rank_row = new Template( $root_path .'template/rank_profile_row.tpl');
 	$tpl_rank_row->set('rank_link',$link);
 	$tpl_rank_row->set('rank_path',$path);
 	// set profile data
@@ -138,7 +138,7 @@ function fetch_row2template( $db , $result){
 	$row['pic'] = $pic ; 
 	
 	/* set template
-	$tpl_style = &new Template('template/style_profile.tpl');
+	$tpl_style = new Template('template/style_profile.tpl');
 	$tpl_style->set('pro_image',$row['pic']);
 	$tpl_style->set('pro_name' ,$row['profile_name']);
 	$tpl_style->set('pro_location' ,$row['profile_location']);

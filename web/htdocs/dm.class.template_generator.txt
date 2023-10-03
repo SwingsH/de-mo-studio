@@ -5,9 +5,9 @@
 *	Author		: Swings Huang	2007.11.07
 *	Author2		: -----------	----------
 *	Information		: 
-*		TemplateGenerator , demo±M¥Î¼ÒªO§Ö³t²£¥Í¾¹ , ¥H°Ï¶ô¬°³æ¦ì ,
-*		§Ö³tªº²£¥Í¬Y­Ó¥\¯à°Ï¶ôªº html , ¨Ã±a¤J¸Ó°Ï¶ô¥\¯à , 
-*		¦p: §Ö³t²£¥Í³Ì·s®ø®§°Ï,¥B¯àÂI¶V³Ì·s®ø®§
+*		TemplateGenerator , demoï¿½Mï¿½Î¼ÒªOï¿½Ö³tï¿½ï¿½ï¿½Í¾ï¿½ , ï¿½Hï¿½Ï¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ,
+*		ï¿½Ö³tï¿½ï¿½ï¿½ï¿½ï¿½Í¬Yï¿½Ó¥\ï¿½ï¿½Ï¶ï¿½ï¿½ï¿½ html , ï¿½Ã±aï¿½Jï¿½Ó°Ï¶ï¿½ï¿½\ï¿½ï¿½ , 
+*		ï¿½p: ï¿½Ö³tï¿½ï¿½ï¿½Í³Ì·sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½Bï¿½ï¿½ï¿½Iï¿½Vï¿½Ì·sï¿½ï¿½ï¿½ï¿½
 *
 *		Method - template_xxx , return HTML Code 
 *		Method - object_xxx , return Template Object
@@ -50,7 +50,7 @@ class TemplateGenerator{
 	}
 
 	
-	// ¨Ì±¡ªp²£¥Í­¶­±¥k°¼¤§¿ï³æ
+	// ï¿½Ì±ï¿½ï¿½pï¿½ï¿½ï¿½Í­ï¿½ï¿½ï¿½ï¿½kï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public function &template_rightbar( $page_name){
 		switch( $page_name ){
 		case 'home' :
@@ -68,7 +68,7 @@ class TemplateGenerator{
 		}
 		
 	}
-	// ¨Ì±¡ªp²£¥Í­¶­±¥ª°¼¤§¿ï³æ
+	// ï¿½Ì±ï¿½ï¿½pï¿½ï¿½ï¿½Í­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public function &template_leftmenu( $page_name = null ){
 		switch( $page_name ){
 		case "page2" :
@@ -85,7 +85,7 @@ class TemplateGenerator{
 		}
 		
 	}
-	// ¨Ì±¡ªp²£¥Í­¶­±¤W°¼¤§banner + link
+	// ï¿½Ì±ï¿½ï¿½pï¿½ï¿½ï¿½Í­ï¿½ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½banner + link
 	public function &template_upper( ){
 		$tpl = $this->create_template( 'index_default_upper.html' );
 		return $tpl->fetch();
@@ -93,7 +93,7 @@ class TemplateGenerator{
 	
 	// Fast load template
 	public function &create_template( $tpl_name ){
-		$tpl = &new Savant2();
+		$tpl = new Savant2();
 		$tpl->addPath( 'template' , TEMPLATE_PATH );	//set path
 		$tpl->setTemplate( $tpl_name );
 		return $tpl ;
@@ -111,7 +111,7 @@ class FunctionBlock{
 	private $TPLgenerator ;
 
 	function __construct(){
-		$this->TPLgenerator = &new TemplateGenerator();
+		$this->TPLgenerator = new TemplateGenerator();
 	}
 	
 	public function skin( $type = 'default' ){
@@ -127,7 +127,7 @@ class FunctionBlock{
 		}
 	}
 	
-	//°Ï¶ô: ­º­¶­¶­±¥~®Ø
+	//ï¿½Ï¶ï¿½: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½ï¿½
 	public function block_page_home(){
 		## 1.Ready Fetch Data ##
 		
@@ -165,7 +165,7 @@ class FunctionBlock{
 		return $tpl ;
 	}
 	
-	//°Ï¶ô: ­º­¶­¶­±¥~®Ø
+	//ï¿½Ï¶ï¿½: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½ï¿½
 	public function block_page_homepage(){
 		## 1.Ready Fetch Data ##
 		
@@ -202,7 +202,7 @@ class FunctionBlock{
 		return $tpl ;
 	}
 	
-	//°Ï¶ô:¤H®ğ±Æ¦æº]
+	//ï¿½Ï¶ï¿½:ï¿½Hï¿½ï¿½Æ¦ï¿½]
 	public function block_ranklist( $fetch_num = 10 ){
 
 		## 1.Ready Fetch Data ##	
@@ -241,7 +241,7 @@ class FunctionBlock{
 		return $tpl ;
 	}
 
-	//°Ï¶ô:³Ì·s®ø®§
+	//ï¿½Ï¶ï¿½:ï¿½Ì·sï¿½ï¿½ï¿½ï¿½
 	public function &block_newslist( $fetch_num = 5 ){
 		define( 'NEWS_PHP' , 'news.php' );
 		
@@ -280,7 +280,7 @@ class FunctionBlock{
 		return $tpl ;
 	}
 	
-	//°Ï¶ô:·|­ûQV°Ï
+	//ï¿½Ï¶ï¿½:ï¿½|ï¿½ï¿½QVï¿½ï¿½
 	public function &block_membersystem( ){
 		
 		## 1.Ready Fetch Data ##	
@@ -293,7 +293,7 @@ class FunctionBlock{
 		## 3.Return ##
 		return $tpl ;
 	}
-	// ¨Ì±¡ªp²£¥Í­¶­±¥k°¼¤§¿ï³æ
+	// ï¿½Ì±ï¿½ï¿½pï¿½ï¿½ï¿½Í­ï¿½ï¿½ï¿½ï¿½kï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public function block_rightbar( $page_name){
 		switch( $page_name ){
 		case 'home' :
@@ -314,7 +314,7 @@ class FunctionBlock{
 	
 	// Fast load template
 	public function &create_template( $tpl_name ){
-		$tpl = &new Savant2();
+		$tpl = new Savant2();
 		$tpl->addPath( 'template' , TEMPLATE_PATH );	//set path
 		$tpl->setTemplate( $tpl_name );
 		return $tpl ;
