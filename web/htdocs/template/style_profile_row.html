@@ -3,18 +3,18 @@
 
 <table width="700" border="0">
   <tr>
-    <td colspan="5"><div id="flash_stylerow_<?=$this->style_rowid?>"></div></td>
+    <td colspan="5"><div id="flash_stylerow_<?php echo $this->style_rowid?>"></div></td>
   </tr>
   <tr>
   <?php for($i=0 , $this->style_datas ; $i < $this->style_rownum ; $i++): ?>
     <td width="120">
     
 	<?php if(!$this->style_datas[$i]) continue; ?>
-	<span class="stl_no">NO. <?=$this->style_datas[$i]['id']?> <br/></SPAN>
+	<span class="stl_no">NO. <?php echo $this->style_datas[$i]['id']?> <br/></SPAN>
 	<p style="margin-top: -5px; margin-bottom: -5px">　</p>
-	<SPAN class="index_menu_content"><?=$this->style_datas[$i]['name']?><br/></SPAN>
-	<SPAN class="index_menu_content"><?=$this->style_datas[$i]['age']?> 歲</SPAN>
-	<SPAN class="index_menu_content" style="margin-left:8px;"><?=$this->style_datas[$i]['tall']?>cm</SPAN> </td>
+	<SPAN class="index_menu_content"><?php echo $this->style_datas[$i]['name']?><br/></SPAN>
+	<SPAN class="index_menu_content"><?php echo $this->style_datas[$i]['age']?> 歲</SPAN>
+	<SPAN class="index_menu_content" style="margin-left:8px;"><?php echo $this->style_datas[$i]['tall']?>cm</SPAN> </td>
 	
     <?php endfor ; ?>
   </tr>
@@ -23,10 +23,10 @@
 
   <script type="text/javascript" language="javascript">
 	var swfurl="swf/style_row.swf";
-	var fo = new FlashObject(swfurl,"stylerow_<?=$this->style_rowid?>","700","180","8","#FFFFFF");
-	fo.addVariable("path", "<?=$this->style_path?>");
-	fo.addVariable("link", '<?=$this->style_link?>');
-	fo.write("flash_stylerow_<?=$this->style_rowid?>");
+	var fo = new FlashObject(swfurl,"stylerow_<?php echo $this->style_rowid?>","700","180","8","#FFFFFF");
+	fo.addVariable("path", "<?php echo $this->style_path?>");
+	fo.addVariable("link", '<?php echo $this->style_link?>');
+	fo.write("flash_stylerow_<?php echo $this->style_rowid?>");
 </script>
 
 

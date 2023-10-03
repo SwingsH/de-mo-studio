@@ -10,26 +10,26 @@
       <?php foreach($brands as $brand): ?>
       <tr>
         <td width="4" bgcolor="#EDEDED">&nbsp;</td>
-        <td width="33" bgcolor="#EDEDED"><left><img src=<?=$brand['image']?> /></left></td>
+        <td width="33" bgcolor="#EDEDED"><left><img src=<?php echo $brand['image']?> /></left></td>
         <td width="306" background="template/images/accer_center.gif" bgcolor="#FFFFFF"><div align="justify">
             <table width="294" border="0" align="left" cellpadding="0" bordercolor="#EDEDED">
               <tr>
                 <td colspan="5" bordercolor="#FFFFFF" bgcolor="#EDEDED"><b> -<span class="stl_brand_ct">
-                  <?=$brand['type']?>
+                  <?php echo $brand['type']?>
                 </span>-</b></td>
               </tr>
               <tr align="center" bordercolor="#FFFFFF" bgcolor="#EDEDED">
                 <td width="9">&nbsp;</td>
                 <td width="65" align="left"> <span class="stl_brand_ct">
-                  <?=$brand['name']?>
+                  <?php echo $brand['name']?>
                   </span>
                     <div align="center"></div></td>
                 <td width="86"> <span class="stl_brand_ct">
-                  <?=$brand['price']?>
+                  <?php echo $brand['price']?>
                   </span>
                     <div align="center"></div></td>
                 <td width="124" colspan="2"> <span class="stl_brand_ct">
-                  <?=$brand['place']?>
+                  <?php echo $brand['place']?>
                   <span>
                   <div align="center"></div>
                 </span></span></td>
@@ -57,8 +57,8 @@
 	var swfurl="swf/detail_vote_v2.swf";
 	var fob = new FlashObject(swfurl,"myvote","388","122","7","#FFFFFF");
 	fob.addParam("wmode", "transparent");
-	fob.addVariable("number","<?=$profile_vote?>");
-	fob.addVariable("voted","<?=$voted?>");
-	fob.addVariable("did","<?=$vote_did?>");
+	fob.addVariable("number","<?php echo $profile_vote?>");
+	fob.addVariable("voted","<?php echo $voted?>");
+	fob.addVariable("did","<?php echo $vote_did?>");
 	fob.write("flashvote");
 </script> 

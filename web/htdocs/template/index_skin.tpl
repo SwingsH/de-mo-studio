@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title><?=$page_title?></title>
+<title><?php echo $page_title?></title>
 
 <script type="text/javascript" language="javascript" src="js/flashobject.js"></script>
 
@@ -54,7 +54,7 @@
           <a href="new.php?b=life"><img src="template/index_menu/menu_title_6_present.jpg"  width="136" height="21" border="0"></a><br>
           <a href="new.php?b=pickup"><img src="template/index_menu/menu_title_6_present.jpg"  width="136" height="21" border="0"></a><img src="template/index_menu/menu_title_6_present.jpg"  width="136" height="21" border="0"><a href="present.php?b=present"><img src="template/index_menu/menu_title_6_present.jpg"  width="136" height="21" border="0"></a> </p>      </td>
       <td colspan="2"   valign="top" bgcolor="#FFFFFF" cellpadding="0">
-	  <?=$page_contain?></td>
+	  <?php echo $page_contain?></td>
     </tr>
   </table>
   

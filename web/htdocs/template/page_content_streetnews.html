@@ -55,7 +55,7 @@
                       <td valign="top" align="center" width="110"> <span id="content" style="font-weight:bold;color:#FF6600;"> 
                         </span></td>
 							<td valign="top"  width="464" ><span id="content" style="font-weight:bold "><img src="images/icon_number_arr01.gif" width="11" height="13">
-						    <?=$this->current_article['title']?></span></td>
+						    <?php echo $this->current_article['title']?></span></td>
 							<td valign="bottom">&nbsp;</td>
 						  </tr>
 						  
@@ -64,7 +64,7 @@
 					      </tr>
 						  <tr>
 							<td width="98" valign="top">&nbsp;</td>
-							<td width="464" valign="top"><span id="content"><?=$this->current_article['content']?></span></td>
+							<td width="464" valign="top"><span id="content"><?php echo $this->current_article['content']?></span></td>
 							<td width="138" valign="bottom" align="right"></td>
 						  </tr>
  						 <tr>
@@ -129,28 +129,28 @@
 					</table>
 				</td>
 		  </tr>
-		  <? $no = 1 ; foreach( $this->articles as $article ):?>
+		  <?php$no = 1 ; foreach( $this->articles as $article ):?>
 		  <tr>
 			<td>
 				<!--One row news-->
 				<table width="720" border="0"  cellspacing="0" cellpadding="0">
 				  <tr>
 					<td width="82" align="center"><span id="content">
-					  <?=$no?>
+					  <?php echo $no?>
 					</span></td>
 					<td width="347" align="left"> <div class="index_content_title" > 
-						<div align="center"><a href="<?=$article['url']?>">
-				        <?=$article['subtitle']?> 
+						<div align="center"><a href="<?php echo $article['url']?>">
+				        <?php echo $article['subtitle']?> 
 				        ...(more)</a></div>
 					</div> 
 					</td>
 					<td width="100" align="center"><div align="right"><span class="index_content_title" >
 			        　　
-		            <?=$article['count']?>
+		            <?php echo $article['count']?>
 			        </span></div></td>
 					<td width="113" align="center"><div align="right"><span id="content">
 			        　　
-		            <?=$article['date']?>
+		            <?php echo $article['date']?>
 			        </span></div></td>
 				  </tr>
 				  <tr>
@@ -160,10 +160,10 @@
 				<!--One row news-->
 			</td>
 		  </tr>
-		  <? $no++ ; endforeach; ?>
+		  <?php$no++ ; endforeach; ?>
 		  <tr>
 			<td>
-				<?=$this->block_pagenum?>
+				<?php echo $this->block_pagenum?>
 			</td>
 		  </tr>
 		</table>

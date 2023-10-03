@@ -17,7 +17,7 @@
   </tr>
   <tr>
     <td width="17" height="726">&nbsp;</td>
-    <td width="753" align="left" valign="top"><p><?
+    <td width="753" align="left" valign="top"><p><?php
 //----------------------------------------
 // 程式名稱：童言無忌郵件快遞 V1.0 繁體版
 // 繁體製作：童言無忌資訊網

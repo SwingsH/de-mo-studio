@@ -7,8 +7,8 @@
   <!--Index書籤區 廣告區內容 -->
   <tr>
     <td>
-	    <div style="margin-bottom:10px; "><a href="http://www.de-mo.com.tw/discuss" target="_blank"><img src="images/ad/ad_200710_demo_modelcollect.gif" width="210" height="151" border="0"></a></div>
-        <div style="margin-bottom:10px; "><a href="http://www.de-mo.com.tw/discuss" target="_blank"><img src="images/ad/ad_200710_demodiscuz.gif" width="210" height="110" border="0"></a></div>
+	    <div style="margin-bottom:10px; "><a href="<?php echo IPDOMAIN;?>/discuss" target="_blank"><img src="images/ad/ad_200710_demo_modelcollect.gif" width="210" height="151" border="0"></a></div>
+        <div style="margin-bottom:10px; "><a href="<?php echo IPDOMAIN;?>/discuss" target="_blank"><img src="images/ad/ad_200710_demodiscuz.gif" width="210" height="110" border="0"></a></div>
         <div align="center"><img src="images/index_tb_tagbook_t.gif" width="210" height="15" /></div>
 	</td>
   </tr>
@@ -39,10 +39,10 @@
 		  <tr>
 			<td>
 				<!--Index 投票區列表-->
-				<?php
-include_once "C:/Program Files/xampp/htdocs/template/vote1/booth.php";
-echo $php_poll->poll_process(14);
-?>
+				<?php //暫時關閉投票功能 2003
+				//include_once "C:/Program Files/xampp/htdocs/template/vote1/booth.php";
+				//echo $php_poll->poll_process(14);
+				?>
 				
 				<!--Index 投票區列表 END--></td>
 		  </tr>
@@ -73,7 +73,7 @@ echo $php_poll->poll_process(14);
 		  <tr>
 			<td><div align="center">
               <br>
-			  <a href="http://www.de-mo.com.tw/special.php?bid=4"><img src="images/magazine/PINKY.jpg" width="78" height="109" border="0"></a><br>
+			  <a href="<?php echo ROOT_PATH ?>/special.php?bid=4"><img src="images/magazine/PINKY.jpg" width="78" height="109" border="0"></a><br>
 			    <span class="index_content_a">PINKY 2月號</span>			
 			  </div></td>
 		  </tr>
@@ -107,7 +107,7 @@ echo $php_poll->poll_process(14);
           <td> 
             <table width="190" border="0" cellspacing="0" cellpadding="0">
 						  <tr>
-							<td width="20" style="text-align:center"><img  src="http://www.de-mo.com.tw/images/icon_minicloud_h02.gif" width="20" height="20" /></td>
+							<td width="20" style="text-align:center"><img  src="<?php echo IPDOMAIN;?>/images/icon_minicloud_h02.gif" width="20" height="20" /></td>
 							<td width="134"><span class="index_menu_content">品牌連結</span></td>
 											
 						

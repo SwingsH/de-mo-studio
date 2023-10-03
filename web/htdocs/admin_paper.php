@@ -1,4 +1,4 @@
-﻿<?
+﻿<?php
 require_once('admin_smtp.php');
 
 $board_config['smtp_host'] = "webmail.usc.edu.tw" ;

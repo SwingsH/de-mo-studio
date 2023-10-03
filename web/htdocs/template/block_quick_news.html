@@ -15,7 +15,7 @@
 		<!--首頁:右側quick消息區 內容-->
 		<div id="tb_news" style="margin-top:6px;" align="center">
 		<table width="190" border="0" cellspacing="0" cellpadding="0">
-			<? foreach( $this->articles as $article): ?>
+			<?php foreach( $this->articles as $article): ?>
 			  <tr>
 				<td>
 					<!--一列消息-->
@@ -23,17 +23,17 @@
 					  <tr>
 						<td width="12">
 							<div class="index_menu_content"><img src="images/icon_number_org_arr01.gif" width="9" height="9" /></div>					</td>					<td width="46">
-							<div class="index_menu_content"><a href="<?=$article['typeurl']?>">[<?=$article['typename']?>]</a></div>	
+							<div class="index_menu_content"><a href="<?php echo $article['typeurl']?>">[<?php echo $article['typename']?>]</a></div>	
 						</td>
 						<td width="130">
-							<div class="index_menu_content"><a href="<?=$article['url']?>"><?=$article['subtitle']?></a></div>
+							<div class="index_menu_content"><a href="<?php echo $article['url']?>"><?php echo $article['subtitle']?></a></div>
 						</td>
 					  </tr>
 					</table>
 					<!--一列消息 END-->
 				</td>
 			  </tr>
-		  <? endforeach; ?>
+		  <?php endforeach; ?>
 		  
 			<!-- more btn's row-->
 		  <tr>

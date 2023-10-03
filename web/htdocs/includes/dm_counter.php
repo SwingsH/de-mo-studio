@@ -21,6 +21,8 @@ define('ITVL_SECOND', 1200 );
 function counter(){
 	session_start();
 	$db = db_connect();
+	if(!isset($client_ip))
+		$client_ip = get_client_ip();
 	$query = "SELECT * FROM dm_admin_counter WHERE counter_sid='".session_id().
 			"' AND counter_time >= ". ( time() - ITVL_SECOND ) .
 			" AND counter_ip = '".$client_ip ."' " ;

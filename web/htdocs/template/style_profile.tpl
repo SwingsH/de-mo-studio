@@ -14,9 +14,9 @@
 
       <?php foreach( $urls as $url ): ?>
        <td width="25" align="center" bgcolor="#FFFFFF">
-      <? echo (++$page!=$curren_page)?"<a href=\"".$url."\" target=\"_self\" >" : ""?>
+      <?php echo (++$page!=$curren_page)?"<a href=\"".$url."\" target=\"_self\" >" : ""?>
 
-      <span class="page_switch_number"><?=$page?></span>
+      <span class="page_switch_number"><?php echo $page?></span>
       
       </a>
        </td>

@@ -32,7 +32,7 @@
 							
 				  </td>
 					<td>
-						<a href="http://www.de-mo.com.tw/discuss" target="_blank"><img src="images/ad/ad_200710_demodiscuz.gif"  width="210" height="110" border="0" /><a/>
+						<a href="<?php echo IPDOMAIN; ?>discuss" target="_blank"><img src="images/ad/ad_200710_demodiscuz.gif"  width="210" height="110" border="0" /><a/>
 					</td>
 				  </tr>
 				</table>
@@ -79,9 +79,9 @@
 						  <tr>
 							<td valign="top" align="center" width="98"> 
 								<span id="content" style="font-weight:bold;color:#FF6600;">
-									[ <?=$this->current_article['typename']?> ]</span>
+									[ <?php echo $this->current_article['typename']?> ]</span>
 							</td>
-							<td valign="top"  width="464" ><span id="content" style="font-weight:bold "><?=$this->current_article['title']?></span></td>
+							<td valign="top"  width="464" ><span id="content" style="font-weight:bold "><?php echo $this->current_article['title']?></span></td>
 							<td valign="bottom">&nbsp;</td>
 						  </tr>
 						  <tr>
@@ -92,14 +92,14 @@
 					      </tr>
 						  <tr>
 							<td width="98" valign="top">&nbsp;</td>
-							<td width="464" valign="top"><span id="content"><?=$this->current_article['content']?></span></td>
+							<td width="464" valign="top"><span id="content"><?php echo $this->current_article['content']?></span></td>
 							<td width="138" valign="bottom" align="right"></td>
 						  </tr>
  						 <tr>
 							<td width="98" valign="top">&nbsp;</td>
 							<td width="464" valign="top"></td>
 							<td width="138" valign="bottom" align="center">
-								<span id="content" style="padding-right:15px;"><?=$this->current_article['date']?><br/></span>
+								<span id="content" style="padding-right:15px;"><?php echo $this->current_article['date']?><br/></span>
 							</td>
 						  </tr>
 						</table>
@@ -133,7 +133,7 @@
 					<td width="13"><img src="images/icon_number_arr01.gif" width="11" height="13"></td>
 					<td width="76"><span class="index_content_a" id="block_title">資訊瀏覽</span></td>
 					<td width="83"><span id="content" style="font-size:8pt;vertical-align:bottom;" >
-						<a href="<?=$this->selfurl?>">(顯示全部分類)</a>
+						<a href="<?php echo $this->selfurl?>">(顯示全部分類)</a>
 						</span>
 					</td>
 				  </tr>
@@ -157,25 +157,25 @@
 					</table>
 				</td>
 		  </tr>
-		  <? $no = 1 ; foreach( $this->articles as $article ):?>
+		  <?php$no = 1 ; foreach( $this->articles as $article ):?>
 		  <tr>
 			<td>
 				<!--One row news-->
 				<table width="720" border="0"  cellspacing="0" cellpadding="0">
 				  <tr>
 					<td width="82" align="center"><span id="content">
-					  <?=$no?>
+					  <?php echo $no?>
 					</span></td>
 					<td width="88" align="center">
 						<div id="content" > 
-							<a href="<?=$article['typeurl']?>">[ <?=$article['typename']?> ]</a>
+							<a href="<?php echo $article['typeurl']?>">[ <?php echo $article['typename']?> ]</a>
 						</div>
 					</td>
 					<td width="347" align="left"> <div class="index_content_title" > 
-						<a href="<?=$article['url']?>"><?=$article['subtitle']?> ...(more)</a></div> 
+						<a href="<?php echo $article['url']?>"><?php echo $article['subtitle']?> ...(more)</a></div> 
 					</td>
-					<td width="100" align="center"><span class="index_content_title" ><?=$article['count']?></span></td>
-					<td width="113" align="center"><span id="content"><?=$article['date']?></span></td>
+					<td width="100" align="center"><span class="index_content_title" ><?php echo $article['count']?></span></td>
+					<td width="113" align="center"><span id="content"><?php echo $article['date']?></span></td>
 				  </tr>
 				  <tr>
 					<td colspan="5"><img src="images/line_grey_730.gif" width="730" height="2"></td>
@@ -184,10 +184,10 @@
 				<!--One row news-->
 			</td>
 		  </tr>
-		  <? $no++ ; endforeach; ?>
+		  <?php$no++ ; endforeach; ?>
 		  <tr>
 			<td>
-				<?=$this->block_pagenum?>
+				<?php echo $this->block_pagenum?>
 			</td>
 		  </tr>
 		</table>

@@ -47,21 +47,21 @@
 				  <tr>
 					<td width="43"><img src="images/tb_ranklist_no1_l.gif" width="43" height="234" /></td>
 					<td width="123" background="images/tb_ranklist_no1_m.gif">
-						<div onClick="javascript:js_redirect('<?=$this->profiles[0]['url']?>');">
-							<img alt="點擊以瀏覽"  title="點擊以瀏覽" src="<?=$this->profiles[0]['imgsrc']?>" width="100" height="160" border="1" style="cursor:hand"/>
+						<div onClick="javascript:js_redirect('<?php echo $this->profiles[0]['url']?>');">
+							<img alt="點擊以瀏覽"  title="點擊以瀏覽" src="<?php echo $this->profiles[0]['imgsrc']?>" width="100" height="160" border="1" style="cursor:hand"/>
 						</div>
 					</td>
 					<td width="460" background="images/tb_ranklist_no1_m.gif">
 						<table width="380" border="0" cellspacing="3" cellpadding="1">
 						  <tr>
 							<td width="80"><span class="index_menu_content">- 綽號</span></td>
-							<td width="108"><span class="index_menu_content">：<?=$this->profiles[0]['name']?></span></td>
+							<td width="108"><span class="index_menu_content">：<?php echo $this->profiles[0]['name']?></span></td>
 							<td width="80"><span class="index_menu_content">- 身高</span></td>
-							<td width="112"><span class="index_menu_content">：<?=$this->profiles[0]['tall']?></span></td>
+							<td width="112"><span class="index_menu_content">：<?php echo $this->profiles[0]['tall']?></span></td>
 						  </tr>
 						  <tr>
 							<td><span class="index_menu_content">- 年齡</span></td>
-							<td><span class="index_menu_content">：<?=$this->profiles[0]['age']?></span></td>
+							<td><span class="index_menu_content">：<?php echo $this->profiles[0]['age']?></span></td>
 							<td>&nbsp;</td>
 							<td>&nbsp;</td>
 						  </tr>
@@ -76,7 +76,7 @@
 								<!--eva-->
 								<table align="center" width="340" border="0" cellspacing="0" cellpadding="0">
 								  <tr>
-									<td><span class="index_menu_content"><?=$this->profiles[0]['eva']?></span></td>
+									<td><span class="index_menu_content"><?php echo $this->profiles[0]['eva']?></span></td>
 								  </tr>
 								</table>
 								<!--eva-->							
@@ -86,7 +86,7 @@
 							<td>&nbsp;</td>
 							<td colspan="3">
 								<span class="index_menu_content">目前票數</span>
-								<span style="color:#FF3300;font-weight:bold;"><?=$this->profiles[0]['vote']?></span>
+								<span style="color:#FF3300;font-weight:bold;"><?php echo $this->profiles[0]['vote']?></span>
 								<span class="index_menu_content">票</span>
 							</td>
 						  </tr>
@@ -111,8 +111,8 @@
 						  <tr>
 							<td width="40">&nbsp;</td>
 							<td width="100">
-								<div onClick="javascript:js_redirect('<?=$this->profiles[1]['url']?>');">
-									<img alt="點擊以瀏覽" title="點擊以瀏覽" src="<?=$this->profiles[1]['imgsrc']?>" width="100" height="160" border="1" style="cursor:hand" />
+								<div onClick="javascript:js_redirect('<?php echo $this->profiles[1]['url']?>');">
+									<img alt="點擊以瀏覽" title="點擊以瀏覽" src="<?php echo $this->profiles[1]['imgsrc']?>" width="100" height="160" border="1" style="cursor:hand" />
 								</div>
 							</td>
 						  </tr>
@@ -124,20 +124,20 @@
 							<table  align="left" valign="middle" width="132" border="0" cellspacing="2" cellpadding="2">
 							  <tr>
 								<td width="52"><span class="index_menu_content">- 綽號</span></td>
-								<td width="66"><span class="index_menu_content"><?=$this->profiles[1]['name']?></span></td>
+								<td width="66"><span class="index_menu_content"><?php echo $this->profiles[1]['name']?></span></td>
 							  </tr>
 							  <tr>
 								<td><span class="index_menu_content">- 身高</span></td>
-								<td><span class="index_menu_content"><?=$this->profiles[1]['tall']?> cm</span></td>
+								<td><span class="index_menu_content"><?php echo $this->profiles[1]['tall']?> cm</span></td>
 							  </tr>
 							  <tr>
 								<td><span class="index_menu_content">- 年齡</span></td>
-								<td><span class="index_menu_content"><?=$this->profiles[1]['age']?></span></td>
+								<td><span class="index_menu_content"><?php echo $this->profiles[1]['age']?></span></td>
 							  </tr>
 							  <tr>
 							    <td colspan="2">
 									<span class="index_menu_content">目前票數</span>
-									<span style="color:#FF3300;font-weight:bold;"><?=$this->profiles[1]['vote']?></span>
+									<span style="color:#FF3300;font-weight:bold;"><?php echo $this->profiles[1]['vote']?></span>
 									<span class="index_menu_content">票</span>
 								</td>
 						      </tr>
@@ -150,8 +150,8 @@
 						  <tr>
 							<td width="40">&nbsp;</td>
 							<td width="100">
-								<div onClick="javascript:js_redirect('<?=$this->profiles[2]['url']?>');">
-									<img alt="點擊以瀏覽" title="點擊以瀏覽" src="<?=$this->profiles[2]['imgsrc']?>" width="100" height="160" border="1" style="cursor:hand"/>
+								<div onClick="javascript:js_redirect('<?php echo $this->profiles[2]['url']?>');">
+									<img alt="點擊以瀏覽" title="點擊以瀏覽" src="<?php echo $this->profiles[2]['imgsrc']?>" width="100" height="160" border="1" style="cursor:hand"/>
 								</div>
 							</td>
 						  </tr>
@@ -163,20 +163,20 @@
 							<table  align="left" valign="middle" width="132" border="0" cellspacing="2" cellpadding="2">
 							  <tr>
 								<td width="52"><span class="index_menu_content">- 綽號</span></td>
-								<td width="66"><span class="index_menu_content"><?=$this->profiles[2]['name']?></span></td>
+								<td width="66"><span class="index_menu_content"><?php echo $this->profiles[2]['name']?></span></td>
 							  </tr>
 							  <tr>
 								<td><span class="index_menu_content">- 身高</span></td>
-								<td><span class="index_menu_content"><?=$this->profiles[2]['tall']?> cm</span></td>
+								<td><span class="index_menu_content"><?php echo $this->profiles[2]['tall']?> cm</span></td>
 							  </tr>
 							  <tr>
 								<td><span class="index_menu_content">- 年齡</span></td>
-								<td><span class="index_menu_content"><?=$this->profiles[2]['age']?></span></td>
+								<td><span class="index_menu_content"><?php echo $this->profiles[2]['age']?></span></td>
 							  </tr>
 							  <tr>
 							    <td colspan="2">
 									<span class="index_menu_content">目前票數</span>
-									<span style="color:#FF3300;font-weight:bold;"><?=$this->profiles[2]['vote']?></span>
+									<span style="color:#FF3300;font-weight:bold;"><?php echo $this->profiles[2]['vote']?></span>
 									<span class="index_menu_content">票</span>
 								</td>
 						      </tr>
@@ -192,11 +192,11 @@
 			<td>
 				<!-- 4~ 10-->
 				<table width="720" border="0" cellspacing="0" cellpadding="0">
-				  <? for( $no=3 ; $this->profiles[$no] ; $no++): ?>
-				  <?=( ($no+1) %4==0 ? '<tr>' : ''  ) ?>
+				  <?php for( $no=3 ; $this->profiles[$no] ; $no++): ?>
+				  <?php echo ( ($no+1) %4==0 ? '<tr>' : ''  ) ?>
 					<td height="280">
 						<!-- one sec -->
-						<table id="td_<?=$no?>" width="180" border="0" cellspacing="0" cellpadding="0">
+						<table id="td_<?php echo $no?>" width="180" border="0" cellspacing="0" cellpadding="0">
 						  <tr>
 							<td height="1">&nbsp;</td>
 							<td width="10" rowspan="4"><img src="images/tb_ranklist_sepx340.jpg" width="7" height="280" /></td>
@@ -206,8 +206,8 @@
 								<table width="100" height="160" border="0" align="center" cellpadding="0" cellspacing="0">
 								  <tr>
 									<td>
-										<div onClick="javascript:js_redirect('<?=$this->profiles[$no]['url']?>');">
-											<img title="點擊以瀏覽" alt="點擊以瀏覽" src="<?=$this->profiles[$no]['imgsrc']?>" width="100" height="160" border="1" style="cursor:hand" />
+										<div onClick="javascript:js_redirect('<?php echo $this->profiles[$no]['url']?>');">
+											<img title="點擊以瀏覽" alt="點擊以瀏覽" src="<?php echo $this->profiles[$no]['imgsrc']?>" width="100" height="160" border="1" style="cursor:hand" />
 										</div>
 									</td>
 								  </tr>
@@ -222,20 +222,20 @@
 								<table align="center" valign="middle" width="132" border="0" cellspacing="2" cellpadding="2">
 								  <tr>
 									<td width="52"><span class="index_menu_content">- 綽號</span></td>
-									<td width="66"><span class="index_menu_content"><?=$this->profiles[$no]['name']?></span></td>
+									<td width="66"><span class="index_menu_content"><?php echo $this->profiles[$no]['name']?></span></td>
 								  </tr>
 								  <tr>
 									<td><span class="index_menu_content">- 身高</span></td>
-									<td><span class="index_menu_content"><?=$this->profiles[$no]['tall']?> cm</span></td>
+									<td><span class="index_menu_content"><?php echo $this->profiles[$no]['tall']?> cm</span></td>
 								  </tr>
 								  <tr>
 									<td><span class="index_menu_content">- 年齡</span></td>
-									<td><span class="index_menu_content"><?=$this->profiles[$no]['age']?></span></td>
+									<td><span class="index_menu_content"><?php echo $this->profiles[$no]['age']?></span></td>
 								  </tr>
 								  <tr>
 									<td colspan="2">
 										<span class="index_menu_content">目前票數</span>
-										<span style="color:#FF3300;font-weight:bold;"><?=$this->profiles[$no]['vote']?></span>
+										<span style="color:#FF3300;font-weight:bold;"><?php echo $this->profiles[$no]['vote']?></span>
 										<span class="index_menu_content">票</span>
 									</td>
 								  </tr>
@@ -246,8 +246,8 @@
 						</table>
 						<!-- one sec end-->
 					</td>
-  					<?=( ($no+2) %4==0 ? '</tr>' : ''  ) ?>
-					<? endfor ; ?>
+  					<?php echo ( ($no+2) %4==0 ? '</tr>' : ''  ) ?>
+					<?php endfor ; ?>
 
 				</table>
 				<!-- 4~ 10-->

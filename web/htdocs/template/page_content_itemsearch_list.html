@@ -75,10 +75,10 @@
 					var fo = new FlashObject(swfurl,"myphoto","720","190","7","#FFFFFF");
 					
 					// The section you can change variable
-					fo.addVariable("text","<?=$this->slide_kindtxt?>");
-					fo.addVariable("text_url","<?=$this->slide_kindurl?>");
-					fo.addVariable("pic","<?=$this->slide_imgsrc?>");
-					fo.addVariable("pic_url",'<?=$this->slide_imgurl?>');
+					fo.addVariable("text","<?php echo $this->slide_kindtxt?>");
+					fo.addVariable("text_url","<?php echo $this->slide_kindurl?>");
+					fo.addVariable("pic","<?php echo $this->slide_imgsrc?>");
+					fo.addVariable("pic_url",'<?php echo $this->slide_imgurl?>');
 					// The section you can change variable	
 				
 					fo.write("item_slide");
@@ -89,10 +89,10 @@
                     <td><!------------ 插入控制碼區段開始 ------------> 
 <SCRIPT Language="JavaScript">
 tips = new Array(4);
-tips[0] = "<a href='http://buy.yahoo.com.tw/?catitemid=15665' target='_new'><img src='http://www.de-mo.com.tw/template/images/ad/sp_7.jpg' border=0 ></a><br>";
-tips[1] = "<a href='http://www.nailpark.com.tw/' target='_new'><img src='http://www.de-mo.com.tw/template/images/ad/sp_3.gif' border=0 ></a><br>";
-tips[2] = "<a href='http://tw.search.bid.yahoo.com/search/booth?p=%A4p%BD%DE%A8%E0&cat=&seller=mlgl1112' target='_new'><img src='http://www.de-mo.com.tw/template/images/ad/sp_1.jpg' border=0 ></a><br>";
-tips[3] = "<a href='http://tw.search.bid.yahoo.com/search/booth?p=%A4s%A5%BB%A6N%A5%D0&cat=&seller=catsbag1013' target='_new'><img src='http://www.de-mo.com.tw/template/images/ad/sp_9.jpg' border=0 width='190' height='70'></a><br>";
+tips[0] = "<a href='http://buy.yahoo.com.tw/?catitemid=15665' target='_new'><img src='<?php echo IPDOMAIN; ?>template/images/ad/sp_7.jpg' border=0 ></a><br>";
+tips[1] = "<a href='http://www.nailpark.com.tw/' target='_new'><img src='<?php echo IPDOMAIN; ?>template/images/ad/sp_3.gif' border=0 ></a><br>";
+tips[2] = "<a href='http://tw.search.bid.yahoo.com/search/booth?p=%A4p%BD%DE%A8%E0&cat=&seller=mlgl1112' target='_new'><img src='<?php echo IPDOMAIN; ?>template/images/ad/sp_1.jpg' border=0 ></a><br>";
+tips[3] = "<a href='http://tw.search.bid.yahoo.com/search/booth?p=%A4s%A5%BB%A6N%A5%D0&cat=&seller=catsbag1013' target='_new'><img src='<?php echo IPDOMAIN; ?>template/images/ad/sp_9.jpg' border=0 width='190' height='70'></a><br>";
 index = Math.floor(Math.random() * tips.length);
 document.write("<center>" + tips[index] + "</center>");
 </SCRIPT>
@@ -100,7 +100,7 @@ document.write("<center>" + tips[index] + "</center>");
                     <td><!------------ 插入控制碼區段開始 ------------> 
 <SCRIPT Language="JavaScript">
 tips = new Array(1);
-tips[0] = "<a href='http://tw.user.bid.yahoo.com/tw/show/auctions?userID=under_peace_tw&u=:under_peace_tw' target='_new'><img src='http://www.de-mo.com.tw/template/images/ad/sp_8.jpg' border=0 width='190' height='70'></a><br>";
+tips[0] = "<a href='http://tw.user.bid.yahoo.com/tw/show/auctions?userID=under_peace_tw&u=:under_peace_tw' target='_new'><img src='<?php echo IPDOMAIN; ?>template/images/ad/sp_8.jpg' border=0 width='190' height='70'></a><br>";
 
 
 
@@ -112,11 +112,11 @@ document.write("<center>" + tips[index] + "</center>");
                     <td><!------------ 插入控制碼區段開始 ------------> 
 <SCRIPT Language="JavaScript">
 tips = new Array(5);
-tips[0] = "<a href='http://tw.search.bid.yahoo.com/search/booth?p=ky+studio&view=store&storeitem=1&cat=&seller=ky_studio05' target='_new'><img src='http://www.de-mo.com.tw/template/images/ad/sp_4.jpg' border=0 width='190' height='70'></a><br>";
-tips[1] = "<a href='http://tw.search.bid.yahoo.com/search/booth?p=%AE%C9%A9%7C%ACh%A4B&view=store&storeitem=1&cat=&seller=rachaelpeng' target='_new'><img src='http://www.de-mo.com.tw/template/images/ad/sp_5.jpg' border=0 width='190' height='70'></a><br>";
-tips[2] = "<a href='http://tw.user.bid.yahoo.com/tw/show/auctions?userID=stilaandeva&u=%3astilaandeva' target='_new'><img src='http://www.de-mo.com.tw/template/images/ad/sp_6.gif' border=0 width='190' height='70'></a><br>";
-tips[3] = "<a href='http://tw.search.bid.yahoo.com/search/booth?p=%AE%FC%ACv%B2%B0%A4l&cat=&seller=my_oceanbox' target='_new'><img src='http://www.de-mo.com.tw/template/images/ad/sp_10.gif' border=0 width='190' height='70'></a><br>";
-tips[4] = "<a href='http://buy.yahoo.com.tw/?catitemid=24525' target='_new'><img src='http://www.de-mo.com.tw/template/images/ad/sp_2.gif' border=0 width='190' height='70'></a><br>";
+tips[0] = "<a href='http://tw.search.bid.yahoo.com/search/booth?p=ky+studio&view=store&storeitem=1&cat=&seller=ky_studio05' target='_new'><img src='<?php echo IPDOMAIN; ?>template/images/ad/sp_4.jpg' border=0 width='190' height='70'></a><br>";
+tips[1] = "<a href='http://tw.search.bid.yahoo.com/search/booth?p=%AE%C9%A9%7C%ACh%A4B&view=store&storeitem=1&cat=&seller=rachaelpeng' target='_new'><img src='<?php echo IPDOMAIN; ?>template/images/ad/sp_5.jpg' border=0 width='190' height='70'></a><br>";
+tips[2] = "<a href='http://tw.user.bid.yahoo.com/tw/show/auctions?userID=stilaandeva&u=%3astilaandeva' target='_new'><img src='<?php echo IPDOMAIN; ?>template/images/ad/sp_6.gif' border=0 width='190' height='70'></a><br>";
+tips[3] = "<a href='http://tw.search.bid.yahoo.com/search/booth?p=%AE%FC%ACv%B2%B0%A4l&cat=&seller=my_oceanbox' target='_new'><img src='<?php echo IPDOMAIN; ?>template/images/ad/sp_10.gif' border=0 width='190' height='70'></a><br>";
+tips[4] = "<a href='http://buy.yahoo.com.tw/?catitemid=24525' target='_new'><img src='<?php echo IPDOMAIN; ?>template/images/ad/sp_2.gif' border=0 width='190' height='70'></a><br>";
 index = Math.floor(Math.random() * tips.length);
 document.write("<center>" + tips[index] + "</center>");
 </SCRIPT>
@@ -160,7 +160,7 @@ document.write("<center>" + tips[index] + "</center>");
 					<script type="text/javascript" language="javascript">
 						var swfurl="swf/menu_itemsearch.swf";
 						var fo = new FlashObject(swfurl,"mymenu","720","95","7","#FFFFFF");
-						fo.addVariable("gender","<?=$this->gender?>");
+						fo.addVariable("gender","<?php echo $this->gender?>");
 						fo.addVariable("xml","data/data_menu_itemsearch.xml");
 						fo.write("flash_menu");
 					</script>
@@ -168,21 +168,21 @@ document.write("<center>" + tips[index] + "</center>");
 		  </tr>
 		   <tr>
 				<td >
-						<img src="images/btn_itemsearch_<?=$this->gender?>.gif" width="721" height="41"/>	
+						<img src="images/btn_itemsearch_<?php echo $this->gender?>.gif" width="721" height="41"/>	
 					&nbsp;<br/>	
 				</td>
 		  </tr>
 		  <tr>
 			<td>
-				<?=$this->block_pagenum?>
+				<?php echo $this->block_pagenum?>
 			</td>
 		  </tr>
 		  <tr>
 			<td>
 				<!-- All item -->
 				<table width="720" align="center" border="0" cellpadding="0" cellspacing="0">
-				  <? $i=0 ; foreach( $this->brands as $brand ): ?> 
-				  <?= (($i%$this->item_rownum)==0 ? '<tr height="250">' : '' ); // One row's start ?> 
+				  <?php $i=0 ; foreach( $this->brands as $brand ): ?> 
+				  <?php echo  (($i%$this->item_rownum)==0 ? '<tr height="250">' : '' ); // One row's start ?> 
 				  	<!-- One item td-->
 					<td align="center">
 						<!-- One item -->
@@ -190,29 +190,29 @@ document.write("<center>" + tips[index] + "</center>");
 						  <tr>
 							<td colspan="2" height="170" valign="middle">
 								<!-- Photo-->
-								<div onClick="javascript:js_redirect('<?=$brand['url']?>');">
-									<img  alt="點擊以瀏覽" title="點擊以瀏覽" src="<?=$brand['image']?>" width="100" height="160" border="1" style="cursor:hand" />
+								<div onClick="javascript:js_redirect('<?php echo $brand['url']?>');">
+									<img  alt="點擊以瀏覽" title="點擊以瀏覽" src="<?php echo $brand['image']?>" width="100" height="160" border="1" style="cursor:hand" />
 								</div>
 							</td>
 						  </tr>
 						  <tr>
 							<td width="51"><span  class="index_content_a" style="text-align:right;">品 牌 :</span></td>
-							<td width="109"><span  class="index_content_a"><?=$brand['name']?></span></td>
+							<td width="109"><span  class="index_content_a"><?php echo $brand['name']?></span></td>
 						  </tr>
 						  <tr>
 							<td><span  class="index_content_a" style="text-align:right;">價 格 :</span></td>
-							<td><span  class="index_content_a"><?=$brand['price']?></span></td>
+							<td><span  class="index_content_a"><?php echo $brand['price']?></span></td>
 						  </tr>
 						  <tr>
 							<td><span  class="index_content_a" style="text-align:right;">購 買 :</span></td>
-							<td><span  class="index_content_a"><?=$brand['place']?></span></td>
+							<td><span  class="index_content_a"><?php echo $brand['place']?></span></td>
 						  </tr>
 						</table>
 						<!-- One item -->
 					</td>
 					<!-- One item td-->
-				  <?= ( ($i%4) == ($this->num_row -1) ? '</tr>' : '' ) ; // One row's last ?> 
-				  <? $i++ ; endforeach; ?>
+				  <?php echo  ( ($i%4) == ($this->num_row -1) ? '</tr>' : '' ) ; // One row's last ?> 
+				  <?php $i++ ; endforeach; ?>
 				</table>
 				<!-- All item -->
 				
@@ -220,7 +220,7 @@ document.write("<center>" + tips[index] + "</center>");
 		  </tr>
 		  <tr>
 			<td>
-				<?=$this->block_pagenum?>
+				<?php echo $this->block_pagenum?>
 			</td>
 		  </tr>
 		</table>

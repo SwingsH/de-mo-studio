@@ -61,7 +61,7 @@ function db_random_brands( $number ){
 
 
 	if( !( $result = $db->sql_query($query) ) ){
-		die("Error");	
+		die("DB Error");	
 	}
 	
 	while( $row = $db->sql_fetchrow($result) ){

@@ -62,14 +62,14 @@
 										<table width="370" border="0" cellspacing="3" cellpadding="3">
 										  <tr>
 											<td width="260" style="vertical-align:top;">
-												<span class="index_content_a"><?=$this->profile_evaluation?></span>					
+												<span class="index_content_a"><?php echo $this->profile_evaluation?></span>					
 											</td>
 											<td align="center" width="10">
 												<img src="images/tb_greyboild_vline52.gif" width="2" height="52" />
 											</td>
 											<td width="100" style="vertical-align:top;">
 												<span id="block_title" class="index_content_a" >搭配色系:</span><br/>
-												<span id="block_title" class="index_content_a"><?=$this->profile_color?></span>
+												<span id="block_title" class="index_content_a"><?php echo $this->profile_color?></span>
 											</td>
 										  </tr>
 										</table>
@@ -133,15 +133,15 @@
 													<table width="350" border="0" cellspacing="1" cellpadding="0">
 													  <tr>
 													    <td colspan="2">
-														<span class="index_menu_content" style="color:#A27748;">&lt; <?=$brand['type']?> &gt;</span>	</td>
+														<span class="index_menu_content" style="color:#A27748;">&lt; <?php echo $brand['type']?> &gt;</span>	</td>
 														<td width="87">&nbsp;</td>
 														<td width="131">&nbsp;</td>
 													  </tr>
 													  <tr>
 													    <td width="19">&nbsp;</td>
-														<td width="108"><span class="index_menu_content"><?=$brand['name']?></span></td>
-														<td><span class="index_menu_content"><?=$brand['price']?></span></td>
-														<td><span class="index_menu_content"><?=$brand['place']?></span></td>
+														<td width="108"><span class="index_menu_content"><?php echo $brand['name']?></span></td>
+														<td><span class="index_menu_content"><?php echo $brand['price']?></span></td>
+														<td><span class="index_menu_content"><?php echo $brand['place']?></span></td>
 													  </tr>
 													  <tr>
 														<td colspan="4" height="10" align="center"><img src="images/line_sawdot_x343.gif" width="343" height="4" /></td>
@@ -192,33 +192,33 @@
 						  </tr>
 						  <tr>
 							<td>
-								<iframe name="vote" hspace="0"  marginheight="0" marginwidth="0" height="143" width="388" border="0" scrolling="no" frameborder="0" src="<?=$this->ipdomain?>detail_flashvote.php?did=<?=$this->vote_did?>&number=<?=$this->vote_count?>" target="_self">
+								<iframe name="vote" hspace="0"  marginheight="0" marginwidth="0" height="143" width="388" border="0" scrolling="no" frameborder="0" src="<?php echo $this->ipdomain?>detail_flashvote.php?did=<?php echo $this->vote_did?>&number=<?php echo $this->vote_count?>" target="_self">
 									您的瀏覽器不支援內置框架或目前的設定為不顯示內置框架。
 								</iframe>
-								<?/*
+								<?php/*
 								<div style="margin-top: 0; margin-bottom: 0;" id="flashvote">
 									<table width="388" height="122" border="1" cellspacing="0" cellpadding="0">
 									  <tr>
 										<td>Flash投票箱無法顯示</td>
 									  </tr>
 									</table>
-								</div> 
-								*/?>
+								</div> */
+								?>
 							</td>
 						  </tr>
 						</table>
-						<?/*
-							<script type="text/javascript" language="javascript">
-								var swfurl="<?=$this->ipdomain?>swf/detail_vote_v2.swf";
-								var fob = new FlashObject(swfurl,"myvote","388","122","7","#FFFFFF");
-								fob.addParam("wmode", "transparent");
-								fob.addVariable("number","<?=$this->vote_count?>");
-								fob.addVariable("voted","<?=$this->voted?>");
-								fob.addVariable("did","<?=$this->vote_did?>");
-								fob.write("flashvote");
-							</script> 
-						  <!--人氣推薦 :-->
-						  */?>
+						<?php
+							//<script type="text/javascript" language="javascript">
+							//	var swfurl="<?php echo $this->ipdomain?>swf/detail_vote_v2.swf";
+							//	var fob = new FlashObject(swfurl,"myvote","388","122","7","#FFFFFF");
+							//	fob.addParam("wmode", "transparent");
+							//	fob.addVariable("number","<?php echo $this->vote_count?>");
+							//	fob.addVariable("voted","<?php echo $this->voted?>");
+							//	fob.addVariable("did","<?php echo $this->vote_did?>");
+							//	fob.write("flashvote");
+							//</script>
+						  //<!--人氣推薦 :-->
+						  ?>
 					</td>
 				  </tr>
 				  <tr>
@@ -248,13 +248,13 @@
 								  <tr>
 									<td >
 									<span class="index_content_a">‧嵌入至部落格：</span>
-									<input name="getphoto" type="text" class="index_content_a" id="getphoto" size="32" onClick="javascript:this.focus();this.select();" value="<object codebase='http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0' width='310' height='571'><param name=FlashVars value='cache=<?=$this->embed_imgcache?>&path=<?=$this->embed_imgpath?>' id='vars'><param name='movie' value='<?=$this->domain?>swf/detail_photo.swf'></param><param name='quality' value='high'></param><param name='wmode' value='transparent'></param><embed src='<?=$this->domain?>swf/detail_photo.swf' FlashVars='cache=<?=$this->embed_imgcache?>&path=<?=$this->embed_imgpath?>' quality='high' pluginspage='http://www.macromedia.com/go/getflashplayer'  type='application/x-shockwave-flash' wmode='transparent' width='310' height='571'></embed></object>" />	
+									<input name="getphoto" type="text" class="index_content_a" id="getphoto" size="32" onClick="javascript:this.focus();this.select();" value="<object codebase='http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0' width='310' height='571'><param name=FlashVars value='cache=<?php echo $this->embed_imgcache?>&path=<?php echo $this->embed_imgpath?>' id='vars'><param name='movie' value='<?php echo $this->domain?>swf/detail_photo.swf'></param><param name='quality' value='high'></param><param name='wmode' value='transparent'></param><embed src='<?php echo $this->domain?>swf/detail_photo.swf' FlashVars='cache=<?php echo $this->embed_imgcache?>&path=<?php echo $this->embed_imgpath?>' quality='high' pluginspage='http://www.macromedia.com/go/getflashplayer'  type='application/x-shockwave-flash' wmode='transparent' width='310' height='571'></embed></object>" />	
 									</td>
 								  </tr>
 								  <tr>
 									<td>
 									<span class="index_content_a">‧分享此篇網址：</span>
-									<input name="getlink" type="text" class="index_content_a" id="getphoto" size="32" onClick="javascript:this.focus();this.select();" value="<?=$this->embed_url?>" />	
+									<input name="getlink" type="text" class="index_content_a" id="getphoto" size="32" onClick="javascript:this.focus();this.select();" value="<?php echo $this->embed_url?>" />	
 									</td>
 								  </tr>
 								</table>
@@ -274,7 +274,7 @@
 				<table width="320" border="0" cellspacing="0" cellpadding="0">
 				  <tr>
 					
-                <td height="131"> <a href="http://www.de-mo.com.tw/discuss"><img src="images/btn_join_model_1.gif" border="0" align="right" /></a> 
+                <td height="131"> <a href="<?php echo IPDOMAIN; ?>discuss"><img src="images/btn_join_model_1.gif" border="0" align="right" /></a> 
                 </td>
 				  </tr>
 				  <tr>
@@ -297,10 +297,10 @@
 						<table align="center" width="150" border="0" cellspacing="0" cellpadding="0">
 						  <tr>
 							<td><span class="index_content_a">拍攝日期: </span></td>
-							<td><span class="index_content_a"><?=$this->year?>/<?=$this->month?>/<?=$this->day?></span></td>
+							<td><span class="index_content_a"><?php echo $this->year?>/<?php echo $this->month?>/<?php echo $this->day?></span></td>
 						  </tr>
 						</table>
-						　　　　 　<span style="color:#FF9933 ; font-size:9pt ;">Demo Model 　NO.</span><span class="stl_pronumber"><span class="index_menu_content" style="color:#FF9933;"><?=$this->profile_number?>
+						　　　　 　<span style="color:#FF9933 ; font-size:9pt ;">Demo Model 　NO.</span><span class="stl_pronumber"><span class="index_menu_content" style="color:#FF9933;"><?php echo $this->profile_number?>
                         </span>                    </span><br/>
 						<!--拍攝日期-->
 				  </td>
@@ -311,20 +311,20 @@
 						<table width="320" border="0" cellpadding="0" cellspacing="2" bgcolor="#CACFE9">
 						  <tr>
 							<td width="52"><span class="index_menu_content">綽號：</span></td>
-							<td width="103"><span class="index_menu_content"><?=$this->profile_name?></span></td>
+							<td width="103"><span class="index_menu_content"><?php echo $this->profile_name?></span></td>
 							<td width="52"><span class="index_menu_content">年齡：</span></td>
-							<td width="103"><span class="index_menu_content"><?=$this->profile_age?></span></td>
+							<td width="103"><span class="index_menu_content"><?php echo $this->profile_age?></span></td>
 						  </tr>
 						
 						  <tr>
 							<td><span class="index_menu_content">身高：</span></td>
-							<td><span class="index_menu_content"><?=$this->profile_tall?></span></td>
+							<td><span class="index_menu_content"><?php echo $this->profile_tall?></span></td>
 							<td><span class="index_menu_content">地點：</span></td>
-							<td><span class="index_menu_content"><?=$this->profile_location?></span></td>
+							<td><span class="index_menu_content"><?php echo $this->profile_location?></span></td>
 						  </tr>
 						  
 						  <tr>
-							<td colspan="4"><span class="index_menu_content">個人相簿：</span><span class="index_menu_content"><?=$this->profile_album?>
+							<td colspan="4"><span class="index_menu_content">個人相簿：</span><span class="index_menu_content"><?php echo $this->profile_album?>
 							</span></td>
 						  </tr>
 						  
@@ -334,7 +334,7 @@
 						  <tr>
 						    <td >&nbsp;</td>
 						    <td colspan="3"><span class="index_menu_content">
-						      <?=$this->profile_say?>
+						      <?php echo $this->profile_say?>
 						    </span></td>
 					      </tr>
 					  </table>
@@ -353,9 +353,9 @@
 		<script type="text/javascript" language="javascript">
 			var swfurl="swf/detail_photo.swf";
 			var fo = new FlashObject(swfurl,"myphoto","310","571","7","#FFFFFF");
-			fo.addVariable("cache","<?=$this->imgcache?>");
-			fo.addVariable("path","<?=$this->imgpath?>");
-			fo.addVariable("first_photo","<?=$this->imgfirst?>");
+			fo.addVariable("cache","<?php echo $this->imgcache?>");
+			fo.addVariable("path","<?php echo $this->imgpath?>");
+			fo.addVariable("first_photo","<?php echo $this->imgfirst?>");
 			fo.write("flashphoto");
 		</script>
 <!--個人資料 detail info end-->

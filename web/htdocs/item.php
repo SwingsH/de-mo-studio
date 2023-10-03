@@ -187,7 +187,7 @@ function fetch_random_brands( $number ){
 	$query = "SELECT * FROM dm_street_profile  ORDER BY rand() LIMIT ".$number ;
 	
 	if( !( $result = $db->sql_query($query) ) ){
-		die("Error");	
+		die("DB Error");	
 	}
 	
 	//under is temp

@@ -40,7 +40,7 @@
 				<script type="text/javascript" language="javascript">
 					var swfurl="swf/demo_magazine.swf";
 					var fob = new FlashObject(swfurl,"myvote","700","500","7","#FFFFFF");
-					fob.addVariable("xml_src", "<?=$this->xml_src?>");
+					fob.addVariable("xml_src", "<?php echo $this->xml_src?>");
 					fob.write("flash_magazine");
 				</script> 
 								

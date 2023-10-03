@@ -13,13 +13,13 @@
 						  <tr>
 							<td><span id="page_number" ><img src="images/btn_m_previous.gif" width="15" height="15"></span></td>
 							
-							<? $no=1; foreach($this->page_links as $link ):?>
+							<?php $no=1; foreach($this->page_links as $link ):?>
 								<td>
 									<span id="page_number" >
-										<?=( ($no!=$this->current_page)? '<a href='.$link.'>'.$no.'</a>' : '<span style="color:#CCCCCC;" >'.$no.'</span>' )?>
+										<?php echo ( ($no!=$this->current_page)? '<a href='.$link.'>'.$no.'</a>' : '<span style="color:#CCCCCC;" >'.$no.'</span>' )?>
 									</span>
 								</td>
-							<? $no++; endforeach; ?>
+							<?php $no++; endforeach; ?>
 							
 							<td><span id="page_number" ><img src="images/btn_m_next.gif" width="15" height="15"></span></td>
 						  </tr>

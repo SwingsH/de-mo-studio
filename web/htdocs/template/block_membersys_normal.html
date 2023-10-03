@@ -20,7 +20,8 @@
 						  <tr>
 							
                 <td width="120">
-                  <?
+                  <?php
+				  /*
 require_once('admin_smtp.php');
 
 $board_config['smtp_host'] = "webmail.usc.edu.tw" ;
@@ -51,7 +52,7 @@ $board_config['smtp_password'] = "9669";
 
 	include('admin_mail/express1.php');
 	}
-
+*/
 ?>
                 </td>
 							
@@ -98,7 +99,7 @@ $board_config['smtp_password'] = "9669";
 			<!-- Online count -->
 				<table width="160" border="0" align="center">
 				  <tr>
-					<td align="left"><span style="color:#333333;font-size:9pt;text-align:left;padding-left:10px;"><? /* hidden=$this->online_total hidden */?></span></td>
+					<td align="left"><span style="color:#333333;font-size:9pt;text-align:left;padding-left:10px;"><?php /* hidden=$this->online_total hidden */?></span></td>
 				  </tr>
 				</table>
 

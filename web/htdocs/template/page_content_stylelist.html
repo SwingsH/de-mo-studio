@@ -45,8 +45,8 @@
 							<td background="images/tb_whiteblue_ml.gif">&nbsp;</td>
 							<td>                              　
 							  <div align="center">
-							    <a href="http://www.de-mo.com.tw/special.php?bid=9"><img src="images/magazine/men.jpg" width="78" height="109" border="0"></a>
-                             　    <a href="http://www.de-mo.com.tw/special.php?bid=8"><img src="images/magazine/zipper.jpg" width="78" height="109" border="0"></a> 　 <a href="http://www.de-mo.com.tw/special.php?bid=2"><img src="images/magazine/fineboys.jpg" width="78" height="109" border="0"></a>　 <a href="http://www.de-mo.com.tw/special.php?bid=3"><img src="images/magazine/mina.jpg" width="78" height="109" border="0"></a>　 <a href="http://www.de-mo.com.tw/special.php?bid=6"><img src="images/magazine/jack.jpg" width="78" height="109" border="0"></a>　<a href="http://www.de-mo.com.tw/special.php?bid=5"><img src="images/magazine/ray.jpg" width="78" height="109" border="0"></a>　 <a href="http://www.de-mo.com.tw/special.php?bid=7"><img src="images/magazine/woofin.jpg" width="78" height="109" border="0"></a>
+							    <a href="<?php echo IPDOMAIN; ?>special.php?bid=9"><img src="images/magazine/men.jpg" width="78" height="109" border="0"></a>
+                             　    <a href="<?php echo IPDOMAIN; ?>special.php?bid=8"><img src="images/magazine/zipper.jpg" width="78" height="109" border="0"></a> 　 <a href="<?php echo IPDOMAIN; ?>special.php?bid=2"><img src="images/magazine/fineboys.jpg" width="78" height="109" border="0"></a>　 <a href="<?php echo IPDOMAIN; ?>special.php?bid=3"><img src="images/magazine/mina.jpg" width="78" height="109" border="0"></a>　 <a href="<?php echo IPDOMAIN; ?>special.php?bid=6"><img src="images/magazine/jack.jpg" width="78" height="109" border="0"></a>　<a href="<?php echo IPDOMAIN; ?>special.php?bid=5"><img src="images/magazine/ray.jpg" width="78" height="109" border="0"></a>　 <a href="<?php echo IPDOMAIN; ?>special.php?bid=7"><img src="images/magazine/woofin.jpg" width="78" height="109" border="0"></a>
 							  <table width="700" border="0">
                                 <tr>
                                   <td width="98" class="style1">mens non-no2月號</td>
@@ -156,7 +156,7 @@
 				<table width="90" border="0" cellspacing="0" cellpadding="0">
 				  <tr>
 					<td><img src="images/icon_number_arr01.gif" width="11" height="13"></td>
-					<td><span class="index_content_a" id="block_title"><?=$this->style_txt?></span></td>
+					<td><span class="index_content_a" id="block_title"><?php echo $this->style_txt?></span></td>
 				  </tr>
 				</table>
 				<!--Title-->
@@ -168,7 +168,7 @@
 		  <tr>
 			<td>
 				<!--Number Start-->
-				<?=$this->block_pagenum?>
+				<?php echo $this->block_pagenum?>
 				<!--Number Start , End-->
 			</td>
 		  </tr>
@@ -178,9 +178,9 @@
 				  <tr>
 					<td>
 						<!--Most important row setcion-->
-						<? foreach( $this->block_rows as $row ) :?>
-						<?=$row?>
-						<? endforeach; ?>
+						<?php foreach( $this->block_rows as $row ) :?>
+						<?php echo $row?>
+						<?php endforeach; ?>
 					</td>
 				  </tr>
 				</table>
@@ -189,7 +189,7 @@
 		  <tr>
 			<td>
 				<!--Number Start-->
-					<?=$this->block_pagenum?>
+					<?php echo $this->block_pagenum?>
 				<!--Number Section End-->
 			</td>
 		  </tr>

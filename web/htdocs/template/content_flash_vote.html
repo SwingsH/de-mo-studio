@@ -14,9 +14,9 @@
 	var swfurl="http://192.83.193.117/swf/detail_vote_v2.swf";
 	var fob = new FlashObject(swfurl,"myvote","388","122","7","#FFFFFF");
 	fob.addParam("wmode", "transparent");
-	fob.addVariable("number","<?=$this->number?>");
-	fob.addVariable("voted","<?=$this->voted?>");
-	fob.addVariable("did","<?=$this->did?>");
+	fob.addVariable("number","<?php echo $this->number?>");
+	fob.addVariable("voted","<?php echo $this->voted?>");
+	fob.addVariable("did","<?php echo $this->did?>");
 	fob.write("flashvote");
 </script> 
 </body>

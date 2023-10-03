@@ -8,7 +8,7 @@
 			<td height="62" colspan="3" background="template/images/tb_3_top.gif"> 
 			  <table width="300" border="0" id="for_pic_align">
                 <tr>
-                  <td><img src="<?=$profile_link?>" align="right"/></td>
+                  <td><img src="<?php echo $profile_link?>" align="right"/></td>
                 </tr>
               </table></td>
 		</tr>
@@ -23,13 +23,13 @@
               
               <tr style="color: #0066CC">
                 <td width="390" align="left" valign="top" style="color: #0066CC">
-                <?=$detail_content?>
+                <?php echo $detail_content?>
              
                 <p><span class="stl_col_content">
                   評語：</span><br><span class="stl_col_content">
-                  <?=$profile_evaluation?>
+                  <?php echo $profile_evaluation?>
 </span></p>
-                <p><span class="stl_col_content">色系：</span><span class="stl_col_content"><?=$profile_color?>
+                <p><span class="stl_col_content">色系：</span><span class="stl_col_content"><?php echo $profile_color?>
                   </span></p>
                 <p>&nbsp;</p></td>
                 <td width="275" height="212" align="center" valign="top" bordercolor="#FFFFFF" style="color: #0066CC" >
@@ -47,12 +47,12 @@
 		
                     <p><span class="stl_prodate"  bgcolor="#000000" >拍攝日期：</span> 
                     <span class="stl_prodate">
-                      <?=$year?>
+                      <?php echo $year?>
                       </span> /
                       <span class="stl_prodate">
-                      <?=$month?>
+                      <?php echo $month?>
                       </span>/<span class="stl_prodate">
-                      <?=$day?>
+                      <?php echo $day?>
                       </span>
 					  <br/>
                      <span style="color:#000000 ; font-size:9pt ;">Demo 
@@ -60,7 +60,7 @@
 					<span style="color: #FF0000 ; font-size:9pt ;">
 					No.</span>
 					<span class="stl_pronumber">
-                      <?=$profile_number?>
+                      <?php echo $profile_number?>
                     </span> 
 					</p>
                   <table width="271" border="0" cellpadding="2" cellspacing="2" bordercolor="#FCF5B4" bgcolor="#FCF5B4" style="color: #0066CC" id="table3">
@@ -71,14 +71,14 @@
 						綽號：
 						</span>
 						<span class="stl_col_content">
-                          <?=$profile_name?>
+                          <?php echo $profile_name?>
                         </span></td>
                         <td width="142" style="color: #0066CC">
                         <span class="stl_col_name">
 						年齡：
 						</span>
 						<span class="stl_col_content">
-                          <?=$profile_age?>
+                          <?php echo $profile_age?>
                         </span>
                         </td>
                       </tr>
@@ -86,11 +86,11 @@
                         <td style="color: #0066CC">
                         <span class="stl_col_name">身高：</span>
                         <span class="stl_col_content">
-                          <?=$profile_tall?>
+                          <?php echo $profile_tall?>
                         </span></td>
                         <td style="color: #0066CC"><span class="stl_col_name">地點：</span>
                         <span class="stl_col_content">
-                          <?=$profile_location?>
+                          <?php echo $profile_location?>
                         </span></td>
                       </tr>
                       <tr valign="top" bordercolor="#CCCCCC" bgcolor="#CCCCCC" style="color: #0066CC">
@@ -100,7 +100,7 @@
 						<br style="color: #0066CC"/>
                           &nbsp;&nbsp;&nbsp;
                           <span class="stl_col_content">
-                          <?=$profile_say?>
+                          <?php echo $profile_say?>
                         </span></td>
                       </tr>
                   </table>
@@ -123,7 +123,7 @@
 		<script type="text/javascript" language="javascript">
 			var swfurl="swf/detail_photo.swf";
 			var fo = new FlashObject(swfurl,"myphoto","275","510","7","#FFFFFF");
-			fo.addVariable("cache","<?=$imgcache?>");
-			fo.addVariable("path","<?=$imgpath?>");
+			fo.addVariable("cache","<?php echo $imgcache?>");
+			fo.addVariable("path","<?php echo $imgpath?>");
 			fo.write("flashphoto");
 		</script>

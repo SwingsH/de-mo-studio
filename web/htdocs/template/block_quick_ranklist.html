@@ -38,24 +38,24 @@
 				  </tr>
 				  
 				  
-				  <? $no=1 ; foreach( $this->profiles as $data ): ?>
+				  <?php $no=1 ; foreach( $this->profiles as $data ): ?>
 				  <tr>
 					<td>
 						<!--人氣個人資料開始!!!-->
 						<!--首頁:左-人氣區內容,排名1-->
-						<table class="index_menu_tb_r" bgcolor="<?=($no%2==1?'#FFFFFF':'#F5F6F7')?>" width="190" border="0" cellspacing="0" cellpadding="0">
+						<table class="index_menu_tb_r" bgcolor="<?php echo ($no%2==1?'#FFFFFF':'#F5F6F7')?>" width="190" border="0" cellspacing="0" cellpadding="0">
 						  	
 						  	<tr>
 						  	<td width="14" style="text-align:center">
-								<img src="images/icon_number_org_<?=sprintf('%02d', $no++ )?>.gif" width="14" height="13" />
+								<img src="images/icon_number_org_<?php echo sprintf('%02d', $no++ )?>.gif" width="14" height="13" />
 							</td>
 							<td width="110">
 								<span class="index_menu_content">
-									<a href="<?=$data['url']?>"><?=$data['name']?></a>
+									<a href="<?php echo $data['url']?>"><?php echo $data['name']?></a>
 								</span>	
 							</td>
 							<td width="63" style="text-align:right">
-								<span class="index_content_a"><?=$data['vote']?></span>
+								<span class="index_content_a"><?php echo $data['vote']?></span>
 								<span class="index_content_a">票</span>
 							</td>
 						  </tr>
@@ -63,7 +63,7 @@
 						<!--首頁:左-人氣區內容,排名1 END-->
 					</td>
 				  </tr>
-				  <? endforeach;?>
+				  <?php endforeach;?>
 				</table>
 				<!--首頁:左-人氣區主內容 END-->
 			</td>
@@ -93,7 +93,7 @@
 <div style="margin-top:10px">
 <table width="210" height="70" border="0">
   <tr>
-    <td ><div align="center"><a href="http://www.de-mo.com.tw/news.php?id=122" ><img src="template/images/ad/qg.jpg" width="190" height="70" border="0"  ></a></div></td>
+    <td ><div align="center"><a href="<?php echo ROOT_PATH; ?>/news.php?id=122" ><img src="template/images/ad/qg.jpg" width="190" height="70" border="0"  ></a></div></td>
   </tr>
 </table>
     <p>&nbsp;</p>
