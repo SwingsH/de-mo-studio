@@ -1,0 +1,281 @@
+<!--<?php print <<<EOT
+-->
+<table width="$tablewidth" cellspacing="0" cellpadding="0" align="center"><tr><td align="left">
+<img src="$imgpath/$stylepath/index/home.gif" align="absbottom" /> 
+<b><a href="$db_bfn">$db_bbsname </a> -&gt 論壇幫助</b></td></tr></table><br />
+
+<table width="$tablewidth" cellspacing="1" cellpadding="3" bgcolor="$tablecolor" align="center" style="TABLE-LAYOUT: fixed;WORD-WRAP: break-word;">
+<tr>
+<td align="center" class="f_one"><a href="faq.php?faqjob=2#1">注冊與會員登錄</a></td>
+<td align="center" class="f_one"><a href="faq.php?faqjob=2#2">會員控制面板</a></td>
+<td align="center" class="f_one"><a href="faq.php?faqjob=2#3">論壇發帖與相關權限 </a></td> 
+<td align="center" class="f_one"><a href="faq.php?faqjob=2#5">WAP 說明</a></td> 
+<td align="center" class="f_one"><a href="faq.php?faqjob=2#4">PHPWind 版權聲明</a></td>
+<td align="center" class="f_one"><a href="faq.php?faqjob=1#5">互動聯盟推薦</a></td>
+<td align="center" class="f_one"><a href="faq.php?faqjob=1#6"> Wind Code</a></td>
+<td align="center" class="f_one"><a href="faq.php?faqjob=3">自定義幫助</a></td></tr></table>
+
+<!--
+EOT;
+if($faqjob==1){
+list($db_unioninfo,$c)=explode("\t",readover(D_P.'data/bbscache/info.txt'));
+print <<<EOT
+--><br />
+<table width="$tablewidth" cellspacing="1" cellpadding="3" $i_table align="center">
+<tr><td class="head"><a name="5"></a><b>互動聯盟推薦</b></td></tr>
+<tr class="f_one">
+<td>
+$db_unioninfo
+<!--
+EOT;
+if(!$db_unioninfo){print <<<EOT
+-->
+<center><a href="http://www.ofstar.com/bbs/" target=_blank><b>流星 ofstar.com</b><br><br>流星時尚 (服飾、美容、旅游、運動、美食)<br>流星數碼(數碼影像, 潮流手機, 隨身听, 掌上電腦) <br>流星文聯( 文學 ,情感 )<br>流星娛樂(最新音樂推薦 , 影視)</a></center>
+<!--
+EOT;
+}print <<<EOT
+--></td></tr>
+</table><br />
+
+<table width="$tablewidth" cellspacing="1" cellpadding="3" $i_table align="center">
+<tr><td class="head" colspan="2"><a name="6"></a><b>Wind Code</b>
+</td></tr>
+<tr class="f_one"><td valign="center" align="left">
+<ul>
+<font color="#5a6633" face="verdana">[quote]</font>
+被引用的內容，主要作用是在發帖時引用並回復具體樓層的帖子
+<font color="#5a6633" face="verdana">[/quote]</font> 
+</ul>
+</td>
+<td valign="center" align="left">
+<table cellpadding="5" cellspacing="1" width="94%" bgcolor="#000000" align="center">
+<tr><td class="f_one">被引用的帖子和您的回復內容
+</td></tr></table>
+</td></tr>
+<tr class="f_one"><td valign="center" align="left">
+<ul>
+<font color="#5a6633" face="verdana">[code]</font><font color="#5a6633"></font>
+<br /><font face="courier" color="#333333"><br />
+	 unset(\$txt[\$i]);<br />
+     \$txt=implode('',\$txt);<br />
+     \$f=fopen('userdata/xuni/market.data','w');<br />
+     fputs(\$f,\$txt);<br />
+	 fclose(\$f);<br />
+</font><font color="#5a6633" face="verdana">[/code]</font> 
+</ul>
+</td>
+<td valign="center" align="left"> 
+<font color="red">以下是代碼:</font><br />
+<textarea name="textfield" rows="5" style="width:100%;">
+unset(\$txt[\$i]);
+\$txt=implode('',\$txt);
+\$f=fopen('userdata/xuni/market.data','w');
+fputs(\$f,\$txt);
+fclose(\$f);
+</textarea><br /><font color="red">[Ctrl+A 全部選擇]</font>
+</td></tr>
+<tr class="f_one"><td valign="center" align="middle">
+<font face="verdana" color="5a6633">[url]</font>
+<font face="verdana">http://www.phpwind.net</font><font color="5a6633">[/url] 
+</font>
+</td>
+<td valign="center" align="middle">
+<a href="http://www.phpwind.net" target="_blank">
+<font color="#000066">http://www.phpwind.net</font></a></td></tr>
+<tr class="f_one"><td valign="center" align="middle">
+<font face="verdana" color="5a6633">[url=http://www.phpwind.net]</font>
+<font face="verdana">PHPwind</font><font color="5a6633">[/url]</font></td>
+<td valign="center" align="middle">
+<a href="http://www.phpwind.net">
+<font color="000066">PHPwind</font></a></font></td></tr>
+<tr class="f_one">
+<td valign="center" align="middle">
+<font face="verdana" color="5a6633">[email]</font><font face="verdana">fengyu@163.com</font>
+<font color="5a6633">[/email]</font></td>
+<td valign="center" align="middle">
+<a href="mailto:fengyu@163.com"><font color="000066">fengyu@163.com</font></a></td></tr>
+<tr class="f_one"><td valign="center" align="middle">
+<font face="verdana" color="5a6633">[email=fengyu@163.com]</font>
+<font face="verdana">email me</font><font color="5a6633">[/email]</font></td>
+<td valign="center" align="middle">
+<a href="mailto:fengyu@163.com"><font color="000066">email me</font></a></td></tr>
+<tr class="f_one"> 
+<td valign="center" align="middle"><font face="verdana" color="5a6633">[b]</font>
+<font face="verdana">粗體字</font><font color="5a6633" face="verdana">[/b]</font> 
+</td>
+<td valign="center" align="middle"><font face="verdana"><b>粗體字</b></font> 
+</td></tr>
+<tr class="f_one"><td valign="center" align="middle"><font face="verdana" color="5a6633">[i]</font>
+<font face="verdana">斜體字<font color="5a6633">[/i]</font> 
+</font></td>
+<td valign="center" align="middle"><font face="verdana"><i>斜體字</i></font> 
+</td></tr>
+<tr class="f_one"><td valign="center" align="middle"><font face="verdana" color="5a6633">[u]</font>
+<font face="verdana">下劃線</font><font color="5a6633">[/u]</font></td>
+<td valign="center" align="middle"><font face="verdana"><u>下劃線</u></font> 
+</td>
+</tr>
+<tr class="f_one"> 
+<td valign="center" align="middle">
+<font face=verdana color=5a6633>[align=center(可以是向左left，向右right)]</font>位于中間
+<font color="5a6633">[/align]</font></td>
+<td valign="center" align="middle"><font face="verdana"><div align="center">中間對齊</div></font></td></tr>
+<tr class="f_one"> 
+<td valign="center" align="middle"><font face="verdana" color="5a6633">[size=4]</font>
+<font face="verdana">改變字體大小<font color="5a6633">[/size] 
+</font> </font></td>
+<td valign="center" align="middle"><font face="verdana">改變字體大小 </font></td></tr>
+<tr class="f_one"> 
+<td valign="center" align="middle"><font face="verdana" color="5a6633">[font=</font>
+<font color="5a6633">楷體_gb2312<font face="verdana">]</font></font>
+<font face="verdana">改變字體<font color="5a6633">[/font] 
+</font> </font></td>
+<td valign="center" align="middle"><font face="verdana"><font face=楷體_gb2312>改變字體</font> 
+</font></td>
+</tr>
+<tr class="f_one"> 
+<td valign="center" align="middle"><font face="verdana" color="5a6633">[color=red]</font>
+<font face="verdana">改變顏色<font color="5a6633">[/color] 
+</font> </font></td>
+<td valign="center" align="middle"><font face="verdana" color="red">改變顏色</font><font face="verdana"> 
+</font></td>
+
+</tr>
+<tr class="f_one"> 
+<td valign="center" align="middle"><font face="verdana" color="5a6633">[img]</font>
+<font face="verdana">http://www.phpwind.net/logo.gif<font color="5a6633">[/img]</font> 
+</font></td>
+<td align="center"><font face="verdana">
+<img src="logo.gif" /></font> </td>
+</tr>
+<tr class="f_one"> 
+<td valign="center" align="middle">
+<font face=宋體 color="#333333"><font color="#5a6633">[fly]</font>飛行文字特效
+<font color="#5a6633">[/fly]</font> </font></td>
+<td valign="center" align="left">
+<font face=宋體	color="#333333">
+<marquee scrollamount="3" behavior="alternate" width="90%">飛行文字特效</marquee></font></td>
+</tr>
+<tr class="f_one"> 
+<td valign="center" align="middle">
+<font face=宋體 color="#333333"><font color="#5a6633">[move]</font>滾動文字特效
+<font color="#5a6633">[/move]</font> </font></td>
+<td valign="center" align="left">
+<font face=宋體 color="#333333"> <marquee scrollamount="3" width="90%">滾動文字特效</marquee></font></td>
+</tr>
+<tr class="f_one">
+<td valign="center" align="middle">
+<font face=宋體 color="#333333">
+<font color="#5a6633">[flash=400,300]</font>http://www.phpwind.net/wind.swf
+<font color="#5a6633">[/flash]</font> </font></td>
+<td valign="center" align="middle">
+<font face=宋體 color="#333333">將顯示flash文件</font> </td>
+</tr>
+<tr class="f_one">
+<td valign="center" align="middle">
+<font face=宋體 color="#333333">
+<font color="#5a6633">[iframe]</font>http://www.phpwind.net<font color="#5a6633">[/iframe]</font> </font></td>
+<td valign="center" align="middle">
+<font face=宋體 color="#333333">將在帖子中粘貼網頁(後台默認關閉)</font> </td>
+</tr>
+<tr class="f_one">
+<td align="center">
+<font color=#5a6633>[glow=255(寬度)，red(顏色)，1(邊界)]</font><br>要產生光暈效果的文字<font color="#5a6633">[/glow]</font>
+</td>
+<td align="center"><font face=宋體 color="#333333">
+<table width="255" style="filter:glow(color=red, direction=1)">
+<tr><td align="center">要產生彩色發光效果的文字</td>
+</tr></table></font></td></tr>
+</table>
+<!--
+EOT;
+}elseif($faqjob==2){print <<<EOT
+-->
+<table width="$tablewidth" cellspacing="1" cellpadding="3" $i_table align="center">
+<tr><td class="head"><a name="1"></a>注冊與會員登錄</td></tr>
+<tr class="f_one"><td><b>關于注冊</b></td></tr>
+<tr class="f_one"><td>您需要 <a href="./register.php"><font color="blue">注冊成為會員</font></a> 才能正常使用論壇的各項功能，比如︰<li>發布一個主題<li>回復其他會員的帖子<li>編輯自己的帖子<li>查看其他會員信息,排行榜等<li>給其他會員發送短信息<li>搜索您所需要的資料<br>等等 .....注冊時，您需要一個用戶名、密碼和一個有效的email地址。輸入您的email地址不會給您帶來'垃圾郵件'，您可以在注冊時選擇隱藏email地址。</td></tr>
+<tr class="f_one"><td><b>關于登錄論壇</b></td></tr>
+<tr class="f_one"><td>如果您以前是該論壇的會員，請點擊 <a href="./login.php"><font color="blue">登錄</font></a> 進入登錄界面，填寫用戶名和密碼。<br>同時您可以選擇是否隱身登錄，如果管理員允許您所處的用戶組擁有此權利，這樣別人將無法知道您是否在線。<br>Cookie 有效期介紹: 主要用于在您離開一會兒或者重新進入一個主題或者帖子的時候確認您的身份。當您登錄時， 您將有一個'cookie 有效期:'選項，您可以選擇cookie保存的時間，這時系統將您的用戶名和密碼用cookie保存，儲存在您的電腦。如果您是使用一台共用的電腦，比如在圖書館、網吧，或者其他不能完全信任的地方， 建議使用'即時'選項，以免您的帳號被他人盜用。</td></tr>
+<tr class="f_one"><td><b>找回密碼</b></td></tr>
+<tr class="f_one"><td>如果您之前是會員而忘記了密碼，可用此功能 <a href="sendpwd.php"><font color="blue">找回密碼</font></a>(郵箱必須有效)，在取回密碼頁面輸入您注冊時候的用戶名，系統將自動發送密碼到您的有效郵箱中。</td></tr>
+<tr><td class="head"><a name="2"></a>會員控制面板</td></tr>
+<tr class="f_one"><td><b>關于會員核心數據</b></td></tr>
+<tr class="f_one"><td>在 <a href="profile.php"><font color="blue">編輯會員核心數據</font></a> 時，考慮到安全性必須輸入原密碼，同時您也可以更改現有的密碼，同時確認您的email地址是有效的，必要時系統將會發送一些論壇信息至您的郵箱，比如密碼發送等。注意不能更改用戶名，如有特殊情況需要修改用戶名，請與管理員聯系。</td></tr>
+<tr class="f_one"><td><b>關于個性化簽名</b></td></tr>
+<tr class="f_one"><td>注冊時，可以設置自己的個性簽名。您的簽名將出現在每個帖子底部，您也可以選擇不顯示個性簽名，在發帖和回復的時候不選中"使用簽名"選項。在編輯個性化簽名時您可以使用 <a href="faq.php?faqjob=1#5"><font color="blue">Wind Code</font></a> 進行編輯多彩的簽名。注意簽名的字節數是跟您的等級相關的，所以您的簽名長度是受限制的!</td></tr>
+
+<tr class="f_one"><td><b>關于自定義頭像</b></td></tr>
+<tr class="f_one"><td>個人頭像會出現在每個帖子中用戶名的下方，頭像可以是由論壇提供或者您自己輸入完整的 URL 或上傳 均可以，您可以選擇一個最能代表您個性的頭像。如果論壇允許使用自定義會員頭像， 您可以使用URL 地址的頭像或自己上傳頭像。</td></tr>
+
+<tr><td class="head"><a name="3"></a>論壇發帖與相關權限</td></tr>
+<tr class="f_one"><td><b>關于會員{$db_creditname}</b></td></tr>
+<tr class="f_one"><td>該積分用以判定一個會員對論壇宣傳上的{$db_creditname}! 如果您使用 論壇的URL ?a= 自己的論壇數字ID 給您的一位朋友，使他們登錄到論壇里，您的{$db_creditname}將增加 1 單位。舉例: <a href="http://www.phpwind.net/?u=3558"><font color="blue">http://www.phpwind.net/?u=3558</font></a>     論壇數字ID 可在 控制面板 --> 查看個人資料 里查閱 </td></tr>
+<tr class="f_one"><td><b>關于會員等級提升</b></td></tr>
+<tr class="f_one"><td>PHPWind 論壇系統提供了一套靈活的等級提升方案，可以根據<b>綜合積分</b>來劃分用戶等級，設定一個好的等級提升方案能更好的體現論壇等級系統的價值<br><br><b>綜合積分︰</b>綜合積分是按照<b>會員組提升方案</b>中設定的積分比率來計算的，可以根據<b>論壇積分狀況統計</b>合理的設置<b>會員組提升方案</b><br>計算方法︰各項積分*比率的和為綜合積分的值<br><br>如等級提升方案設置<br>發貼數 : 1<br>威望 &nbsp; &nbsp;: 0.5<br>金錢 &nbsp; &nbsp;: -1<br>其他 &nbsp; &nbsp;: 0<br><br>綜合積分計算方法如下︰<br>發貼數*1 + 威望*0.5 + 金錢*(-1)</td></tr>
+<tr class="f_one"><td><b>關于論壇權限</b></td></tr>
+<tr class="f_one"><td>如果您看到論壇的某些版塊為認證版塊，說明您現在的用戶組還沒有權限進入。</td></tr>
+<tr class="f_one"><td><b>關于發帖的 Wind Code</b></td></tr>
+<tr class="f_one"><td>可以使用Wind Code 編輯您的帖子、短消息、簽名，您可以設置帖子文字的字體、顏色等格式。<a href="faq.php?faqjob=1#5"><font color="blue">Wind Code</font></a> 代碼使用簡單。
+</td></tr>
+<tr class="f_one"><td><b>關于投票</b></td></tr>
+<tr class="f_one"><td>這項功能允許您提出一個問題，並設置一些可能的答案。其他會員則選答案參與投票，投票結果將在主題上顯示。投票的例子見︰<ol>什麼是您最喜歡的城市? ( 在編輯框中 以 換行的 形式寫入以下各項 )<li>溫州 <li>杭州 <li>北京 <li>上海 <li>深圳</ol>　其他會員可以參與投票，您還可以設置投票是否允許多選，及多選的個數。每個會員只有一次投票機會，投票後可編輯投票！</td></tr>
+<tr class="f_one"><td><b>關于附件</b></td></tr>
+<tr class="f_one"><td>如果論壇允許使用上傳附件的功能， 您可以在帖子中上傳一些文件.。可以是一個圖片、一個文本、一個壓縮文件等. 您上傳的每種文件都有大小限制( 最大為: 2 M )，論壇跟您的硬盤所采用的文件擴展名並不一致!上傳一個附件，只有下載到自己的電腦上才能瀏覽。論壇限定了上傳文件的類型:可以上傳的文件擴展名: $db_uploadfiletype 發帖完畢後，附件將顯示在您所發布的信息中. </td></tr>
+<tr class="f_one"><td><b>編輯與刪除帖子</b></td></tr>
+<tr class="f_one"><td>注冊會員可以編輯或刪除自己的帖子，點<img src=$imgpath/wind/read/edit.gif>按鈕來管理帖子。管理員可以編輯和刪除論壇的所有帖子，版主只能編輯和刪除指定版塊內的帖子。</td></tr>
+<tr class="f_one"><td><b>關于版主</b></td></tr>
+<tr class="f_one"><td>版主負責論壇中某個版面。可以修改，刪除或移動他們所管理的版面中的任何帖子等權限。任命某個版面的版主，通常是對本版有特殊貢獻或對某領域有特殊才華的會員的一種獎勵。</td></tr>
+
+<tr><td class="head"><a name="5"></a>WAP 說明</td></tr>
+<tr class="f_one">
+<td><pre>
+
+$db_bbsname 目前已開通支持 WAP (手機移動論壇)功能.
+
+手機訪問地址︰<a href="$db_bbsurl/wap/"><font color=blue>$db_bbsurl/wap/</font></a>
+
+說明︰只要您開通了移動GPRS或聯通CDMA的數據服務，在支持WAP的手機上即可通過此網址訪問 $db_bbsname
+
+手機資費說明︰移動GPRS或聯通CDMA的數據服務包月或流量費用，無需任何額外的費用支出
+
+主要應用範圍︰
+
+    通過手機您可以隨時隨地的瀏覽您在網絡論壇上的活動信息，了解您發表的帖子的閱讀、回復情況。
+
+</pre></td></tr>
+<br />
+
+<tr><td class="head"><a name="4"></a>PHPWind 版權聲明</td></tr>
+<tr class="f_one"><td>
+<!--
+EOT;
+	$wind_licence= readover('licence.txt');
+	$wind_licence = str_replace('  ', '&nbsp; ', nl2br($wind_licence));
+
+print <<<EOT
+-->
+$wind_licence
+</td></tr>
+</table><br />
+<!--
+EOT;
+}elseif($faqjob=='3' && $helpdb){ print <<<EOT
+-->
+<br />
+<table width="$tablewidth" cellspacing="1" cellpadding="3" $i_table align="center">
+<!--
+EOT;
+foreach($helpdb as $key=>$help){ print <<<EOT
+-->
+<tr><td class="head">$help[title]</td></tr>
+<tr><td class="f_one">$help[content]</td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<!--
+EOT;
+}
+?>-->

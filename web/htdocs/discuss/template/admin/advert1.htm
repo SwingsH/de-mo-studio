@@ -1,0 +1,112 @@
+<!--<?php
+include_once PrintEot('left');
+print <<<EOT
+-->
+<table width="87%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+<tr><td class=head><b>提示信息</b></td></tr>
+<tr class=b><td width="20%"><b>說明︰</b><br>1.論壇頭部廣告︰在論壇頭部顯示（header 處），將出現在論壇每個頁面的頭部。<br>2.論壇底部廣告︰在論壇底部顯示（footer處），將出現的論壇每個頁面底部。<br>3.主題列表廣告︰在主題列表頁面顯示，程序自動判斷只顯示在有效期內的廣告。 （有效期設置格式︰yyyy-mm-dd）</td></tr></table><br>
+
+<form action="$basename&" method="post">
+<input type="hidden" name="action" value="banner">
+<table width="87%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+<tr align=center><td class=head colspan=2><b>論壇頭部廣告</b></td></tr>
+<tr class="b"><td width="25%" valign="top">廣告代碼 (支持html代碼)</td>
+<td><textarea name="advert" rows="5" cols="90">$db_banner</textarea></td></tr></table>
+<br><center><input type=submit value="提 交"></center></form>
+
+<form action="$basename&" method=post>
+<input type=hidden name=action value='footer'>
+<table width="87%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr align=center><td class=head colspan=2><b>論壇底部廣告</b></td></tr>
+<tr class="b"><td width="25%" valign="top">廣告代碼 (支持html代碼)</td>
+<td><textarea name="advert" rows="5" cols="90">$db_footer</textarea>
+</td></tr></table>
+<br><center><input type=submit value="提 交"></center></form>
+
+<form action="$basename&" method=post>
+<input type=hidden name=action value='thread'>
+<table width="87%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr align=center><td class=head colspan=5><b>主題列表廣告</b></td></tr>
+<tr class=b align=center>
+<td width="6%">順序</td>
+<td>廣告代碼 (支持html代碼)</td>
+<td width="8%">有效期至</td>
+<td width="8%">備注</td>
+<td width="6%">刪除</td></tr>
+<!--
+EOT;
+$id=0;
+foreach($db_thread as $key => $value){
+$id++;
+print <<<EOT
+-->
+<tr class=b align=center>
+<td>$id</td>
+<td><input type=text size="70" name="advert[$id][0]" value="$value[0]"></td>
+<td><input type=text size="10" name="advert[$id][1]" value="$value[1]"></td>
+<td><input type=text size="20" name="advert[$id][2]" value="$value[2]"></td>
+<td width="6%"><a href="$basename&action=delthread&id=$key">刪除</a></td></tr>
+<!--
+EOT;
+}$key++;
+for($i=$key;$i<$key+4;$i++){
+print <<<EOT
+-->
+<tr class=b align=center>
+<td>$i</td>
+<td><input type=text size="70" name="newadvert[$i][0]"></td>
+<td><input type=text size="10" name="newadvert[$i][1]"></td>
+<td><input type=text size="20" name="newadvert[$i][2]"></td>
+<td></td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<br><center><input type=submit value="提 交"></center></form>
+
+<form action="$basename&" method="post">
+<input type="hidden" name="action" value='article'>
+<table width="87%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr align=center><td class=head colspan=5><b>帖子中的廣告</b></td></tr>
+<tr class=b align=center>
+<td width="6%">順序</td>
+<td>廣告代碼 (支持html代碼)</td>
+<td width="8%">有效期至</td>
+<td width="8%">備注</td>
+<td width="6%">刪除</td></tr>
+<!--
+EOT;
+$id=$key=0;
+foreach($db_article as $key => $value){
+$id++;
+print <<<EOT
+-->
+<tr class=b align=center>
+<td>$id</td>
+<td><input type=text size="70" name="advert[$id][0]" value="$value[0]"></td>
+<td><input type=text size="10" name="advert[$id][1]" value="$value[1]"></td>
+<td><input type=text size="20" name="advert[$id][2]" value="$value[2]"></td>
+<td width="6%"><a href="$basename&action=delarticle&id=$key">刪除</a></td></tr>
+<!--
+EOT;
+}$key++;
+for($i=$key;$i<$key+4;$i++){
+print <<<EOT
+-->
+<tr class=b align=center>
+<td>$i</td>
+<td><input type=text size="70" name="newadvert[$i][0]"></td>
+<td><input type=text size="10" name="newadvert[$i][1]"></td>
+<td><input type=text size="20" name="newadvert[$i][2]"></td>
+<td></td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<br><center><input type=submit value="提 交"></center></form>
+<!--
+EOT;
+include_once PrintEot('adminbottom');
+?>-->

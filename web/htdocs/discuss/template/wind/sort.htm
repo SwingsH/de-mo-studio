@@ -1,0 +1,400 @@
+<!--<?php print <<<EOT
+-->
+<table width="$tablewidth" cellspacing="0" cellpadding="0" align="center">
+<tr><td align="left">
+<img src="$imgpath/$stylepath/index/home.gif" align="absbottom" /> 
+<b><a href="$db_bfn">$db_bbsname </a> -> PhpWind 統計信息</b>
+<!--
+EOT;
+if($cachetime){print <<<EOT
+-->
+</td>
+<td align="right">
+<b>下次更新時間:$cachetime</b>
+</td>
+<!--
+EOT;
+}print <<<EOT
+-->
+</td></tr></table><br />
+
+<table width="$tablewidth" cellspacing="1" cellpadding="5" $i_table align="center" style="TABLE-LAYOUT: fixed;WORD-WRAP: break-word">
+<tr align="center">
+<td class="f_one"><a href="sort.php">基本統計信息</a></td>
+<td class="f_one"><a href="sort.php?action=ipstate">到訪IP統計</a></td>
+<td class="f_one"><a href="sort.php?action=team">管理團隊</a></td>
+<td class="f_one"><a href="sort.php?action=admin">管理統計</a></td>
+<td class="f_one"><a href="sort.php?action=online">在線統計</a></td>
+<td class="f_one"><a href="sort.php?action=member">會員排行</a></td>
+<td class="f_one"><a href="sort.php?action=forum">版塊排行</a></td>
+<td class="f_one"><a href="sort.php?action=article">帖子排行</a></td>
+</tr></table><br />
+<!--
+EOT;
+if(empty($action)){print <<<EOT
+-->
+<table width="$tablewidth" align="center" cellspacing="1" cellpadding="6" $i_table>
+<tr><td class="head" colspan="3"><b>基本統計信息</b></td></tr>
+<tr align="center">
+
+<td class="f_one" width="33%" valign="top"><table>
+<tr><td><b>會員統計</b></td></tr> 
+<tr><td><br /></td></tr>
+<tr><td>會員總數:$bbsinfo[totalmember]</td></tr>
+<tr><td><br /></td></tr>
+<tr><td>
+最新注冊會員:<a href="profile.php?action=show&username=$bbsinfo[newmember]" target="_blank">$bbsinfo[newmember]</a>
+</td></tr></table></td>
+
+<td class="f_one" width="33%"><table>
+<tr><td><b>帖子統計</b></td></tr>
+<tr><td>主題數:$topic</td></tr>
+<tr><td>帖子數:$article </td></tr>
+<tr><td>今 日:$tposts </td></tr>
+<tr><td>昨 日:$bbsinfo[yposts]</td></tr> 
+<tr><td>最高日:$bbsinfo[hposts]</td></tr></table></td>
+
+<td class="f_one"><table>
+<tr><td><b>在線統計</b></td></tr>
+<tr><td>在線總數:$usertotal</td></tr>
+<tr><td>會員數:$userinbbs</td></tr>
+<tr><td>游客數:$guestinbbs</td></tr>
+<tr><td>最高在線:$bbsinfo[higholnum]</td></tr>
+<tr><td>發生在:$bbsinfo[higholtime]</td></tr>
+</table></td></tr></table>
+<!--
+EOT;
+}elseif($action=='ipstate'){print <<<EOT
+-->
+<table width="$tablewidth" align="center" cellspacing="1" cellpadding="6" $i_table>
+<tr><td class="head" colspan="2"><b>到訪IP統計</b></td></tr>
+<!--
+EOT;
+if($type=='month'){print <<<EOT
+-->
+<tr><td class="cbg" colspan="2"><b>月到訪IP統計</b>
+<a href="sort.php?action=ipstate&year=$p_year">< </a> $c_year <a href="sort.php?action=ipstate&year=$n_year">></a>
+</td></tr>
+<!--
+EOT;
+foreach($m_ipdb as $key => $ip){
+$percent=round($ip[nums]/$summip*100,1);
+$imgwidth=floor(500*$ip[nums]/($summip+1));
+print <<<EOT
+-->
+<tr class="f_one"><td width="15%">$ip[month] 
+<a href="sort.php?action=ipstate&type=day&month=$ip[_month]">查看</a></td>
+<td><img src="$imgpath/post/vote/bar1.gif" width="$imgwidth" height="10" /> $ip[nums]($percent%)</td></tr>
+<!--
+EOT;
+}}elseif($type=='day'){print <<<EOT
+-->
+<tr><td class="cbg" colspan="2">
+<a href="sort.php?action=ipstate&year=$Y"><b>月到訪IP統計</b></a>
+<b>日到訪IP統計</b>
+<a href="sort.php?action=ipstate&type=day&month=$p_month">< </a> $c_month 
+<a href="sort.php?action=ipstate&type=day&month=$n_month">></a>
+</td></tr>
+<!--
+EOT;
+foreach($d_ipdb as $key => $ip){
+$percent=round($ip[nums]/$sumip*100,1);
+$imgwidth=floor(500*$ip[nums]/($sumip+1));
+print <<<EOT
+-->
+<tr class="f_one"><td width="15%">$ip[day]</td>
+<td><img src="$imgpath/post/vote/bar1.gif" width="$imgwidth" height="10" /> $ip[nums]($percent%)</td></tr>
+<!--
+EOT;
+}}print <<<EOT
+-->
+</table>
+<!--
+EOT;
+}elseif($action=='online'){print <<<EOT
+-->
+<table width="$tablewidth" align="center" cellspacing="1" cellpadding="6" $i_table>
+<tr><td class="head" colspan="10"><b>在線統計</b></td></tr>
+<tr class="cbg">
+<td align="center">用戶名</td>
+<td align="center">IP</td>
+<td align="center">級別</td>
+<td align="center">當前動作</td>
+<td align="center">最後活動時間</td>
+<td align="center">所在版塊</td>
+<td align="center">所在主題</td>
+</tr>
+<!--
+EOT;
+foreach($threaddb as $thread){
+if($thread){
+print <<<EOT
+-->
+<tr height="26">
+<td align="center"  bgcolor="$threadcolorone">
+<b>
+<!--
+EOT;
+if($thread[9]=='<>' && $groupid==3){
+print <<<EOT
+-->
+<a href="profile.php?action=show&uid=$thread[8]" target="_blank">$thread[username](隱身)</a>
+<!--
+EOT;
+}elseif($thread[9]=='<>' && $groupid!=3){
+print <<<EOT
+-->
+隱身會員
+<!--
+EOT;
+}else{
+print <<<EOT
+-->
+<a href="profile.php?action=show&uid=$thread[8]" target="_blank">$thread[username]</a>
+<!--
+EOT;
+}print <<<EOT
+-->
+</b></td>
+<td align="center" bgcolor="$forumcolortwo">$thread[ip]</td>
+<td align="center" bgcolor="$forumcolortwo">$thread[group]</td>
+<td align="center" bgcolor="$forumcolortwo">$thread[action]</td>
+<td align="center"  bgcolor="$threadcolorone">$thread[lasttime]</td>
+<td align="center" bgcolor="$forumcolortwo">$thread[forum]</td>
+<td align="center" bgcolor="$forumcolortwo">
+<!--
+EOT;
+if($thread[atc]){print <<<EOT
+-->
+<a href="read.php?tid=$thread[atc]">進入主題</a>
+<!--
+EOT;
+}print <<<EOT
+-->
+</td>
+</tr>
+<!--
+EOT;
+}}
+print <<<EOT
+-->
+</table>
+<table width="$tablewidth" align="center" cellspacing="1" cellpadding="0">
+<tr><td>{$pages}&nbsp;&nbsp;共{$count}人在線</td></tr></table>
+<!--
+EOT;
+}elseif($action=='team'){print <<<EOT
+-->
+<table width="$tablewidth" align="center" cellspacing="1" cellpadding="6" $i_table>
+<tr><td class="head" colspan="11"><b>管理團隊</b></td></tr>
+<tr class="cbg" align="center">
+<td>用戶名</td>
+<td>系統頭餃</td>
+<td>會員頭餃</td>
+<td>最後發表</td>
+<td>離開天數</td>
+<td>發帖</td>
+<td>本月發貼</td>
+<td>{$db_rvrcname}</td>
+<td>$db_moneyname</td>
+<td>在線時間</td>
+<td>本月在線</td>
+</tr>
+<!--
+EOT;
+foreach($teamdb as $key => $team){
+print <<<EOT
+-->
+<tr class="f_one" align="center">
+<td><a href="profile.php?action=show&uid=$team[uid]" target="_blank">$team[username]</a></td>
+<td>$team[systitle]</td>
+<td>$team[memtitle]</td>
+<td>$team[lastpost]</td>
+<td>$team[leavedays]</td>
+<td>$team[postnum]</td>
+<td>$team[monthpost]</td>
+<td>$team[rvrc]</td>
+<td>$team[money]</td>
+<td>$team[onlinetime]</td>
+<td>$team[monoltime]</td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table><br />
+<table width="$tablewidth" align="center" cellspacing="1" cellpadding="6" $i_table>
+<tr><td class="head" colspan="12"><b>版主統計</b></td></tr>
+<tr class="cbg" align="center">
+	<td>版塊名稱</td>
+	<td>版主</td>
+	<td>系統頭餃</td>
+	<td>會員頭餃</td>
+	<td>最後發表</td>
+	<td>離開天數</td>
+	<td>本月主題數</td>
+	<td>本月回復數</td>
+	<td>被點擊數</td>
+	<td>本月在線</td>
+</tr>
+<!--
+EOT;
+foreach($forum as $key => $value){
+if($value['cms']=='0' && $forumdb[$key]){
+$i=count($forumdb[$key]);
+print <<<EOT
+-->
+<tr class="f_one" align="center">
+	<td  rowspan="$i"><a href="thread.php?fid=$key" target="_blank">$value[name]</a></td>
+<!--
+EOT;
+$j=0; 
+foreach($forumdb[$key] as $uid=>$member){
+$j++;
+if($j>1){
+print <<<EOT
+-->
+<tr class="f_one" align="center">
+<!--
+EOT;
+}
+print <<<EOT
+-->
+	<td><a href="profile.php?action=show&uid=$uid" target="_blank">$member[username]</a></td>
+	<td>$member[systitle]</td>
+	<td>$member[memtitle]</td>
+	<td>$member[lastpost]</td>
+	<td>$member[leavedays]</td>
+	<td>$member[monthpost]</td>
+	<td>$member[post]</td>
+	<td>$member[hits]</td>
+	<td>$member[monoltime]</td>
+</tr>
+<!--
+EOT;
+}}}print <<<EOT
+-->
+</table>
+<!--
+EOT;
+} elseif($action=='admin'){ print <<<EOT
+-->
+<table width="$tablewidth" align="center" cellspacing="1" cellpadding="6" $i_table>
+<tr><td class="head" colspan="15"><b>管理統計</b></td></tr>
+<tr class="cbg" align="center">
+	<td>用戶名</td>
+	<td>系統頭餃</td>
+	<td>加亮</td>
+	<td>刪除</td>
+	<td>評分</td>
+	<td>置頂</td>
+	<td>編輯</td>
+	<td>精華</td>
+	<td>復制</td>
+	<td>移動</td>
+	<td>鎖定</td>
+	<td>提前</td>
+	<td>合並</td>
+	<td>屏蔽</td>
+	<td>提示</td>
+</tr>
+<!--
+EOT;
+foreach($admindb as $key => $admin){
+print <<<EOT
+-->
+<tr class="f_one" align="center">
+	<td><a href="profile.php?action=show&uid=$admin[uid]" target="_blank">$key</a></td>
+	<td>{$ltitle[$admin[gid]]}</td>
+	<td>$admin[highlight]</td>
+	<td>$admin[delete]</td>
+	<td>$admin[credit]</td>
+	<td>$admin[topped]</td>
+	<td>$admin[edit]</td>
+	<td>$admin[digest]</td>
+	<td>$admin[copy]</td>
+	<td>$admin[move]</td>
+	<td>$admin[locked]</td>
+	<td>$admin[push]</td>
+	<td>$admin[unite]</td>
+	<td>$admin[shield]</td>
+	<td>$admin[remind]</td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table><br />
+<div align="right">月份:$month_total&nbsp;&nbsp;
+<!--
+EOT;
+if($month!=$thismonth && $groupid=='3'){
+$verify = substr(md5($windid.$winduid.$groupid.$db_hash),0,8);
+print <<<EOT
+-->
+<a href="sort.php?action=delsort&month=$month&verify=$verify"><b>刪除該月記錄</b></a>
+<!--
+EOT;
+}print <<<EOT
+-->
+&nbsp;&nbsp;</div>
+<!--
+EOT;
+} else{print <<<EOT
+-->
+<table width="$tablewidth" align="center" cellspacing="1" cellpadding="0" style="TABLE-LAYOUT: fixed;WORD-WRAP: break-word">
+<tr><td colspan="3" class="head"><b>論壇排行榜</b></td></tr>
+<tr>
+<!--
+EOT;
+$cid=0;
+foreach($_SORTDB as $key=>$_SORT){
+$type=!is_numeric($key)?$lang[$key]:$_CREDITDB[$key][0];
+$cid++;
+print <<<EOT
+-->
+<td valign="top">
+<table width="100%" cellspacing="0" cellpadding="2" $i_table>
+<tr><td class="cbg"  height="23" colspan="3"> &nbsp; {$type}排行榜</td></tr>
+<!--
+EOT;
+$id=0;
+foreach($_SORT as $id=>$sort){
+if($sort[2]){
+$id++;
+print <<<EOT
+-->
+<tr>
+<td class="f_one" align="center">$id</td>
+<td class="f_one">
+<a href="$show_url=$sort[0]" target="_blank">$sort[1]</a>
+</td>
+<!--
+EOT;
+if($key!='digest'){print <<<EOT
+-->
+<td class="f_one" align="center">$sort[2]</td>
+<!--
+EOT;
+}print <<<EOT
+-->
+</tr>
+<!--
+EOT;
+}}print <<<EOT
+-->
+</table></td>
+<!--
+EOT;
+if($cid%3==0){print <<<EOT
+-->
+</tr>
+<tr>
+<!--
+EOT;
+}}print <<<EOT
+-->
+</tr></table>
+<!--
+EOT;
+}?>-->

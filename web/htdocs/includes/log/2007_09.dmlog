@@ -1,0 +1,150 @@
+DemoVote.php Vote NO: 000055 5804673b61999a025b01b77b371eed08 2007/9/1  16:45:5 - Saturday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000055 2007/9/1  16:45:5 - Saturday
+Number : 80 2007/9/1  16:45:5 - Saturday
+DemoVote.php Vote NO: 000027 5804673b61999a025b01b77b371eed08 2007/9/1  16:48:19 - Saturday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000027 2007/9/1  16:48:19 - Saturday
+Number : 41 2007/9/1  16:48:19 - Saturday
+DemoVote.php Vote NO: 000055 0fc891bf2bc30030682a4c33a22ced33 2007/9/1  17:2:8 - Saturday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000055 2007/9/1  17:2:8 - Saturday
+Number : 81 2007/9/1  17:2:8 - Saturday
+DemoVote.php Vote NO: 000055 140fecf95c169aa4f163fe33478732b9 2007/9/1  17:2:8 - Saturday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000055 2007/9/1  17:2:8 - Saturday
+Number : 82 2007/9/1  17:2:8 - Saturday
+DemoVote.php Vote NO: 000053 37a11246d901e1ec7ba2ce4bf3fdc267 2007/9/4  15:42:59 - Tuesday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000053 2007/9/4  15:42:59 - Tuesday
+Number : 15 2007/9/4  15:42:59 - Tuesday
+DemoVote.php Vote NO: 000019 37a11246d901e1ec7ba2ce4bf3fdc267 2007/9/4  16:2:43 - Tuesday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000019 2007/9/4  16:2:43 - Tuesday
+Number : 7 2007/9/4  16:2:43 - Tuesday
+DemoVote.php Vote NO: 000019 96559eea924ead1cfc28f3d5a29b2041 2007/9/5  16:29:59 - Wednesday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000019 2007/9/5  16:29:59 - Wednesday
+Number : 8 2007/9/5  16:29:59 - Wednesday
+DemoVote.php Vote NO: 000055 d03efb01a9316e2d6cbbece1e0aa04f1 2007/9/5  23:20:35 - Wednesday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000055 2007/9/5  23:20:35 - Wednesday
+Number : 83 2007/9/5  23:20:35 - Wednesday
+DemoVote.php Vote NO: 000057 5c153dadf7146afffd1ae86d7aa64b49 2007/9/6  16:13:9 - Thursday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000057 2007/9/6  16:13:9 - Thursday
+Number : 25 2007/9/6  16:13:9 - Thursday
+DemoVote.php Vote NO: 000061 5c153dadf7146afffd1ae86d7aa64b49 2007/9/6  17:29:13 - Thursday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000061 2007/9/6  17:29:13 - Thursday
+Number : 4 2007/9/6  17:29:13 - Thursday
+DemoVote.php Vote NO: 000063 3087b0aeef372295c44e1f409e9e9e00 2007/9/6  17:50:7 - Thursday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000063 2007/9/6  17:50:7 - Thursday
+Number : 3 2007/9/6  17:50:7 - Thursday
+DemoVote.php Vote NO: 000023 3087b0aeef372295c44e1f409e9e9e00 2007/9/6  18:24:14 - Thursday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000023 2007/9/6  18:24:14 - Thursday
+Number : 5 2007/9/6  18:24:14 - Thursday
+DemoVote.php Vote NO: 000055 504a2c499a51d2028f26d49e9ccad9be 2007/9/7  2:16:38 - Friday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000055 2007/9/7  2:16:38 - Friday
+Number : 84 2007/9/7  2:16:38 - Friday
+DemoVote.php Vote NO: 000065 991747735dc50df062407f1bcff3cff8 2007/9/7  18:1:41 - Friday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000065 2007/9/7  18:1:41 - Friday
+Number : 1 2007/9/7  18:1:41 - Friday
+DemoVote.php Vote NO: 000065 9dbb93d64ee74ab7a10a34d53347f4c1 2007/9/8  17:2:40 - Saturday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000065 2007/9/8  17:2:40 - Saturday
+Number : 2 2007/9/8  17:2:40 - Saturday
+DemoVote.php Vote NO: 000069 d916b229893bbdeda01ddff6fdb2ea5f 2007/9/8  17:13:39 - Saturday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000069 2007/9/8  17:13:39 - Saturday
+Number : 13 2007/9/8  17:13:39 - Saturday
+DemoVote.php Vote NO: 000068 9dbb93d64ee74ab7a10a34d53347f4c1 2007/9/8  17:42:37 - Saturday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000068 2007/9/8  17:42:37 - Saturday
+Number : 4 2007/9/8  17:42:37 - Saturday
+DemoVote.php Vote NO: 000055 644652524e466c14e9361eda1a1a7258 2007/9/9  19:0:0 - Sunday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000055 2007/9/9  19:0:0 - Sunday
+Number : 85 2007/9/9  19:0:0 - Sunday
+DemoVote.php Vote NO: 000070 4881b25608236270c718397c775b8b24 2007/9/9  23:17:53 - Sunday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000070 2007/9/9  23:17:53 - Sunday
+Number : 11 2007/9/9  23:17:53 - Sunday
+DemoVote.php Vote NO: 000056 efe52f448f138b76cf9a1d43a8e02869 2007/9/11  0:26:10 - Tuesday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000056 2007/9/11  0:26:10 - Tuesday
+Number : 53 2007/9/11  0:26:10 - Tuesday
+DemoVote.php Vote NO: 000055 dbc0747be9ebcdad8bbc4adad6056f02 2007/9/11  0:37:41 - Tuesday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000055 2007/9/11  0:37:41 - Tuesday
+Number : 86 2007/9/11  0:37:41 - Tuesday
+DemoVote.php Vote NO: 000075 e692a9dcfb88d7822d23e13fd9a9be9a 2007/9/11  18:18:43 - Tuesday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000075 2007/9/11  18:18:43 - Tuesday
+Number : 22 2007/9/11  18:18:43 - Tuesday
+DemoVote.php Vote NO: 000078 e692a9dcfb88d7822d23e13fd9a9be9a 2007/9/11  19:5:10 - Tuesday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000078 2007/9/11  19:5:10 - Tuesday
+Number : 73 2007/9/11  19:5:10 - Tuesday
+DemoVote.php Vote NO: 000080 bcba9ccb292cdad2c39498ca9cf0cdbf 2007/9/11  19:5:23 - Tuesday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000080 2007/9/11  19:5:23 - Tuesday
+Number : 55 2007/9/11  19:5:23 - Tuesday
+DemoVote.php Vote NO: 000065 bcba9ccb292cdad2c39498ca9cf0cdbf 2007/9/11  19:6:16 - Tuesday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000065 2007/9/11  19:6:16 - Tuesday
+Number : 3 2007/9/11  19:6:16 - Tuesday
+DemoVote.php Vote NO: 000075 bcba9ccb292cdad2c39498ca9cf0cdbf 2007/9/11  20:25:23 - Tuesday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000075 2007/9/11  20:25:23 - Tuesday
+Number : 23 2007/9/11  20:25:23 - Tuesday
+DemoVote.php Vote NO: 000080 0724de6c10c0f0b41a15bbd0acb959de 2007/9/11  21:9:54 - Tuesday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000080 2007/9/11  21:9:54 - Tuesday
+Number : 56 2007/9/11  21:9:54 - Tuesday
+DemoVote.php Vote NO: 000079 0724de6c10c0f0b41a15bbd0acb959de 2007/9/11  21:12:7 - Tuesday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000079 2007/9/11  21:12:7 - Tuesday
+Number : 29 2007/9/11  21:12:7 - Tuesday
+DemoVote.php Vote NO: 000077 0724de6c10c0f0b41a15bbd0acb959de 2007/9/11  21:15:6 - Tuesday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000077 2007/9/11  21:15:6 - Tuesday
+Number : 10 2007/9/11  21:15:6 - Tuesday
+DemoVote.php Vote NO: 000056 50c3c79db5efafccc840d42d94e3fd4d 2007/9/13  16:7:50 - Thursday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000056 2007/9/13  16:7:50 - Thursday
+Number : 5323 2007/9/13  16:7:50 - Thursday
+DemoVote.php Vote NO: 000001 ce4c53ef0d23c43c021cb1317eb18fac 2007/9/13  17:36:53 - Thursday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000001 2007/9/13  17:36:53 - Thursday
+Number : 1858 2007/9/13  17:36:53 - Thursday
+DemoVote.php Vote NO: 000008 50c3c79db5efafccc840d42d94e3fd4d 2007/9/13  19:0:8 - Thursday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000008 2007/9/13  19:0:8 - Thursday
+Number : 1 2007/9/13  19:0:8 - Thursday
+DemoVote.php Vote NO: 000053 50c3c79db5efafccc840d42d94e3fd4d 2007/9/13  19:0:36 - Thursday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000053 2007/9/13  19:0:36 - Thursday
+Number : 16 2007/9/13  19:0:36 - Thursday
+DemoVote.php Vote NO: 000074 87e606ecb5794495246687b0fe5d0a8a 2007/9/13  19:42:23 - Thursday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000074 2007/9/13  19:42:23 - Thursday
+Number : 13 2007/9/13  19:42:23 - Thursday
+DemoVote.php Vote NO: 000071 87e606ecb5794495246687b0fe5d0a8a 2007/9/13  19:44:48 - Thursday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000071 2007/9/13  19:44:48 - Thursday
+Number : 6 2007/9/13  19:44:48 - Thursday
+DemoVote.php Vote NO: 000082 abadad1852a9e47b6a5a63a412dc8963 2007/9/14  1:44:59 - Friday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000082 2007/9/14  1:44:59 - Friday
+Number : 33 2007/9/14  1:44:59 - Friday
+DemoVote.php Vote NO: 000055 abadad1852a9e47b6a5a63a412dc8963 2007/9/14  1:45:59 - Friday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000055 2007/9/14  1:45:59 - Friday
+Number : 87 2007/9/14  1:45:59 - Friday
+DemoVote.php Vote NO: 000061 abadad1852a9e47b6a5a63a412dc8963 2007/9/14  1:46:52 - Friday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000061 2007/9/14  1:46:52 - Friday
+Number : 5 2007/9/14  1:46:52 - Friday
+DemoVote.php Vote NO: 000055 4dfa478e759ef1c49df2de52121b4571 2007/9/14  22:21:12 - Friday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000055 2007/9/14  22:21:12 - Friday
+Number : 88 2007/9/14  22:21:12 - Friday
+DemoVote.php Vote NO: 000055 95b5050e4e6a8a53e173cb79a127698f 2007/9/15  21:9:28 - Saturday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000055 2007/9/15  21:9:28 - Saturday
+Number : 89 2007/9/15  21:9:28 - Saturday
+DemoVote.php Vote NO: 000087 633e60c5f397b285c2c312fe7578ed2f 2007/9/16  19:19:40 - Sunday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000087 2007/9/16  19:19:40 - Sunday
+Number : 4 2007/9/16  19:19:40 - Sunday
+DemoVote.php Vote NO: 000087 56970a9d205864895016d3249f0cb6b7 2007/9/16  19:20:44 - Sunday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000087 2007/9/16  19:20:44 - Sunday
+Number : 5 2007/9/16  19:20:44 - Sunday
+DemoVote.php Vote NO: 000055 67a27042117a3a72825e9b1ab733a5ad 2007/9/18  21:38:56 - Tuesday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000055 2007/9/18  21:38:56 - Tuesday
+Number : 90 2007/9/18  21:38:56 - Tuesday
+DemoVote.php Vote NO: 000020 fdd5b38a7b9233eaa52980e281cbf59b 2007/9/19  15:4:52 - Wednesday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000020 2007/9/19  15:4:52 - Wednesday
+Number : 1 2007/9/19  15:4:52 - Wednesday
+DemoVote.php Vote NO: 000080 a46d90a1775bb4c3e33c23466d2523bb 2007/9/19  19:16:3 - Wednesday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000080 2007/9/19  19:16:3 - Wednesday
+Number : 57 2007/9/19  19:16:3 - Wednesday
+DemoVote.php Vote NO: 000055 86d92ebeece469719ad4a950e861224c 2007/9/21  0:53:9 - Friday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000055 2007/9/21  0:53:9 - Friday
+Number : 91 2007/9/21  0:53:9 - Friday
+DemoVote.php Vote NO: 000082 86d92ebeece469719ad4a950e861224c 2007/9/21  0:55:46 - Friday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000082 2007/9/21  0:55:46 - Friday
+Number : 34 2007/9/21  0:55:46 - Friday
+DemoVote.php Vote NO: 000055 2734b66e8a97bcd6ef70dff9acecd6d3 2007/9/24  3:56:13 - Monday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000055 2007/9/24  3:56:13 - Monday
+Number : 92 2007/9/24  3:56:13 - Monday
+DemoVote.php Vote NO: 000078 a67a304a2ccc7d6b460f4eaec8011b42 2007/9/27  13:59:27 - Thursday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000078 2007/9/27  13:59:27 - Thursday
+Number : 734546 2007/9/27  13:59:27 - Thursday
+DemoVote.php Vote NO: 000079 3d048c999e0ca3c4dbc2f7bbdaeb2a00 2007/9/30  21:15:10 - Sunday
+Query : SELECT profile_vote FROM dm_street_profile WHERE profile_id = 000079 2007/9/30  21:15:10 - Sunday
+Number : 30 2007/9/30  21:15:10 - Sunday

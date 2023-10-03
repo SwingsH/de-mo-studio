@@ -1,0 +1,320 @@
+<!--<?php print <<<EOT
+-->
+<table width="$tablewidth" cellspacing="0" cellpadding="0" align="center">
+<tr><td align="left"><img src="$imgpath/$stylepath/index/home.gif" align="absbottom" /> 
+<b><a href="$db_bfn">$db_bbsname </a> -> 注冊程式</b></td>
+<td align="right"></td></tr></table><br />
+
+<!--
+EOT;
+if(empty($step) && $rg_reg=='0'){print <<<EOT
+-->
+<form action="register.php?method=full" method="post" onSubmit="this.regsubmit.disabled=true;">
+<input type="hidden" name="step" value="1" />
+<input type="hidden" value="$forward" name="forward" />
+<input type="hidden" value="$invcode" name="invcode" />
+<table width="$tablewidth" cellspacing="1" cellpadding="3" $i_table align="center" style="TABLE-LAYOUT: fixed;WORD-WRAP: break-word">
+<tr><td class="head">注冊程式</td></tr>
+<tr><td class="f_one">
+<pre>$rg_rgpermit</pre>
+</td></tr></table>
+<br /><center><input name="regsubmit" type="submit" class="bginput" value="同 意" />
+<input type="button" value="取消" onclick="javascript:history.go(-1);" /></center>
+</form>
+<!--
+EOT;
+} elseif($_POST['step']==1 || $rg_reg=='1'){print <<<EOT
+-->
+<script language="javascript" type="text/javascript">
+var lastname = "";
+var msg=new Array(
+	"<font color=\"red\">用戶名長度錯誤！</font>",
+	"<font color=\"red\">此用戶名包含不可接受字符或被管理員屏蔽,請選擇其它用戶名</font>",
+	"<font color=\"red\">為了避免論壇用戶名混亂,用戶名中禁止使用大寫字母,請使用小寫字母</font>",
+	"<font color=\"red\">該用戶名已經被注冊，請選用其他用戶名。</font>",
+	"<font color=\"green\">恭喜您，該用戶名還未被注冊，您可以使用這個用戶名注冊！</font>"
+);
+function namecheck() {
+	var username = document.getElementById("regname").value;
+	if (username == "") {
+		return false;
+	}
+	if (username == lastname) {
+		return false;
+	}
+	lastname = username;
+	document.checkForm.username.value = username;
+	document.getElementById("check_info").innerHTML = "檢測中，請稍等...";
+	document.checkForm.submit();
+	return true;
+
+}
+function retmsg(id){
+	document.getElementById("check_info").innerHTML = msg[id];
+}
+</script>
+<iframe id="Checkframe" name="Checkframe" width="0" height="0"></iframe>
+<form name="checkForm" action="register.php?" method="post" target="Checkframe">
+  <input type="hidden" name="username" />
+  <input type="hidden" name="action" value="regnameck" />
+</form>
+<form action="register.php?" method="post" name="register" onSubmit="return regcheck(this);">
+<table width="$tablewidth" cellspacing="1" cellpadding="3" align="center" $i_table>
+<tr><td colspan="2" class="head" height="25">必填信息</td></tr>
+<tr class="f_one"><td width="35%"> 用戶名<font color="red">*</font><br />不能有空格，可以是中文，長度控制在 $rg_regminname - $rg_regmaxname 字節以內</td>
+<td valign="top">
+<input type="text" size="20" maxlength="14" name="regname" id="regname" /> 
+<input type="button" value="檢查用戶名" onClick="return namecheck();" />
+<br />&nbsp;<div id="check_info"></div>
+</td></tr>
+<tr class="f_one"><td> 密碼<font color="red">*</font><br />英文字母或數字等不少于6位</td>
+<td valign="middle">
+<input type="password" size="20" maxlength="75" name="regpwd" id="regpwd" onchange="checkpwd();" />&nbsp;
+<span id="pwd_info" style="border:1px solid #e5e5e5;padding:2pt"></span></td></tr>
+<tr><td class="f_one"> 確認密碼<font color="red">*</font></td>
+<td class="f_one">
+<input type="password" size="20" maxlength="75" name="regpwdrepeat" id="regpwdrepeat" onchange="checkpwdrepeat();" />&nbsp;
+<span id="pwdrepeat_info" style="border:1px solid #e5e5e5;padding:2pt"></span></td></tr>
+<!--
+EOT;
+if($reggd){
+$rawwindid=addslashes($windid);
+print <<<EOT
+-->
+<tr><td class="f_one">認證碼<font color="red">*</font></td>
+<td class="f_one"><input type="text" maxLength="4" name="gdcode" size="10" />&nbsp;<img src="ck.php?windid=$rawwindid" align="absmiddle" onclick="this.src='ck.php?'" /> 請將圖片中的數字或英文字母填入到文本框中</td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+<tr><td valign="middle " class="f_one"> Email<font color="red">*</font>
+<!--
+EOT;
+if($rg_email){ print <<<EOT
+-->
+<br />為避免無法收取論壇郵件，請使用以下郵箱進行注冊︰<br>
+<table style="TABLE-LAYOUT: fixed;WORD-WRAP: break-word;"><tr><td>($rg_email)</td></tr></table>
+<!--
+EOT;
+}print <<<EOT
+-->
+</td>
+<td  class="f_one">
+<input type="text" size="20" maxlength="75" name="regemail" value="" id="regemail" onchange="checkemail();" />
+<input type="checkbox" name="regemailtoall" value="1" checked />
+<font color="#000000">公開郵箱 </font>&nbsp;<span id="email_info" style="border:1px solid #e5e5e5;padding:2pt"></span>
+<!--
+EOT;
+if($rg_emailcheck){print <<<EOT
+-->
+<font color="red">帳號需要EMAIL激活,請如實填寫</font>
+<!--
+EOT;
+}print <<<EOT
+-->
+</td></tr>
+<!--
+EOT;
+if($inv_open){
+print <<<EOT
+-->
+<tr><td class="f_one"> 邀請注冊碼<br />本站開啟邀請注冊,請填寫邀請碼!<font color="red">*</font></td>
+<td class="f_one"><input type="text" value="$invcode" name="invcode" /></td></tr>
+<!--
+EOT;
+}if($rg_ifcheck){print <<<EOT
+-->
+<tr> <td valign="middle" class="f_one"> 注冊原因<font color="red">*</font></td>
+<td class="f_one">
+<textarea name="regreason" rows="4" cols="50"></textarea>
+</td></tr>
+<!--
+EOT;
+}if($customfield){print <<<EOT
+-->
+<tr height="25"><td class="head" colspan="2">附加信息</td></tr>
+<!--
+EOT;
+foreach($customfield as $key=>$val){
+$field="field_".(int)$val[id];
+$required=$val[required]?'(<font color="blue">必填內容</font>)':'';
+$editable=(!$userdb[$field]||$val[editable])?'':'disabled';
+$editinfo=!$val[editable]?'<b>請認真填寫該欄信息，填寫後將不允許修改</b>':'';
+if($val[type]=='1'){
+$field_type="<input type=\"text\" size=\"30\" name=\"$field\" />";
+}elseif($val[type]=='2'){
+$field_type="<textarea name=\"$field\" rows=\"5\" cols=\"50\"></textarea>";
+}elseif($val[type]=='3'){
+$field_type="<select name=\"$field\">";
+$options=explode("\n",$val[options]);
+foreach($options as $k=>$v){
+list($k,$v)=explode('=',$v);
+$field_type.="<option value=\"$k\">$v</option>";
+}$field_type.="</select>";
+}print <<<EOT
+-->
+<tr class="f_one">
+	<td>$val[title] {$required}<br />$val[descrip]</td>
+	<td>{$field_type} {$editinfo}</td>
+</tr>
+<!--
+EOT;
+}}if($rg_regdetail){print <<<EOT
+-->
+<tr><td colspan="2" class="head" height="25">選填信息</td></tr>
+<tr><td class="f_one"> 性別</td>
+<td class="f_one">
+<select name="regsex">
+<option value="1">男</option><option value="2">女</option><option value="0" selected>保密</option>
+</select></td></tr>
+<tr><td class="f_one"> 生日</td>
+<td class="f_one">
+<select name="regbirthyear">
+<option value=""></option> 
+<!--
+EOT;
+for($i=$rg_timestart;$i<=$rg_timeend;$i++){
+print <<<EOT
+-->
+<option value="$i">$i</option>  
+<!--
+EOT;
+} 
+print <<<EOT
+-->
+</select>年 
+<select name="regbirthmonth">
+<option value=""></option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+</select>月 
+<select name="regbirthday">
+<option value=""></option>
+<!--
+EOT;
+for($i=1;$i<=31;$i++){
+print <<<EOT
+-->
+<option value="$i">$i</option>  
+<!--
+EOT;
+} 
+print <<<EOT
+-->
+</select>日</font>
+</td></tr>
+<tr><td class="f_one">OICQ</td>
+<td class="f_one"><input type="text" size="20" maxlength="14" name="regoicq" value="" /></td></tr>
+<tr><td class="f_one"> 個人主頁</td>
+<td class="f_one">
+<input type="text" size="20" maxlength="75" name="reghomepage" value="" /></td></tr>
+<tr><td valign="middle" class="f_one"> 來自</td>
+<td class="f_one"><input type="text" size="20" maxlength="20" name="regfrom" /></td></tr>
+<tr><td class="f_two"> 選擇您的頭像<br />
+<!--
+EOT;
+if($imgpatherror){print <<<EOT
+-->
+--圖片路徑發生錯誤,請到後台更正您的圖片路徑為與您論壇圖片保存的目錄
+<!--
+EOT;
+}print <<<EOT
+-->
+</td>
+<td class="f_two">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="22%" valign="middle">
+<select name="regicon" onChange="showimage('$imgpath',this.options[this.selectedIndex].value)">
+<option value="">不使用</option>
+$imgselect
+</select></td><td width="78%" align="center" valign="middle">
+<img src="$imgpath/face/none.gif" name="useravatars" />
+</td></tr></table></td></tr>
+<tr><td valign="middle" class="f_one">個性化簽名<br> 將附在每篇文章後<br />
+<a href="faq.php?faqjob=1#5"><font face="verdana">Wind Code </font></a></td>
+<td class="f_one"><textarea cols="50" name="regsign" rows="4"></textarea></td></tr>
+<tr><td class="f_one"> 自我簡介<br>--少于100字節</td>
+<td class="f_one"><textarea name="regintroduce" rows="4" cols="50"></textarea></td></tr>
+<tr><td class="f_one"> 是否接受系統郵件</td>
+<td class="f_one">
+<input type="radio" name="regifemail" value="1" checked /> 接收郵件
+<input type="radio" name="regifemail" value="2" /> 不接收郵件</td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<input type="hidden" value="$forward" name="forward" />
+<input type="hidden" value="2" name="step" />
+<br /><center><input type="submit" name="regsubmit" value="提 交" /></center></form>
+<script language="JavaScript1.2">
+document.register.regname.focus();
+function showimage(imgpath,value)
+{
+	if(value!= '') {	
+	document.images.useravatars.src=imgpath+'/face/'+value;
+	} else{
+	document.images.useravatars.src=imgpath+'/face/none.gif';
+	}
+}
+function regcheck(formct){
+	if (formct.regname.value=='' || formct.regpwd.value=='' || formct.regpwdrepeat.value==''){
+		alert('會員名或密碼為空,請填寫');
+		return false; 
+	}
+	if (formct.regpwd.value!=formct.regpwdrepeat.value){
+		alert('兩次輸入的密碼不一致，請檢查後重試。');
+		return false; 
+	}
+	if (formct.regpwd.value.length<6){
+		alert('密碼太少，請用6位以上');
+		return false;
+	}
+	formct.regsubmit.disabled=true;
+}
+function checkpwd(){
+	var pwd = document.getElementById("regpwd").value;
+	var pwdrepeat = document.getElementById("regpwdrepeat").value;
+	if (pwd.length<6){
+		document.getElementById("pwd_info").innerHTML = "<font color=\"red\">密碼太少，請用6位以上</font>";
+	} else{
+		document.getElementById("pwd_info").innerHTML = "";
+	}
+	if(pwdrepeat){
+		checkpwdrepeat();
+	}
+}
+function checkpwdrepeat(){
+	var pwd = document.getElementById("regpwd").value;
+	var pwdrepeat = document.getElementById("regpwdrepeat").value;
+	if (pwdrepeat==pwd){
+		document.getElementById("pwdrepeat_info").innerHTML = "";
+	} else{
+		document.getElementById("pwdrepeat_info").innerHTML = "<font color=\"red\">兩次輸入的密碼不一致，請檢查後重試。</font>";
+	}
+}
+function checkemail(){
+	var email = document.getElementById("regemail").value;
+	var myReg = /^[-a-zA-Z0-9_\.]+@([0-9A-Za-z][0-9A-Za-z-]+\.)+[A-Za-z]{2,5}$/; 
+	if(myReg.test(email)){
+		document.getElementById("email_info").innerHTML = "";
+	} else{
+		document.getElementById("email_info").innerHTML = "<font color=\"red\">Email 格式錯誤!</font>";
+	}
+}
+</script>
+<!--
+EOT;
+}?>
+-->
+

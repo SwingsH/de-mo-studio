@@ -1,0 +1,200 @@
+<!--<?php
+include_once PrintEot('left');
+if(empty($action)){print <<<EOT
+-->
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+	<tr><td class=head colspan=2><b>提示信息</b></td></tr>
+	<tr><td class=b><br><ul>為了保證空間的可持續發展,請及時清理!附件保存目錄為:<font color=blue>$attachpath</font><br><br>功能說明:<br>本功能根據數據庫中的附件記錄搜索,  刪除符合條件的附件和附件記錄, 釋放更多的數據庫空間和服務器空間<br><br><font color=blue>注: PHPWind 2.x 版本沒有記錄附件上傳時間, 刪除 PHPWind 2.x 以及之前版本的附件時不能根據上傳時間搜索刪除</font></ul></td></tr>
+</table><br>
+<form action="$basename&" method=post name="form1">
+<input type=hidden name=action value=search>
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b>附件編輯</b></td></tr>
+<tr><td class=b width=20%>所屬版塊</td>
+<td class=b><select name='fid'><option value=all>所有版塊</option>$forumcache</select></td></tr>
+<tr><td class=b width=20%>用戶名</td>
+<td class=b><input type=text size=20 name="username"></td></tr>
+<tr><td class=b width=20%>文件名包含</td>
+<td class=b><input type=text size=20 name="filename"></td></tr>
+<tr><td class=b>下載次數</td>
+<td class=b><input type=text size=20 name="hits">
+<input type=radio size=20 name="ifmore" value='1' checked>小于
+<input type=radio size=20 name="ifmore" value='0'>大于
+</td></tr>
+<tr><td class=b>附件大小(K) </td>
+<td class=b><input type=text size=20 name="filesize">
+<input type=radio size=20 name="ifless" value='1' checked>小于
+<input type=radio size=20 name="ifless" value='0'>大于
+</td></tr>
+<tr><td class=b>上傳時間 </td>
+<td class=b><input type=text size=20 name="postdate1" value="2004-01-01"> - <input type=text size=20 name="postdate2" value="$postdate2">
+</td></tr>
+<tr><td class=b>排序</td>
+<td class=b><select name='orderway'>
+<option value='uploadtime'>上傳時間</option>
+<option value='size'>附件大小</option>
+<option value='rvrc'>所需{$db_rvrcname}</option>
+<option value='name'>附件名</option>
+<option value='hits'>下載次數</option>
+</select>
+<input type=radio size=5 name="asc" value=''>升序
+<input type=radio size=5 name="asc" value='DESC' checked>降序</td></tr>
+	<tr>
+		<td class=b><div id="info1">每頁顯示個數</div></td>
+		<td class=b>
+			<input type=text size=10 name="pernum" value="20">
+			<input type=checkbox id="direct" name="direct" value=1 onclick="deldirect(this.form,'info1','每頁顯示個數');">
+			直接刪除符合條件的附件
+		</td>
+	</tr>
+</table>
+<br><center><input type=submit value="提 交"></center></form>
+
+<table width="98%" align="center" cellspacing=1 cellpadding=3 class="i_table">
+<tr><td class=head colspan=2><b>提示信息</b></td></tr>
+<tr><td class=b><br>
+<ul>功能說明:<br>本功能可根據附件最後被訪問時間搜索整個論壇的附件, 選擇刪除長時間沒人訪問的附件, 可有效清理論壇中冗余附件, 從而釋放更多的服務器空間.<br><br>注:如果你要刪除的附件比較多,可以使用直接刪除功能, 直接刪除符合搜索條件的附件</ul>
+</td></tr></table><br>
+ &nbsp; &nbsp;<a href="$basename&action=list">查看上次搜索結果</a>
+<form action="$basename&" method="post" name="form2">
+<input type="hidden" name="action" value="schdir">
+<table width="98%" align=center cellspacing=1 cellpadding=3 class="i_table">
+<tr><td class=head colspan=2><b>附件編輯</b></td></tr>
+
+<tr><td class=b width=20%>文件名包含</td>
+<td class=b><input type=text size=20 name="filename"></td></tr>
+<tr><td class=b>附件大小(K) </td>
+<td class=b><input type=text size=20 name="filesize">
+<input type=radio size=20 name="ifless" value='1' checked>小于
+<input type=radio size=20 name="ifless" value='0'>大于
+</td></tr>
+<tr><td class=b>最後訪問時間 </td>
+<td class=b><input type=text size=20 name="postdate1" value="2004-01-01"> - <input type=text size=20 name="postdate2" value="$postdate2"></td></tr>
+<tr><td class=b><div id="info2">每次跳轉處理個數</div></td>
+<td class=b><input type=text size=20 name="pernum" value=1000><input type=checkbox id="direct" name="direct" value=1 onclick="deldirect(this.form,'info2','每次跳轉處理個數');">直接刪除符合條件的附件</td></tr>
+</table>
+<br><center><input type=submit value="提 交"></center></form>
+<br>
+<form action="$basename&" method="post" name="form2">
+<input type="hidden" name="action" value="delattach">
+<table width="98%" align="center" cellspacing=1 cellpadding=3 class="i_table">
+	<tr><td class=head colspan=2><b>附件編輯</b></td></tr>
+	<tr><td class=b colspan=2>本功能將搜索整個論壇的附件，刪除數據庫中沒有記錄而實際存在的附件，可有效清理論壇中冗余附件, 從而釋放更多的服務器空間.</td></tr>
+	<tr>
+		<td class=b width=20%>每次跳轉處理個數</td>
+		<td class=b><input type=text size=20 name="pernum" value=1000></td>
+	</tr>
+</table>
+<br>
+<center><input type=submit value="提 交"></center></form>
+
+<script language="JavaScript">
+function deldirect(form,tar,msg){
+	if (form.direct.checked == true){
+		document.getElementById(tar).innerHTML = '<b><font color=blue>刪除個數</font></b>';
+	}else{
+		document.getElementById(tar).innerHTML = msg;
+	}
+}
+</script>
+<!--
+EOT;
+} elseif($action=='list'){
+print <<<EOT
+-->
+ &nbsp; &nbsp;$pages
+<form action="$basename&" method="post">
+<input type="hidden" name="action" value="delfile"> 
+<table width="98%" align=center cellspacing=1 cellpadding=3 class="i_table">
+<tr><td class=head colspan=7><b>論壇附件</b></td></tr>
+<tr class=head_2 align=center>
+<td>ID</td>
+<td>附件名</td>
+<td>最後訪問時間</td>
+<td>附件大小(k)</td>
+<td width=4%>刪</td>
+</tr>
+<!--
+EOT;
+$id=($page-1)*$db_perpage;
+foreach($attachdb as $attach){
+$id++;
+print <<<EOT
+-->
+<tr class=b align=center>
+<td>$id</td>
+<td><a href="$attachpath/$attach[name]" target="_blank">$attach[name]</a></td>
+<td>$attach[time]</td>
+<td>$attach[size]</td>
+<td>
+<!--
+EOT;
+if($attach[exists]){print <<<EOT
+-->
+<input type="checkbox" name="delfile[]" value="$attach[name]">
+<!--
+EOT;
+} else{print <<<EOT
+-->
+<font color="red">已刪</font>
+<!--
+EOT;
+}print <<<EOT
+-->
+</td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table><br>
+<center><input type="button" name="chkall" value="全 選" onclick="CheckAll(this.form)">
+<input type="submit" name="hello" value="提 交"></center></form><br>
+<!--
+EOT;
+} else{
+print <<<EOT
+-->
+ &nbsp; &nbsp;$pages
+<form action="$basename&" method="post">
+<input type="hidden" name="action" value="delete"> 
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=7><b>論壇附件</b></td></tr>
+<tr class=head_2 align=center>
+<td>ID</td>
+<td width="20%">附件名</td>
+<td width="15%">附件大小</td>
+<td width="15%">上傳時間</td>
+<td width="20%">所在主題</td>
+<td width="20%">所屬版塊</td>
+<td width=4%>刪</td>
+</tr>
+<!--
+EOT;
+$id=($page-1)*$pernum;
+foreach($attachdb as $key=>$value){
+$view_topic=$value[tid]?"<a href='read.php?tid=$value[tid]' target='_blank'>所在主題</a>":'-';
+$id++;
+print <<<EOT
+-->
+<tr class=b align=center>
+<td>$id</td>
+<td><a href="$attachpath/$value[url]" target="_blank">$value[name]</a></td>
+<td>$value[filezie]</td>
+<td>$value[uploadtime]</td>
+<td>$view_topic</td>
+<td><a href="$value[where]" target="_blank">$value[forum]</a></td>
+<td><input type='checkbox' name='aidarray[]' value=$value[aid]></td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table><br>
+<center><input type="button" name="chkall" value="全 選" onclick="CheckAll(this.form)">
+<input type="submit" name="hello" value="提 交"></center></form>
+ &nbsp; &nbsp;$pages
+<!--
+EOT;
+}include_once PrintEot('adminbottom');
+?>-->

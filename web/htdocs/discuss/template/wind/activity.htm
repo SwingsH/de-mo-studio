@@ -1,0 +1,100 @@
+<!--<?php
+print <<<EOT
+-->
+<form action="active.php?action=apply" method="post">
+<table width="$tablewidth" align="center" cellspacing="1" cellpadding="5" $i_table>
+<tr class="head"><td colspan="2">活動標題︰$subject</td></tr>
+<tr>
+	<td width="20%" class="t_one">活動標題︰</td>
+	<td class="t_one">$active_subject</td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">活動時間︰</td>
+	<td class="t_one">$active_starttime &nbsp;-&nbsp; $active_endtime</td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">活動地點︰</td>
+	<td class="t_one">$active_location</td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">人數限制︰</td>
+	<td class="t_one">$active_num</td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">已確認參加人數︰</td>
+	<td class="t_one">$act_y 人，[共計報名︰$act_total]
+<!--
+EOT;
+if($authorid==$winduid){ print <<<EOT
+-->
+[<a href="active.php?action=view&actid=$actid"><font color="red">管理</font></a>]
+<!--
+EOT;
+} print <<<EOT
+-->
+	</td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">性別要求︰</td>
+<!--
+EOT;
+if($active_sexneed=='1'){ print <<<EOT
+-->
+	<td class="t_one">僅限男性</td>
+<!--
+EOT;
+}elseif($active_sexneed=='2'){ print <<<EOT
+-->
+	<td class="t_one">僅限女性</td>
+<!--
+EOT;
+}else{ print <<<EOT
+-->
+	<td class="t_one">男女不限</td>
+<!--
+EOT;
+} print <<<EOT
+-->
+</tr>
+<tr>
+	<td width="20%" class="t_one">活動費用︰</td>
+	<td class="t_one">$active_costs 元</td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">報名截止日期︰</td>
+	<td class="t_one">$active_deadline</td>
+</tr>
+</table>
+<br><center>
+<!--
+EOT;
+if(!$actmen){print <<<EOT
+-->
+<input type="hidden" name="tid" value="$tid" />
+<input type="hidden" name="fpage" value="$fpage" />
+<input type="hidden" name="actid" value="$actid" />
+<input type="submit" value="我要參加" />
+<!--
+EOT;
+}elseif($actmen['state']==0){print <<<EOT
+-->
+<div>您的申請已提交，請等候回音！</div>
+<!--
+EOT;
+}elseif($actmen['state']==1){ print <<<EOT
+-->
+<div>您已被批準參加此次活動，<a href="active.php?action=view&actid=$actid"><font color="blue">查看詳情</font></a></div>
+<!--
+EOT;
+}else{print <<<EOT
+-->
+<div>您的申請沒有通過！</div>
+<!--
+EOT;
+} print <<<EOT
+-->
+</center>
+</form><br><br>
+<!--
+EOT;
+?>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<quickview startmonth="200707">
+<item><date week="4">20070719</date><amount>5</amount></item>
+<item><date week="2">20070717</date><amount>14</amount></item>
+<item><date week="1">20070716</date><amount>10</amount></item>
+<item><date week="7">20070715</date><amount>15</amount></item>
+<item><date week="2">20070710</date><amount>9</amount></item>
+<item><date week="4">20070705</date><amount>1</amount></item>
+<item><date week="3">20070704</date><amount>1</amount></item>
+</quickview>

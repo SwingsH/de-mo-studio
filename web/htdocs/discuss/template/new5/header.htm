@@ -1,0 +1,277 @@
+<!--<?php
+print <<<EOT
+-->
+<html>
+<head>$expires
+<title>$subject $forumname $db_bbsname - powered by phpwind.net</title>
+<meta http-equiv="Content-Type" content="text/html; charset=$db_charset">
+<meta name="keywords" content="$db_metakeyword" />
+<meta name="description" content="$db_metadescrip" />
+<base href="$db_bbsurl/" />
+<!--css--><style type="text/css">
+body {font-family: Verdana;FONT-SIZE: 12px;MARGIN: 0;color: #000000;background: #ffffff;}
+td {FONT-SIZE: 12px;}
+textarea,input,select{
+	font-family: Verdana;
+	font-size: 12px;
+	background-color: #ffffff;
+}
+form{margin:0px; display:inline}
+div.quote{
+	margin:5px 5px;
+	border:1px dashed $tablecolor;
+	padding:5px;
+	background:$forumcolorone;
+	line-height:normal;
+}
+a { TEXT-DECORATION: none;}
+a:hover{text-decoration: underline;}
+img {border:0;}
+.banner{background:#FFF;}
+.head {color: #FFFFFF;background:#9CC2D8;padding: 5px;font-weight:bold;}
+.head a{color: #FFFFFF;}
+.f_one {background: $forumcolorone;}
+.f_two {background: $forumcolortwo;}
+.hr  {border-top: 1px solid $tablecolor; border-bottom: 0; border-left: 0; border-right: 0; }
+.t_one {background: $threadcolorone;}
+.t_two {background: $threadcolortwo;}
+.r_one {background: $readcolorone;}
+.r_two {background: $readcolortwo;}
+.cbg { color:#000000;background: #E3EEF4;}
+.cbg a{ color:#000000;}
+.smalltxt {font-family: Tahoma, Verdana; font-size: 12px;}
+.tinytxt {font-family: Tahoma, Verdana; font-size: 11px;}
+.cfont { color:#FFFFFF; }
+.fnamecolor { color:#003366;}
+.index_font{color: #3A4F6C;background-color:#EAF1F2; font-weight:bold;padding: 5px;}
+.tpc_title { font-size: 12px;font-weight:bold;}
+.tpc_content { font-size: 13px;}
+.i_table {BORDER: $tablecolor 1px solid;background:#D6E3EF;}
+.tool {color:#84AACE;}
+.menu{position:absolute;}
+.topline{
+	background:#488DB7;
+	color:#FFF;
+}
+.top{
+	background:#E3EEF4;
+	color:#000;
+}
+.top a{
+	color:#000;
+}
+.submit{
+	padding:3px 0px 0px 3px;
+	border:1px solid #9CC2D8;
+	background-color: #ffffff;
+}
+.input{
+	border:1px solid #9CC2D8;
+	background-color: #ffffff;
+}
+</style><!--css-->
+</head>
+<body vlink="#333333" link="#333333">
+$msgsound
+<table cellspacing="1" cellpadding="0" width="$tablewidth" align="center" style="background:#9CC2D8;margin-top:1px;">
+<tr>
+	<td class="topline" colspan="2" height="5">
+		
+	</td>
+</tr>
+</table>
+<table cellspacing="1" cellpadding="0" width="$tablewidth" align="center" style="background:#9CC2D8;margin-top:1px;">
+<tr valign="bottom">
+	<td align="left" class="banner">
+		<div style="float:left;margin-left:5px;"><a href="./"><img src="$imgpath/$stylepath/logo.gif" /></a></div>
+		<div style="float:right;" valign="middle">$header_ad &nbsp;</div>
+	</td>
+</tr>
+<tr><td class="top" colspan="2" height="26">
+ &nbsp;&raquo; 
+<!--
+EOT;
+if($groupid=='guest'){print <<<EOT
+-->
+您尚未 <a href="$loginurl"><b>登錄</b></a>
+&nbsp; <a href="$regurl"><b>注冊</b></a>
+<!--
+EOT;
+}else{print <<<EOT
+-->
+<b>$windid</b>&nbsp;<a href="$loginouturl">退出</a> | 
+<!--
+EOT;
+if($db_menu){print <<<EOT
+-->
+<a style="cursor:pointer;" id="td_profile" onclick="click_open('menu_profile','td_profile');"  onMouseOver="mouseover_open('menu_profile','td_profile');">
+<!--
+EOT;
+}else{ print <<<EOT
+-->
+<a href="profile.php">
+<!--
+EOT;
+}print <<<EOT
+-->
+控制面板</a>
+<!--
+EOT;
+if($groupid=='5' || strpos($winddb['groups'],',5,')!==false){ print <<<EOT
+-->
+| <a href="forumcp.php">版主管理</a>
+<!--
+EOT;
+}if($db_menu){ print <<<EOT
+-->
+| <a style="cursor:pointer;" id="td_msg" onclick="click_open('menu_msg','td_msg');"  onMouseOver="mouseover_open('menu_msg','td_msg');" target="_blank">
+<!--
+EOT;
+}else{ print <<<EOT
+-->
+| <a href="message.php">
+<!--
+EOT;
+}if($winddb[newpm]>0){print <<<EOT
+-->
+<font color="red">您有新消息</font></a>
+<!--
+EOT;
+}else{print <<<EOT
+-->
+短消息</a>
+<!--
+EOT;
+}print <<<EOT
+-->
+| <a href="search.php">搜索</a> 
+<!--
+EOT;
+if($gp_allowmember){print <<<EOT
+-->
+| <a href="member.php">會員</a>
+<!--
+EOT;
+}if($gp_allowsort){print <<<EOT
+-->
+| <a href="sort.php">統計與排行</a>
+<!--
+EOT;
+}if($_G['show']){print <<<EOT
+-->
+| <a href="show.php">展區</a>
+<!--
+EOT;
+}}print <<<EOT
+-->
+| <a style="cursor:pointer;" id="td_hack" onclick="click_open('menu_hack','td_hack');"  onMouseOver="mouseover_open('menu_hack','td_hack');">社區服務</a>
+<!--
+EOT;
+foreach($db_hackdb as $key=>$hack){
+if($hack[2]=='2' && file_exists(R_P."hack/$key/index.php")){print <<<EOT
+-->
+| <a href="hack.php?H_name=$hack[1]">$hack[0]</a>
+<!--
+EOT;
+}}print <<<EOT
+-->
+| <a href="faq.php">幫助</a>
+| <a href="$db_bfn">社區</a>
+<!--
+EOT;
+if(file_exists(R_P.'require/c_search.php')){print <<<EOT
+-->
+| <a href="$db_wwwurl/$db_cfn">首頁</a>
+<!--
+EOT;
+}print <<<EOT
+--> 
+| <a href="simple/" target="_blank">無圖版</a>
+<!--
+EOT;
+if($windid==$manager ||$SYSTEM['allowadmincp']){print <<<EOT
+-->
+| <a href="admin.php" target="_blank">系統設置</a>
+<!--
+EOT;
+}if($db_columns){
+if(GetCookie('columns')==1 || strpos($_SERVER['HTTP_REFERER'],$db_bbsurl)===false || strpos($_SERVER['HTTP_REFERER'],'admin.php')!==false){
+print <<<EOT
+-->
+| <a href="columns.php?action=columns">左右分欄</a>
+<!--
+EOT;
+}else{print <<<EOT
+-->
+| <a href="columns.php">平板模式</a>
+<!--
+EOT;
+}}print <<<EOT
+-->
+</td></tr>
+</table>
+<div id="showmenu" style="z-index:100;display:none;"></div>
+<div id="menu_hack" class="menu" style="display:none;">
+	<table width="120" cellspacing="1" cellpadding="5" $i_table>
+		<tr>
+			<td class="head">社區服務</td>
+		</tr>
+<!--
+EOT;
+foreach($db_hackdb as $key=>$hack){
+if($hack[2]=='1' && file_exists(R_P."hack/$key/index.php")){print <<<EOT
+-->
+		<tr>
+			<td class="f_one"><a href="hack.php?H_name=$hack[1]">$hack[0]</a></td>
+		</tr>
+<!--
+EOT;
+}}print <<<EOT
+-->
+	</table>
+</div>
+<div id="menu_msg" class="menu" style="display:none;">
+	<table width="120" cellspacing="1" cellpadding="5" $i_table>
+		<tr><td class="head">短消息</td></tr>
+<!--
+EOT;
+$msg_new = ($winddb['newpm']==1 || $winddb['newpm']==3) ? '<font color="red">(新)</font>' : '';
+$pub_new = $winddb['newpm']>1 ? '<font color="red">(新)</font>' : '';
+print <<<EOT
+-->
+		<tr><td class="f_one"><a href="message.php">個人消息{$msg_new}</a>
+		</td></tr>
+		<tr><td class="f_one"><a href="message.php?action=pubmsg">群發消息{$pub_new}</a>
+		</td></tr>
+		<tr><td class="f_one"><a href="message.php?action=sendbox">發件箱</a></td></tr>
+		<tr><td class="f_one"><a href="message.php?action=scout">消息跟蹤</a></td></tr>
+		<tr><td class="f_one"><a href="message.php?action=write">寫新消息</a></td></tr>
+	</table>
+</div>
+<div id="menu_profile" class="menu" style="display:none;">
+	<table width="120" cellspacing="1" cellpadding="5" $i_table>
+		<tr><td class="head">控制面板</td></tr>
+		<tr><td class="f_one"><a href="profile.php">控制面板首頁</a></td></tr>
+		<tr><td class="f_one"><a href="profile.php?action=modify">編輯個人資料</a></td></tr>
+		<tr><td class="f_one"><a href="profile.php?action=show&uid=$winduid">查看個人資料</a></td></tr>
+		<tr><td class="f_one"><a href="profile.php?action=friend">好友列表</a></td></tr>
+		<tr><td class="f_one"><a href="profile.php?action=permission">用戶權限查看</a></td></tr>
+<!--
+EOT;
+if($_G['atclog']){print <<<EOT
+-->
+		<tr><td class="f_one"><a href="profile.php?action=log">帖子操作記錄</a></td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+		<tr><td class="f_one"><a href="userpay.php">{$db_currencyname}管理</a></td></tr>
+		<tr><td class="f_one"><a href="profile.php?action=buy">特殊組購買</a></td></tr>
+		<tr><td class="f_one"><a href="profile.php?action=favor">收藏夾</a></td></tr>
+		<tr><td class="f_one"><a href="personal.php">我的主題</a></td></tr>
+	</table>
+</div>
+<br /><br />
+<!--
+EOT;
+?>-->

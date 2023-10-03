@@ -1,0 +1,33 @@
+/* CSS Document */
+/*
+用到的版面
+style_profile_row
+*/
+
+<STYLE TYPE="text/css" >
+<!--
+.stl_pname{
+	margin-left: 6pt ; 
+	margin-top: 0pt ;
+	line-height:90%;
+	margin-bottom: 0pt ;
+	color:#003399;
+	font-size:8pt;
+}
+.stl_pcontain{
+	margin-left: 6pt ; 
+	margin-top: -2pt ;
+	line-height:80%;
+	margin-bottom: 0pt ;
+	color:#000000;
+	font-size:8pt;
+}
+.stl_no {
+	text-decoration:underline;
+	line-height:90%;
+	margin-left: 6pt ; 
+	color:#FF6600;
+	font-size: 8pt; 
+}
+-->
+</STYLE>

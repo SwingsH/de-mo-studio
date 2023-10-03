@@ -1,0 +1,16 @@
+<?php
+$_FORUMDB=array(
+		'topic'=>
+array(
+			array("2","『網站反應區』","6",),
+			),
+		'article'=>
+array(
+			array("2","『網站反應區』","15",),
+			),
+		'tpost'=>
+array(
+			array("2","『網站反應區』","1",),
+			),
+		);
+?>

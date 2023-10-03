@@ -1,0 +1,79 @@
+﻿﻿Array
+(
+    [firstday] => 
+    [photopath] => http://192.83.193.117/photo/
+    [profiles] => Array
+        (
+            [0] => Array
+                (
+                    [exist] => 1
+                    [image] => 200709/000087_070916_H_01.jpg
+                    [link] => http://192.83.193.117/detail.php?did=000087&date=070916&style=H
+                    [name] => Joseph
+                    [age] => 27
+                    [tall] => 171
+                    [say] => 我要賺大錢~
+                    [location] => 東區
+                    [date] => 20070916
+                    [total] => 1
+                )
+
+            [1] => Array
+                (
+                    [exist] => 1
+                    [image] => 200709/000081_070912_A_01.jpg
+                    [link] => http://192.83.193.117/detail.php?did=000081&date=070912&style=A
+                    [name] => 白咩咩
+                    [age] => 22
+                    [tall] => 167
+                    [say] => 我要變好運!
+                    [location] => 東區
+                    [date] => 20070912
+                    [total] => 6
+                )
+
+            [2] => Array
+                (
+                    [exist] => 1
+                    [image] => 200709/000072_070909_A_01.jpg
+                    [link] => http://192.83.193.117/detail.php?did=000072&date=070909&style=A
+                    [name] => cherry
+                    [age] => 21
+                    [tall] => 165
+                    [say] => 我要成為會計師!
+                    [location] => 信義商圈
+                    [date] => 20070909
+                    [total] => 9
+                )
+
+            [3] => Array
+                (
+                    [exist] => 1
+                    [image] => 200709/000068_070907_F_01.jpg
+                    [link] => http://192.83.193.117/detail.php?did=000068&date=070907&style=F
+                    [name] => 小歐
+                    [age] => 19
+                    [tall] => 175
+                    [say] => 我要變成有錢人
+                    [location] => 美麗華商圈
+                    [date] => 20070907
+                    [total] => 4
+                )
+
+            [4] => Array
+                (
+                    [exist] => 1
+                    [image] => 200709/000064_070906_E_01.jpg
+                    [link] => http://192.83.193.117/detail.php?did=000064&date=070906&style=E
+                    [name] => Jerry
+                    [age] => 26
+                    [tall] => 178
+                    [say] => 世界和平
+                    [location] => 美麗華商圈
+                    [date] => 20070906
+                    [total] => 4
+                )
+
+        )
+
+)

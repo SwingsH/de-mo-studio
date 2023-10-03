@@ -1,0 +1,68 @@
+<!--<?php print <<<EOT
+-->
+<table width="$tablewidth" cellspacing="0" cellpadding="0" align="center"><tr><td align="left">
+<img src="$imgpath/$stylepath/index/home.gif" align="absbottom" /> 
+<b><a href="$db_bfn">$db_bbsname </a> -> 登錄程式</b></td></tr></table><br />
+
+<form action="login.php?" method="post" name="login" onSubmit="this.submit.disabled=true;">
+<table width="$tablewidth" cellspacing="0" cellpadding="1" align="center" $i_table>
+<tr><td>
+<table width="100%" cellspacing="0" cellpadding="6" class="f_one">
+<tr><td class="head" colspan="2" height="27"><b>登錄程式</b></td></tr>
+<tr><td rowspan="7" width="3%"></td>
+<td width="100%"><br />請輸入您的帳號與密碼，然後點擊登錄按鈕. 如果您沒有注冊，請先<a href='register.php'><font color=blue><b>注冊成為會員</b></font></a>。提示︰您的瀏覽器必須支持cookie，否則將不能登錄論壇。<br><b> 注意︰</b>如果您在網吧，有效時間請選擇即時登錄; </td></tr>
+<tr><td>用戶名 &nbsp;<input type="text" maxLength="20" name="pwuser" size="40" tabindex="1" /></td></tr>
+<tr><td>密碼  &nbsp; &nbsp; <input type="password" maxLength="20" name="pwpwd" size="40" tabindex="2" /></td></tr>
+<!--
+EOT;
+if($logingd){
+$rawwindid=addslashes($windid);
+print <<<EOT
+-->
+<tr><td>認證碼 &nbsp;<input type="text" maxLength="4" name="gdcode" size="8" tabindex="3" />&nbsp;<img  src="ck.php?windid=$rawwindid" align="absmiddle" onclick="this.src='ck.php?'" /></td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+<tr><td>
+隱身登錄
+<input name="hideid" type="radio" value="1" />          是 &nbsp
+<input name="hideid" type="radio" value="0" checked tabindex="4" />  否 &nbsp 
+<!--
+EOT;
+if(!$db_hidelogin){print <<<EOT
+-->
+(後台已禁止普通會員使用隱身登錄功能)
+<!--
+EOT;
+}print <<<EOT
+-->
+</td></tr>
+<tr><td>
+Cookie 有效期:
+<input type="radio" name="cktime" value="31536000" checked tabindex="5" />        一年 &nbsp;
+<input type="radio" name="cktime" value="2592000" /> 一個月 &nbsp;
+<input type="radio" name="cktime" value="86400" />			一天 &nbsp;
+<input type="radio" name="cktime" value="3600" />			一小時 &nbsp;
+<input type="radio" name="cktime" value="0" />				即時 &nbsp; &nbsp;
+ </td></tr>
+<tr><td>
+如果您忘記密碼或用戶名，請點擊 '<a href='sendpwd.php'>找回密碼</a>' 並輸入用戶名，我們的系統將自動發送密碼到您的有效郵箱中。
+</td></tr>
+</table>
+</td></tr>
+</table>
+<center>
+<br />
+<input name="submit" type="submit" value="提 交" tabindex="6" />
+</center>
+<input type="hidden" value="$forward" name="forward" />
+<input type="hidden" value="$jumpurl" name="jumpurl" />
+<input type="hidden" value="2" name="step" />
+</form>	
+<script language="JavaScript">
+document.login.pwuser.focus();
+</script>
+<!--
+EOT;
+?>-->

@@ -1,0 +1,97 @@
+<?php
+$_MEMBERDB=array(
+		'post'=>
+array(
+			array("25","nico","35",),
+			array("1","demo","22",),
+			array("4","root","17",),
+			array("20","bryanchen","11",),
+			array("51","cat","10",),
+			array("48","pupu","10",),
+			array("10","小王","10",),
+			array("3","a9228024","9",),
+			array("18","doraemonos","8",),
+			array("36","free","8",),
+			array("72","babyface","7",),
+			array("5","demo.tw","6",),
+			array("15","c200216653","5",),
+			array("7","kong","4",),
+			array("73","cutewow","3",),
+			array("35","arisa","3",),
+			array("6","a9228023","3",),
+			array("38","gary","2",),
+			array("42","snoopy","2",),
+			array("44","sweetmay","2",),
+			),
+		'digests'=>
+array(
+			array("3","a9228024","3",),
+			),
+		'tpost'=>
+array(
+			array("25","nico","1",),
+			),
+		'mpost'=>
+array(
+			array("1","demo","1",),
+			array("25","nico","1",),
+			),
+		'rvrc'=>
+array(
+			array("1","demo","12022",),
+			array("25","nico","10036",),
+			array("3","a9228024","2016",),
+			array("7","kong","2005",),
+			array("10","小王","50",),
+			array("4","root","18",),
+			array("20","bryanchen","12",),
+			array("48","pupu","11",),
+			array("51","cat","11",),
+			array("18","doraemonos","9",),
+			array("36","free","9",),
+			array("72","babyface","8",),
+			array("5","demo.tw","7",),
+			array("15","c200216653","6",),
+			array("35","arisa","4",),
+			array("6","a9228023","4",),
+			array("73","cutewow","4",),
+			array("38","gary","3",),
+			array("44","sweetmay","3",),
+			array("42","snoopy","3",),
+			),
+		'money'=>
+array(
+			array("1","demo","2000220",),
+			array("25","nico","1000350",),
+			array("3","a9228024","1000150",),
+			array("7","kong","1000040",),
+			array("4","root","170",),
+			array("20","bryanchen","110",),
+			array("48","pupu","100",),
+			array("51","cat","100",),
+			array("18","doraemonos","80",),
+			array("36","free","80",),
+			array("10","小王","80",),
+			array("72","babyface","70",),
+			array("5","demo.tw","60",),
+			array("15","c200216653","50",),
+			array("35","arisa","30",),
+			array("6","a9228023","30",),
+			array("73","cutewow","30",),
+			array("38","gary","20",),
+			array("44","sweetmay","20",),
+			array("42","snoopy","20",),
+			),
+		'credit'=>
+array(
+			array("10","小王","100",),
+			array("18","doraemonos","1",),
+			),
+		'onlinetime'=>
+array(
+			),
+		'1'=>
+array(
+			),
+		);
+?>

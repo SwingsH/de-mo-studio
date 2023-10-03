@@ -1,0 +1,93 @@
+<!--<?php
+include_once PrintEot('left');
+
+print <<<EOT
+-->
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b>提示信息</b></td></tr>
+<tr><td class=b><br>
+<ul>1.　為了保證後台的安全性,系統只允許論壇創始人和管理員刪除操作日記<br>2.　系統必須保留前100條後台管理日志.</ul>
+<br></td></tr></table><br>
+
+<form action="$basename&" method=post>
+<input type=hidden name=action value=search>
+<table width=98% align=center cellspacing=0 cellpadding=0>
+<tr><td><table width=100% cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=5><b>搜索</b></td></tr>
+<tr align=center>
+<td class=b>關鍵字</td>
+<td class=b><input type=text name=keyword></td>
+<td class=b><input type=submit value='提 交'></td></tr>
+</table></td></tr></table></form>
+<br>
+
+<table width='98%' align=center cellspacing=1 cellpadding=5 class=i_table style='word-break:break-all;'>
+<tr><td class=head colspan=9><b>管理日志</b></td></tr>
+<!--
+EOT;
+if($a_type=='adminlog'){
+print <<<EOT
+-->
+<tr align='center'>
+	<td class=head_2 width="10%">用戶名</td>
+	<td class=head_2 width="10%">錯誤密碼</td>
+	<td class=head_2 width="30%">操作日志</td>
+	<td class=head_2 width="10%">IP</td>
+	<td class=head_2 width="15%">操作時間</td>
+	<td class=head_2 width="30%">其他</td>
+</tr>
+$adlogfor
+<!--
+EOT;
+}elseif($a_type=='forumlog'){
+print <<<EOT
+-->
+<tr class=head_2 align='center'><td>管理員</td><td>用戶名</td>
+<td width='15%'>論壇</td>
+<td colspan=3>操作日志</td><td>IP</td><td>操作時間</td></tr>
+$adlogfor
+<!--
+EOT;
+}elseif($a_type=='creditlog'){
+print <<<EOT
+-->
+<tr class=head_2 align='center'><td width=8%>積分名稱</td><td width=10%>作者</td>
+<td width=5%>點數</td><td width=12%>查看文章位置</td>
+<td width=10%>管理員</td><td width=10%>IP</td>
+<td width=15%>操作時間</td><td>評分理由</td></tr>
+<!--
+EOT;
+foreach($creditdb as $credit){
+if($credit){
+print <<<EOT
+-->
+<tr class=b align=center><td>$credit[name]</td><td>$credit[5] </td><td>$credit[6]</td>
+<td><a href="read.php?tid=$credit[1]">查看文章位置</a></td>
+<td>$credit[3]</td>
+<td>$credit[4]</td>
+<td>$credit[time]</td><td>$credit[8]</td></tr>
+<!--
+EOT;
+}}}
+print <<<EOT
+-->
+</table><br>
+<center>
+$pages
+<!--
+EOT;
+if($action=='search'){print <<<EOT
+-->
+<br><br><a href='$basename'><b>查看全部日志</b></a>
+<!--
+EOT;
+}if($admin_gid==3){
+$j_url=EncodeUrl("$basename&del=Y");
+print <<<EOT
+-->
+<br><br><a href="$j_url"><b>刪除多余管理日志</b></a></center>
+<!--
+EOT;
+}include_once PrintEot('adminbottom');
+?>
+-->

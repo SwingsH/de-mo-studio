@@ -1,0 +1,388 @@
+<!--<?php print <<<EOT
+-->
+<table width='$tablewidth' cellspacing=0 cellpadding=0 align=center>
+	<tr>
+		<td align=left>
+			<img src='$imgpath/$stylepath/index/home.gif' align=absbottom> 
+			<b><a href='$db_bfn'>$db_bbsname </a> -> 網絡電視</b>
+		</td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+?>-->
+<link rel="alternate stylesheet" href="http://code.51boba.com/main/union_style/style/blue/style.css" type="text/css" title="blue" media="screen, projection"/> 
+<link rel="alternate stylesheet" href="http://code.51boba.com/main/union_style/style/vday/style.css" type="text/css" title="vday" media="screen, projection"/>
+<link rel="alternate stylesheet" href="http://code.51boba.com/main/union_style/style/newyear/style.css" type="text/css" title="newyear" media="screen, projection"/>
+<link rel="alternate stylesheet" href="http://code.51boba.com/main/union_style/style/white/style.css" type="text/css" title="white" media="screen, projection"/>
+<link rel="alternate stylesheet" href="http://code.51boba.com/main/union_style/style/war3elf/style.css" type="text/css" title="war3elf" media="screen, projection"/>
+<link rel="alternate stylesheet" href="http://code.51boba.com/main/union_style/style/blue/style.css" type="text/css" title="blue" media="screen, projection"/>
+<link rel="stylesheet" href="http://code.51boba.com/main/union_style/style/mac/style.css" type="text/css" title="mac" media="screen, projection"/>
+<style>
+#toptxt
+{width:600px;height:22px;border:1px solid #ccc;padding:12px;margin:20px;}
+#toptxt a{color:#000}
+</style>
+
+
+<script language="javascript">
+	function $(s){return document.getElementById(s);}
+	function $$(s){return document.frames?document.frames[s]:$(s).contentWindow;}
+	function $c(s){return document.createElement(s);}
+	function swap(s,a,b,c){$(s)[a]=$(s)[a]==b?c:b;}
+	function hide(s){$(s).style.display=$(s).style.display=="none"?"":"none";}
+</script>
+
+
+<script language="JavaScript">
+function setActiveStyleSheet(title) {
+var i, a, main;
+if (title) {
+for(i=0; (a = document.getElementsByTagName('link')[i]); i++) {
+if(a.getAttribute('rel').indexOf('style') != -1 && a.getAttribute('title')) {
+a.disabled = true;
+if(a.getAttribute('title') == title) a.disabled = false;
+}
+}
+}
+}
+function getActiveStyleSheet() {
+var i, a;
+for(i=0; (a = document.getElementsByTagName('link')[i]); i++) {
+if(a.getAttribute('rel').indexOf('style') != -1 && a.getAttribute('title') && !a.disabled) return a.getAttribute('title');
+}
+return null;
+} 
+
+</script>
+
+<!--------------直播代碼---------------->
+<SCRIPT>
+var isShowIntro = false;
+var obj2 = false;
+var PcastUUID = "102303";                                            
+var Pcastheight = "258"																										//為控件高度
+var Pcastwidth = "320";																										//為控件寬度 	
+var htmurl = window.location.href;
+var PcaststartIndex = "2";
+var jsurl = "http://ps.itv.mop.com/js/pcast3.1_phpwind.js";
+document.write('<SCRIPT LANGUAGE=javascript SRC=' + jsurl + "/" + Math.random() + '>' + '</SCR' + 'IPT>');
+var plurl = "http://ps.itv.mop.com/js/playlist.js";
+document.write('<SCRIPT LANGUAGE=javascript SRC=' + plurl + "/" + Math.random() + '>' + '</SCR' + 'IPT>');
+var Aloaded = false;
+var Clicked = false;
+var ifgoch = true;
+var lastchid = 0;
+var PcastChid = 0;
+var PcastChannel = '__ITV0__';                                            //為頻道標識
+var chlistdefault = true;
+
+function playChannels(chname,chid){
+	if (chname != "changech"){
+	if (Aloaded == false){
+		PcastChannel = chname;
+		try{
+			installPcastctl(Pcastheight,Pcastwidth,chname,PcaststartIndex,PcastUUID,PcastChid);
+			changepicDiv();
+		}
+		catch(e){window.status="歡迎訪問貓眼頻道http://itv.mop.com";}
+	  Aloaded = true;
+		changeChstatus(chid);
+		document.all.playlist.src="http://code.51boba.com/playlist/itv_index2.0/" + chname + "/" + StrDate + ".xml";
+	}
+	else{
+		document.all.playlist.src="http://code.51boba.com/playlist/itv_index2.0/" + chname + "/" + StrDate + ".xml";
+		changeChstatus(chid);
+	  document.all.pCastCtl.Channel = 'Pcast://ps.itv.mop.com/channels/DEFAULT/txt/1,0,0,76/' + chname + '.txt';
+	}
+	if (chname == "PCAST_21"){
+		//alert(chname);
+		//document.all.myScreen.style.visibility="visible";
+	}
+	else{
+		//document.all.myScreen.style.visibility="hidden";
+	}
+}
+else{
+	changeChannelListPage();
+	};
+}
+
+function changeChannelListPage() {
+	//alert (chlistdefault);
+	if(chlistdefault == false){
+		document.all["chlistDIV"].style.display="";
+		document.all["chlistDIV2"].style.display="none";
+		chlistdefault = true;
+	}else{
+		document.all["chlistDIV"].style.display="none";
+		document.all["chlistDIV2"].style.display="";
+		chlistdefault = false;
+	}	
+}
+
+function changeChstatus(chid) {
+	if (chid != lastchid){
+	document.all["chimg_" + chid].src = "http://code.51boba.com/main/img/newyear-image/play_off.gif";
+	document.all["chimg_" + lastchid].src = "http://code.51boba.com/main/img/newyear-image/play_on.gif";
+	document.all["bgimg_" + chid].src = "http://code.51boba.com/main/img/newyear-image/bg_play_off.gif";
+	document.all["bgimg_" + lastchid].src = "http://code.51boba.com/main/img/newyear-image/bg_play_on.gif";
+	document.all["chtd_" + chid].bgColor = "#C5040A";
+	document.all["chtd_" + lastchid].bgColor = "#E23831";
+
+	ChList[lastchid][2]="play_on";
+	ChList[chid][2]="play_off";
+	lastchid=chid;
+}
+}
+
+function playChannelstemp(){
+	if (Aloaded == false){
+		//PcastChannel = PcastChannel;
+		try{
+			installPcastctl(Pcastheight,Pcastwidth,PcastChannel,PcaststartIndex,PcastUUID,PcastChid);
+			changepicDiv();
+		}
+		catch(e){window.status="歡迎訪問貓眼頻道http://itv.mop.com";}
+	  Aloaded = true;
+	}
+	else{
+	  document.all.pCastCtl.Channel = 'Pcast://ps.itv.mop.com/channels/DEFAULT/txt/1,0,0,75/' + PcastChannel + '.txt';
+		document.all.playlist.src="http://code.51boba.com/playlist/itv_index2.0/" + PcastChannel + "/" + StrDate + ".xml";
+	}
+}
+
+function play_down(){
+if (Aloaded == false){
+		installPcastctl();
+		changepicDiv();
+	}
+else{
+try{
+	document.pCastCtl.Play();
+}catch (e){window.status="歡迎訪問貓眼頻道http://itv.mop.com";}
+}
+}
+
+
+function stop_down(){
+if (Aloaded == false){
+		installPcastctl();
+		changepicDiv();
+	}
+else{
+	try{
+	document.pCastCtl.stop();
+	}catch(e){window.status="歡迎訪問貓眼頻道http://itv.mop.com";}	
+}
+}
+
+function mute_down(){
+if (Aloaded == false){
+		installPcastctl();
+		changepicDiv();
+	}
+else{
+try{
+if(document.pCastCtl.mute){
+	document.all.muteButton.src = "";
+	document.pCastCtl.mute = false;
+	}
+else{
+	document.all.muteButton.src = "";
+	document.pCastCtl.mute = true;
+	}
+}catch (e){window.status="歡迎訪問貓眼頻道http://itv.mop.com";}
+
+}
+}
+
+function full_down(){
+if (Aloaded == false){
+		installPcastctl();
+		changepicDiv();
+	}
+{
+	try{
+		if(document.pCastCtl.fullscreen){
+			document.all.pCastCtl.fullscreen = false;
+		}
+	else{
+			document.all.pCastCtl.fullscreen = true;
+		}
+	}
+	catch (e){window.status="歡迎訪問貓眼頻道http://itv.mop.com";}
+}
+}
+
+var picflag = 1;
+function changepicDiv(){	
+	if(picflag == 1){		
+		picflag = 0;		
+		document.all["PicDIV"].style.display="none";
+		document.all["PicDIV"].innerHTML="";		
+		document.all["PcastDIV"].style.display="";		
+		//document.pCastCtl.mute = false;	
+		}
+}
+
+var obj_D="PCastControl.pCastPanel";
+function obj_exists(objname){
+    var mbox_object;
+ try{
+    mbox_object= new ActiveXObject(objname);
+    return true;
+ }catch(x) {
+    return false;
+ }
+}
+
+function installPcastctl(){
+try{
+	if (!isShowIntro) {
+		obj2 = obj_exists(obj_D);
+		if (obj2) {
+			installActivex(Pcastheight,Pcastwidth,PcastChannel,PcaststartIndex,PcastUUID,PcastChid);
+			Aloaded = true;
+		}
+	else{
+		alertInfo(Pcastheight,Pcastwidth);
+		timerID = setTimeout("checkinstalled()",10000);	
+	}
+}
+}catch(e){window.status="歡迎訪問貓眼頻道http://itv.mop.com";}
+}
+
+function checkinstalled(){
+	try{
+		if (Clicked == false && Aloaded == false){
+			installActivex(Pcastheight,Pcastwidth,PcastChannel,PcaststartIndex,PcastUUID,PcastChid);
+			Aloaded = true;			
+		}
+	}
+	catch (e){window.status="歡迎訪問貓眼頻道http://itv.mop.com";}
+}
+
+var dragapproved=false
+
+function drag_dropie()
+  {
+	  try{
+     if (dragapproved==true)
+     {
+       var mov = tempx+event.clientX-iex
+       if (mov > 7  && mov < 80)
+       {
+          document.all.showimage.style.pixelLeft=tempx+event.clientX-iex
+          var loudness =  (mov)*100/73 ;
+		  if (loudness>0 && loudness<107)
+             {
+             window.status = loudness;
+             document.pCastCtl.Volume= loudness;
+             
+             }
+       }
+          return false
+      }
+	  }catch(e){}
+    }
+    
+function initializedragie()
+  {
+	  try{
+  	iex=event.clientX
+    iey=event.clientY
+    tempx=showimage.style.pixelLeft
+    tempy=showimage.style.pixelTop
+    dragapproved=true 
+    document.onmousemove=drag_dropie
+    	 if (document.all)
+				{  document.onmouseup=new Function('dragapproved=false') }
+	  }catch(e){}
+  }
+  
+</SCRIPT>
+<center>
+<div id="toptxt">
+<a href="javascript :void()" onclick="setActiveStyleSheet('blue'); return false;" title="藍色">明快之藍</a> | 
+<a href="javascript :void()" onclick="setActiveStyleSheet('vday'); return false;" title="情人節">ITV情人節版</a> | 
+<a href="javascript :void()" onclick="setActiveStyleSheet('newyear'); return false;" title="ITV新年版本">ITV新年版</a> | 
+<a href="javascript :void()" onclick="setActiveStyleSheet('white'); return false;" title="冰肌玉骨">冰肌玉骨</a> | 
+<a href="javascript :void()" onclick="setActiveStyleSheet('mac'); return false;" title="MAC OS">MAC OS</a>
+</div>
+<!--------------外表格邊框---------------->
+<table width=100 border="0" cellpadding="0" cellspacing="0" class="outtable">
+  <tr>
+    <td valign="top">
+<!--------------左側頻道列表---------列表內置樣式（links  links.up&down  links.chltitle&chllist------->
+	
+<div id="chl">
+	<div id="chl_top"></div>
+	<div id="chl_middle">
+		<div id="l"></div>
+		<div id="chllist">
+<script language='javascript' src='http://code.51boba.com/main/channelguide/uninchanneljs.js'></script>
+<script language='javascript' src='http://code.51boba.com/main/union_style/leftlist.js'></script>
+		</div>
+		<div id="r"></div>
+	</div>
+	<div id="chl_bottom"></div>
+</div>
+</td>
+
+<!--------------播放窗口---------------->
+    <td valign="top">
+<div id="player_all">
+	<div id="top"></div>
+		<div id="middle">
+		<div id="left"></div>
+		<div id="player">
+					<DIV id=Pcastwh>
+					<DIV id=PcastDIV style="DISPLAY: none" z-index:0></DIV>
+					<DIV id=PicDIV></DIV>
+					</DIV>
+		</div>
+		<div id="right"></div>
+	</div>
+	<div id=bottom></div>
+	<div id="ctrl" align="left">
+		<div id="b1"></div>
+		<div id="play"><a href="javascript:play_down();"></a></div>
+		<div id="b2"></div>
+		<div id="stop"><a href="javascript:stop_down();"></a></div>
+		<div id="b3"></div>
+		<div id="mute"><a href="javascript:mute_down();" id=muteButton ></a></div>
+		<div id="b4"></div>
+		<div id="voice">
+		  <div id="showimage" onmousedown=initializedragie() name="showimage"></div>
+		</div>
+		<div id="b5"></div>
+		<div id="full"><a href="javascript:full_down();"></a></div>
+		<div id="b6"></div>
+		<div id="bbs"><a href="http://www.phpwind.net" target=_blank></a></div>
+		<div id="b7"></div>
+	</div>
+	<div id="bottomtxt"></div>
+</div></td>
+
+<!--------------右側節目單---------------->
+
+    <td valign="top">
+	
+	
+<div id="list_right">
+	<div id="list_right_top"></div>
+	<div id="listmiddle">
+		<div id="listmiddle_l"></div>
+		<div id="listmiddle_m"><IFRAME id=playlist align=center src="http://code.51boba.com/main/mini_player/preview1.html" frameBorder=0 noResize scrolling=yes></IFRAME></div>
+		<div id="listmiddle_r"></div>
+	</div>
+	<div id="listbottom"></div>
+</div>
+
+</td>
+  </tr>
+</table>
+
+<script src="http://code.51boba.com/main/union_bbs/footer_ctrlchl.js"></script><br></center>

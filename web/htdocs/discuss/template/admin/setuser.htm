@@ -1,0 +1,364 @@
+<!--<?php
+include_once PrintEot('left');
+if (empty($action)){
+print <<<EOT
+-->
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+
+<tr><td class=head colspan=2><b>提示信息</b></td></tr>
+<tr><td class=b><br>
+<ul>
+主要功能︰用戶組管理，未驗證會員審核，禁言組設置，會員編輯，（<font color=blue>版主</font>請到版塊管理處設置）<br><br>1.用戶組管理︰<br><font color=blue><b>搜索會員並可設置會員為管理員.總版主.和其他特殊組.</b></font><br>在"用戶組"處選擇要進行操作的用戶組，按搜索進入該用戶組的管理，要去除該用戶組的某個會員只需將他的系統頭餃設為普通會員或其他用戶組頭餃<br><br>2.未驗證會員審核︰<br>當開啟新注冊會員需要管理員驗證功能時可以對需要驗證的新會員進行管理，在"用戶組"處選擇"驗證會員"選項，按搜索進入驗證會員的管理，要通過某個會員驗證只需將此會員的系統頭餃設為普通會員或其他用戶組頭餃<br><br>3.單個會員管理︰<br>在"用戶名包含"處填寫會員ID（可以使用通配符進行模糊查找），按搜索進入對會員資料編輯<br>注:只有超管才能編輯管理員的資料
+</ul>
+<br></td></tr></table><br>
+<form action="$basename&" method=post>
+<table width=98% align=center cellspacing=0 cellpadding=0 class=i_table>
+<tr><td><table width=100% cellspacing=1 cellpadding=3>
+<tr><td class=head colspan=2><b>編輯用戶</b></td></tr>
+<tr><td class=b>用戶組</td>
+<td class=b><select name=groupid><option value=''>不限制</option>
+$groupselect</select></td></tr>
+<tr><td class=b width=40%>用戶名包含<br>(可使用通配符 "*")</td>
+<td class=b><input type=text size=20 maxlength=14 name="schname"> <input name=schname_s type=checkbox value=1 checked='checked'>  精確匹配</td></tr>
+<tr><td class=b>郵箱<br>(可使用通配符 "*")</td>
+<td class=b><input type=text size=20 name="schemail"></td></tr>
+<tr><td class=b>最後登錄IP<br>(可使用通配符 "*")</td>
+<td class=b><input type=text size=20 name="userip"></td></tr>
+<tr><td class=b>注冊時間大于</td>
+<td class=b><select name=regdate>
+<OPTION value="all">不限制</OPTION>
+<OPTION value="86400">一天</OPTION>
+<OPTION value="172800">二天</OPTION>
+<OPTION value="604800">一星期</OPTION>
+<OPTION value="2592000">一個月</OPTION>
+<OPTION value="7776000">三個月</OPTION>
+<OPTION value="15552000">六個月</OPTION>
+<OPTION value="31536000">一年</OPTION></select></td></tr>
+<tr><td class=b>多久未登錄</td>
+<td class=b><select name=schlastvisit>
+<OPTION value="all">不限制</OPTION>
+<OPTION value="86400">一天</OPTION>
+<OPTION value="172800">二天</OPTION>
+<OPTION value="604800">一星期</OPTION>
+<OPTION value="2592000">一個月</OPTION>
+<OPTION value="7776000">三個月</OPTION>
+<OPTION value="15552000">六個月</OPTION>
+<OPTION value="31536000">一年</OPTION></select></td></tr>
+<tr><td class=b>排序</td>
+<td class=b><select name=orderway>
+<option value="username">用戶名</option>
+<option value="uid">注冊時間</option>
+<option value="lastpost">最後發表</option>
+<option value="lastvisit">最後登錄</option>
+<option value="postnum">發帖</option></select>
+<input type=radio size=5 name="asc" value='' checked>升序
+<input type=radio size=5 name="asc" value='DESC'>降序</td></tr>
+<tr><td class=b>每頁顯示行數</td>
+<td class=b><input type=text size=5 name="lines" value=100></td></tr>
+</table></td></tr></table>
+<br><center><input type=submit value="提 交"></center>
+<input type=hidden name=action value=search></form>
+
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b>提示信息</b></td></tr>
+<tr><td class=b><br>
+<ul>用戶組頭餃管理<br>此功能可查看用戶的附加用戶組頭餃
+</ul><br></td></tr></table><br>
+
+<form action="$basename&" method=post>
+<input type="hidden" name="action" value="groups">
+<table width="98%" align="center" cellspacing=1 cellpadding=3 class="i_table">
+<tr><td class=head colspan=2><b>用戶組頭餃管理</b></td></tr>
+<tr><td class=b>附加用戶組頭餃</td>
+<td class=b><select name=groupid><option value=''>不限制</option>
+$groupselect</select></td></tr>
+<tr><td class=b width=40%>用戶名包含<br>(可使用通配符 "*")</td>
+<td class=b><input type=text size=20 maxlength=14 name="schname"> <input name=schname_s type=checkbox value=1 checked='checked'>  精確匹配</td></tr>
+</table></td></tr></table>
+<br><center><input type=submit value="提 交"></center></form>
+
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b>提示信息</b></td></tr>
+<tr><td class=b><br>
+<ul>
+使用此功能可以在開啟<font color=blue>禁止注冊新用戶</font>功能時,由管理員添加特定用戶   <br>超管(<font color=blue>論壇創始人</font>)可以使用此功能<font color=blue>添加論壇管理員</font>(普通管理員無此權限)
+</ul><br></td></tr></table><br>
+<form action="$basename&" method=post>
+<table width=98% align=center cellspacing=0 cellpadding=0 class=i_table>
+<tr><td><table width=100% cellspacing=1 cellpadding=3>
+<tr><td class=head colspan=2><b>添加用戶</b></td></tr>
+<tr><td class=b width=40%>用戶名</td>
+<td class=b><input type=text size=20 maxlength=14 name="username"></td></tr>
+<tr><td class=b>密碼</td>
+<td class=b><input type=password size=20 name="password"></td></tr>
+<tr><td class=b>Email</td>
+<td class=b><input type=text size=20 name="email"></td></tr>
+<tr><td class=b>用戶組</td>
+<td class=b>
+<select name=groupid>$groupselect</select></td></tr>
+</table></td></tr></table>
+<br><center><input type=submit value="提 交"></center>
+<input type=hidden name=action value=addnew></form>
+<br><br>
+<form action="$admin_file?adminjob=updatecache&" method=post>
+<input type=hidden name=action value='member'>
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr align=center><td class=head colspan=2><b>更新會員發帖數</b></td></tr>
+<tr><td class=b  colspan=2>提示:將根據數據庫中的帖子記錄來重新統計用戶的發帖數<br><font color="blue">不建議使用，除非您希望校正所有用戶的發帖數為數據庫中實際存在的帖子數</font></td></tr>
+<tr class=b><td width=40%>每批更新個數</td>
+<td><input type=text size=20 name="percount" value=1000></td></tr></table>
+<br><center><input type=submit value="提 交"></center></form>
+<!--
+EOT;
+}elseif($action==search){print <<<EOT
+-->
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b>編輯用戶</b></td></tr>
+<tr><td class=b><br>
+<ul>
+1.此功能可以批量修改會員頭餃 <br><br>2.此功能設置為禁言組的用戶將被<font color=blue>永久禁言</font><br><br>
+</ul>
+<br></td></tr></table><br>
+
+&nbsp;&nbsp;&nbsp;$pages
+<form action="$basename&" method=post>
+<input type=hidden name='action' value='edutgroup'>
+<table width=98% align=center cellspacing=0 cellpadding=0 class=i_table>
+<tr><td><table width=100% cellspacing=1 cellpadding=3>
+<tr><td class=head colspan=8><b>用戶列表</b></td></tr>
+<tr align=center>
+<td class=head_2>ID</td><td class=head_2>用戶名</td><td class=head_2>Email</td>
+<td class=head_2>系統頭餃</td>
+<td class=head_2>注冊時間</td><td class=head_2>發帖</td><td class=head_2>IP</td>
+<td class=head_2>編輯</td>
+</tr>
+<!--
+EOT;
+foreach($schdb as $key=>$sch){
+if(!$sch[username])continue;
+$key+=($page-1)*$lines+1;
+$uid=$sch[uid];
+print <<<EOT
+-->
+<tr align=center>
+<td class=b>$key</td>
+<td class=b>$sch[username]</td><td class=b>$sch[email]</td>
+<td class=b><select name='gid[$uid]'>$sch[groupselect]</select></td>
+<td class=b>$sch[regdate]</td><td class=b>$sch[postnum]</td>
+<td class=b>$sch[onlineip]</td><td class=b>
+<a href="$basename&action=edit&uid=$sch[uid]">編輯</a></td>
+</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table></td></tr></table>
+<br><center><input type=submit value="提 交"></center></form>
+<!--
+EOT;
+}elseif($action=='groups'){print <<<EOT
+-->
+<table width=98% align=center cellspacing=0 cellpadding=0 class=i_table>
+<tr><td><table width=100% cellspacing=1 cellpadding=3>
+<tr><td class=head colspan=8><b>用戶列表</b></td></tr>
+<tr class=head_2 align=center>
+<td>ID</td>
+<td>用戶名</td>
+<td>系統頭餃</td>
+<td>附加用戶組頭餃</td>
+<td>編輯</td>
+</tr>
+<!--
+EOT;
+$id=0;
+foreach($schdb as $key => $value){
+$id++;
+print <<<EOT
+-->
+<tr class="b" align="center">
+<td>$id</td>
+<td>$value[username]</td>
+<td>$value[system]</td>
+<td>$value[gtitle]</td>
+<td><a href="$basename&action=edit&uid=$value[uid]">編輯</a></td>
+</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table></td></tr></table>
+<!--
+EOT;
+}elseif($action==edit){
+print <<<EOT
+-->
+<form action="$basename&" method=post>
+<table align=center width=98% cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=8><b>編輯用戶</b></td></tr>
+<tr><td class=b width="50%">系統頭餃</td>
+<td class=b><select name=groupid>$groupselect</select</td></tr>
+<tr><td class=b>附加用戶組頭餃</td>
+<td class=b>$usergroup</td></tr>
+<tr><td class=b>用戶名(<font color=blue>如無特殊需要請不要修改</font>)</td>
+<td class=b>
+<input type=text size=20 name="username" value="$username"></td></tr>
+<tr><td class=b>新密碼(<font color=blue>如不更改請留空</font>)</td>
+<td class=b>
+<input type=text size=20 name="password" value=''></td></tr>
+<tr><td class=b>確認密碼(<font color=blue>修改密碼時需要輸入</font>)</td>
+<td class=b>
+<input type=text size=20 name="check_pwd"></td></tr>
+
+<tr><td class=b>Email</td>
+<td class=b>
+<input type=text size=20 name="email"value='$email'>
+<input type=checkbox name=publicmail value=1 $ifchecked>公開郵箱</td></tr>
+<tr><td class=b> 是否接受郵件︰</td>
+<td class=b><input type=radio name='receivemail' value='1' $email_open>是
+<input type=radio name='receivemail' value='0' $email_close>否</td></tr>
+<tr><td class=b>注冊日期(格式 yyyy-mm-dd)︰</td>
+<td class=b><input type=text size=20 name=regdate value='$regdate'></td></tr>
+<tr><td class=b>郵件激活(<font color=blue>設為"1"激活帳號</font>)</td>
+<td class=b><input type=text size=20 name=yz value='$yz'></td></tr>
+<tr><td class=b>IP</td>
+<td class=b><input type=text size=20 name=userip value='$onlineip'>
+</td></tr>
+<tr><td class=b>頭像網址(不使用.請留空)<br>(必須以 http開頭,如果設置了此項,請設置該頭像寬.高)</td>
+<td class=b><input type=text size=20 name=i_http value='$i_http'>寬:<input type=text size=5 name=i_w value='$i_w'>高:<input type=text size=5 name=i_h value='$i_h'></td></tr>
+<tr><td class=b>發帖</td>
+<td class=b>
+<input type=text size=20 name=postnum value='$postnum'></td></tr>
+<tr><td class=b>{$db_rvrcname}</td>
+<td class=b><input type=text size=20 name=rvrc value='$rvrc'></td></tr>
+<tr><td class=b>{$db_moneyname}</td>
+<td class=b><input type=text size=20 name=money value='$money'></td></tr>
+<tr><td class=b>活期存款</td>
+<td class=b><input type=text size=20 name=deposit value='$deposit'></td></tr>
+<tr><td class=b>定期存款</td>
+<td class=b><input type=text size=20 name=ddeposit value='$ddeposit'></td></tr>
+<tr><td class=b>{$db_creditname}</td>
+<td class=b><input type=text size=20 name=credit value='$credit'></td></tr>
+<tr><td class=b>在線時間</td>
+<td class=b><input type=text size=20 name=onlinetime value='$onlinetime'></td></tr>
+<tr><td class=b>個人主頁</td>
+<td class=b><input type=text size=20 name=site value='$site'></td></tr>
+<tr><td class=b>來自</td>
+<td class=b><input type=text size=20 name=location value='$location'></td></tr>
+<tr><td class=b>OICQ</td>
+<td class=b>
+<input type=text size=20 name=oicq value='$oicq'></td></tr>
+<tr><td class=b>ICQ</td>
+<td class=b><input type=text size=20 name=icq value='$icq'></td></tr>
+<tr><td class=b>MSN</td>
+<td class=b><input type=text size=20 name=msn value='$msn'></td></tr>
+<tr><td class=b>Yahoo</td>
+<td class=b><input type=text size=20 name=yahoo value='$yahoo'></td></tr>
+<tr><td class=b>自定義頭餃</td>
+<td class=b>
+<input type=text size=20 maxlength=75 name=honor value='$honor'></td></tr>
+<tr><td class=b> 性別</td>
+<td class=b><select name=gender>
+<option value=0 $sexselect[0]>保密</option>
+<option value=1 $sexselect[1]>男</option>
+<option value=2 $sexselect[2]>女</option></select></td></tr>
+<tr><td class=b> 生日</td>
+<td class=b><select name=year>
+<option value='0000'></option>
+<!--
+EOT;
+for($i=1960;$i<2005;$i++){
+print <<<EOT
+-->
+<option value=$i $yearslect[$i]>$i</option>
+<!--
+EOT;
+}print <<<EOT
+-->
+</select>年 
+<select name=month>
+<option value='00'></option>
+<!--
+EOT;
+for($i=1;$i<13;$i++){
+print <<<EOT
+-->
+<option value=$i $monthslect[$i]>$i</option>
+<!--
+EOT;
+}print <<<EOT
+-->
+</select>月 
+<select name=day>
+<option value='00'></option>
+<!--
+EOT;
+for($i=1;$i<32;$i++){
+print <<<EOT
+-->
+<option value=$i $dayslect[$i]>$i</option>
+<!--
+EOT;
+}print <<<EOT
+-->
+</select>日
+</td></tr>
+<tr><td class=b>個性簽名</td>
+<td class=b>
+<textarea cols=50 name=signature rows="4">$signature</textarea></td></tr>
+<tr><td class=b>自我簡介<br>--少于100字節</td>
+<td class=b>
+<textarea name=introduce  rows=4 cols=50>$introduce</textarea></td></tr>
+<tr><td class=b>短消息拒絕列表</td>
+<td class=b>
+<textarea name=banpm  rows=4 cols=50>$banpm</textarea></td></tr>
+</table>
+<!--
+EOT;
+if($customfield){print <<<EOT
+-->
+<br>
+<table align=center width=98% cellspacing=1 cellpadding=3 class=i_table>
+<tr height=25><td class=head colspan=2>附加信息</td></tr>
+<!--
+EOT;
+foreach($customfield as $key=>$val){
+$field="field_".(int)$val[id];
+if($val[type]=='1'){
+$field_type="<input type=\"text\" size=\"30\" name=\"$field\" value=\"{$$field}\">";
+}elseif($val[type]=='2'){
+$field_type="<textarea name=\"$field\" rows=\"5\" cols=\"50\">{$$field}</textarea>";
+}elseif($val[type]=='3'){
+$field_type="<select name=\"$field\">";
+$options=explode("\n",$val[options]);
+foreach($options as $k=>$v){
+list($k,$v)=explode('=',$v);
+$type_sel=$$field==$k?'selected':'';
+$field_type.="<option value=\"$k\" $type_sel>$v</option>";
+}$field_type.="</select>";
+}print <<<EOT
+-->
+<tr>
+	<td class="b" width="50%">$val[title]<br>$val[descrip]</td>
+	<td class="b">{$field_type}</td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<!--
+EOT;
+}print <<<EOT
+-->
+<br>
+<center><input type=submit value="提 交"></center>
+<input type=hidden name='action' value=edit>
+<input type=hidden name=uid value=$uid>
+<input type=hidden name=step value=2>
+</form>
+<!--
+EOT;
+}include_once PrintEot('adminbottom');
+?>-->

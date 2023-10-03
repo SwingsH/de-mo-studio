@@ -1,0 +1,4 @@
+<?php
+$advertdb=array(
+);
+?>

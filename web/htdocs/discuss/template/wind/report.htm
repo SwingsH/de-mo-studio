@@ -1,0 +1,44 @@
+<!--
+<?php print <<<EOT
+-->
+<table width="$tablewidth" cellspacing="0" cellpadding="0" align="center"><tr><td align="left">
+<img src="$imgpath/$stylepath/index/home.gif" align="absbottom" /> 
+<b><a href="$db_bfn">$db_bbsname </a> -> 報告功能</b></td></tr></table><br />
+
+<form name="form1" method="post" action="job.php?tid=$tid&pid=$pid">
+<table width="$tablewidth" align="center" cellspacing="1" cellpadding="3" $i_table>
+<tr height="25"><td colspan="2" class="head"><b>報告功能</b></td></tr>
+
+<tr><td class="f_one" width="21%">報告類型</td>
+<td class="f_one">
+<input type="radio" name="type" value="1" checked onclick="Addreason('該帖很優秀,建議加為精華帖!')" />優秀帖子
+<input type="radio" name="type" value="0" onclick="Addreason('該帖包含不良信息,請及時處理!')" />不良帖子</td></tr>
+<tr><td class="f_one">短消息通知版主</td>
+<td class="f_one"><input type="radio" name="ifmsg" value="1" checked />是
+<input type="radio" name="ifmsg" value="0" />否</td></tr>
+<tr><td class="f_one">原因</td>
+<td class="f_one">
+<textarea name="reason" rows="5" cols="80">該帖很優秀,建議加為精華帖!</textarea>
+</td></tr></table>
+<br />
+<br />
+<input type="hidden" name="action" value="$action" />
+<input type="hidden" name="step" value="2" />
+<center><input type="submit" name="Submit" value="提 交" /></center></form>
+<!--
+EOT;
+print <<<EOT
+-->
+<br /><br /></center></td></tr><tr height="23"><td colspan="2" class="head">&nbsp;
+</td></tr></table></td></tr></table>
+<script language="JavaScript">
+function Addreason(reason){
+
+	document.form1.reason.value=reason; 
+	document.form1.reason.focus(); 
+	return; 
+}
+</script>
+<!--
+EOT;
+?>-->

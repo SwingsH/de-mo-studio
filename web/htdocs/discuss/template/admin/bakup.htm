@@ -1,0 +1,158 @@
+<!--<?php
+include_once PrintEot('left');
+print <<<EOT
+-->
+
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b>提示信息</b></td></tr>
+<tr><td class=b><br>
+<ul>
+<!--
+EOT;
+if($a_type=='bakout'){
+ print <<<EOT
+-->
+您可以根據自己的需要選擇需要備份的數據庫表,導出的數據文件可用"數據恢復"功能。<br><br>為了數據安全,備份文件采用時間戳命名保存,如果備份數據超過設定的大小程序會自動采用分卷備份功能，請耐心等待直到程序提示全部備份完成。<br><br>附件的備份只需手工轉移附件目錄和文件即可,風格備份也同! PhpWind不提供單獨備份。
+<!--
+EOT;
+}elseif($a_type=='bakin'){
+ print <<<EOT
+-->
+本功能在恢復備份數據的同時,將覆蓋原有數據,請確定是否需要恢復,以免造成數據損失。<br><br>數據恢復功能只能恢復由當前版本導出的數據文件,其他軟件導出格式可能無法識別。<br><br>如果一個備份文件有多個分卷，您只需任選一個備份文件導入，程序會自動導入其他分卷
+<!--
+EOT;
+}print <<<EOT
+-->
+</ul>
+</td></tr></table><br>
+<!--
+EOT;
+if($a_type=='bakout'){
+ print <<<EOT
+-->
+<form action="$basename&" method=post>
+<input type=hidden name="action" value="bakout">
+<table width=70% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=3><b>數據庫表</b></td></tr>
+<tr>
+<td class=head_2 width="5%" align=center>ID</td>
+<td class=head_2>數據庫表</td>
+<td class=head_2 width="10%" align=center>選擇</td>
+</tr>
+<!--
+EOT;
+$id=0;
+foreach($tabledb as $key=>$table){
+$id++;
+$tablename=$PW=='pw_' ? $table : str_replace($PW,'pw_',$table);
+print <<<EOT
+-->
+<tr>
+<td class=b align=center>$id</td>
+<td class=b>$table</td>
+<td class=b align=center><input type=checkbox name=tabledb[] value=$tablename></td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+<tr><td class=head colspan=3><b>分卷備份</b></td></tr>
+<tr class=b><td colspan=3><input type=text name="sizelimit" value="2048" size=5> 每個分卷文件長度</td></tr>
+</table>
+<br><center>
+<input type="button" name="chkall" value="全 選" onclick="CheckAll(this.form)">
+<input type=submit value="提 交"></center></form>
+
+<form action="$basename&" method=post>
+<input type=hidden name="action" value="bakout">
+<table width=70% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=3>非PHPWind數據庫表 (論壇插件或其他系統的數據庫表)</td></tr>
+<tr>
+<td class=head_2 width="5%" align=center>ID</td>
+<td class=head_2>數據庫表</td>
+<td class=head_2 width="10%" align=center>選擇</td>
+</tr>
+<!--
+EOT;
+$id=0;
+foreach($othortable as $key=>$table){
+$id++;
+print <<<EOT
+-->
+<tr>
+<td class=b align=center>$id</td>
+<td class=b>$table</td>
+<td class=b align=center><input type=checkbox name=tabledb[] value=$table></td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+<tr><td class=head colspan=3><b>分卷備份</b></td></tr>
+<tr class=b><td colspan=3><input type=text name="sizelimit" value="2048" size=5> 每個分卷文件長度</td></tr>
+</table>
+<br><center>
+<input type="button" name="chkall" value="全 選" onclick="CheckAll(this.form)">
+<input type=submit value="提 交"></center></form>
+<!--
+EOT;
+}elseif($a_type=='bakin'){
+if(!$action){print <<<EOT
+-->
+<form method="post" action="$basename">
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr class=i_table align=center><td colspan=7 class=head><b>論壇備份文件</b></td></tr>
+<tr class=head_2 align=center><td width=3%>ID</td>
+<td width=35%>文件名</td><td width=15%>版本</td>
+<td>備份時間</td><td width=5%>卷號</td><td>導入</td><td width=5% >刪</td></tr>
+<!--
+EOT;
+foreach($filedb as $id=>$bakfile){
+$id++;
+print <<<EOT
+-->
+<tr class=b align=center>
+<td>$id</td>
+<td><a href="data/$bakfile[name]">$bakfile[name]</a></td>
+<td>$bakfile[version]</td>
+<td>$bakfile[time]</td><td>$bakfile[num]</td>
+<td><a href="$basename&action=bakincheck&pre=$bakfile[pre]">導入</a></td>
+<td><input name="delfile[]" type=checkbox value="$bakfile[name]"></td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table><br>
+<input name=action type=hidden value="del">
+<br><center>
+<input type="button" name="chkall" value="全 選" onclick="CheckAll(this.form)">
+<input type="submit" name="delete" value="刪除備份" onclick="return checkset('此功能不可恢復,您確認要刪除選中的備份文件！');"></center>
+</form>
+<script language=JavaScript>
+function checkset(confirm_info)
+{
+	if(confirm(confirm_info)){
+		return true;
+	} else {
+		return false;
+	}
+}
+</script>
+<!--
+EOT;
+}elseif($action=='bakincheck'){
+print <<<EOT
+-->
+<form action="$basename&action=bakin&pre=$pre" method="post">
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b>提示信息</b></td></tr>
+<tr><td class=b><br>
+<font color="blue">備份恢復功能將覆蓋原來的數據,您確認要導入備份數據！</font> 
+<br><br></td><td class=b align=center><br><input type=submit value="確認導入備份"><br><br></td></tr></table><br>
+<br><br>
+<center> <input type='button' value='返 回 繼 續 操 作' onclick='javascript:history.go(-1);'></center><br>
+</form>
+<!--
+EOT;
+}}include_once PrintEot('adminbottom');
+?>-->

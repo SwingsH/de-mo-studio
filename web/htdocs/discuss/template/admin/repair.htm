@@ -1,0 +1,102 @@
+<!--<?php
+include_once PrintEot('left');
+if (empty($action)){
+print <<<EOT
+-->
+<table width="98%" align="center" cellspacing=1 cellpadding=3 class=i_table>
+	<tr><td class=head colspan=2><b>提示信息</b></td></tr>
+	<tr><td class=b><br><ul>修復表 : 此操作可修復數據庫在進行查詢，刪除，更新等操作時產生的錯誤<br>優化表 : 此操作可優化數據庫表結構，以獲得更好的數據庫運行效率</ul></td></tr>
+</table>
+<br>
+<form action="$basename&" method=post>
+<table width=70% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=5>數據庫優化</td></tr>
+<tr align=center>
+	<td class=head_2 width="5%">ID</td>
+	<td class=head_2>數據庫表</td>
+	<td class=head_2 width="8%">選擇</td>
+</tr>
+<!--
+EOT;
+$id=0;
+foreach($tabledb as $key=>$table){
+$id++;
+print <<<EOT
+-->
+<tr>
+	<td class=b align=center>$id</td>
+	<td class=b>$table</td>
+	<td class=b align=center><input type=checkbox name=tabledb[] value=$table></td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<br>
+<center>
+	<input type="radio" name="action" value="repair">修復表
+	<input type="radio" name="action" value="optimize" checked>優化表<br><br>
+	<input type="button" name="chkall" value="全 選" onclick="CheckAll(this.form)">
+	<input type='submit' value='提 交'>
+</center>
+</form>
+<br>
+<form action="$basename&" method=post>
+<table width=70% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=5>非PHPWind數據庫表 (論壇插件或其他系統的數據庫表)</td></tr>
+<tr align=center>
+	<td class=head_2 width="5%">ID</td>
+	<td class=head_2>數據庫表</td>
+	<td class=head_2 width="8%">選擇</td>
+</tr>
+<!--
+EOT;
+$id=0;
+foreach($othortable as $key=>$table){
+$id++;
+print <<<EOT
+-->
+<tr>
+	<td class=b align=center>$id</td>
+	<td class=b>$table</td>
+	<td class=b align=center><input type=checkbox name=tabledb[] value=$table></td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<br>
+<center>
+	<input type="radio" name="action" value="repair">修復表
+	<input type="radio" name="action" value="optimize" checked>優化表<br><br>
+	<input type="button" name="chkall" value="全 選" onclick="CheckAll(this.form)">
+	<input type='submit' value='提 交'>
+</center>
+</form>
+<!--
+EOT;
+} else{
+print <<<EOT
+-->
+<table width=70% align=center cellspacing=1 cellpadding=6 class=i_table>
+<tr><td class=head colspan=5><b>數據庫優化信息</b></td></tr>
+<tr align=center><td class=b width=20%>數據庫表</td>
+<td class=b width=20%>操作</td><td class=b>信息</td></tr>
+<!--
+EOT;
+foreach($msgdb as $msg){
+print <<<EOT
+-->
+<tr><td class=b align=center>$msg[Table]</td><td class=b align=center>$msg[Op]</td>
+<td class=b align=left>$msg[Msg_type]:$msg[Msg_text]</td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<!--
+EOT;
+}include_once PrintEot('adminbottom');
+?>-->

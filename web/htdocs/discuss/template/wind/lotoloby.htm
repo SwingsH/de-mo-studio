@@ -1,0 +1,142 @@
+<!--
+<?php print <<<EOT
+-->
+<style type="text/css">
+<!--
+.style2 {color: #FFFFFF}
+.style10 {color: #009900}
+.style12 {color: #0000FF}
+.style13 {
+	color: #FF0000;
+	font-weight: bold;
+}
+.style17 {color: #FF0000; font-weight: bold; font-size: 18px; }
+.style20 {
+	color: #000000;
+	font-weight: bold;
+}
+.style22 {color: #0099FF}
+.style25 {color: #FF6600; font-weight: bold; }
+.style27 {color: #FF0000; font-weight: bold; font-size: x-large; }
+.style30 {color: #000000}
+-->
+</style>
+
+<table cellspacing="0" cellpadding="0" border="0" width=$tablewidth> 
+<tr>
+  <td class="nav" width="90%" nowrap><img src='$imgpath/$stylepath/index/home.gif' align='absbottom'>&nbsp;<strong><a href="index.php">{$db_bbsname}</a> &raquo; <a href=lotomain.php?hack=lotoloby>$lotoset[name]大廳</a></strong></td>
+  <td align="right" width="10%">&nbsp;</td>        
+</tr></table>
+<br>
+
+<table cellspacing="0" cellpadding="0" border="0" width=$tablewidth align="center" style="table-layout: fixed">
+<tr><td>
+<table border="0" cellspacing="0" cellpadding="0" width="100%" height="100%">
+<tr>
+<td class="head" align="center">$lotoset[name]</td>
+</tr><tr bgcolor=$forumcolorone>
+          <td> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td> 
+                  <table width="100%"  border="0" align="center" cellpadding="3" cellspacing="3">
+                    <tr>
+                      <td>
+                        <form action="$R_url" method=post>
+                          <table width="100%"  border="0" align="center" cellpadding="3" cellspacing="3">
+                            <tr> 
+                              <td> 
+                              <TABLE style=TABLE-LAYOUT: fixed; WORD-WRAP: break-word 
+                  cellSpacing=0 cellPadding=0 border=0 width=500 align=center>
+  <TBODY> 
+  <TR>
+                      <TD width=14 height=8><IMG height=9 src=$imgpath/loto/top_l.gif width=14></TD>
+                      <TD height=8 background=$imgpath/loto/top_c.gif></TD>
+                      <TD width=16 height=8 background=$imgpath/loto/center_r.gif><IMG height=8 src=$imgpath/loto/top_r.gif width=16></TD></TR>
+                    <TR>
+                      <TD vAlign=top width=14 background=$imgpath/loto/center_l.gif></TD>
+                      
+    <TD style=LINE-HEIGHT:14pt bgColor=#ffffff> 
+      <table width=100% height="200" border=0 cellpadding=0 cellspacing=0>
+        <tr bgcolor=#99CCFF> 
+          <td colspan=3 bgcolor="#FF0000"> 
+            <div align=center class="style2">$lotoset[name]大廳</div>
+          </td>
+        </tr>
+        <tr> 
+          <td height="200" colspan="3"> 
+            <div align="center"><span class="style12">$windid</span> 歡迎光臨！
+              今天是 <span class="style10"><strong>$today</strong></span>
+              <br>
+              <br>
+              <table width="400"  border="0" cellspacing="2" cellpadding="2">
+                <tr>
+                  <td width="99%"><div align="center"><span class="style22">★★★</span><span class="style25">第$armoney[dates]期</span><strong>彩票開出號碼</strong><span class="style22">★★★</span></div></td>
+                  </tr>
+                <tr>
+                  <td><div align="center"><span class="style27">$armoney[oldnum]</span></div></td>
+                  </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td width="99%"><div align="center"><span class="style22">★★★</span><span class="style25">第$armoney3[dates]期</span><strong>3D彩票開出號碼</strong><span class="style22">★★★</span></div></td>
+                  </tr>
+                <tr>
+                  <td><div align="center"><span class="style27">$armoney3[oldnum]</span></div></td>
+                  </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                </tr>
+				<tr>
+                  <td><div align="center"><span class="style22">★★★</span><span class="style25">第$armoney2[dates]期</span><strong>樂透開出號碼</strong><span class="style22">★★★</span></div></td>
+                  </tr>
+                <tr>
+                  <td valign="bottom"><div align="center">
+                    <table width="253"  border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td><div align="right"><span class="style17">$sepsn[0]、$sepsn[1]、$sepsn[2]、$sepsn[3]、$sepsn[4]、$sepsn[5]</span> </div></td>
+                      </tr>
+                      <tr>
+                        <td><div align="right"><span class="style20">特別號</span><span class="style13"><span class="style30">：</span></span><span class="style17">$sepsn[6]</span></div></td>
+                      </tr>
+                    </table>
+                  </div>
+                    <div align="left"></div></td>
+                  </tr>
+              </table>
+              <br>
+              <a href=lotomain.php?hack=lotoshop class="style12">彩票櫃檯</a>│<a href=lotomain.php?hack=lotoshop2 class="style12">樂透櫃檯</a>│<a href=lotomain.php?hack=lotoshop3 class="style12">3D櫃檯</a><br>
+              <br>
+            </div></td>
+          </tr>
+        <tr> 
+          <td height="1" colspan=3 align=center bgcolor=#FF0000> 
+            <table align=center width=100% style=filter:glow(color=#000000, strength=50)>
+              
+            </table>
+          </td>
+        </tr>
+      </table>
+    </TD>
+                      <TD vAlign=top width=16 background=$imgpath/loto/center_r.gif></TD></TR>
+                    <TR>
+                      <TD vAlign=top width=14><IMG height=20 src=$imgpath/loto/sfoot_l1.gif 
+                      width=14></TD>
+                      <TD background=$imgpath/loto/sfoot_c.gif></TD>
+                      <TD align=right width=16><IMG height=20 src=$imgpath/loto/sfoot_r.gif 
+                      width=16></TD></TR></TBODY></TABLE>
+</td>
+                            </tr>
+                          </table>
+                        </form>
+                      </td>
+                    </tr>
+                  </table>
+            
+          </td>
+</tr></table></td></tr></table>
+<!--
+EOT;
+?>-->
+</table>

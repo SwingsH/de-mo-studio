@@ -1,0 +1,35 @@
+<!--<?php
+include_once PrintEot('left');
+print <<<EOT
+-->
+<table width=95% align=center cellspacing=1 cellpadding=3 class="i_table">
+<tr><td class=head  colspan=2><b>提示信息</b></td></tr>
+<tr><td class="b">
+<b>功能說明:</b><br>此功能把論壇的URL轉換成更容易被搜索引擎收錄的形式，普通用戶只需開啟靜態目錄部署功能即可，URL形式如︰http://www.phpwind.net/thread.php?fid-2.html，不過這種形式中包含有(.php?), 可能會被某些搜索引擎判定為是動態頁面, 而降低網站內容被收錄的機率，為了能更好的提高您的網站被搜索引擎收錄的機率，可以使用參照下面的方法對服務器進行相關設置<br><br><b>使用方法︰</b><br>以apache服務器為例介紹使用方法.<br><br> 1.在<b>靜態目錄部署</b>中，開啟靜態目錄部署功能，將靜態目錄設置為"<font color="red"><b>-htm-</b></font>"，將靜態目錄擴展名設置為:"<font color="red"><b>.html</b></font>"<br> &nbsp; &nbsp;默認的URL形式為 "http://www.phpwind.net/thread<font color="red"><b>.php?</b></font>fid=2"<br> &nbsp; &nbsp;新的URL形式為&nbsp; &nbsp; "http://www.phpwind.net/thread<font color="red"><b>-htm-</b></font>fid-2<font color="red"><b>.html</b></font>"<br> &nbsp; &nbsp;這種純靜態形式的URL更易被搜索引擎收錄<br><br>2.Apache Web Server 的配置<br> &nbsp; &nbsp;首先確定加載了 Mod_rewrite 模塊，方法: 檢查 conf/httpd.conf 中是否存在以下兩段代碼 (具體路徑可能會有所不同，但形式基本是一樣的):<br><br>(一)LoadModule rewrite_module     libexec/mod_rewrite.so<br> (二)AddModule mod_rewrite.c<br><br> 如果存在，那麼在配置文件（通常就是conf/httpd.conf）中加入如下代碼。此時須注意，如果網站使用通過虛擬主機來定義，請務必加到虛擬主機配置中去，否則可能無法使用。改好後然後將 Apache 重啟. <br><br>&lt;IfModule mod_rewrite.c&gt;<br> RewriteEngine On<br> RewriteRule ^(.*)<font color="red"><b>-htm-</b></font>(.*)$ $1.php?$2<br>&lt;/IfModule&gt;<br><br>
+</td></tr></table><br>
+<br>
+<form action="$basename&" method="post">
+<input type=hidden name="step" value="2">
+<table width=95% align=center cellspacing=1 cellpadding=3 class="i_table">
+<tr><td class=head align=center colspan=2><b>靜態目錄部署</b></td></tr>
+<tr class="b">
+	<td width="60%">是否開啟靜態目錄部署功能</td>
+	<td>
+		<input type="radio" name="config[htmifopen]" value="1" $htmifopen_Y>是
+		<input type="radio" name="config[htmifopen]" value="0" $htmifopen_N>否
+	</td>
+</tr>
+<tr class="b">
+	<td width="60%">靜態目錄</td>
+	<td><input size=35 value="$db_dir" name="config[dir]"></td>
+</tr>
+<tr class="b">
+	<td width="60%">靜態目錄擴展名設置</td>
+	<td><input size=35 value="$db_ext" name="config[ext]"></td>
+</tr>
+</table>
+<br><center><input type=submit value="提 交"></center>
+<!--
+EOT;
+include_once PrintEot('adminbottom');
+?>-->

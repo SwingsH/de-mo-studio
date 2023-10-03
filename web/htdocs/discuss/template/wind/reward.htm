@@ -1,0 +1,91 @@
+<!--<?php
+print <<<EOT
+-->
+<table width="$tablewidth" cellspacing="0" cellpadding="0" align="center"><tr><td align="left">
+<img src="$imgpath/$stylepath/index/home.gif" align="absbottom" /> 
+<b><a href="$db_bfn">$db_bbsname </a> -> 懸賞貼管理</b></td></tr></table><br />
+<!--
+EOT;
+if($action=='reward'){ print <<<EOT
+-->
+<form name="FORM" action="job.php?action=reward" method="post">
+<table width="$tablewidth" align="center" cellspacing="1" cellpadding="3" $i_table>
+<tr class="header"><td colspan="2" class="head">懸賞貼管理</td></tr>
+<tr><td class="f_one" width="21%">操作者</td>
+<td class="f_one"><a href="profile.php?action=show&uid=$winduid">$windid</a></td></tr>
+<tr><td class="f_two" width="21%">作者</td>
+<td class="f_two">
+<a href="profile.php?action=show&uid=$rt[pauthorid]">$rt[pauthor]</a></td></tr>
+<tr><td class="f_two" width="21%">操作類型</td>
+<td class="f_two">
+<input type="radio" name="type" value="1" onclick="viewdetail();" />最佳答案
+<!--
+EOT;
+if($rt['ifreward']==1){
+print <<<EOT
+-->
+<input type="radio" name="type" value="2" checked onclick="viewdetail();" />灌水回復
+<!--
+EOT;
+}else{
+print <<<EOT
+-->
+<input type="radio" name="type" value="3" checked onclick="viewdetail();" />熱心助人
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</td></tr></td></tr>
+<tbody id="ifmsg" style="display:none">
+<tr><td class="f_one" width="21%">短消息通知</td>
+<td class="f_one">
+<input type="radio" name="ifmsg" value="1" />是
+<input type="radio" name="ifmsg" value="0" checked />否</td></tr></tbody>
+</table><br />
+<center><input type="button" value="返 回" onclick="javascript:history.go(-1);" />&nbsp;
+<input type="submit" value="提 交" /></center><br />
+<input type="hidden" name="page" value="$page" />
+<input type="hidden" name="pid" value="$pid" />
+<input type="hidden" name="lou" value="$lou" />
+<input type="hidden" name="step" value="3" /></form>
+<script language="JavaScript">
+function viewdetail(){
+	obj=document.getElementById("ifmsg");
+	if(document.FORM.type[0].checked==true){
+		obj.style.display="";
+	}else{
+		obj.style.display="none";
+	}		
+}
+</script>
+<!--
+EOT;
+}elseif($action=='endreward'){
+print <<<EOT
+-->
+<form action="job.php?action=endreward" method="post">
+<table width="$tablewidth" align="center" cellspacing="1" cellpadding="3" $i_table>
+<tr class="header"><td colspan="2" class="head">懸賞貼管理</td></tr>
+<tr><td class="f_one" width="21%">操作者</td>
+<td class="f_one"><a href="profile.php?action=show&uid=$winduid">$windid</a></td></tr>
+<tr><td class="f_two" width="21%">作者</td>
+<td class="f_two">
+<a href="profile.php?action=show&uid=$rt[authorid]">$rt[author]</a></td></tr>
+<tr><td class="f_two" width="21%">操作類型</td>
+<td class="f_two">
+<input type="radio" name="type" value="1" />取消懸賞
+<input type="radio" name="type" value="2" checked />強行結案</td></tr>
+<tr><td class="f_one" width="21%">短消息通知</td>
+<td class="f_one">
+<input type="radio" name="ifmsg" value="1" />是
+<input type="radio" name="ifmsg" value="0" checked />否</td></tr>
+</table><br />
+<center><input type="button" value="返 回" onclick="javascript:history.go(-1);" />&nbsp;
+<input type="submit" value="提 交" /></center><br />
+<input type="hidden" name="tid" value="$tid" />
+<input type="hidden" name="step" value="3" /></form>
+<!--
+EOT;
+}
+?>-->

@@ -1,0 +1,29 @@
+/* CSS Document */
+/*
+用到的版面
+bottom_newhand.tpl   bottom_statement.tpl  bottom_private.tpl  bottom_ad.tpl 
+*/
+
+<STYLE TYPE="text/css" >
+<!--
+.bot_content {
+	font-size: 12px;
+   	font-family: "新細明體";
+}
+
+.bottom_title {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: x-large;
+	color: #666666;
+}
+.bot_introduct {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #666666;
+}
+.bot_table {font-size: 11px}
+
+
+-->
+</STYLE>

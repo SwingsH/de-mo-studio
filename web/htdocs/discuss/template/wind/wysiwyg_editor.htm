@@ -1,0 +1,185 @@
+<!--<?php
+print <<<EOT
+-->
+<style type="text/css">
+.wysiwyg{
+	padding:1px;
+	background-color:#F0F0EE;
+	width:560px;
+	border:1px solid #CCCCCC;
+}
+.htmlarea { background: #fff; }
+.toolbar {
+  cursor: default;
+  background: #F0F0EE;
+  padding: 1px 1px 2px 1px;
+  border-bottom: 1px solid #CCCCCC;
+}
+.button {
+  background: #F0F0EE;
+  color: ButtonText;
+  border: 1px solid #F0F0EE;
+  padding: 1px;
+  margin: 0px;
+  width: 18px;
+  height: 18px;
+}
+.buttonHover {
+  border: 1px solid;
+  border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight;
+}
+.buttonActive,.buttonPressed {
+  padding: 2px 0px 0px 2px;
+  border: 1px solid;
+  border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
+}
+.buttonPressed {
+  background: ButtonHighlight;
+}
+.indicator {
+  padding: 0px 3px;
+  overflow: hidden;
+  width: 20px;
+  text-align: center;
+  cursor: default;
+  border: 1px solid ButtonShadow;
+}
+.buttonDisabled img {
+  filter: alpha(opacity = 25);
+  -moz-opacity: 0.25;
+}
+.separator {
+  position: relative;
+  margin: 3px;
+  border-left: 1px solid ButtonShadow;
+  border-right: 1px solid ButtonHighlight;
+  width: 0px;
+  height: 16px;
+  padding: 0px;
+}
+.space { width: 5px; }
+.toolbar select { font: 11px Tahoma,Verdana,sans-serif; }
+.toolbar select,
+.toolbar select:hover,
+.toolbar select:active { background: FieldFace; color: ButtonText; }
+</style>
+<script type="text/javascript">
+var editor = null;
+var imgpath="{$imgpath}";
+var bbsurl="{$B_url}";
+function initEditor() {
+  editor = new WYSIWYD("wysiwyg");
+  editor.init();
+  return false;
+}
+WYSIWYD.Config = function () {
+	this.baseURL = document.baseURI || document.URL;
+	if (this.baseURL && this.baseURL.match(/(.*)\/([^\/]?)/)){
+		this.baseURL = RegExp.$1 + "/";
+	}
+	this.imgURL = imgpath + "/post/c_editor/";
+	this.toolbar = [
+		[ "fontname", "space","fontsize", "space","formatblock", "space"],
+		[ "bold", "italic", "underline", "strikethrough", "separator",
+		  "subscript", "superscript", "separator",
+		  "copy", "cut", "paste","RemoveFormat","separator",
+		  "undo", "redo","separator",
+		  "rm","wmv","flash","separator",
+		  "quote","code","br"
+		],
+		[ "justifyleft", "justifycenter", "justifyright", "justifyfull", "separator",
+		  "forecolor", "hilitecolor", "separator",
+		  "insertorderedlist", "insertunorderedlist", "outdent", "indent", "separator",
+		  "createlink", "unlink", "separator",
+		  "inserthorizontalrule","insertimage", "inserttable","separator",
+		  "sale", "htmlmode"
+		]
+	];
+	this.fontname = {
+		"字體":	'',
+		"宋體":	'宋體',
+		"新宋體":	'新宋體',
+		"楷體_GB2312":	'楷體_GB2312',
+		"黑體":	'黑體',
+		"Arial":	   'arial,helvetica,sans-serif',
+		"Courier New":	   'courier new,courier,monospace',
+		"Georgia":	   'georgia,times new roman,times,serif',
+		"Tahoma":	   'tahoma,arial,helvetica,sans-serif',
+		"Times New Roman": 'times new roman,times,serif',
+		"Verdana":	   'verdana,arial,helvetica,sans-serif',
+		"impact":	   'impact',
+		"WingDings":	   'wingdings'
+	};
+	this.fontsize = {
+		"字號":	"",
+		"1 (8 pt)":  "1",
+		"2 (10 pt)": "2",
+		"3 (12 pt)": "3",
+		"4 (14 pt)": "4",
+		"5 (18 pt)": "5",
+		"6 (24 pt)": "6",
+		"7 (36 pt)": "7"
+	};
+	this.formatblock = {
+		"段落格式": "",
+		"普通": "p",
+		"標題一": "h1",
+		"標題二": "h2",
+		"標題三": "h3",
+		"標題四": "h4",
+		"標題五": "h5",
+		"標題六": "h6",
+		"已編排格式": "pre"
+	};
+	this.btnList = {
+		RemoveFormat:[ "RemoveFormat", "removeformat.gif", false, function(e) {e.execCommand("RemoveFormat");} ],
+		bold: [ "粗體", "bold.gif", false, function(e) {e.execCommand("bold");} ],
+		italic: [ "斜體", "italic.gif", false, function(e) {e.execCommand("italic");} ],
+		underline: [ "下劃線", "underline.gif", false, function(e) {e.execCommand("underline");} ],
+		strikethrough: [ "刪除線", "strike.gif", false, function(e) {e.execCommand("strikethrough");} ],
+		subscript: [ "下標", "sub.gif", false, function(e) {e.execCommand("subscript");} ],
+		superscript: [ "上標", "sup.gif", false, function(e) {e.execCommand("superscript");} ],
+		justifyleft: [ "左對齊", "justifyleft.gif", false, function(e) {e.execCommand("justifyleft");} ],
+		justifycenter: [ "居中", "center.gif", false, function(e) {e.execCommand("justifycenter");} ],
+		justifyright: [ "右對齊", "justifyright.gif", false, function(e) {e.execCommand("justifyright");} ],
+		justifyfull: [ "左右平等", "justify.gif", false, function(e) {e.execCommand("justifyfull");} ],
+		insertorderedlist: [ "有序列表", "list_num.gif", false, function(e) {e.execCommand("insertorderedlist");} ],
+		insertunorderedlist: [ "無序列表", "list_bullet.gif", false, function(e) {e.execCommand("insertunorderedlist");} ],
+		outdent: [ "取消縮進", "outdent.gif", false, function(e) {e.execCommand("outdent");} ],
+		indent: [ "縮進", "indent.gif", false, function(e) {e.execCommand("indent");} ],
+		forecolor: [ "字體顏色", "color_fg.gif", false, function(e) {e.execCommand("forecolor");} ],
+		hilitecolor: [ "背景顏色", "color_bg.gif", false, function(e) {e.execCommand("hilitecolor");} ],
+		inserthorizontalrule: [ "插入水平線", "hr.gif", false, function(e) {e.execCommand("inserthorizontalrule");} ],
+		createlink: [ "插入url鏈接", "createlink.gif", false, function(e) {e.execCommand("createlink", true);} ],
+		unlink: [ "刪除鏈接", "unlink.gif", false, function(e) {e.execCommand("unlink", true);} ],
+		insertimage: [ "插入圖片", "image.gif", false, insertImage ],
+		inserttable: [ "插入表格", "table.gif", false, insertTable ],
+		htmlmode: [ "源碼", "html.gif", true, function(e) {e.execCommand("htmlmode");} ],
+		undo: [ "撤消", "undo.gif", false, function(e) {e.execCommand("undo");} ],
+		redo: [ "恢復", "redo.gif", false, function(e) {e.execCommand("redo");} ],
+		cut: [ "剪切", "cut.gif", false, function(e) {e.execCommand("cut");} ],
+		copy: [ "復制", "copy.gif", false, function(e) {e.execCommand("copy");} ],
+		paste: [ "粘貼", "paste.gif", false, function(e) {e.execCommand("paste");} ],
+		rm: [ "插入rm電影文件", "rm.gif", false, rming ],
+		wmv: [ "插入wmv在線播放", "mpeg.gif", false, wmv ],
+		flash: [ "插入flash動畫", "swf.gif", false, setswf ],
+		quote: [ "插入引用", "quote.gif", false, quote ],
+		code: [ "插入代碼", "code.gif", false, code ],
+		br: [ "換行", "br.gif", false, br ],
+		sale: [ "發表交易帖", "sale.gif", false, saletable ]
+	};
+	for (var i in this.btnList) {
+		var btn = this.btnList[i];
+		btn[1] = this.imgURL + btn[1];
+	}
+};
+</script>
+
+<body onload="initEditor()">
+<div class="wysiwyg">
+<textarea id="wysiwyg" name="atc_content" style="border:0px;width:560px;" rows="20" cols="90">{$atc_content}</textarea>
+</div>
+</body>
+<!--
+EOT;
+?>

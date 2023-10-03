@@ -1,0 +1,38 @@
+<!--<?php
+include_once PrintEot('left');
+print <<<EOT
+-->
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b>提示信息</b></td></tr>
+<tr><td class=b><br>
+<ul><li>功能說明:<br>1 . 采用靜態 html 方式來緩存主題內容從而<b>大幅度節約數據庫資源,並使瀏覽速度有質的飛躍</b>.適合于大型網站<br>2 . 佔用較多服務器空間,一般<b>佔用與您RDBMS同等空間</b><br>3 . 加密帖(出售,加密,隱藏)不會生成htm頁面<br>4 . 如果您的空間打開 <b>safe_mode</b> 如果您對此不了解,建議不要使用此功能<br>5 . 使用此功能後用戶的真實信息將滯後,<b>請不定期重新生成所有 html 文件</b>!<br>6 . 使用此功能後請不要采用多種風格.更<b>不能使用圖片.附件防盜鏈功能</b>!<br>7 . 使用此功能後將自動啟用<b>點擊率延遲更新</b>功能<br></li><br><br><li>模版管理說明︰<br>1.可選擇一次性生成所有版塊的靜態模版，也可以選擇生成單個版塊的靜態模版<br>2.當您取消某版塊的靜態模版功能時請刪除相應的 html 數據,以節約空間!</li></ul>
+<br></td></tr></table>
+<br>
+<form action="$basename" method=post name=creat>
+<input type=hidden name='fids' value="$fids">
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b>靜態模版功能</b></td></tr>
+<tr class=b><td width=20%>選擇需要使用靜態模版<br>功能的版塊</td>
+<td>$forumcheck
+</td></tr></table>
+<input type=hidden name="action" value="submit">
+<br><center><input type='button' name='chkall' value='全 選' onclick='CheckAll(this.form)'>
+<input type=submit value="提 交"></center></form>
+<form action="$basename" method=post>
+<input type=hidden name='fids' value="$htmfid">
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b>靜態模版管理</b></td></tr>
+<tr class=b><td width=20%>選擇創建模版的版塊</td>
+<td><select name="creatfid"><option value="all">所有版塊</option>$forumcache</select>
+<input type=radio name="action" value="creat"  checked>創建
+<input type=radio name="action" value="delete">刪除
+</td></tr>
+<tr class=b><td width=20%>每批主題數</td>
+<td><input name=percount type=text value=100></td></tr></table>
+<br><center>
+<input type=submit value="提 交"></center></form>
+<!--
+EOT;
+include_once PrintEot('adminbottom');
+?>
+-->

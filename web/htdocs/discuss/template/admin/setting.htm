@@ -1,0 +1,1342 @@
+<!--<?php
+include_once PrintEot('left');
+print <<<EOT
+-->
+<form action="$basename" method="post">
+<input type=hidden name="action" value="unsubmit">
+<!--
+EOT;
+if($type=='bbsset' || $type=='all'){print <<<EOT
+-->
+<a name="bbsset">
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+	<tr><td class="head" colspan="2" align="center"><a href="#top"><b>基本參數設置</b></a></td></tr>
+	<tr class=b>
+		<td width="60%">論壇狀態︰<br>當需要進行論壇維護或者升級時，可以使用此功能暫時關閉論壇，關閉後普通會員將無法訪問論壇，管理員通過後台登錄認證後可以訪問論壇.</td>
+		<td>
+			<input type=radio value=1 name="config[bbsifopen]" $bbsifopen_Y> 開啟
+			<input type=radio value=0 name="config[bbsifopen]" $bbsifopen_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>論壇關閉的原因︰(支持html代碼)<br>關閉論壇時普通會員訪問論壇的提示信息.<br>注意: 論壇管理員通過後台登錄認證後可以正常瀏覽論壇，不會出現此提示信息.</td>
+		<td><textarea name="config[whybbsclose]" rows=6 cols=50>$db_whybbsclose</textarea></td>
+	</tr>
+	<tr class=b>
+		<td>定時打開與關閉論壇發貼設置︰<br>允許用戶發表帖子的時間段，時間格式為 24小時制，管理員與總版主不受此限制<br>比如允許用戶在8點到18點這段時間內可以發帖，可設置如下︰<br>發言開啟于(點):  8 點 發言關閉于(點):  18 點<br>支持跨越零點，如允許用戶在每晚22:00 到 次日 10:00 可設置如下︰<br>發言開啟于(點):  22 點 發言關閉于(點):  10 點</td>
+		<td>
+			<input type=radio value=1 name="config[openpost]" $openpost_Y>開啟
+			<input type=radio value=0 name="config[openpost]" $openpost_N>關閉<br><br>
+			發言開啟于(點): <input name="config[poststart]" value="$db_poststart" size=2>
+			發言關閉于(點): <input name="config[postend]" value="$db_postend" size=2>
+		</td>
+	</tr>
+	<tr class=b>
+		<td>定時打開與關閉論壇搜索功能︰ <br>允許用戶使用搜索功能的時間段，用法與格式同上，管理員與總版主不受此限制<br>搜索相關權限在<font color="blue">用戶組權限</font>管理中設置</td>
+		<td>
+			<input type=radio value=1 name="schcontrol[opensch]" $opensch_Y>開啟
+			<input type=radio value=0 name="schcontrol[opensch]" $opensch_N>關閉
+			<br><br>
+			搜索開啟于(點): <input name="schcontrol[schstart]" value="$db_schstart" size=2>
+			搜索關閉于(點): <input name="schcontrol[schend]" value="$db_schend" size=2>
+		</td>
+	</tr>
+	<tr class=b>
+		<td>最大在線人數︰<br>可以根據 UNIX 負載情況限制用戶訪問，設置0為無限制</td>
+		<td><input size=35 name="config[onlinelmt]" value="$db_onlinelmt"></td>
+	</tr>
+	<tr class=b>
+		<td>注冊提示窗︰<br>當訪問論壇的用戶在還沒有注冊或未登錄的情況下將彈出提示注冊的窗口，登錄和注冊頁面除外</td>
+		<td>
+			<input type=radio value=1 name="config[regpopup]" $regpopup_Y> 開啟
+			<input type=radio value=0 name="config[regpopup]" $regpopup_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>DEBUG 模式運行論壇︰<br>不屏蔽程序報錯信息，論壇出現異常時打開此模式，將錯誤信息提交給程序開發商，以便盡快得到解決</td>
+		<td>
+			<input type=radio value=1 name="config[debug]" $debug_Y> 開啟
+			<input type=radio value=0 name="config[debug]" $debug_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td valign="top">二級目錄/域名功能︰<br>二級目錄/域名訪問方式，功能介紹參照程序包中的“分論壇二級域名(目錄)功能.txt”文檔</td>
+		<td>
+			<input type=radio value=0 name="config[forumdir]" $forumdir_0> 不使用<br>
+			<input type=radio value=1 name="config[forumdir]" $forumdir_1> 直接訪問<br>
+			<input type=radio value=2 name="config[forumdir]" $forumdir_2> 二級域名訪問
+		</td>
+	</tr>
+	<tr class=b>
+		<td>Meta 關鍵詞<br>為所有頁面輸入 Meta 關鍵詞,讓搜索引擎更容易找到您的論壇.</td>
+		<td><input size=35 name="config[metakeyword]" value="$db_metakeyword"></td>
+	</tr>
+	<tr class=b>
+		<td>Meta 描述<br>為所有頁面輸入 Meta 描述,以便能夠在搜索引擎中正確搜索到您的論壇.</td>
+		<td><input size=35 name="config[metadescrip]" value="$db_metadescrip"></td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='setgd' || $type=='all'){print <<<EOT
+-->
+<a name="setgd">
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+	<tr><td class="head" colspan="2" align="center"><a href="#top">認證碼設置</a></td></tr>
+	<tr class=b>
+		<td width="60%">注冊認證碼功能</td>
+		<td>
+			<input type=radio value=1 name="gdcheck[reg]" $reggd_Y> 開啟
+			<input type=radio value=0 name="gdcheck[reg]" $reggd_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>前台登錄認證碼功能</td>
+		<td>
+			<input type=radio value=1 name="gdcheck[login]" $logingd_Y> 開啟
+			<input type=radio value=0 name="gdcheck[login]" $logingd_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>發帖認證碼功能</td>
+		<td>
+			<input type=radio value=1 name="gdcheck[post]" $postgd_Y> 開啟
+			<input type=radio value=0 name="gdcheck[post]" $postgd_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>短消息認證碼功能</td>
+		<td>
+			<input type=radio value=1 name="gdcheck[msg]" $msggd_Y> 開啟
+			<input type=radio value=0 name="gdcheck[msg]" $msggd_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>其它認證碼功能</td>
+		<td>
+			<input type=radio value=1 name="gdcheck[other]" $othergd_Y> 開啟
+			<input type=radio value=0 name="gdcheck[other]" $othergd_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>後台登錄認證碼功能</td>
+		<td>
+			<input type=radio value=1 name="gdcheck[admin]" $admingd_Y> 開啟
+			<input type=radio value=0 name="gdcheck[admin]" $admingd_N>關閉
+		</td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='basicset' || $type=='all'){print <<<EOT
+-->
+<a name="basicset">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"><a href="#top">論壇資料設置</a></td></tr>
+	<tr class=b>
+		<td width="60%">論壇標題︰</td>
+		<td><input size=35 name="config[bbsname]" value="$db_bbsname"></td>
+	</tr>
+	<tr class=b>
+		<td>論壇首頁調用文件</td>
+		<td><input size=35 name="config[bfn]" value="$db_bfn"></td>
+	</tr>
+	<tr class=b>
+		<td>論壇地址︰(注意不要在網址最後加 / )</td>
+		<td><input size=35 name="config[bbsurl]" value="$db_bbsurl"></td>
+	</tr>
+	<tr class=b>
+		<td>聯系我們URL︰(出現在頁尾)</td>
+		<td><input size=35 name="config[ceoconnect]" value="$db_ceoconnect"></td>
+	</tr>
+	<tr class=b>
+		<td>管理員信箱︰</td>
+		<td><input size=35 name="config[ceoemail]" value="$db_ceoemail"></td>
+	</tr>
+	<tr class=b>
+		<td>回收站ID︰<br>設置的回收站ID，必須是已經存在的版塊ID，若不使用已有版塊做回收站，請先新建一個版塊，再設置回收站ID為該版塊ID，否則無法正常使用回收站功能<br>取消回收站功能，請刪除作為回收站的版塊，否則原回收站將做為普通版塊在論壇上顯示</td>
+		<td><input size=35 name="config[recycle]" value="$db_recycle"></td>
+	</tr>
+	<tr class=b>
+		<td>ICP 備案信息︰</td>
+		<td><input size=35 name="config[icp]" value="$db_icp"></td>
+	</tr>
+	<tr class=b>
+		<td>ICP 備案信息鏈接地址︰</td>
+		<td><input size=35 name="config[icpurl]" value="$db_icpurl"></td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='pathset' || $type=='all'){print <<<EOT
+-->
+<a name="pathset">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"></a><a href="#top">動態目錄設置</a></td></tr>
+	<tr class=b>
+		<td width="60%">圖片保存目錄︰(如果發現不可更改,請確認目錄可寫入)<br>(必須為空間上的目錄,如果設置絕對路徑,目錄分隔符請使用 / 不要使用 \ )</td>
+		<td><input size=35 name="set[picpath]" value="$picpath" $imgdisabled></td>
+	</tr>
+	<tr class=b>
+		<td>附件保存目錄︰<br>(如果發現不可更改,請確認目錄可寫入)</td>
+		<td><input size=35 name="set[attachpath]" value="$attachname" $attdisabled></td>
+	</tr>
+	<tr class=b>
+		<td>自動不定期更改圖片鏈︰(小型論壇不推薦選是)</td>
+		<td>
+			<input type=radio value=1 name="config[autochange]" $autochange_Y>開啟
+			<input type=radio value=0 name="config[autochange]" $autochange_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>定時更改圖片目錄防止圖片盜鏈(小時)︰(如果上一選項選否,此項無效)</td>
+		<td>
+			<select name="config[hour]">
+				<option value=4 $hour_sel[4]>4</option>
+				<option value=6 $hour_sel[6]>6</option>
+				<option value=8 $hour_sel[8]>8</option>
+				<option value=12 $hour_sel[12]>12</option>
+				<option value=20 $hour_sel[20]>24</option>
+			</select>
+		</td>
+	</tr>
+	<tr class=b>
+		<td>使用跨台固定圖片鏈︰(不使用請寫"N",小型論壇不推薦使用,請不要隨意更改)</td>
+		<td><input size=35 name="config[http]" value="$db_http"></td>
+	</tr>
+	<tr class=b>
+		<td>遠程附件連接設置︰(不使用請寫"N",請不要隨意更改)</td>
+		<td><input size=35 name="config[attachurl]" value="$db_attachurl"></td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='coreset' || $type=='all'){print <<<EOT
+-->
+<a name="coreset">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"><a href="#top">核心功能設置</a></td></tr>
+	<tr class=b>
+		<td width="60%">進程優化:<br>建議<b>15分鐘</b>在線<b>1000人</b>以上論壇打開此選項</td>
+		<td>
+			<input type=radio value=1 name="config[lp]" $lp_Y>開啟
+			<input type=radio value=0 name="config[lp]" $lp_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>GZIP 壓縮輸出:<br>選擇是將允許論壇通過 gzip 輸出頁面,可以很明顯的降低帶寬需求,但只有在客戶端支持的情況下才可使用,並會加大服務器系統開銷</td>
+		<td>
+			<input type=radio value=1 name="config[obstart]" $obstart_Y>開啟
+			<input type=radio value=0 name="config[obstart]" $obstart_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>默認編碼設置<br>請檢查您使用的版本編碼是否與此處設置相同，如無需要請不要隨意更改</td>
+		<td>
+			<select name="config[charset]">
+				<option value="gbk" $charset_gbk>簡體中文 (gbk)</option>
+				<option value="big5" $charset_big5>繁體中文 (big5)</option>
+				<option value="utf-8" $charset_utf8>UTF8編碼 (utf-8)</option>
+			</select>
+		</td>
+	</tr>
+	<tr class=b>
+		<td>強制設置編碼(默認關閉)<br>當使用國外的空間亂碼時，可以使用此功能強制設置編碼!</td>
+		<td>
+			<input type=radio value=1 name="config[forcecharset]" $forcecharset_Y>開啟
+			<input type=radio value=0 name="config[forcecharset]" $forcecharset_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>默認論壇風格︰<br>論壇默認的界面風格，游客和使用默認風格的會員將以此風格顯示</td>
+		<td><select name="config[defaultstyle]">$choseskin</select></td>
+	</tr>
+	<tr class=b>
+		<td>服務器時間校正 (分)<br>此功能用于校正服務器操作系統時間設置錯誤的問題<br>當確認論壇默認時區設置正確後，論壇顯示時間仍有錯誤，請使用此功能校正</td>
+		<td><input type="text" name="config[cvtime]" value="$db_cvtime"></td>
+	</tr>
+	<tr class=b>
+		<td>默認時區設置<br>論壇所在時區的默認設置，游客和新注冊用戶的時間按此設置顯示</td>
+		<td>
+			<select name="config[timedf]">
+<!--
+EOT;
+include PrintEot('timezone');
+print <<<EOT
+-->
+			</select>
+		</td>
+	</tr>
+	<tr class=b>
+		<td>論壇默認時間顯示格式<br>格式如:yyyy-mm-dd，yy-m-d<br>yyyy代表4位數年份，yy代表2位數年份<br>mm代表有前導零01-12，m代表沒前導零1-12<br>dd代表有前導零01-31，d代表沒前導零1-31</td>
+		<td>
+			<input name="config[datefm]" value="$db_datefm">
+			<input type=radio name='time_f' value='24' $check_24>24
+			<input type=radio name='time_f' value='12' $check_12>12
+		</td>
+	</tr>
+	<tr class=b>
+	<td>是否開啟頭像上傳功能<br>此處為全局控制，此功能關閉則所有用戶都不能使用頭像上傳功能</td>
+		<td>
+			<input type=radio value=1 name="config[upload]" $upload_Y>開啟
+			<input type=radio value=0 name="config[upload]" $upload_N>關閉
+			<br><br>
+			頭像大小(k) <input name="config[imgsize]" value="$db_imgsize" size=10>
+			長 <input name="config[imglen]" value="$db_imglen" size=4>
+			寬 <input name="config[imgwidth]" value="$db_imgwidth" size=4>
+		</td>
+	</tr>
+	<tr class=b>
+		<td>評分時間限制(小時):<br>帖子發表後超過此時間限制其他用戶將不能對此帖評分，系統組不受限制，0 為不限制</td>
+		<td><input size=5 name="config[pingtime]" value="$db_pingtime"></td>
+	</tr>
+	<tr class=b>
+		<td>是否開啟左右分欄</td>
+		<td><input type=radio value=2 name="config[columns]" $columns_2>開啟，默認使用分欄模式<br />
+			<input type=radio value=1 name="config[columns]" $columns_1>開啟，默認使用平板模式<br />
+			<input type=radio value=0 name="config[columns]" $columns_0>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>是否開啟新消息聲音提示</td>
+		<td>
+			<input type=radio value=1 name="config[msgsound]" $msgsound_Y>開啟
+			<input type=radio value=0 name="config[msgsound]" $msgsound_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>是否開啟屏蔽禁言會員所有帖子</td>
+		<td>
+			<input type="radio" value="1" name="config[shield]" $shield_Y>開啟
+			<input type="radio" value="0" name="config[shield]" $shield_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>是否開啟發帖內容驗證(開啟該功能，會員將無法連續發表同一內容的主題)</td>
+		<td>
+			<input type="radio" value="1" name="config[tcheck]" $tcheck_Y>開啟
+			<input type="radio" value="0" name="config[tcheck]" $tcheck_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>是否開啟副版主功能(開啟該功能，第一版主有權任命和罷免其他版主)</td>
+		<td>
+			<input type="radio" value="1" name="config[adminset]" $adminset_Y>開啟
+			<input type="radio" value="0" name="config[adminset]" $adminset_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>是否記錄會員在線時間並在版塊內顯示</td>
+		<td>
+			<input type=radio value=1 name="config[ifonlinetime]" $ifonlinetime_Y>開啟
+			<input type=radio value=0 name="config[ifonlinetime]" $ifonlinetime_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>是否使用自動跳轉(如果服務器為NT.如果關閉此選項而出現無法登錄.請開啟)</td>
+		<td>
+			<input type=radio value=1 name="config[ifjump]" $ifjump_Y>開啟
+			<input type=radio value=0 name="config[ifjump]" $ifjump_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>刷新預防時間(多少秒間刷新被視為惡意刷新,設為0則不做限制)︰</td>
+		<td><input size=35 name="config[refreshtime]" value="$db_refreshtime"></td>
+	</tr>
+	<tr class=b>
+		<td>在線用戶時限（多少分鐘內有動作視為在線）︰</td>
+		<td><input size=35 name="config[onlinetime]" value="$db_onlinetime"></td>
+	</tr>
+	<tr class=b>
+		<td>搜索查詢的最大結果數︰</td>
+		<td><input size=35 name="config[maxresult]" value="$db_maxresult"></td>
+	</tr>
+	<tr class=b>
+		<td>是否在頁腳顯示程序運行時間︰</td>
+		<td>
+			<input type=radio value=1 name="config[footertime]" $footertime_Y>開啟
+			<input type=radio value=0 name="config[footertime]" $footertime_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>COOKIE有效目錄 ,使一個空間放置多個論壇,都能訪問! （如果您論壇在bbs目錄下可以設置為/bbs/ 或為 /）<br><font color="red">注︰請勿隨意更改此項設置，否則將可能導致無法登錄論壇等異常現象</font></td>
+		<td><input size=35 name="config[ckpath]" value="$db_ckpath"></td>
+	</tr>
+	<tr class=b>
+		<td>COOKIE有效域名 比如可能會有人使用 http://phpwind.net訪問您的論壇這時您可以設置為 .phpwind.net 或留空<br><font color="red">注︰請勿隨意更改此項設置，否則將可能導致無法登錄論壇等異常現象</font></td>
+		<td><input size=35 name="config[ckdomain]" value="$db_ckdomain"></td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='creditset' || $type=='all'){print <<<EOT
+-->
+<a name="creditset">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"><a href="#top">積分名稱設置</a></td></tr>
+	<tr class=b>
+		<td width="60%">貨幣名稱︰</td>
+		<td><input size=35 name="credits[1]" value="$credits_1"></td>
+	</tr>
+	<tr class=b>
+		<td>貨幣單位︰</td>
+		<td><input size=35 name="credits[2]" value="$credits_2"></td>
+	</tr>
+	<tr class=b>
+		<td>威望名稱︰</td>
+		<td><input size=35 name="credits[3]" value="$credits_3"></td>
+	</tr>
+	<tr class=b>
+		<td>威望單位︰</td>
+		<td><input size=35 name="credits[4]" value="$credits_4"></td>
+	</tr>
+	<tr class=b>
+		<td>貢獻值名稱︰</td>
+		<td><input size=35 name="credits[5]" value="$credits_5"></td>
+	</tr>
+	<tr class=b>
+		<td>貢獻值單位︰</td>
+		<td><input size=35 name="credits[6]" value="$credits_6"></td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='regset' || $type=='all'){print <<<EOT
+-->
+<a name="regset">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"><a href="#top">會員注冊控制</a></td></tr>
+	<tr class=b>
+		<td width="60%">允許新用戶注冊︰(選擇否將禁止游客注冊成為會員,但不影響過去已注冊的會員的使用)</td>
+		<td>
+			<input type=radio value=1 name="reg[allowregister]" $allowregister_Y>開啟
+			<input type=radio value=0 name="reg[allowregister]" $allowregister_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>關閉注冊原因</td>
+		<td><textarea name="reg[whyregclose]" rows=6 cols=50>$rg_whyregclose</textarea></td>
+	</tr>
+	<tr class=b>
+		<td>注冊時顯示許可協議︰(新用戶注冊時顯示許可協議,同意後才能繼續注冊)</td>
+		<td>
+			<input type=radio value=0 name="reg[reg]" $reg_N>開啟
+			<input type=radio value=1 name="reg[reg]" $reg_Y>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>注冊許可協議內容編輯:[可以使用html代碼]如:<br>&lt;font color=red&gt;您好&lt;/font&gt;&lt;a href=http://www.phpwind.net&gt;PHPwind board&lt;/a&gt;代表:<font color=blue>您好</font><a href=http://www.phpwind.net>PHPwind board</a></td>
+		<td><textarea name="reg[rgpermit]" rows=6 cols=50>$rg_rgpermit</textarea></td>
+	</tr>
+	<tr class=b>
+		<td>注冊時顯示詳細注冊信息︰(不開啟將顯示快速注冊！)</td>
+		<td>
+			<input type=radio value=1 name="reg[regdetail]" $regdetail_Y>開啟
+			<input type=radio value=0 name="reg[regdetail]" $regdetail_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>新用戶注冊需通過email激活用戶︰(選擇“開啟”將向用戶注冊 Email 發送一封驗證郵件以確認郵箱的有效性,用戶收到郵件並激活帳號後才能擁有正常的權限)</td>
+		<td>
+			<input type=radio value=1 name="reg[emailcheck]" $emailcheck_Y>開啟
+			<input type=radio value=0 name="reg[emailcheck]" $emailcheck_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>禁止同一IP在多少時間內不能重復注冊︰(0為不限制，單位: 小時)</td>
+		<td><input type="text" name="reg[allowsameip]" value="$rg_allowsameip" size="5" />
+		</td>
+	</tr>
+	<tr class=b>
+		<td>新用戶注冊發送電子郵件︰(新用戶注冊後系統自動發送一封EMAIL)</td>
+		<td>
+			<input type=radio value=1 name="reg[regsendemail]" $regsendemail_Y>開啟
+			<input type=radio value=0 name="reg[regsendemail]" $regsendemail_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>新用戶注冊發送短消息︰(新用戶注冊後系統自動發送一條歡迎短消息)</td>
+		<td>
+			<input type=radio value=1 name="reg[regsendmsg]" $regsendmsg_Y>開啟
+			<input type=radio value=0 name="reg[regsendmsg]" $regsendmsg_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>向新注冊用戶發送的歡迎短消息內容[可以使用html代碼]:<br>(\$rg_name為新注冊用戶的用戶名,注冊時自動賦值)</td>
+		<td><textarea name="reg[welcomemsg]" rows=6 cols=50>$rg_welcomemsg</textarea></td>
+	</tr>
+	<tr class=b>
+		<td><font color=blue>禁止在注冊用戶名中使用的詞語，多個詞之間用","分隔</font><br>說明︰如果你禁用了"<font color=blue>版主</font>"，那麼所有含有"<font color=blue>版主</font>"(如︰我是<font color=blue>版主</font>)的用戶名將被禁止使用</td>
+		<td><textarea name="reg[banname]" rows=6 cols=50>$rg_banname</textarea></td>
+	</tr>
+	<tr class=b>
+		<td>限制注冊用戶僅能夠使用某些郵箱進行注冊:<br>如果您只使用163的郵箱，可以填寫163.com，多個之間用","分開，不限制，請留空<br>此功能可以幫助用戶避免使用限制過多的郵箱服務器來收取論壇信件</td>
+		<td><textarea name="reg[email]" rows=6 cols=50>$rg_email</textarea></td>
+	</tr>
+	<tr class=b>
+		<td>新用戶注冊是否需要管理員在後台驗證通過才能發帖:</td>
+		<td>
+			<input type=radio value=1 name="reg[ifcheck]" $ifcheck_Y>開啟
+			<input type=radio value=0 name="reg[ifcheck]" $ifcheck_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>注冊會員在多少時間內不能發表文章(小時)(選擇"0"不做限制)</td>
+		<td>
+			<select name="config[postallowtime]">
+				<option value=0 $regcheck[0]>0</option>
+				<option value=1 $regcheck[1]>1</option>
+				<option value=3 $regcheck[3]>3</option>
+				<option value=6 $regcheck[6]>6</option>
+				<option value=12 $regcheck[12]>12</option>
+				<option value=24 $regcheck[24]>24</option>
+			</select>
+		</td>
+	</tr>
+	<tr class=b>
+		<td>注冊會員ID區分大小寫(建議默認:關閉):</td>
+		<td>
+			<input type=radio value=1 name="reg[rglower]" $rglower_Y>開啟
+			<input type=radio value=0 name="reg[rglower]" $rglower_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>用戶名最短長度:(用戶在注冊時的最小的用戶名字符長度.)</td>
+		<td><input size=35 name="reg[regminname]" value="$rg_regminname"></td>
+	</tr>
+	<tr class=b>
+		<td>用戶名最長長度:(系統穩定性考慮,請不要超過 12 字節.)</td>
+		<td><input size=35 name="reg[regmaxname]" value="$rg_regmaxname"></td>
+	</tr>
+	<tr class=b>
+		<td>注冊時初始{$db_rvrcname}:(建議設置為1.)</td>
+		<td><input size=35 name="reg[regrvrc]" value="$rg_regrvrc"></td>
+	</tr>
+	<tr class=b>
+		<td>注冊時初始{$db_moneyname}:(建議設置為0.)</td>
+		<td><input size=35 name="reg[regmoney]" value="$rg_regmoney"></td>
+	</tr>
+	<tr class=b>
+		<td>會員注冊年限:(默認是1960-2000)</td>
+		<td><input size=10 name="reg[timestart]" value="$rg_timestart">&nbsp;-&nbsp;<input size=10 name="reg[timeend]" value="$rg_timeend"></td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='windcode' || $type=='all'){print <<<EOT
+-->
+<a name="windcode">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"><a href="#top">發帖代碼設置</a></td></tr>
+	<tr class=b>
+		<td width="60%">帖子中表情，動作以及 img，wmv，rm 等標簽的最多轉換次數<br>建議設置為10 - 20 之間，-1 為不限制</td>
+		<td><input type=text name="config[cvtimes]"  value="$db_cvtimes"></td>
+	</tr>
+	<tr class=b>
+		<td>帖子中 Wind IMG功能︰</td>
+		<td>
+			<input type=radio value=1 name="config[windpost_pic]" $windpost_pic_Y>開啟
+			<input type=radio value=0 name="config[windpost_pic]" $windpost_pic_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>帖子中[img]標簽的大小控制（留空不限制）</td>
+		<td>
+			寬: <input type="text" size="5" name="config[windpost_picwidth]" value="$db_windpost[picwidth]">
+			高: <input type="text" size="5" name="config[windpost_picheight]" value="$db_windpost[picheight]">
+		</td>
+	</tr>
+	<tr class=b>
+		<td>帖子中[size]標簽的大小控制（留空不限制）</td>
+		<td>最大值: <input type="text" size="5" name="config[windpost_size]" value="$db_windpost[size]"></td>
+	</tr>
+	<tr class=b>
+		<td>帖子中 Wind Flash功能(建議關閉)︰</td>
+		<td>
+			<input type=radio value=1 name="config[windpost_flash]" $windpost_flash_Y>開啟
+			<input type=radio value=0 name="config[windpost_flash]" $windpost_flash_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>帖子中 Wind (wmv,asf,ra,ram,rm)功能︰</td>
+		<td>
+			<input type=radio value=1 name="config[windpost_mpeg]" $windpost_mpeg_Y>開啟
+			<input type=radio value=0 name="config[windpost_mpeg]" $windpost_mpeg_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>帖子中 iframe功能︰</td>
+		<td>
+			<input type=radio value=1 name="config[windpost_iframe]" $windpost_iframe_Y>開啟
+			<input type=radio value=0 name="config[windpost_iframe]" $windpost_iframe_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>簽名中 Wind 代碼功能︰</td>
+		<td>
+			<input type=radio value=1 name="config[signwindcode]" $signwindcode_Y>開啟
+			<input type=radio value=0 name="config[signwindcode]" $signwindcode_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>簽名中 Wind IMG功能︰</td>
+		<td>
+			<input type=radio value=1 name="config[windpic_pic]" $windpic_pic_Y>開啟
+			<input type=radio value=0 name="config[windpic_pic]" $windpic_pic_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>簽名中[img]標簽的大小控制（留空不限制）</td>
+		<td>
+			寬: <input type="text" size="5" name="config[windpic_picwidth]" value="$db_windpic[picwidth]">
+			高: <input type="text" size="5" name="config[windpic_picheight]" value="$db_windpic[picheight]">
+		</td>
+	</tr>
+	<tr class=b>
+		<td>簽名中[size]標簽的大小控制（留空不限制）</td>
+		<td>最大值: <input type="text" size="5" name="config[windpic_size]" value="$db_windpic[size]"></td>
+	</tr>
+	<tr class=b>
+		<td>簽名中 Wind Flash功能(建議關閉)︰</td>
+		<td>
+			<input type=radio value=1 name="config[windpic_flash]" $windpic_flash_Y>開啟
+			<input type=radio value=0 name="config[windpic_flash]" $windpic_flash_N>關閉
+		</td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='attachset' || $type=='all'){print <<<EOT
+-->
+<a name="attachset">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"><a href="#top">發帖與附件設置</a></td></tr>
+	<tr class=b>
+		<td width="60%">是否使用附件上傳功能</td>
+		<td>
+			<input type=radio value=1 name="config[allowupload]" $allowupload_Y>開啟 
+			<input type=radio value=0 name="config[allowupload]" $allowupload_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>附件保存方式<br>本設置只影響新上傳的附件，不影響已上傳的附件。如使用非默認的保存方式，請確認 mkdir() 函數可正常使用，否則附件無法保存</td>
+		<td>
+			<input type="radio" name="config[attachdir]" value="0" $attachdir_ck[0]> 默認(全部存入同一目錄)<br>
+			<input type="radio" name="config[attachdir]" value="1" $attachdir_ck[1]> 按版塊存入不同目錄<br>
+			<input type="radio" name="config[attachdir]" value="2" $attachdir_ck[2]> 按類型存入不同目錄<br>
+			<input type="radio" name="config[attachdir]" value="3" $attachdir_ck[3]> 按月份存入不同目錄<br>
+			<input type="radio" name="config[attachdir]" value="4" $attachdir_ck[4]> 按天存入不同目錄
+		</td>
+	</tr>
+	<tr class=b>
+		<td>一次最多上傳附件個數</td>
+		<td><input size=35 name="config[attachnum]" value="$db_attachnum"></td>
+	</tr>
+	<tr class=b>
+		<td>上傳附件大小上限(k)超管不受限制︰</td>
+		<td><input size=35 name="config[uploadmaxsize]" value="$db_uploadmaxsize"></td>
+	</tr>
+	<tr class=b>
+		<td>上傳附件允許後綴(空格隔開)︰</td>
+		<td><input size=35 name="config[uploadfiletype]" value="$db_uploadfiletype"></td>
+	</tr>
+	<tr class=b>
+		<td>post回復時顯示提示舊帖數︰</td>
+		<td><input size=35 name="config[showreplynum]" value="$db_showreplynum"></td>
+	</tr>
+	<tr class=b>
+		<td>投票選項個數控制︰</td>
+		<td><input size=35 name="config[selcount]" value="$db_selcount"></td>
+	</tr>
+	<tr class=b>
+		<td>用戶文章被回復是否發送郵件︰</td>
+		<td>
+			<input type=radio value=1 name="config[replysendmail]" $replysendmail_Y>開啟
+			<input type=radio value=0 name="config[replysendmail]" $replysendmail_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>標題最大長度:</td>
+		<td><input size=35 name="config[titlemax]" value="$db_titlemax"></td>
+	</tr>
+	<tr class=b>
+		<td>每篇文章的最大長度(字節)︰</td>
+		<td><input size=35 name="config[postmax]" value="$db_postmax"></td>
+	</tr>
+	<tr class=b>
+		<td>每篇文章的最小長度(字節)︰</td>
+		<td><input size=35 name="config[postmin]" value="$db_postmin"></td>
+	</tr>
+	<tr class=b>
+		<td>是否使用自動貼圖</td>
+		<td>
+			<input type=radio value=1 name="config[autoimg]" $autoimg_Y>開啟 
+			<input type=radio value=0 name="config[autoimg]" $autoimg_N>關閉
+		</td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='atcset' || $type=='all'){print <<<EOT
+-->
+<a name="atcset">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"><a href="#top">帖子獎懲選項</a></td></tr>
+	<tr><td class=b colspan=2><font color=blue>{$db_rvrcname}設置</font></td></tr>
+	<tr class=b>
+		<td width="60%">精華一個主題增加的{$db_rvrcname}</td>
+		<td><input type=text name="creditdb[rvrc][Digest]" size=10  value="{$credit[rvrc][Digest]}"></td>
+	</tr>
+	<tr class=b>
+		<td>發表一個主題增加的{$db_rvrcname}</td>
+		<td><input type=text name="creditdb[rvrc][Post]" size=10  value="{$credit[rvrc][Post]}"></td>
+	</tr>
+	<tr class=b>
+		<td>發表十個回復增加的{$db_rvrcname}</td>
+		<td><input type=text name="creditdb[rvrc][Reply]" size=10  value="{$credit[rvrc][Reply]}"></td>
+	</tr>
+	<tr class=b>
+		<td>取消精華主題減少的{$db_rvrcname}</td>
+		<td><input type=text name="creditdb[rvrc][Undigest]" size=10  value="{$credit[rvrc][Undigest]}"></td>
+	</tr>
+	<tr class=b>
+		<td>刪除一個主題減少的{$db_rvrcname}</td>
+		<td><input type=text name="creditdb[rvrc][Delete]" size=10  value="{$credit[rvrc][Delete]}"></td>
+	</tr>
+	<tr class=b>
+		<td>刪除十個回復減少的{$db_rvrcname}</td>
+		<td><input type=text name="creditdb[rvrc][Deleterp]" size=10  value="{$credit[rvrc][Deleterp]}"></td>
+	</tr>
+	<tr><td class=b colspan=2><font color=blue>{$db_moneyname}設置</font></td></tr>
+	<tr class=b>
+		<td>精華一個主題增加的{$db_moneyname}</td>
+		<td><input type=text name="creditdb[money][Digest]" size=10  value="{$credit[money][Digest]}"></td>
+	</tr>
+	<tr class=b>
+		<td>發表一個主題增加的{$db_moneyname}</td>
+		<td><input type=text name="creditdb[money][Post]" size=10  value="{$credit[money][Post]}"></td>
+	</tr>
+	<tr class=b>
+		<td>發表一個回復增加的{$db_moneyname}</td>
+		<td><input type=text name="creditdb[money][Reply]" size=10  value="{$credit[money][Reply]}"></td>
+	</tr>
+	<tr class=b>
+		<td>取消精華主題減少的{$db_moneyname}</td>
+		<td><input type=text name="creditdb[money][Undigest]" size=10  value="{$credit[money][Undigest]}"></td>
+	</tr>
+	<tr class=b>
+		<td>刪除一個主題減少的{$db_moneyname}</td>
+		<td><input type=text name="creditdb[money][Delete]" size=10  value="{$credit[money][Delete]}"></td>
+	</tr>
+	<tr class=b>
+		<td>刪除一個回復減少的{$db_moneyname}</td>
+		<td><input type=text name="creditdb[money][Deleterp]" size=10  value="{$credit[money][Deleterp]}"></td>
+	</tr>
+<!--
+EOT;
+foreach($_CREDITDB as $key => $value){
+print <<<EOT
+-->
+	<tr><td class=b colspan=2><font color="red">{$value[0]}</font></td></tr>
+	<tr class=b>
+		<td>精華一個主題增加的{$value[0]}</td>
+		<td><input type=text name="creditdb[$key][Digest]"   size=10  value="{$credit[$key][Digest]}"></td>
+	</tr>
+	<tr class=b>
+		<td>發表一個主題增加的{$value[0]}</td>
+		<td><input type=text name="creditdb[$key][Post]"     size=10  value="{$credit[$key][Post]}"></td>
+	</tr>
+	<tr class=b>
+		<td>發表一個回復增加的{$value[0]}</td>
+		<td><input type=text name="creditdb[$key][Reply]"    size=10  value="{$credit[$key][Reply]}"></td>
+	</tr>
+	<tr class=b>
+		<td>取消精華主題減少的{$value[0]}</td>
+		<td><input type=text name="creditdb[$key][Undigest]" size=10  value="{$credit[$key][Undigest]}"></td>
+	</tr>
+	<tr class=b>
+		<td>刪除一個主題減少的{$value[0]}</td>
+		<td><input type=text name="creditdb[$key][Delete]"   size=10  value="{$credit[$key][Delete]}"></td>
+	</tr>
+	<tr class=b>
+		<td>刪除一個回復減少的{$value[0]}</td>
+		<td><input type=text name="creditdb[$key][Deleterp]" size=10  value="{$credit[$key][Deleterp]}"></td>
+	</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<br>
+<!--
+EOT;
+}if($type=='indexset' || $type=='all'){print <<<EOT
+-->
+<a name="indexset">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"><a href="#top">首頁細節設置</a></td></tr>
+	<tr class=b>
+		<td width="60%"><font color="blue">選擇參與在線顯示的用戶組</font><br><br>被選擇的用戶組將參與在線顯示，在復選框內填寫用戶組顯示順序<br>在線圖標以用戶組ID命名<br><br><font color=blue>注︰</font>參與在線顯示的用戶組圖標必須存在否則無法正常顯示<br>&nbsp;&nbsp;&nbsp;&nbsp;如管理員ID為3，在線圖標為 3.gif，</td>
+		<td>$usergroup</td>
+	</tr>
+	<tr class=b>
+		<td>下拉菜單顯示(<font color="red">控制面板、短消息</font>)</td>
+		<td>
+			<input type=radio value=1 name="config[menu]" $menu_Y>開啟
+			<input type=radio value=0 name="config[menu]" $menu_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td><font color="red"><font color=blue>友情鏈接</font>顯示︰</td>
+		<td>
+			<input type=radio value=1 name="config[indexlink]" $indexlink_Y>開啟
+			<input type=radio value=0 name="config[indexlink]" $indexlink_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td><font color="red"><font color=blue>滾動</font>顯示<font color=blue>友情鏈接</font>︰</td>
+		<td>
+			<input type=radio value=1 name="config[indexmqshare]" $indexmqshare_Y>開啟
+			<input type=radio value=0 name="config[indexmqshare]" $indexmqshare_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>首頁顯示今天<font color=blue>生日會員</font>(影響速度)︰</td>
+		<td>
+			<input type=radio value=1 name="config[indexshowbirth]" $indexshowbirth_Y>開啟
+			<input type=radio value=0 name="config[indexshowbirth]" $indexshowbirth_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>首頁顯示<font color=blue>在線用戶</font>(影響速度)︰</td>
+		<td>
+			<input type=radio value=1 name="config[indexonline]" $indexonline_Y>開啟 
+			<input type=radio value=0 name="config[indexonline]" $indexonline_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td><font color="blue">下拉框方式顯示版主</font></td>
+		<td>
+			<input type=radio value=1 name="config[adminshow]" $adminshow_Y>開啟
+			<input type=radio value=0 name="config[adminshow]" $adminshow_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>首頁顯示<font color=blue>在線游客</font>(影響速度)︰</td>
+		<td>
+			<input type=radio value=1 name="config[showguest]" $showguest_Y>開啟
+			<input type=radio value=0 name="config[showguest]" $showguest_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>統計<font color=blue>今日到訪會員</font>(大型論壇建議關閉，影響速度)︰</td>
+		<td>
+			<input type=radio value=1 name="config[today]" $today_Y>開啟
+			<input type=radio value=0 name="config[today]" $today_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>自定義首頁各版塊的<font color=blue>圖片logo</font>︰(選擇自定義:您必須修改提供各版塊的圖片logo地址,具體在setforum.php里修改.選擇默認:只要在圖片目錄 /風格目錄/forumlogo/ 下添加對應的圖片!)</td>
+		<td>
+			<input type=radio value=0 name="config[indexfmlogo]" $indexfmlogo_0>不使用
+			<input type=radio value=1 name="config[indexfmlogo]" $indexfmlogo_1>默認
+			<input type=radio value=2 name="config[indexfmlogo]" $indexfmlogo_2>自定義
+		</td>
+	</tr>
+	<tr class=b>
+		<td>顯示<font color=blue>今日昨日發帖數</font>︰</td>
+		<td>
+			<input type=radio value=1 name="config[todaypost]" $todaypost_Y>開啟
+			<input type=radio value=0 name="config[todaypost]" $todaypost_N>關閉
+		</td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='viewset' || $type=='all'){print <<<EOT
+-->
+<a name="viewset">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"><a href="#top">各頁面細節設置</a></td></tr>
+	<tr class=b>
+		<td width="60%">分版塊文章多少時間表示為新帖(3600=1小時)︰</td>
+		<td><input size=35 name="config[newtime]" value="$db_newtime"></td>
+	</tr>
+	<tr class=b>
+		<td>論壇文章列表每頁顯示主題數︰</td>
+		<td><input size=35 name="config[perpage]" value="$db_perpage"></td>
+	</tr>
+	<tr class=b>
+		<td>閱讀一主題時每頁顯示帖子數︰</td>
+		<td><input size=35 name="config[readperpage]" value="$db_readperpage"></td>
+	</tr>
+	<tr class=b>
+		<td>主題列表最大顯示頁數:<br>主題列表中用戶可以查看的最大頁數，建議設置為 1000 －2500 之間，0 為不限制</td>
+		<td><input size=35 name="config[maxpage]" value="$db_maxpage"></td>
+	</tr>
+	<tr class=b>
+		<td>用戶列表最大頁數:<br>用戶列表中用戶可以查看的最大頁數，建議設置為 1000 －2500 之間，0 為不限制</td>
+		<td><input size=35 name="config[maxmember]" value="$db_maxmember"></td>
+	</tr>
+	<tr class=b>
+		<td>發表匿名帖時,用戶顯示的昵稱:</td>
+		<td><input name="config[anonymousname]" value="$db_anonymousname"></td>
+	</tr>
+	<tr class=b>
+		<td>點擊率延遲更新功能(小時)<br>（設置為0則不使用此功能,使用生成html功能將自動使用此功能）</td>
+		<td>
+			<select name="config[hithour]">
+				<option value=0  $hithour_sel[0]>0</option>
+				<option value=1  $hithour_sel[1]>1</option>
+				<option value=4  $hithour_sel[4]>4</option>
+				<option value=6  $hithour_sel[6]>6</option>
+				<option value=8  $hithour_sel[8]>8</option>
+				<option value=12 $hithour_sel[12]>12</option>
+				<option value=20 $hithour_sel[20]>24</option>
+			</select>
+		</td>
+	</tr>
+	<tr class=b>
+		<td><font color=blue>總置頂, 分類置頂功能︰</font><br>置頂3 為總置頂, 置頂2 為分類置頂, 置頂1 為本版塊置頂</td>
+		<td>
+			<input type=radio value=1 name="config[topped]" $topped_Y>開啟
+			<input type=radio value=0 name="config[topped]" $topped_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>版塊內顯示在線用戶︰</td>
+		<td>
+			<input type=radio value=1 name="config[threadonline]" $threadonline_Y>開啟
+			<input type=radio value=0 name="config[threadonline]" $threadonline_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>閱讀帖子時顯示在線用戶︰</td>
+		<td>
+			<input type=radio value=1 name="config[showonline]" $showonline_Y>開啟
+			<input type=radio value=0 name="config[showonline]" $showonline_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>各分版塊帖子里顯示快速發表主題︰</td>
+		<td>
+			<input type=radio value=1 name="config[threadshowpost]" $threadshowpost_Y>開啟
+			<input type=radio value=0 name="config[threadshowpost]" $threadshowpost_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td><font color="blue">是否在帖子頁面顯示用戶加入的{$db_hackdb[colony][0]}</font></td>
+		<td>
+			<input type=radio value=1 name="config[showcolony]" $showcolony_Y>開啟
+			<input type=radio value=0 name="config[showcolony]" $showcolony_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td><font color="blue">選擇要在閱讀帖子頁面（read.php）顯示的自定義積分</font></td>
+		<td>
+			<table>
+				<tr>
+<!--
+EOT;
+$num=0;
+foreach($_CREDITDB as $key=>$value){
+$ct_checked=strpos($db_showcustom,",$key,")!==false?'checked':'';
+$num++;print <<<EOT
+-->
+					<td>
+						<input type="checkbox" name="showcustom[$key]" value="$key" $ct_checked>$value[0]
+					</td>
+<!--
+EOT;
+if($num==4){
+$num=0;print <<<EOT
+-->
+				</tr>
+				<tr>
+<!--
+EOT;
+}}print <<<EOT
+-->
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr class=b>
+		<td>各分版塊帖子導航里顯示表情符︰</td>
+		<td>
+			<input type=radio value=1 name="config[threademotion]" $threademotion_Y>開啟
+			<input type=radio value=0 name="config[threademotion]" $threademotion_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>瀏覽帖子處顯示會員IP來源︰<br>用戶權限中可單獨設置每個用戶組權限，此處關閉則所有用戶組都不能查看IP來源</td>
+		<td>
+			<input type=radio value=1 name="config[ipfrom]" $ipfrom_Y>開啟
+			<input type=radio value=0 name="config[ipfrom]" $ipfrom_N>關閉
+		</td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='watermark' || $type=='all'){print <<<EOT
+-->
+<a name="watermark">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"><a href="#top">圖片水印設置</a></td></tr>
+	<tr class=b>
+		<td width="60%">是否使用圖片水印功能<br>說明︰將在論壇上傳的圖片附件中加上您在下面設置的圖片或文字水印</td>
+		<td>
+			<input type=radio value=1 name="config[watermark]" $watermark_Y> 開啟
+			<input type=radio value=0 name="config[watermark]" $watermark_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td width="60%">是否為 gif 格式圖片加水印︰<br>由于 GD 庫函數存在漏洞，請選擇以下選項為gif格式圖片加水印<br>強制︰程序將不對 PHP 版本做判斷，強制加水印<br>開啟︰判斷 PHP 版本,版本符合，則加水印<br>關閉︰關閉水印功能<br>不影響的 PHP 版本(<font color="blue">4.4.3</font>、<font color="blue">4.4.4</font>、<font color="blue">5.1.5</font>)</td>
+		<td>
+			<input type=radio value=2 name="config[ifgif]" $ifgif_2>強制<br>
+			<input type=radio value=1 name="config[ifgif]" $ifgif_1>開啟<br>
+			<input type=radio value=0 name="config[ifgif]" $ifgif_0>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>添加水印的圖片大小控制<br>只對超過程序設置的大小的附件圖片才加上水印圖片或文字(設置為0不限制)</td>
+		<td>
+			寬: <input type=text size="5" name="config[waterwidth]"   value="$db_waterwidth">
+			高:<input type=text size="5" name="config[waterheight]"  value="$db_waterheight">
+		</td>
+	</tr>
+	<tr class=b>
+		<td>水印位置</td>
+		<td>
+			<input type=radio name="config[waterpos]"  value="0" $waterpos_ck_0>隨機位置
+			<input type=radio name="config[waterpos]"  value="1" $waterpos_ck_1>頂部居左
+			<input type=radio name="config[waterpos]"  value="2" $waterpos_ck_2>頂部居中
+			<input type=radio name="config[waterpos]"  value="3" $waterpos_ck_3>頂部居右<br>
+			<input type=radio name="config[waterpos]"  value="7" $waterpos_ck_7>中心位置
+			<input type=radio name="config[waterpos]"  value="4" $waterpos_ck_4>底部居左
+			<input type=radio name="config[waterpos]"  value="5" $waterpos_ck_5>底部居中
+			<input type=radio name="config[waterpos]"  value="6" $waterpos_ck_6>底部居右
+		</td>
+	</tr>
+	<tr class=b>
+		<td>水印圖片文件名<br>水印圖片存放路徑︰$imgpath/water，如果水印圖片不存在，則使用文字水印，</td>
+		<td><input type=text name="config[waterimg]"  value="$db_waterimg"></td>
+	</tr>
+	<tr class=b>
+		<td>水印圖片文字</td>
+		<td><input type=text name="config[watertext]"  value="$db_watertext"></td>
+	</tr>
+	<tr class=b>
+		<td>水印圖片文字字體大小</td>
+		<td><input type=text name="config[waterfont]"  value="$db_waterfont"></td>
+	</tr>
+	<tr class=b>
+		<td>水印圖片文字顏色（十六進制顏色值，默認為#FF0000:紅色)</td>
+		<td><input type=text name="config[watercolor]"  value="$db_watercolor"></td>
+	</tr>
+	<tr class=b>
+		<td>水印透明度，該值決定圖片水印清晰度，其值範圍從 0 到 100。</td>
+		<td><input type=text name="config[waterpct]"  value="$db_waterpct"></td>
+	</tr>
+	<tr class=b>
+		<td>圖片質量，該值決定 jpg 格式圖片的質量，範圍從 0 到 100。</td>
+		<td><input type=text name="config[jpgquality]"  value="$db_jpgquality"></td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='buysign' || $type=='all'){print <<<EOT
+-->
+<a name="buysign">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"><a href="#top">簽名購買設置</a></td></tr>
+	<tr class=b>
+		<td valign="top" width="60%">需要購買簽名顯示的用戶組<br><font color=blue>該功能配合phpwind-網上銀行系統可為站長帶來可觀的經濟來源</font></td>
+		<td>$signgroup</td>
+	</tr>
+	<tr class=b>
+		<td>簽名顯示一天需要{$db_currencyname}個數 (留空或設為‘0’不使用此功能)</td>
+		<td><input size=35 name="config[signmoney]" value="$db_signmoney"></td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='ajax' || $type=='all'){print <<<EOT
+-->
+<a name="ajax">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"><a href="#top">AJAX 設置</a></td></tr>
+	<tr class=b>
+		<td width="60%">快速編輯主題（實現不刷新頁面提交數據，只有管理人員有權限）<br>在主題列表頁面雙擊標題所在的單元格直接對標題進行修改</td>
+		<td>
+			<input type=radio value=1 name="config[ajaxsubject]" $ajaxsubject_Y> 開啟
+			<input type=radio value=0 name="config[ajaxsubject]" $ajaxsubject_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>快速編輯主題內容（實現不刷新頁面提交數據，管理人員和作者有權限）<br>在瀏覽帖子頁面雙擊主題內容所在的單元格直接對內容進行修改</td>
+		<td>
+			<input type=radio value=1 name="config[ajaxcontent]" $ajaxcontent_Y> 開啟
+			<input type=radio value=0 name="config[ajaxcontent]" $ajaxcontent_N>關閉
+		</td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='wap' || $type=='all'){print <<<EOT
+-->
+<a name="wap">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"><a href="#top">WAP 設置</a></td></tr>
+	<tr class=b>
+		<td width="60%">是否開啟WAP功能<br>開啟此功能允許用戶通過手機訪問論壇，實現瀏覽、發帖、收發短消息等功能</td>
+		<td>
+			<input type=radio value=1 name="config[wapifopen]" $wapifopen_Y> 開啟
+			<input type=radio value=0 name="config[wapifopen]" $wapifopen_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>WAP 頁面長度控制<br>為了提高兼容性請設置為大于0的整數，建議設置為︰300-3000 之間，</td>
+		<td><input type=text name="config[waplimit]" value="$db_waplimit"></td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='js' || $type=='all'){print <<<EOT
+-->
+<a name="js">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"><a href="#top">JS 調用設置</a></td></tr>
+	<tr class=b>
+		<td width="60%">是否開啟 JS調用<br>此功能允許在您的網站首頁或其他地方調用論壇的內容<br>調用方式分為︰ 版塊調用、公告調用、基本信息調用、會員排行調用、文章調用。</td>
+		<td>
+			<input type=radio value=1 name="config[jsifopen]" $jsifopen_Y> 開啟
+			<input type=radio value=0 name="config[jsifopen]" $jsifopen_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>緩存更新時間(秒)<br>由于部分調用查詢比較消耗服務器資源，系統采用了緩存技術實現數據定期更新<br>建議設置為︰900</td>
+		<td><input type=text name="config[jsper]" value="$db_jsper"></td>
+	</tr>
+	<tr class=b>
+		<td>允許調用網站域名(留空不限制)<br>您可以設置允許調用論壇內容的網站域名列表，只有在列表中的域名才能調用論壇信息<br>多個域名用 "," 分隔域名，不要包含 http:// 或其他非域名內容</td>
+		<td><input type=text size="50" name="config[bindurl]" value="$db_bindurl"></td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='mail' || $type=='all'){print <<<EOT
+-->
+<a name="js">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"><a href="#top">發送郵件設置</a></td></tr>
+	<tr class=b>
+		<td width="60%">是否開啟發送郵件功能</td>
+		<td>
+			<input type=radio value=1 name="mailconfig[ml_mailifopen]" $mailifopen_Y>是
+			<input type=radio value=0 name="mailconfig[ml_mailifopen]" $mailifopen_N>否
+		</td>
+	</tr>
+	<tr class=b>
+		<td width="60%">郵件發送模式</td>
+		<td>
+			<input type=radio value=1 name="mailconfig[ml_mailmethod]" $mailmethod_1> mail 函數發送
+			<input type=radio value=2 name="mailconfig[ml_mailmethod]" $mailmethod_2>SMTP 模塊發送
+			<input type=radio value=3 name="mailconfig[ml_mailmethod]" $mailmethod_3>MX 模塊發送
+		</td>
+	</tr>
+	<tr class=head_2>
+		<td colspan="2">SMTP 模塊發送設置</td>
+	</tr>
+	<tr class=b>
+		<td>SMTP 服務器</td>
+		<td><input type=text name="mailconfig[ml_smtphost]" value="$ml_smtphost"></td>
+	</tr>
+	<tr class=b>
+		<td>SMTP 端口, 默認不需修改</td>
+		<td><input type=text name="mailconfig[ml_smtpport]" value="$ml_smtpport"></td>
+	</tr>
+	<tr class=b>
+		<td>發信人地址</td>
+		<td><input type=text name="mailconfig[ml_smtpfrom]" value="$ml_smtpfrom"></td>
+	</tr>
+	<tr class=b>
+		<td>是否需要 AUTH LOGIN 驗證, 1=是, 0=否</td>
+		<td>
+			<input type=radio value=1 name="mailconfig[ml_smtpauth]" $smtpauth_Y>是
+			<input type=radio value=0 name="mailconfig[ml_smtpauth]" $smtpauth_N>否
+		</td>
+	</tr>
+	<tr class=b>
+		<td>驗證用戶名</td>
+		<td><input type=text name="mailconfig[ml_smtpuser]" value="$ml_smtpuser"></td>
+	</tr>
+	<tr class=b>
+		<td>驗證密碼</td>
+		<td><input type=text name="mailconfig[ml_smtppass]" value="$ml_smtppass"></td>
+	</tr>
+	<tr class=head_2>
+		<td colspan="2">MX 模塊發送設置</td>
+	</tr>
+	<tr class=b>
+		<td colspan="2">
+以 www.example.net 為例說明MX模塊發送郵件設置<br><br>
+域名mx記錄︰mail.example.net (同時需要在域名控制面版里增加一條mx記錄到 mail.example.net)<br>
+發送郵件帳號︰admin@example.net<br>
+主DNS地址︰可聯系空間商查詢您的服務器的DNS地址<br>
+輔DNS地址︰可聯系空間商查詢您的服務器的DNS地址</td>
+	</tr>
+	<tr class=b>
+		<td width="60%">域名mx記錄︰</td>
+		<td><input type=text name="mailconfig[ml_smtphelo]" value="$ml_smtphelo"></td>
+	</tr>
+	<tr class=b>
+		<td>發送郵件帳號</td>
+		<td><input type=text name="mailconfig[ml_smtpmxmailname]" value="$ml_smtpmxmailname"></td>
+	</tr>
+	<tr class=b>
+		<td>主DNS地址</td>
+		<td><input type=text name="mailconfig[ml_mxdns]" value="$ml_mxdns"></td>
+	</tr>
+	<tr class=b>
+		<td>輔DNS地址</td>
+		<td><input type=text name="mailconfig[ml_mxdnsbak]" value="$ml_mxdnsbak"></td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='safe' || $type=='all'){print <<<EOT
+-->
+<a name="safe">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"><a href="#top">論壇安全控制</a></td></tr>
+	<tr class=b>
+		<td width="60%">系統負載控制參數<br />當服務器的負載參數大于這個值時，自動開啟CC防護模式 (建議值︰3)</td>
+		<td><input type="text" name="config[loadavg]" value="$db_loadavg" /></td>
+	</tr>
+	<tr class=b>
+		<td width="60%">CC攻擊防護︰<br>不使用 &nbsp; &nbsp;: 關閉CC攻擊防護<br>普通模式 : 建議使用這種模式，可預防論壇遭受cc攻擊<br>加強模式 : 當網站正遭受CC攻擊而導致訪問速度很慢時，請開啟此種模式可阻止攻擊</td>
+		<td>
+			<input type=radio value=0 name="config[cc]" $cc_0>不使用<br>
+			<input type=radio value=1 name="config[cc]" $cc_1>普通模式<br>
+			<input type=radio value=2 name="config[cc]" $cc_2>加強模式
+		</td>
+	</tr>
+	<tr class=b>
+		<td>IP驗證功能︰<br>可以加強論壇安全，選擇開啟將對登錄者ip進行驗證<br>如果與上一次登錄ip前2位不同，將要求重新登錄</td>
+		<td>
+			<input type=radio value=1 name="config[ipcheck]" $ipcheck_Y>開啟
+			<input type=radio value=0 name="config[ipcheck]" $ipcheck_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td>論壇安全驗證參數:<br>除非論壇出現安全危機，請不要隨意修改</td>
+		<td><input size=35 name="config[hash]" value="$db_hash"></td>
+	</tr>
+	<tr class=b>
+		<td>後台登錄IP限制<br>此功能可綁定登錄後台的 IP，只有在列表內的 IP 才能登錄論壇，創始人不受限制<br>可以綁定單個IP地址格式如︰192.0.0.1，也可以綁定一段IP格式如︰192.0.0<br>多個IP "," 分隔。</td>
+		<td><textarea name="config[iplimit]" rows="6" cols="35">$db_iplimit</textarea></td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='ftp' || $type=='all'){ print <<<EOT
+-->
+<a name="ftp">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"><a href="#top">ftp設置</a></td></tr>
+	<tr class="b">
+		<td width="60%">是否使用ftp方式上傳︰<br>本功能適合上傳附件到遠程服務器<br>(尤其針對鏡像站點，可將附件傳至主站點，便于附件的統一管理)</td>
+		<td>
+			<input type="radio" value="1" name="config[ifftp]" $ifftp_Y>開啟
+			<input type="radio" value="0" name="config[ifftp]" $ifftp_N>關閉
+		</td>
+	</tr>
+	<tr class="b">
+		<td width="60%">web訪問地址︰<br>例如︰http://www.phpwind.net/attachment</td>
+		<td>
+			<input type="text" value="$db_ftpweb" name="config[ftpweb]" size="40"><br>
+		</td>
+	</tr>
+	<tr class="b">
+		<td width="60%">ftp服務器地址︰</td>
+		<td>
+			<input type="text" value="$ftp_server" name="ftp[ftp_server]" size="40"><br>
+		</td>
+	</tr>
+	<tr class="b">
+		<td width="60%">ftp服務器端口︰</td>
+		<td>
+			<input type="text" value="$ftp_port" name="ftp[ftp_port]" size="40"><br>
+		</td>
+	</tr>
+	<tr class="b">
+		<td width="60%">ftp上傳目錄︰<br>請確保該目錄等同于主站點的attachment目錄</td>
+		<td>
+			<input type="text" value="$ftp_dir" name="ftp[ftp_dir]"><br>
+		</td>
+	</tr>
+	<tr class="b">
+		<td width="60%">ftp帳號︰</td>
+		<td>
+			<input type="text" value="$ftp_user" name="ftp[ftp_user]"><br>
+		</td>
+	</tr>
+	<tr class="b">
+		<td width="60%">ftp密碼︰</td>
+		<td>
+			<input type="text" value="$ftp_pass" name="ftp[ftp_pass]"><br>
+		</td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}if($type=='other' || $type=='all'){print <<<EOT
+-->
+<a name="other">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2" align="center"><a href="#top">其它設置</a></td></tr>
+	<tr class=b>
+		<td width="60%">強制輸入操作理由︰<br>為了避免由于管理操作上的不透明而引起論壇會員糾紛，管理員可開啟此項功能，強制要求在前台進行管理操作時必須輸入操作原因。</td>
+		<td>
+			<input type=radio value=1 name="config[enterreason]" $enterreason_Y>開啟
+			<input type=radio value=0 name="config[enterreason]" $enterreason_N>關閉
+		</td>
+	</tr>
+	<tr class=b>
+		<td width="60%">管理操作原因︰<br>顯示在前台管理操作的操作原因備選框中，操作者可自行輸入或選擇一個操作原因，操作原因將包含在用戶通知消息和後台管理操作記錄中<br>每行填寫一個操作原因，空行顯示為分隔符“-------”</td>
+		<td><textarea name="config[adminreason]" rows="6" cols="35">$db_adminreason</textarea></td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+}print <<<EOT
+-->
+<center>
+<input type=submit value="提 交">
+</center>
+<!-- 
+EOT;
+include_once PrintEot('adminbottom');
+?>-->

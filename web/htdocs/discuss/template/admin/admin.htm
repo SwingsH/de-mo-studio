@@ -1,0 +1,91 @@
+<!--<?php
+include_once PrintEot('left');
+print <<<EOT
+-->
+<center>歡迎光臨 <b>PHPwind</b> $wind_version  系統設置面板.版權所有&copy;2003-06,<b style="color: #FF9900">phpwind.net</b></center>
+<br>
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head>PHPWind 系列產品介紹</td></tr>
+<tr><td class=b>
+
+PHPWind 系列產品︰PHPWind（論壇系統），PWBlog（博客系統），VeryCMS（內容管理系統），LxShop（商城系統）
+<br><br>
+<b>PHPWind︰</b>PHPWind核心產品，高質量的負載能力、高強度的穩定性、飛一般的訪問速度，保證您的網站實現最佳的運行狀態！
+<a href="http://www.phpwind.com/?prog=sales" target="_blank"><b>詳情點擊</b></a>
+<br><br>
+<b>VeryCMS︰</b>整合論壇、博客輕松搭建社區門戶網站；高速訪問，高負載能力，國內最受歡迎的內容管理系統之一！
+<a href="http://www.phpwind.com/?prog=cms" target="_blank"><b>詳情點擊</b></a>
+<br><br>
+<b>PWBlog &nbsp;︰</b>完美整合論壇用戶數據，又可獨立運行。國內首家PHP多用戶博客系統，穩定，高效，功能強大！
+<a href="http://www.phpwind.com/?prog=blog" target="_blank"><b>詳情點擊</b></a>
+<br><br>
+<b>LxShop &nbsp;︰</b>國內優秀的PHP多用戶（單用戶）商城系統，可完美整合PHPWind論壇用戶數據，是您電子商務的最佳選擇！
+<a href="http://www.phpwind.com/?prog=maxshop" target="_blank"><b>詳情點擊</b></a>
+<br><br>
+</td></tr></table>
+<br> 
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head>管 理 幫 助</td></tr>
+<tr><td class=b>
+	這是由 PHPWind.Net 獨立開發的建站程序,如果您在使用中遇到問題:<br><br>
+
+	(1)數據庫與使用上的疑問 : <a href="http://www.phpwind.net/thread.php?fid=2" target=_blank><b>請進入PHPWind 討論區</b></a> <br>
+	(2)如果您想安裝一些插件 : <a href="http://www.phpwind.net/thread.php?fid=3" target=_blank><b>請進入PHPWind 插件交流</b></a> <br>
+	(3)如果您想擁有更多皮膚 : <a href="http://www.phpwind.net/thread.php?fid=4" target=_blank><b>請進入PHPWind 風格交流</b></a> <br><br>
+<!--
+EOT;
+if(!file_exists(R_P.'require/c_search.php')){print <<<EOT
+-->
+如果您希望得到 更好的服務 與擁有 更強大的版本 與 程序保障,請購買我們的 <a href="http://www.phpwind.com/?prog=sales" target=_blank><b>商業版</b></a>
+	
+<!--
+EOT;
+}print <<<EOT
+-->
+</td></tr></table>
+<br>
+
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head>
+系 統 信 息</td></tr>
+<tr><td class=b>
+PHP程式版本︰&nbsp; &nbsp; <font color="#000066">$sysversion</font><br>
+	MYSQL 版本︰&nbsp; &nbsp;&nbsp; <font color="#000066">$dbversion</font><br>
+	服務器端信息︰ &nbsp;  <font color="#000066">$sysos</font><br>
+	最大上傳限制︰ &nbsp; <font color="#000066">$max_upload</font><br>
+	最大執行時間︰ &nbsp; <font color="#000066">$max_ex_time</font><br>
+	郵件支持模式︰ &nbsp; <font color="#000066">$sys_mail</font><br>
+	Cookie 測試︰&nbsp; &nbsp; <font color="#000066">$ifcookie</font><br>
+	服務器所在時間︰<font color="#000066">$systemtime</font><br>
+	論壇顯示時間︰&nbsp;&nbsp; <font color="#000066">$altertime</font><br>
+	論壇數據庫佔用︰&nbsp;<font color="#000066">$pw_size M</font><br>
+	非論壇數據庫佔用︰&nbsp;<font color="#000066">$o_size M</font>
+</td></tr></table>
+<br>
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head>
+開 發 團 隊</td></tr>
+<tr><td class=b>
+官方網站︰&nbsp; &nbsp; <a href="http://www.phpwind.com" target=_blank>http://www.phpwind.com</a>
+<br>官方論壇︰&nbsp; &nbsp; <a href="http://www.phpwind.net" target=_blank>http://www.phpwind.net</a>
+<br>系統開發︰&nbsp; &nbsp; <a href="http://www.phpwind.net" target=_blank>Fengyu</a>,<a href="http://www.ofstar.com" target=_blank>Yuling</a>
+<br>團隊管理︰&nbsp; &nbsp; <a href="http://www.ofstar.com" target=_blank>Yuling</a>
+<br>管理人員︰&nbsp; &nbsp; <a href="http://www.phpwind.net/profile.php?action=show&uid=7780" target=_blank>閑趣</a>,<a href="http://www.phpwind.net/profile.php?action=show&uid=62584" target=_blank>hbcity</a>
+<br>界面設計︰&nbsp; &nbsp; <a href="http://www.phpwind.net/profile.php?action=show&uid=4604" target=_blank>Wookoo</a>
+<br>協作發展︰&nbsp; &nbsp; <a href="http://www.ofstar.net" target=_blank>Ofstar Group</a>
+</td></tr></table>
+<!--
+EOT;
+include_once PrintEot('adminbottom');
+if($admin_gid == '3' || $admin_name == $manager){
+@extract($db->get_one("SELECT totalmember FROM pw_bbsinfo WHERE id=1"));
+@extract($db->get_one("SELECT SUM(topic) AS threads,SUM(article) AS posts FROM pw_forumdata"));
+$s_url = rawurlencode($_SERVER['HTTP_HOST']);
+$rawbbsname = rawurlencode($db_bbsname);
+$hash=md5($_SERVER['HTTP_HOST'].$_SERVER['HTTP_USER_AGENT'].$totalmember.$threads.$posts.$wind_version.$wind_repair.$db_charset);
+print <<<EOT
+-->
+<script language="JavaScript" src="http://nt.phpwind.com/notice.php?bbsname=$rawbbsname&totalmember=$totalmember&threads=$threads&posts=$posts&version=$wind_version&repair=$wind_repair&charset=$db_charset&sysversion=$sysversion&dbversion=$dbversion&url=$s_url&hash=$hash"></script>
+<!--
+EOT;
+}?>-->

@@ -1,0 +1,43 @@
+/* CSS Document */
+/*
+用到的版面
+style_detail.tpl  style_detail_brand.tpl 
+*/
+
+<STYLE TYPE="text/css" >
+<!--
+
+.stl_brand_ct {
+     color: #003366;
+     font-family: "細明體";
+     font-size: "x-small";    
+}
+
+.stl_prodate {
+	color: #000000;
+	font-size: 8pt; 
+	font-family: "細明體";
+}
+.stl_col_name {
+	margin-left: 5pt; 
+	margin-top: 2pt; 
+     color: #0055AA;
+     font-family: "細明體";
+     font-size: 9pt;
+}
+.stl_col_content {
+	margin-left: 5pt; 
+	margin-top: 2pt; 
+     color: #000000;
+     font-family: "細明體";
+     font-size: 9pt;
+}
+
+.stl_pronumber {
+     color: #FF0000;
+     font-family: "細明體";
+     font-size: 9pt;  
+}
+
+-->
+</STYLE>

@@ -1,0 +1,59 @@
+<!--<?php
+if(!$action){print <<<EOT
+-->
+<p><a href="msg.php?action=new">未讀消息($newnum)</a></p>
+<p><a href="msg.php?action=all">所有消息($allnum)</a></p>
+<p><a href="msg.php?action=write">發送消息</a></p>
+<!--
+EOT;
+}elseif($action=='new'){
+$id=0;
+foreach($msgdb as $key=>$val){
+$id++; print <<<EOT
+-->
+<p><a href="msg.php?action=read&amp;mid=$val[mid]">$id.$val[title]</a></p>
+<p>$val[mdate]</p>
+<p>$val[username]</p>
+<!--
+EOT;
+}}elseif($action=='all'){
+$id=0;
+foreach($msgdb as $key=>$val){
+$id++; print <<<EOT
+-->
+<p><a href="msg.php?action=read&amp;mid=$val[mid]">$id.$val[title]</a></p>
+<p>$val[mdate]</p>
+<p>$val[username]</p>
+<!--
+EOT;
+}}elseif($action=='read'){print <<<EOT
+-->
+<p>標題:$rt[title]</p>
+<p>日期:$rt[mdate]</p>
+<p>來自:$rt[username]</p>
+<p>內容:<br />$rt[content]</p>
+<p><br /><a href="msg.php?action=delete&amp;mid=$rt[mid]">刪除</a></p>
+<p><a href="msg.php?action=write&amp;pwuser=$rt[username]">回復</a></p>
+<!--
+EOT;
+}elseif($action=='write'){print <<<EOT
+-->
+<p>用戶名<input name="pwuser" type="text" value="$pwuser" /></p>
+<p>標題<input name="title" type="text" /></p>
+<p>內容<input name="content" type="text" /></p>
+<p align="center">
+<anchor title="submit">確定
+<go href="msg.php?action=write&amp;tmp=$timestamp" method="post">
+<postfield name="pwuser" value="$(pwuser)" />
+<postfield name="title" value="$(title)" />
+<postfield name="content" value="$(content)" />
+</go></anchor>
+</p>
+<!--
+EOT;
+}print <<<EOT
+-->
+<p><br /><a href="msg.php">短消息首頁</a></p>
+<!--
+EOT;
+?>-->

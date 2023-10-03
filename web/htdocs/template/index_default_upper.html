@@ -1,0 +1,101 @@
+<!-- this link is duplcated css , just for test-->
+<LINK REL="stylesheet" href="css/index_default.css" TYPE="text/css">
+<!--首頁:[Upper]01-->
+<table width="950" height="80" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="220"><div id="flashlogo"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="220" height="80">
+		  <param name="movie" value="swf/index_logo_v2_220x80.swf" />
+		  <param name="quality" value="high" />
+		  <embed src="swf/index_logo_v2_220x80.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="220" height="80"></embed></object>
+		</div>
+		<script type="text/javascript" language="javascript">
+			var swfurl="swf/index_logo_v2_220x80.swf";
+			var fob = new FlashObject(swfurl,"myvote","220","80","7","#FFFFFF");
+			fob.addVariable("url", "index.php");
+			fob.write("flashlogo");
+		</script> 
+	</td>
+    <td>
+		<!--首頁:[Upper]03:最上方連結區 全-->
+		<table width="740" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+			<td align="right" valign="bottom">
+				<!--首頁:[Upper]04:最上方連結區 最上方 html-->
+				<table width="440" height="29" border="0" cellspacing="0" cellpadding="0">
+				  <tr>
+					<td valign="middle" width="330">
+						<span class="index_content_a"><a href="/">DEMO 首頁</a></span>
+						<span class="index_content_a" style="vertical-align:bottom;"><img src="images/icon_sep_vline01.gif" width="8" height="14" /></span>
+				
+						<span class="index_content_a"><a href="/discuss" target=_blank>DEMO 調查局</a></span>
+						<span class="index_content_a" style="vertical-align:bottom;"><img src="images/icon_sep_vline01.gif" width="8" height="14" /></span>
+				
+						<span class="index_content_a">
+						<a href="javascript:window.external.AddFavorite('http://www.de-mo.com.tw','DE-MO街拍流行情報站')">加入最愛</a></span>
+						<span class="index_content_a" style="vertical-align:bottom;"><img src="images/icon_sep_vline01.gif" width="8" height="14" /></span>
+				
+						<span class="index_content_a" style="vertical-align:bottom;color:#FF3333;"><a href="news.php">最新公告</a></span>
+					</td>
+					<td ></td>
+					<td align="right">
+					
+						<!--首頁: Upper 時鐘區 table -->
+						<table width="100" height="29" border="0" cellpadding="0" cellspacing="0" background="images/index_uppermenu_clock_bg.gif">
+						  <tr>
+							<td>
+								<!--首頁: Upper 時鐘區 DIV -->
+								<div class="index_content_a" style="text-align:center; font-size:7.5pt;">
+									<script language="JavaScript">
+									var enabled = 0; today = new Date();
+									var day; var date;
+									if(today.getDay()==0) day = "星期日"
+									if(today.getDay()==1) day = "星期一"
+									if(today.getDay()==2) day = "星期二"
+									if(today.getDay()==3) day = "星期三"
+									if(today.getDay()==4) day = "星期四"
+									if(today.getDay()==5) day = "星期五"
+									if(today.getDay()==6) day = "星期六"
+									document.fgColor = "000000";
+									date = (today.getMonth() + 1 ) + "月" + today.getDate() + "日 " + day ;
+									document.write( date );
+									</script>
+								</div>
+								<!--首頁: Upper 時鐘區 END-->
+							</td>
+						  </tr>
+						</table>
+						<!--首頁: Upper 時鐘區 table end-->
+					</td>
+				  </tr>
+				</table>
+				<!--首頁:[Upper]04:最上方連結區 最上方 html END-->
+			</td>
+		  </tr>
+		  <tr>
+			<td>
+				<!--首頁:[Upper]05:最上方連結區 最上方 FLASH-->
+				<div id="flash_upmenu">
+					<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,19,0" width="740" height="43">
+					  <param name="movie" value="swf/index_upper_menu.swf" />
+					  <param name="quality" value="high" />
+					  <embed src="swf/index_upper_menu.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="740" height="43"></embed>
+					</object>
+				</div>
+				<script type="text/javascript" language="javascript">
+					var swfurl="swf/index_upper_menu.swf";
+					var fob = new FlashObject(swfurl,"myvote","740","43","7","#FFFFFF");
+					fob.addVariable("url_1", "info.php?b=about");
+					fob.addVariable("url_2", "info.php?b=street");
+					fob.addVariable("url_3", "info.php?b=contact");
+					fob.addVariable("url_4", "info.php?b=qa");
+					fob.write("flash_upmenu");
+				</script> 
+				<!--首頁:[Upper]05:最上方連結區 最上方 FLASH END-->
+			</td>
+		  </tr>
+		</table>
+		<!--首頁:[Upper]03:最上方連結區 全 END-->
+	</td>
+  </tr>
+</table>
+<!--首頁:[Upper]01 END-->

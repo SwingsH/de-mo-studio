@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<config>
+<domain>http://www.de-mo.com.tw/</domain>
+<dirroot>demo/</dirroot>
+<dirstyle>style/</dirstyle>
+<dirphoto>photo/</dirphoto>
+</config>

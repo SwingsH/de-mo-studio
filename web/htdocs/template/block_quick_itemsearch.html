@@ -1,0 +1,38 @@
+<!-- this link is duplcated css , just for test-->
+<LINK REL="stylesheet" href="css/index_default.css" TYPE="text/css">
+
+<!--首頁:quick item區-->
+<div >
+<table background="images/tb_quickview_itemsearch.jpg" align="left" width="220" height="188" border="0" cellspacing="0" cellpadding="0">
+  
+    <td><!-- qv item search -->
+		<table align="center" width="210" height="188" border="0" cellspacing="0" cellpadding="0">
+		  <tr>
+		  	<td height="33" valign="bottom">
+				<span class="index_menu_content" ><?=$this->randitem['type']?>			</td>
+			<td rowspan="6"  width="100" height="160" valign="middle">
+			<img onClick="javascript:js_redirect('<?=$this->randitem['url']?>')" title="點擊以瀏覽" alt="點擊以瀏覽" border="1" src="<?=$this->randitem['src']?>" width="75" height="120"/></td>
+		  </tr>
+		  <tr>
+		    <td height="15">&nbsp;</td>
+	      </tr>
+		  <tr>
+			<td height="35"><span class="index_menu_content" >品牌:<?=$this->randitem['name']?></span></td>
+			
+		  </tr>
+		  <tr>
+			<td height="35"><span class="index_menu_content" >價格:<?=$this->randitem['price']?></span></td>
+		  </tr>
+		  <tr>
+			<td  height="35"><span class="index_menu_content" >購買:<?=$this->randitem['place']?></span></td>
+		  </tr>
+		  <tr>
+		    <td>&nbsp;</td>
+	      </tr>
+	  </table>
+		<!-- qv item search -->
+	</td>
+  </tr>
+</table>
+</div>
+<!--首頁:quick item區-->

@@ -1,0 +1,37 @@
+<?php
+$lang = array (
+
+'wap_closed'	=> '系統沒有開啟 WAP功能',
+'undefined_action'	=> "非法操作,請返回",
+'not_login'			=> "您還沒有登錄或注冊，暫時不能使用此功能!!",
+'wap_quit'			=> "狀態︰您已經順利退出網站",
+'forum_right'	=> '該版塊為認證版塊︰您沒有權限查看該版塊的文章',
+'post_nofid'	=> '沒有選擇分類',
+'post_success'	=> '文章發表成功。',
+'post_ban'		=> '您已經被管理員禁言，不能發表文章',
+'post_right'	=> '您沒有權限在該版塊發表主題',
+'reply_right'	=> '您沒有權限在該版塊發表回復',
+'post_group'	=> '您所屬的用戶組沒有發表主題的權限',
+'reply_group'	=> '您所屬的用戶組沒有發表回復的權限',
+'wap_login'		=> '登錄成功',
+'login_have'	=> "您已經為會員身份,請不要重復登錄!",
+'post_openpost'	=> "由于工作力度與時間原因, 站點開放評論時間為 $db_poststart:00 點到 $db_postend:00 點 !",
+'post_check'	=> "您還沒通過管理員驗證,需要通過管理員驗證才能發言！",
+'post_newrg_limit'	=> "新注冊用戶$db_postallowtime 小時內不能發帖！",
+'post_gp_limit'	=> "用戶組權限︰你所屬的用戶組每日最多能發 $_G[postlimit] 篇帖子.",
+'post_limit'	=> "灌水預防機制已經打開，在{$gp_postpertime}秒內不能發貼",
+'illegal_tid'	=> "帖子ID非法",
+'reply_ifcheck'	=> "該貼未通過管理員驗證，不可回復",
+'reply_lockatc'	=> "該貼已被鎖定，不可回復",
+'read_locked'	=> "此帖被管理員關閉，暫時不能瀏覽",
+'login_jihuo'	=> "你的帳號沒有激活，請先到您注冊的郵箱里激活帳號!",
+'login_pwd_error'	=> "密碼錯誤,您還可以嘗試 $L_T 次",
+'login_forbid'		=> "已經連續 6 次密碼輸入錯誤,您將在 10 分鐘內無法正常登錄,還剩余 $L_T 秒",
+'user_not_exists'	=> "用戶{$errorname}不存在",
+'msg_refuse'	=> "您發送的消息被用戶拒絕",
+'no_msg'	=> '短消息不存在',
+'msg_success'	=> '短消息發送成功。',
+'msg_delete'	=> '短消息刪除成功。',
+
+);
+?>

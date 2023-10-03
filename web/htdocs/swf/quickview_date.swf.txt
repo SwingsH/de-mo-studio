@@ -1,0 +1,60 @@
+﻿﻿Array
+(
+    [firstday] => 20070716
+    [photopath] => http://192.83.193.117/photo/
+    [profiles] => Array
+        (
+            [0] => Array
+                (
+                    [date] => 20070716
+                    [exist] => 1
+                    [image] => 200707/000029_070716_G_01.jpg
+                    [link] => http://192.83.193.117/detail.php?did=000029&date=070716&style=G
+                    [name] => 屁股
+                    [age] => 17
+                    [tall] => 179
+                    [location] => 西門町
+                    [total] => 10
+                )
+
+            [1] => Array
+                (
+                    [date] => 20070717
+                    [exist] => 1
+                    [image] => 200707/000047_070717_E_01.jpg
+                    [link] => http://192.83.193.117/detail.php?did=000047&date=070717&style=E
+                    [name] => TAKU
+                    [age] => 29
+                    [tall] => 170
+                    [location] => 中山捷運站
+                    [total] => 14
+                )
+
+            [2] => Array
+                (
+                    [date] => 20070718
+                    [exist] => 
+                )
+
+            [3] => Array
+                (
+                    [date] => 20070719
+                    [exist] => 1
+                    [image] => 200707/000052_070719_B_01.jpg
+                    [link] => http://192.83.193.117/detail.php?did=000052&date=070719&style=B
+                    [name] => 小忍
+                    [age] => 22
+                    [tall] => 167
+                    [location] => 新光站前店
+                    [total] => 5
+                )
+
+            [4] => Array
+                (
+                    [date] => 20070720
+                    [exist] => 
+                )
+
+        )
+
+)

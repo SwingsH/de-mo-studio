@@ -1,0 +1,95 @@
+<!--<?php
+include_once PrintEot('left');
+print <<<EOT
+-->
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=7><b>提示信息</b></td></tr>
+<tr><td class=b>1. 使用 PHPWind首頁調用 功能前需要先在 <font color=blue><b>new.php</b></font> 文件中設置好相關參數，文件里附有說明。<br>2. 首頁調用方式分為 “論壇版塊調用”，“論壇公告調用”，“論壇基本信息調用”，“論壇會員排行調用”，“論壇文章調用”。 <br>3. 每種調用方式都提供了一系列的參數設置，用戶可根據需要自定義設置。 </td></tr>
+</table><br>
+
+<form action="$basename&" method="post" name="form">
+<input type="hidden" name="action" value="demo">
+<table width="80%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=8><b>首頁調用工具</b></td></tr>
+<tr class="b"><td width="20%">演示代碼︰<br>
+<input id="code" type="text" name="advert" value="$code1" size="100" onmouseover="form.code.select();"><br>
+<input type="submit" value="查看效果">
+<input type="button" value="復制代碼" onclick="CopyCode(document.getElementById('code'));"><br><br>
+<font color="gray">以下為調用效果︰</font>
+	<hr size=1>
+$code2
+</td></tr></table></form><br>
+
+<table cellspacing=1 cellpadding=3 width="80%" class=i_table align=center>
+<tr class=head align=center><td><b>版塊調用演示</b></td></tr>
+<tr class="b"><td><br>可選參數和參數說明︰<br>\$pre : 前綴,可選參數 : 0.&lt;li&gt;，1.◇，2.‧，3.○，4.●，5.-，6.□-<br>\$fidin : 版塊ID，設置需要調用的版塊ID，格式︰1_2_3<br><br></td></tr>
+<tr class="b"><td>演示代碼︰<br>
+<input type="text" id="code2" value="&lt;script src=&quot;$db_bbsurl/new.php?action=forum&fidin=2&pre=1&quot;&gt;&lt;/script&gt;" size="100">
+<br>
+<input type="button" value="復制代碼" onclick="CopyCode(document.getElementById('code2'));"><br><br>
+<font color="gray">以下為調用效果︰</font>
+	<hr size=1>
+<script src="$db_bbsurl/new.php?action=forum&fidin=2&pre=1"></script>
+</td></tr></table><br>
+
+<table cellspacing=1 cellpadding=3 width="80%" class=i_table align=center>
+<tr class=head align=center><td><b>公告調用演示</b></td></tr>
+<tr class="b"><td><br>可選參數和參數說明︰<br>\$pre : 前綴,可選參數 : 0.&lt;li&gt;，1.◇，2.‧，3.○，4.●，5.-，6.□-<br>\$num : 調用公告個數<br>\$length : 公告標題長度<br>\$date : 是否顯示公告發表日期，可選參數︰0，1<br><br></td></tr>
+<tr class="b"><td>演示代碼︰<br>
+<input type="text" id="code3" value="&lt;script src=&quot;$db_bbsurl/new.php?action=notice&num=5&date=1&length=30&quot;&gt;&lt;/script&gt;" size="100">
+<br>
+<input type="button" value="復制代碼" onclick="CopyCode(document.getElementById('code3'));"><br><br>
+<font color="gray">以下為調用效果︰</font>
+	<hr size=1>
+
+<script src="$db_bbsurl/new.php?action=notice&num=5&date=1&length=30"></script>
+</td></tr></table><br>
+
+<table cellspacing=1 cellpadding=3 width="80%" class=i_table align=center>
+<tr class=head align=center><td><b>論壇信息調用演示</b></td></tr>
+<tr class="b"><td><br>可選參數和參數說明︰<br>\$pre : 前綴,可選參數 : 0.&lt;li&gt;，1.◇，2.‧，3.○，4.●，5.-，6.□-<br>\$member : 是否顯示論壇會員總數和最新注冊會員，可選參數︰0，1<br>\$article : 是否顯示主題數和帖子數，可選參數︰0，1<br>\$yesterday : 是否顯示今日，昨日，最高日發帖，可選參數︰0，1<br>\$online : 是否顯示在線信息，可選參數︰0，1<br><br></td></tr>
+<tr class="b"><td>演示代碼︰<br>
+<input type="text" id="code4" value="&lt;script src=&quot;$db_bbsurl/new.php?action=info&pre=6&member=1&article=1&yesterday=1&online=1&quot;&gt;&lt;/script&gt;" size="100">
+<br>
+<input type="button" value="復制代碼" onclick="CopyCode(document.getElementById('code4'));"><br><br>
+<font color="gray">以下為調用效果︰</font>
+	<hr size=1>
+<script src="$db_bbsurl/new.php?action=info&pre=6&member=1&article=1&yesterday=1&online=1"></script>
+</td></tr></table><br>
+
+
+<table cellspacing=1 cellpadding=3 width="80%" class=i_table align=center>
+<tr class=head align=center><td><b>會員排行調用演示</b></td></tr>
+<tr class="b"><td><br>可選參數和參數說明︰<br>\$pre : 前綴,可選參數 : 0.&lt;li&gt;，1.◇，2.‧，3.○，4.●，5.-，6.□-<br>\$num : 調用會員個數<br>\$order : 排序方式，可選參數 : 1.注冊日期 2.發帖數 3.精華數 4.{$db_rvrcname} 5.{$db_moneyname} 6.{$db_creditname}<br><br></td></tr>
+<tr class="b"><td>演示代碼︰<br>
+<input type="text" id="code5" value="&lt;script src=&quot;$db_bbsurl/new.php?action=member&num=10&order=2&quot;&gt;&lt;/script&gt;" size="100">
+<br>
+<input type="button" value="復制代碼" onclick="CopyCode(document.getElementById('code5'));"><br><br>
+<font color="gray">以下為調用效果︰</font>
+	<hr size=1>
+<script src="$db_bbsurl/new.php?action=member&num=10&order=2"></script>
+</td></tr></table><br>
+
+<table cellspacing=1 cellpadding=3 width="80%" class=i_table align=center>
+<tr class=head align=center><td><b>論壇文章調用演示</b></td></tr>
+<tr class="b"><td><br>可選參數和參數說明︰<br>\$pre : 前綴,可選參數 : 0.&lt;li&gt;，1.◇，2.‧，3.○，4.●，5.-，6.□-<br>\$num : 調用主題個數<br>\$length : 文章標題長度<br>\$order : 排序方式，可選參數 : 1.最後發表日期 2.主題發表日期 3.回復數 4.查看數<br>\$fidin : 調用文章的版塊ID，格式︰1_2_3<br>\$fidout : 不調用的版塊ID，格式︰1_2_3<br>\$digest : 調用精華帖，可選參數︰0，1<br>\$postdate : 是否顯示文章發表日期，可選參數︰0，1<br>\$author : 是否顯示文章作者，可選參數︰0，1<br>\$replies : 是否顯示回復數，可選參數︰0，1<br>\$hits : 是否顯示查看數，可選參數︰0，1<br>\$fname : 是否顯示版塊名稱，可選參數︰0，1<br><br></td></tr>
+<tr class="b"><td>演示代碼︰<br>
+<input type="text" id="code1" value="&lt;script src=&quot;$db_bbsurl/new.php?action=article&fidin=2&digest=0&postdate=0&author=1&fname=0&hits=0&replies=1&pre=1&num=10&length=35&order=1&quot;&gt;&lt;/script&gt;" size="100">
+<br>
+<input type="button" value="復制代碼" onclick="CopyCode(document.getElementById('code1'));"><br><br>
+<font color="gray">以下為調用效果︰</font>
+	<hr size=1>
+<script src="$db_bbsurl/new.php?action=article&fidin=2&digest=0&postdate=0&author=1&fname=0&hits=0&replies=1&pre=1&num=10&length=35&order=1"></script>
+</td></tr></table><br>
+
+<script language="JavaScript">
+function CopyCode(obj){ 
+	obj.select(); 
+	var js=obj.createTextRange(); 
+	js.execCommand("Copy");
+}
+</script>
+<!--
+EOT;
+include_once PrintEot('adminbottom');
+?>-->

@@ -1,0 +1,170 @@
+<!--<?php
+include_once PrintEot('left');
+if (empty($action)){print <<<EOT
+-->
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2"><b>提示信息</b></td></tr>
+	<tr>
+		<td class="b">
+<pre>
+
+1、計劃任務是一項使系統在規定時間自動執行某些特定任務的功能。
+
+2、合理設置執行時間，能有效地為服務器減輕負擔。
+</pre>
+		</td>
+	</tr>
+</table>
+<br />
+<form action="$basename&" method="POST">
+<input type="hidden" name="action" value="unsubmit" />
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr class="head"><td colspan="10">計劃任務管理</td></tr>
+	<tr class="head_2" align="center">
+		<td width="6%">序號</td>
+		<td width="*">任務標題</td>
+		<td width="6%">分鐘</td>
+		<td width="6%">小時</td>
+		<td width="6%">星期</td>
+		<td width="6%">日</td>
+		<td width="17%">上次執行時間</td>
+		<td width="17%">下次執行時間</td>
+		<td width='6%'>設置</td>
+		<td width='5%'>操作</td>
+	</tr>
+<!--
+EOT;
+foreach($plandb as $key=>$value){
+print <<<EOT
+-->
+	<tr class="b" align="center">
+		<td>$value[id]</td>
+		<td>$value[subject]</td>
+		<td>$value[hour]</td>
+		<td>$value[day]</td>
+		<td>$value[week]</td>
+		<td>$value[month]</td>
+		<td>$value[usetime]</td>
+		<td>$value[nexttime]</td>
+		<td><input type="button" value="設置" onclick="window.location=('$basename&action=planset&id='+$value[id])" /></td>
+		<td>
+<!--
+EOT;
+if($value[id]>7){ print <<<EOT
+-->
+		<input type="checkbox" name="selid[]" value="$value[id]" />
+<!--
+EOT;
+}else{ print <<<EOT
+-->
+		--
+<!--
+EOT;
+} print <<<EOT
+-->
+		</td>
+	</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table><br />
+<center><input type="button" name="chkall" value="全 選" onclick="CheckAll(this.form)" />
+<input type="submit" value="刪除所選項" onclick="return check();" /></center>
+</form>
+<script language="JavaScript">
+function check(){
+	if(confirm("確定要刪除所有所選項嗎？")){
+		return true;
+	}else{
+		return false;
+	}
+}
+</script>
+<!--
+EOT;
+}elseif($action=='planset'){
+print <<<EOT
+-->
+<table width="98%" align="center"cellspacing="1" cellpadding="3" class="i_table">
+<tr><td class="b">
+[<a href="$basename">計劃任務管理</a>]
+[<b>計劃任務設置</b>]
+</td></tr></table><br />
+<form action="$basename&" method="POST">
+<input type="hidden" name="action" value="planset" />
+<input type="hidden" name="step" value="3" />
+<input type="hidden" name="id" value="$id" />
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr class="head"><td colspan="2">計劃任務設置</td></tr>
+	<tr class="b">
+		<td width="30%">任務標題</td>
+		<td width="*"><input type="text" name="title" value="$rt[subject]" size="40" /></td>
+	</tr>
+	<tr class="b">
+		<td>每月幾號執行</td>
+		<td><select name="month">$month</select></td>
+	</tr>
+	<tr class="b">
+		<td>每周星期幾執行</td>
+		<td><select name="week">
+			<option value="*">*</option>
+			<option value="1" $week_1>星期一</option>
+			<option value="2" $week_2>星期二</option>
+			<option value="3" $week_3>星期三</option>
+			<option value="4" $week_4>星期四</option>
+			<option value="5" $week_5>星期五</option>
+			<option value="6" $week_6>星期六</option>
+			<option value="7" $week_7>星期天</option>
+			</select></td>
+	</tr>
+	<tr class="b">
+		<td>每日幾點執行</td>
+		<td><select name="day">$day</select></td>
+	</tr>
+	<tr class="b">
+		<td>每小時幾分鐘執行</td>
+		<td><select name="hours[]">$hours[0]</select>&nbsp;<select name="hours[]">$hours[1]</select>&nbsp;<select name="hours[]">$hours[2]</select>&nbsp;<select name="hours[]">$hours[3]</select></td>
+	</tr>
+	<tr class="b">
+		<td>是否開啟該計劃任務</td>
+		<td><input type="radio" name="ifopen" value="1" $ifopen_Y>是<input type="radio" name="ifopen" value="0" $ifopen_N>否</td>
+	</tr>
+	<tr class="b">
+		<td>執行文件名<br />(在./require/plan/目錄下)</td>
+		<td><input type="text" name="filename" value="$rt[filename]">.php</td>
+	</tr>
+<!--
+EOT;
+if(file_exists(PrintEot($rt['filename'].'_set'))){
+print <<<EOT
+-->
+	<tr class="b">
+		<td>詳細設置</td>
+		<td><input type="button" value="設 置" onclick="window.location=('$basename&action=detail&id=$id')" />
+	</tr>
+<!--
+EOT;
+} print <<<EOT
+-->
+</table>
+<br />
+<center><input type="submit" value="提 交"> <input type=reset value="重 置"></center></form>
+<!--
+EOT;
+}elseif($action=='detail'){
+print <<<EOT
+-->
+<table width="98%" align="center"cellspacing="1" cellpadding="3" class="i_table">
+<tr><td class="b">
+[<a href="$basename">計劃任務管理</a>]
+[<a href="$basename&action=planset&id=$id">計劃任務設置</a>]
+[<b>詳細設置</b>]
+</td></tr></table><br />
+<!--
+EOT;
+if(file_exists(PrintEot($filename.'_set'))){
+include_once PrintEot($filename.'_set');
+}}include_once PrintEot('adminbottom');
+?>-->

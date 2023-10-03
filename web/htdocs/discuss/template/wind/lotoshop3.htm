@@ -1,0 +1,161 @@
+<!--
+<?php print <<<EOT
+-->
+<style type="text/css">
+<!--
+.style1 {color: #FF0000}
+.style2 {color: #FFFFFF}
+.style3 {color: #999999}
+.style4 {
+	color: #0000FF;
+	font-weight: bold;
+}
+.style9 {
+	color: #FF6699;
+	font-weight: bold;
+}
+.style10 {color: #009900}
+.style12 {color: #3399FF}
+-->
+</style>
+
+<table cellspacing="0" cellpadding="0" border="0" width=$tablewidth> 
+<tr>
+  <td class="nav" width="90%" nowrap><img src='$imgpath/$stylepath/index/home.gif' align='absbottom'>&nbsp;<strong><a href="index.php">{$db_bbsname}</a> &raquo; <a href=lotomain.php>$lotoset[name]大廳</a> &raquo; <a href=$R_url>3D</a></strong></td>
+  <td align="right" width="10%">&nbsp;</td>        
+</tr></table>
+<br>
+
+<table cellspacing="0" cellpadding="0" border="0" width=$tablewidth align="center" style="table-layout: fixed">
+<tr><td>
+<table border="0" cellspacing="0" cellpadding="0" width="100%" height="100%">
+<tr>
+<td class="head" align="center">$lotoset[name]</td>
+</tr><tr bgcolor=$forumcolorone>
+          <td> 
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td> 
+                  <table width="100%"  border="0" align="center" cellpadding="3" cellspacing="3">
+                    <tr>
+                      <td>
+                        <form action="$R_url" method=post>
+                          <table width="100%"  border="0" align="center" cellpadding="3" cellspacing="3">
+                            <tr> 
+                              <td> 
+                              <TABLE style=TABLE-LAYOUT: fixed; WORD-WRAP: break-word 
+                  cellSpacing=0 cellPadding=0 border=0 width=500 align=center>
+  <TBODY> 
+  <TR>
+                      <TD width=14 height=8><IMG height=9 src=$imgpath/loto/top_l.gif width=14></TD>
+                      <TD height=8 background=$imgpath/loto/top_c.gif></TD>
+                      <TD width=16 height=8 background=$imgpath/loto/center_r.gif><IMG height=8 src=$imgpath/loto/top_r.gif width=16></TD></TR>
+                    <TR>
+                      <TD vAlign=top width=14 background=$imgpath/loto/center_l.gif></TD>
+                      
+    <TD style=LINE-HEIGHT:14pt bgColor=#ffffff> 
+      <table width=100% border=0 cellspacing=0 cellpadding=0>
+        <tr bgcolor=#99CCFF> 
+          <td colspan=3 bgcolor="#FF0000"> 
+            <div align=center class="style2">彩票開獎看板(今天是 $today)</div>
+          </td>
+        </tr>
+        <tr> 
+          <td colspan="3"> 
+            <div align="center">$opshow$opshow2$opshow3</div></td>
+          </tr>
+        <tr> 
+          <td colspan=3 bgcolor=#FF0000 align=center> 
+            <table align=center width=100% style=filter:glow(color=#000000, strength=50)>
+              
+            </table>
+          </td>
+        </tr>
+      </table>
+    </TD>
+                      <TD vAlign=top width=16 background=$imgpath/loto/center_r.gif></TD></TR>
+                    <TR>
+                      <TD vAlign=top width=14><IMG height=20 src=$imgpath/loto/sfoot_l1.gif 
+                      width=14></TD>
+                      <TD background=$imgpath/loto/sfoot_c.gif></TD>
+                      <TD align=right width=16><IMG height=20 src=$imgpath/loto/sfoot_r.gif 
+                      width=16></TD></TR></TBODY></TABLE>
+</td>
+                            </tr>
+                            <tr>
+                              <td><div align="center"></div></td>
+                            </tr>
+                            <tr>
+                              <td><TABLE style=TABLE-LAYOUT: fixed; WORD-WRAP: break-word 
+                  cellSpacing=0 cellPadding=0 border=0 width=500 align=center>
+                                <TBODY>
+                                  <TR>
+                                    <TD width=14 height=8><IMG height=9 src=$imgpath/loto/top_l.gif width=14></TD>
+                                    <TD height=8 background=$imgpath/loto/top_c.gif></TD>
+                                    <TD width=16 height=8 background=$imgpath/loto/center_r.gif><IMG height=8 src=$imgpath/loto/top_r.gif width=16></TD>
+                                  </TR>
+                                  <TR>
+                                    <TD vAlign=top width=14 background=$imgpath/loto/center_l.gif></TD>
+                                    <TD style=LINE-HEIGHT:14pt bgColor=#ffffff><table width=100% border=0 cellspacing=0 cellpadding=0>
+                                        <tr bgcolor=#99CCFF>
+                                          <td height=20 colspan="3" align="center" bgcolor=#FFFFFF>購買彩票　(彩票價格：<span class="style4">$lotoset[tikmoney] </span>元)</td>
+                                          </tr>
+                                        <tr bgcolor=#99CCFF>
+                                          <td width="9%" height=20 align="center" bgcolor=#FFFFFF><div align="right"></div></td>
+                                          <td width="60%" align="center" bgcolor=#FFFFFF><div align="left"><span class="style10"><small>本期(第 $realdate 期)購買人數：</small></span><span class="style9"><small>$contpeople</small></span><span class="style10"><small>人</small></span></div></td>
+                                          <td width="31%" align="center" bgcolor=#FFFFFF><div align="right"><a href=lotomain.php?hack=lotoshop class="style12">◣彩票櫃檯◥</a><a href=lotomain.php?hack=lotoshop2 class="style12">◣樂透櫃檯◥</a></div></td>
+                                        </tr>
+                                        <tr bgcolor=#99CCFF>
+                                          <td height=40 colspan="3" align="center" bgcolor=#FFFFFF><table width="83%"  border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                              <td width="72%"><div align="left">自選號碼：
+                                                      <input name="by" type="radio" value="1">
+                                                      <input name=number type=text size=15 maxlength=3 value="請輸入3位數字" onFocus="if(this.value=='請輸入3位數字')this.value='';">
+                                              </div></td>
+                                              <td width="28%">                                              <div align="left">自己選定3位數號碼</div></td>
+                                            </tr>
+                                            <tr>
+                                              <td><div align="left">電腦選號：
+                                                    <input name="by" type="radio" value="2">
+                                                    <input type="hidden" name="action" value="buy">
+													<select name='group_flag'>
+													<option value='0'>單選</option>
+													<option value='1'>組選</option>
+													</select>
+                                                    <input type="submit" value="確定" name="submit">
+                                              </div></td>
+                                              <td><div align="left">由電腦選定3位號碼</div></td>
+                                            </tr>
+											$sr
+                                          </table></td>
+                                        </tr>
+                                    </table></TD>
+                                    <TD vAlign=top width=16 background=$imgpath/loto/center_r.gif></TD>
+                                  </TR>
+                                  <TR>
+                                    <TD vAlign=top width=14><IMG height=20 src=$imgpath/loto/sfoot_l1.gif 
+                      width=14></TD>
+                                    <TD background=$imgpath/loto/sfoot_c.gif></TD>
+                                    <TD align=right width=16><IMG height=20 src=$imgpath/loto/sfoot_r.gif 
+                      width=16></TD>
+                                  </TR>
+                                  <TR>
+                                    <TD colspan="3" vAlign=top bgcolor="#FF0000"><div align="center" class="style2"><small><strong>彩票系統</strong>                                         <strong>$lotoset[version]</strong> For <B>PHPWind</B>  v3.0.1</small><br>
+									Modified by wangxd0528, <B><a href="http://www.green-a.com">Green-A.com</a></B>
+									</div></TD>
+                                    </TR>
+                                </TBODY>
+                              </TABLE></td>
+                            </tr>
+                          </table>
+                        </form>
+                      </td>
+                    </tr>
+                  </table>
+            
+          </td>
+</tr></table></td></tr></table>
+<!--
+EOT;
+?>-->
+</table>

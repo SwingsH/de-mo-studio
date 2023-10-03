@@ -1,0 +1,1127 @@
+<!--<?php print <<<EOT
+-->
+<table width="$tablewidth" cellspacing="0" cellpadding="0" align="center">
+	<tr>
+		<td align="left">
+			<img src="$imgpath/$stylepath/index/home.gif" align="absbottom" /> 
+			<b>
+				<a href="$db_bfn">$db_bbsname</a>
+<!--
+EOT;
+if($action=='forumright'){print <<<EOT
+-->
+				-> 版塊權限查看 -> <a href="thread.php?fid=$fid">$rt[name]</a>
+<!--
+EOT;
+}elseif($action=='friend'){print <<<EOT
+-->
+				-> 好友列表
+<!--
+EOT;
+}elseif($action=='favor'){print <<<EOT
+-->
+				-> 收藏夾
+<!--
+EOT;
+}elseif($action=='buy'){print <<<EOT
+-->
+				-> 特殊組購買
+<!--
+EOT;
+}else{print <<<EOT
+-->
+
+				 -&gt 信息資料
+<!--
+EOT;
+}print <<<EOT
+-->
+			</b>
+		</td>
+	</tr>
+</table>
+<br />
+<table width="$tablewidth" cellspacing="1" cellpadding="4" align="center" $i_table style="TABLE-LAYOUT: fixed;WORD-WRAP: break-word;">
+	<tr align="center">
+		<td class="f_one"><a href="profile.php">控制面板首頁</a></td>
+		<td class="f_one"><a href="profile.php?action=modify">編輯個人資料</a></td>
+		<td class="f_one"><a href="profile.php?action=show&uid=$winddb[uid]">查看個人資料</a></td>
+		<td class="f_one"><a href="profile.php?action=friend">好友列表</a></td>
+		<td class="f_one"><a href="profile.php?action=permission">用戶權限查看</a></td>
+<!--
+EOT;
+if($_G['atclog']){print <<<EOT
+-->
+		<td class="f_one"><a href="profile.php?action=log">帖子操作記錄</a></td>
+<!--
+EOT;
+}print <<<EOT
+-->
+		<td class="f_one"><a href="userpay.php">{$db_currencyname}管理</a></td>
+		<td class="f_one"><a href="profile.php?action=buy">特殊組購買</a></td>
+		<td class="f_one"><a href="profile.php?action=favor">收藏夾</a></td>
+		<td class="f_one"><a href="personal.php">我的主題</a></td>
+	</tr>
+</table>
+<br />
+<!--
+EOT;
+if(!$action){print <<<EOT
+-->
+<table width="$tablewidth" cellspacing="1" cellpadding="4" align="center">
+<tr><td width="23%" valign="top">
+<table width="100%" cellspacing="1" cellpadding="4" align="center" $i_table>
+<tr><td class="head" align="center"><b>用戶頭像</b></td></tr>
+<tr><td class="f_one" align="center">$userface<br /><br />
+<a href="search.php?authorid=$userdb[uid]">[我的主題]</a> 
+<a href="search.php?authorid=$userdb[uid]&digest=1">[我的精華帖]</a>
+<!--
+EOT;
+if($db_hackdb[toolcenter][2]){print <<<EOT
+-->
+<a href="hack.php?H_name=toolcenter&action=use">[使用道具]</a>
+<!--
+EOT;
+}print <<<EOT
+-->
+</td></tr>
+</table>
+<br />
+<table width="100%" cellspacing="1" cellpadding="4" align="center" $i_table>
+<tr><td class="head" align="center"><b>基本信息</b></td></tr>
+<tr><td class="f_one">
+用戶名: $userdb[username]
+<!--
+EOT;
+if($userdb[honor]){print <<<EOT
+-->
+($userdb[honor])
+<!--
+EOT;
+}print <<<EOT
+-->
+<br />
+<!--
+EOT;
+if($systitle){print <<<EOT
+-->
+系統頭餃: $systitle<br />
+<!--
+EOT;
+}print <<<EOT
+-->
+會員頭餃: $memtitle<br />
+精華: $userdb[digests]<br />
+發帖: $userdb[postnum]<br />
+$db_rvrcname: $userdb[rvrc] $db_rvrcunit<br />
+$db_creditname: $userdb[credit] $db_creditunit<br />
+$db_moneyname: $userdb[money] $db_moneyunit<br />
+活期存款: $userdb[deposit] $db_moneyunit<br />
+定期存款: $userdb[ddeposit] $db_moneyunit<br />
+在線時間: $userdb[onlinetime] 小時<br />
+注冊時間: $userdb[regdate]<br />
+最後登錄: $userdb[lastvisit]<br />
+</td></tr>
+</table>
+<br />
+<table width="100%" cellspacing="1" cellpadding="4" align="center" $i_table>
+<tr><td class="head" align="center"><b>{$db_currencyname} 管理</b></td></tr>
+<tr><td class="f_one">
+{$db_currencyname}: $userdb[currency]<br /><br />
+ &nbsp; &nbsp; &nbsp; &nbsp;
+[<a href="userpay.php?action=change">{$db_currencyname}轉換</a>]
+[<a href="userpay.php">{$db_currencyname}充值</a>]
+</td></tr>
+</table>
+<br />
+<!--
+EOT;
+if($_CREDITDB){
+print <<<EOT
+-->
+<table width="100%" cellspacing="1" cellpadding="4" align="center" $i_table>
+<tr><td class="head" align="center"><b>自定義積分</b></td></tr>
+<tr><td class="f_one"><!--
+EOT;
+foreach($_CREDITDB as $key => $value){
+$usercredit = $creditdb ? $creditdb[$key][1] : 0;
+print <<<EOT
+-->
+$value[0]($value[2]): $usercredit $value[1]<br />
+<!--
+EOT;
+}print <<<EOT
+-->
+</td></tr></table>
+<!--
+EOT;
+}print <<<EOT
+-->
+<br />
+<!--
+EOT;
+if($colonydb){
+print <<<EOT
+-->
+<table width="100%" cellspacing="1" cellpadding="4" align="center" $i_table>
+<tr><td class="head" align="center"><b>加入的{$db_hackdb[colony][0]}</b></td></tr>
+<tr><td class="f_one">
+<!--
+EOT;
+foreach($colonydb as $key => $value){
+print <<<EOT
+--> 
+<a href="hack.php?H_name=colony&cyid=$value[id]&job=view&id=$value[id]" target="_blank">$value[cname]</a><br />
+<!--
+EOT;
+}print <<<EOT
+-->
+</td></tr></table>
+<!--
+EOT;
+}print <<<EOT
+-->
+</td><td valign="top">
+<table width="100%" cellspacing="1" cellpadding="4" align="center" $i_table>
+<tr><td class="head" colspan="6"><b>最新五條短消息</b></td></tr>
+<tr class="cbg" align="center">
+<td width="5%">ID</td>
+<td width="35%">標題</td>
+<td width="15%">發件人</td>
+<td width="15%">收件人</td>
+<td width="20%">時間</td>
+<td width="5%">已讀</td></tr>
+<!--
+EOT;
+$id=0;
+foreach($msgdb as $key => $value){
+$id++;
+print <<<EOT
+-->
+<tr class="f_one" align="center">
+<td>$id</td>
+<td><a href="message.php?action=read&mid=$value[mid]" target="_blank">$value[title]</a></td>
+<td><a href="profile.php?action=show&uid=$value[fromuid]">$value[username]</a></td>
+<td><a href="profile.php?action=show&uid=$value[touid]">$value[to]</a></td>
+<td>$value[mdate]</td>
+<td>
+<!--
+EOT;
+if($value['ifnew']){print <<<EOT
+-->
+<font color="red">否</font>
+<!--
+EOT;
+}else{print <<<EOT
+-->
+是
+<!--
+EOT;
+}print <<<EOT
+-->
+</td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table><br />
+<table width="100%" cellspacing="1" cellpadding="4" align="center" $i_table>
+<tr><td class="head" colspan="5"><b>最新五個收藏主題</b></td></tr>
+<tr class="cbg" align="center">
+<td width="5%">ID</td>
+<td width="35%">標題</td>
+<td width="15%">論壇</td>
+<td width="15%">作者</td>
+<td width="25%">發表時間</td>
+</tr>
+<!--
+EOT;
+$id=0;
+foreach($favordb as $key => $value){
+$id++;
+print <<<EOT
+-->
+<tr class="f_one" align="center">
+<td>$id</td>
+<td><a href="read.php?tid=$value[tid]" target="_blank">$value[subject]</a></td>
+<td><a href="thread.php?fid=$value[fid]">$value[forum]</a></td>
+<td><a href="profile.php?action=show&uid=$value[authorid]">$value[author]</a></td>
+<td>$value[postdate]</td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table><br />
+</td></tr></table>
+<!--
+EOT;
+}elseif($action=='modify'){print <<<EOT
+-->
+<form action="profile.php?" method="post" onSubmit="return procheck(this)" name="creator" enctype="multipart/form-data">
+<input type="hidden" name="action" value="modify" />
+<table width="$tablewidth" cellspacing="1" cellpadding="4" align="center" $i_table>
+<!--
+EOT;
+if(!$passport_ifopen || $passport_type == 'server'){print <<<EOT
+-->
+<tr height="25"><td class="head" colspan="2">會員核心數據</td></tr>	
+<tr>
+<td width="35%" class="f_one"> 原密碼</td>
+<td class="f_one">
+<input type="password" size="20" maxlength="75" name="oldpwd" value="" />
+修改 <font color=blue>密碼</font> 或 <font color=blue>郵箱</font>時需要密碼驗證</td>
+</tr>
+<tr><td class="f_two"> 新密碼</td>
+<td class="f_two">
+<input type="password" size="20" maxlength="75" name="propwd" value="" /></td></tr>
+<tr><td class="f_one"> 確認密碼</td>
+<td class="f_one">
+<input type="password" size="20" maxlength="75" name="check_pwd" value="" /></td></tr>
+<tr>
+<td class="f_two"> E-MAIL</td>
+<td class="f_two">
+<input type="text" size="20" maxlength="75" name="proemail" value="$userdb[email]" />
+<input type="checkbox" name="propublicemail" value="1" $ifchecked />公開郵箱</td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+<tr height="25">
+<td class="head" colspan="2"> 會員基本數據 </td>
+</tr>
+<!--
+EOT;
+if($groupselect){ print <<<EOT
+-->
+<tr><td class="f_one"> 可選用戶組頭餃<br> -- 選擇一個用戶組頭餃作為你在論壇上的頭餃</td>
+<td class="f_one"><select name="newgroupid">$maingroup$groupselect</select></td></tr>
+<!--
+EOT;
+}if($gp_allowhonor){ print <<<EOT
+-->
+<tr>
+<td class="f_one"> 自定義頭餃</td>
+<td class="f_one">
+<input type="text" size="20" name="prohonor" value="$userdb[honor]" /></td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+<tr>
+<td class="f_two"> QQ</td>
+<td class="f_two">
+<input type="text" size="20" maxlength="14" name="prooicq" value="$userdb[oicq]" /></td>
+</tr>
+<tr>
+<td class="f_one"> ICQ</td>
+<td class="f_one">
+<input type="text" size="20" maxlength="14" name="proicq" value="$userdb[icq]" /></td>
+</tr>
+<tr>
+<td class="f_two"> Yahoo</td>
+<td class="f_two">
+<input type="text" size="20" name="proyahoo" value="$userdb[yahoo]" /></td>
+</tr>
+<tr>
+<td class="f_one"> Msn</td>
+<td class="f_one">
+<input type="text" size="20" name="promsn" value="$userdb[msn]" /></td>
+</tr>
+<tr>
+<td class="f_two"> 來自</td>
+<td class="f_two">
+<input type="text" size="20" maxlength="14" name="profrom" value="$userdb[location]" /></td>
+</tr>
+
+<tr>
+<td class="f_one"> 個人主頁</td>
+<td class="f_one"><input type="text" size="50" maxlength="75" name="prohomepage" value="$userdb[site]" />
+</td></tr>
+<tr>
+<td class="f_two"> 性別</td>
+<td class="f_two"><select name="progender">
+<option value="0" $sexselect[0]>保密</option>
+<option value="1" $sexselect[1]>男</option>
+<option value="2" $sexselect[2]>女</option></select></td>
+</tr>
+<tr>
+<td class="f_one"> 生日</td>
+<td class="f_one">
+<select name="proyear">
+<option value=""></option>
+<!--
+EOT;
+for($i=$rg_timestart;$i<=$rg_timeend;$i++){
+print <<<EOT
+-->
+<option value="$i" $yearslect[$i]>$i</option>  
+<!--
+EOT;
+} 
+print <<<EOT
+-->
+</select>年 
+<select name="promonth">
+<option value=""></option>
+<!--
+EOT;
+for($i=1;$i<=12;$i++){
+print <<<EOT
+-->
+<option value="$i" $monthslect[$i]>$i</option>
+<!--
+EOT;
+} 
+print <<<EOT
+-->
+</select>月 
+<select name="proday">
+<option value=""></option>
+<!--
+EOT;
+for($i=1;$i<=31;$i++){
+print <<<EOT
+-->
+<option value="$i" $dayslect[$i]>$i</option>
+<!--
+EOT;
+}print <<<EOT
+-->
+</select>日
+</td></tr>
+<tr> 
+<td class="f_two"> 自我簡介<br>--少于100字節</td>
+<td class="f_two">
+<textarea name="prointroduce" rows="4" cols="50">$userdb[introduce]</textarea></td>
+</tr>
+<!--
+EOT;
+if($customfield){print <<<EOT
+-->
+<tr height="25"><td class="head" colspan="2">附加信息</td></tr>
+<!--
+EOT;
+foreach($customfield as $key=>$val){
+$field="field_".(int)$val[id];
+$required=$val[required]?'(<font color="blue">必填內容</font>)':'';
+$editable=(!$userdb[$field]||$val[editable])?'':'disabled';
+$editinfo=!$val[editable]?'<b>請認真填寫該欄信息，填寫後將不允許修改</b>':'';
+if($val[type]=='1'){
+$field_type="<input type=\"text\" size=\"30\" name=\"$field\" value=\"{$userdb[$field]}\" $editable />";
+}elseif($val[type]=='2'){
+$field_type="<textarea name=\"$field\" rows=\"5\" cols=\"50\" $editable>{$userdb[$field]}</textarea>";
+}elseif($val[type]=='3'){
+$field_type="<select name=\"$field\" $editable>";
+$options=explode("\n",$val[options]);
+foreach($options as $k=>$v){
+list($k,$v)=explode('=',$v);
+$type_sel=$userdb[$field]==$k?'selected':'';
+$field_type.="<option value=\"$k\" $type_sel>$v</option>";
+}$field_type.="</select>";
+}print <<<EOT
+-->
+<tr class="f_one">
+	<td>$val[title] {$required}<br />$val[descrip]</td>
+	<td>{$field_type} {$editinfo}</td>
+</tr>
+<!--
+EOT;
+}}print <<<EOT
+-->
+<tr height="25"><td class="head" colspan="2"> 會員可定義數據 </td></tr>
+<tr class="f_one">
+	<td>交易帳號<br>用戶可以通過這個帳號向您求購商品</td>
+	<td>
+		<input type="text" size="20" maxlength="75" name="payemail" value="$payemail" />
+		<input type="radio" name="pay" value="3" $pay_3 />使用快錢收款
+		<input type="radio" name="pay" value="1" $pay_1 />使用貝寶收款
+		<input type="radio" name="pay" value="2" $pay_2 />使用支付寶收款
+	</td>
+</tr>
+<!--
+EOT;
+if($db_signmoney && strpos($db_signgroup,",$groupid,") !== false){print <<<EOT
+-->
+
+<tr><td class="f_one">簽名展示設置</td><td class="f_one">如果您想在帖子中展示您的個人簽名，需要開啟此功能<br>簽名展示一天需要支付{$db_currencyname}個數︰{$db_signmoney} &nbsp; &nbsp; 進入 <a href="userpay.php?action=change" target="_blank"><font color="blue">{$db_currencyname}轉換</font></a> <a href="userpay.php" target="_blank"><font color="blue">{$db_currencyname}充值</font></a><br><br>{$db_currencyname}︰{$userdb[currency]}，您的簽名已經展示 {$haveshow} 天，還可以展示 {$days} 天
+<!--
+EOT;
+if($userdb[currency]<=0){print <<<EOT
+-->
+ (<font color="red">您的{$db_currencyname}不足，不能展示簽名，請先對您的{$db_currencyname}帳戶充值</font>)
+<!--
+EOT;
+}print <<<EOT
+-->
+</td></tr>
+<tr class="f_one">
+	<td>是否開啟簽名展示功能</td>
+	<td>
+		<input type="radio" name="showsign" value="1" $showsign_1 />是
+		<input type="radio" name="showsign" value="0" $showsign_0 />否
+	</td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+<tr>
+<td class="f_one"> 個性化簽名<br>--少于{$gp_signnum}字節
+<!--
+EOT;
+if($db_signwindcode){print <<<EOT
+-->
+<br /><a href="faq.php?faqjob=1"> <font color="blue"><font color=blue>填寫個性簽名幫助</font></font></a>
+$windcode
+<!--
+EOT;
+}else{print <<<EOT
+-->
+<br /><a href="faq.php?faqjob=1#5">Wind Code</a>Close
+<!--
+EOT;
+}print <<<EOT
+-->
+</td>
+<td class="f_one">
+<textarea name="prosign"  rows="4" cols="50">$userdb[signature]</textarea></td>
+</tr>
+
+<tr>
+<td class="f_two"> 選擇您的頭像
+<br />
+<!--
+EOT;
+if($imgpatherror){print <<<EOT
+-->
+--圖片路徑發生錯誤,請到後台更正您的圖片路徑為與您論壇圖片保存的目錄
+<!--
+EOT;
+}print <<<EOT
+-->
+</td>
+<td class="f_two">
+<table width="100%" cellspacing="0" cellpadding="0">
+<tr><td width="22%" valign="middle">論壇提供頭像:
+<select name="proicon" onChange="showimage('$imgpath',this.options[this.selectedIndex].value)">
+<option value="">不使用</option>
+$imgselect
+</select></td><td width="78%" align="center" valign="middle">
+
+<img src="$imgpath/face/$iconarray[0]" name="useravatars" />
+</td></tr></table>
+<!--
+EOT;
+if(!$gp_allowportait){
+print <<<EOT
+-->
+<br /> <b>自定義頭像</b>- 您所處的用戶組無權限
+<!--
+EOT;
+}else{print <<<EOT
+-->
+<br /> <b>自定義頭像</b>- 被管理員開啟<br />
+<!--
+EOT;
+}if($db_upload && $gp_upload){
+print <<<EOT
+-->
+<br />頭像上傳<input type="file" class="subject" name="upload" />
+<!--
+EOT;
+}if($uploadimg){
+print <<<EOT
+-->
+<img src="$upimgurl" />[<a href="job.php?action=delimg">刪除</a>]
+<!--
+EOT;
+}if($gp_allowportait){print <<<EOT
+-->
+<br /><br />完整URL 頭像位置<input name="proownportait[0]" value="$iconarray[1]" type="text" />必須以 http://開頭的路徑。
+<!--
+EOT;
+}if(($db_upload && $gp_upload) || $gp_allowportait){print <<<EOT
+-->
+<br />頭像寬度<input name="proownportait[1]" value="$iconarray[2]" type="text" size="2" maxlength="3" />必須是 0 -- 185 之間的一個整數。
+<br />頭像高度<input name="proownportait[2]" value="$iconarray[3]" type="text" size="2" maxlength="3" />必須是 0 -- 200 之間的一個整數。
+<!--
+EOT;
+}print <<<EOT
+-->
+</td></tr>
+<tr height="25">
+<td class="head" colspan="2"> 論壇可控制性數據 </td>
+</tr>
+
+<tr><td class="f_one"> 選擇風格</td>
+<td class="f_one"><select name="tpskin">
+<option value="">使用默認</option>
+$choseskin</select></td></tr>
+<tr><td class="f_two">選擇您所在的時區<br>可將論壇的所有時間顯示為您的當地時間</td>
+<td class="f_two">
+<select name="timedf">
+<option value="0">使用默認</option>
+<!--
+EOT;
+include('template/admin/timezone.htm');
+print <<<EOT
+-->
+</select>
+</td></tr>
+<tr><td class="f_one">時間格式<br>格式如:yyyy-mm-dd,yy-m-d<br>yyyy:4位數年份,yy:2位數年份<br>mm:有前導零01-12,m:沒前導零1-12<br>dd:有前導零01-31,d:沒前導零1-31</td>
+<td class="f_one">
+<input type="radio" name="d_type" value="0" $d_type_0 />使用默認<br /><br />
+<input type="radio" name="d_type" value="1" $d_type_1 />自定義
+<input type="text" name="date_f" value="$userdb[datefm]" />
+<input type="radio" name="time_f" value="24" $check_24 />24
+<input type="radio" name="time_f" value="12" $check_12 />12
+</td></tr>
+<tr><td class="f_two">主題列表每頁個數(設置為0使用默認)</td>
+<td class="f_two">
+<select name="t_num"><option value="0">0</option>
+<option value="10" $T_10>10</option><option value="20" $T_20>20</option>
+<option value="30" $T_30>30</option><option value="40" $T_40>40</option>
+<!--
+EOT;
+if($groupid && @in_array($groupid,array(3,4,5))){print <<<EOT
+-->
+<option value="100" $T_100>100</option>
+<!--
+EOT;
+}print <<<EOT
+-->
+</select>
+</td></tr>
+<tr><td class="f_one">文章列表每頁個數(設置為0使用默認)</td>
+<td class="f_one">
+<select name="p_num"><option value="0">0</option>
+<option value="10" $P_10>10</option><option value="20" $P_20>20</option>
+<option value="30" $P_30>30</option>
+<!--
+EOT;
+if($groupid && @in_array($groupid,array(3,4,5))){print <<<EOT
+-->
+<option value="100" $P_100>100</option>
+<!--
+EOT;
+}print <<<EOT
+-->
+</select>
+</td></tr>
+<tr> 
+<td class="f_two"> 是否接受郵件</td>
+<td class="f_two"><input type="radio" name="proreceivemail" value="1" $email_open />
+接收郵件 
+<input type="radio" name="proreceivemail" value="0" $email_close />
+不接收郵件 </td>
+</tr>
+</table><br />
+<center>
+<input type="submit" name="prosubmit" value="確認修改" />
+<input type="hidden" value="2" name="step" />
+</form><center>
+<script language="JavaScript1.2">
+function procheck(formct)
+{
+	if (formct.prointroduce.value.length>200)
+	{
+		alert('自我介紹太長，請刪掉一些，控制在200個字節以內');
+		return false;
+	}
+}
+function showimage(imgpath,value)
+{
+	if(value!= '') {	
+	document.images.useravatars.src=imgpath+'/face/'+value;
+	} else{
+	document.images.useravatars.src=imgpath+'/face/none.gif';
+	}
+}
+</script>
+<!--
+EOT;
+}elseif($action=='friend'){
+print <<<EOT
+-->
+<form method="post" action="profile.php?">
+<input type="hidden" name="action" value="friend" />
+<input type="hidden" name="job" value="submit" />
+<table width="$tablewidth" cellspacing="1" cellpadding="5" align="center" $i_table>
+	<tr><td class="head" colspan="6">用戶權限查看</td></tr>
+	<tr align="center">
+		<td class="cbg" width="5%">ID</td>
+		<td class="cbg" width="5%">狀態</td>
+		<td class="cbg" width="15%">用戶名</td>
+		<td class="cbg">描述</td>
+		<td class="cbg" width="15%">加入時間</td>
+		<td class="cbg" width="5%">刪除</td>
+	</tr>
+<!--
+EOT;
+$id=0;
+foreach($frienddb as $key=>$val){
+$id++;
+print <<<EOT
+-->
+	<tr align="center">
+		<td class="f_one">$id</td>
+		<td class="f_one">
+<!--
+EOT;
+if($val['thisvisit']+$db_onlinetime*1.5>$timestamp){print <<<EOT
+-->
+			<b>在線</b> 
+<!--
+EOT;
+} else{print <<<EOT
+-->
+			<b>離線</b>
+<!--
+EOT;
+}print <<<EOT
+-->
+		</td>
+		<td class="f_one"><a href="profile.php?action=show&uid=$val[friendid]">$val[username]</a></td>
+		<td class="f_one">
+			<input type="text" size="80" name="frienddb[$val[friendid]]" value="$val[descrip]" />
+		</td>
+		<td class="f_one">$val[joindate]</td>
+		<td class="f_one"><input type="checkbox" name="selid[]" value="$val[friendid]" /></td>
+	</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+	<tr align="center">
+		<td class="f_one"></td>
+		<td class="f_one"></td>
+		<td class="f_one"><input type="text" name="pwuser" size="20" /></td>
+		<td class="f_one"><input type="text" name="descrip" size="80" /></td>
+		<td class="f_one"></td>
+		<td class="f_one"></td>
+	</tr>
+</table>
+<br />
+<center>
+<input type="button" name="chkall" value="全 選" onclick="CheckAll(this.form)" />
+<input type="submit" value="提 交" />
+</center>
+</form>
+<script language="JavaScript">
+function CheckAll(form){
+	for (var i=0;i<form.elements.length-4;i++){
+		var e = form.elements[i];
+		e.checked == true ? e.checked = false : e.checked = true;
+	}
+}
+</script>
+<!--
+EOT;
+}elseif($action=='permission'){
+$_P=array('0'=>'&#215;','1'=>'&#8730;');
+print <<<EOT
+-->
+<table width="$tablewidth" cellspacing="1" cellpadding="5" align="center" $i_table style="TABLE-LAYOUT: fixed;WORD-WRAP: break-word;">
+	<tr><td class="head" colspan="10">用戶權限查看</td></tr>
+	<tr><td class="f_one" colspan="10"><b>基本權限</b></td></tr>
+	<tr align="center">
+		<td class="f_one">隱身登錄</td>
+		<td class="f_one">瀏覽帖子</td>
+		<td class="f_one">搜索權限</td>
+		<td class="f_one">查看會員列表</td>
+		<td class="f_one">查看會員資料</td>
+		<td class="f_one">展區功能</td>
+		<td class="f_one">報告功能</td>
+		<td class="f_one">頭像上傳</td>
+		<td class="f_one">自定義頭像</td>
+		<td class="f_one">榮譽頭餃</td>
+	</tr>
+	<tr align="center">
+		<td class="f_one">{$_P[$per[hide]]}</td>
+		<td class="f_one">{$_P[$per[read]]}</td>
+		<td class="f_one">{$_P[$per[search]]}</td>
+		<td class="f_one">{$_P[$per[member]]}</td>
+		<td class="f_one">{$_P[$per[profile]]}</td>
+		<td class="f_one">{$_P[$per[show]]}</td>
+		<td class="f_one">{$_P[$per[report]]}</td>
+		<td class="f_one">{$_P[$per[upload]]}</td>
+		<td class="f_one">{$_P[$per[portait]]}</td>
+		<td class="f_one">{$_P[$per[honor]]}</td>
+	</tr>
+	<tr><td class="f_one" colspan="10"><b>帖子權限</b></td></tr>
+	<tr align="center">
+		<td class="f_one">發表主題</td>
+		<td class="f_one">回復主題</td>
+		<td class="f_one">發起投票</td>
+		<td class="f_one">參與投票</td>
+		<td class="f_one">查看投票結果</td>
+		<td class="f_one">發html帖</td>
+		<td class="f_one">發隱藏帖</td>
+		<td class="f_one">發加密帖</td>
+		<td class="f_one">發出售帖</td>
+		<td class="f_one">評分權限</td>
+	</tr>
+	<tr align="center">
+		<td class="f_one">{$_P[$per[post]]}</td>
+		<td class="f_one">{$_P[$per[rp]]}</td>
+		<td class="f_one">{$_P[$per[newvote]]}</td>
+		<td class="f_one">{$_P[$per[vote]]}</td>
+		<td class="f_one">{$_P[$per[vwvt]]}</td>
+		<td class="f_one">{$_P[$per[html]]}</td>
+		<td class="f_one">{$_P[$per[hidden]]}</td>
+		<td class="f_one">{$_P[$per[encode]]}</td>
+		<td class="f_one">{$_P[$per[sell]]}</td>
+		<td class="f_one">{$_P[$per[mark]]}</td>
+	</tr>
+	<tr><td class="f_one" colspan="10"><b>附件權限</b></td></tr>
+		<tr align="center">
+		<td class="f_one">上傳附件</td>
+		<td class="f_one">下載附件</td>
+		<td class="f_one">被扣金錢</td>
+		<td class="f_one">附件個數(1天)</td>
+		<td class="f_one">附件大小上限</td>
+		<td class="f_one" colspan="5" align="left">附件允許後綴</td>
+	</tr>
+	<tr align="center">
+		<td class="f_one">{$_P[$per[attach]]}</td>
+		<td class="f_one">{$_P[$per[down]]}</td>
+		<td class="f_one">$gp_uploadmoney</td>
+		<td class="f_one">$gp_allownum</td>
+		<td class="f_one">$_G[uploadmaxsize](K)</td>
+		<td class="f_one" colspan="5" align="left">$_G[uploadtype]</td>
+	</tr>
+</table>
+<!--
+EOT;
+}elseif($action=='forumright'){
+$_P=array('0'=>'×','1'=>'ˇ');
+print <<<EOT
+-->
+<table width="$tablewidth" cellspacing="1" cellpadding="5" align="center" $i_table style="TABLE-LAYOUT: fixed;WORD-WRAP: break-word;">
+	<tr><td class="head" colspan="5">版塊基本權限</td></tr>
+	<tr align="center">
+		<td class="f_one">瀏覽版塊</td>
+		<td class="f_one">發表主題</td>
+		<td class="f_one">回復主題</td>
+		<td class="f_one">上傳附件</td>
+		<td class="f_one">下載附件</td>
+	</tr>
+	<tr align="center">
+		<td class="f_one">{$_P[$per[visit]]}</td>
+		<td class="f_one">{$_P[$per[post]]}</td>
+		<td class="f_one">{$_P[$per[rp]]}</td>
+		<td class="f_one">{$_P[$per[down]]}</td>
+		<td class="f_one">{$_P[$per[upload]]}</td>
+	</tr>
+</table>
+<br />
+<table width="$tablewidth" cellspacing="1" cellpadding="5" align="center" $i_table>
+	<tr><td class="head" colspan="7">版塊積分設置</td></tr>
+	<tr align="center">
+		<td class="cbg" width="8%"></td>
+		<td class="cbg" width="15%">精華主題</td>
+		<td class="cbg" width="15%">取消精華</td>
+		<td class="cbg" width="15%">發表主題</td>
+		<td class="cbg" width="15%">刪除主題</td>
+		<td class="cbg">發表十個回復</td>
+		<td class="cbg">刪除十個回復</td>
+	</tr>
+<!--
+EOT;
+foreach($creditset as $key=>$val){print <<<EOT
+-->
+	<tr align="center">
+		<td class="f_one">{$val[name]}</td>
+		<td class="f_one">+{$val[Digest]}</td>
+		<td class="f_one">-{$val[Undigest]}</td>
+		<td class="f_one">+{$val[Post]}</td>
+		<td class="f_one">-{$val[Delete]}</td>
+		<td class="f_one">+{$val[Reply]}</td>
+		<td class="f_one">-{$val[Deleterp]}</td>
+	</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<!--
+EOT;
+}elseif($action=='log'){
+print <<<EOT
+-->
+ &nbsp; $pages
+<table width="$tablewidth" cellspacing="1" cellpadding="5" align="center" $i_table>
+	<tr>
+		<td class="head" colspan="7">
+			<div>
+				<div style="float:left;"><b>帖子操作記錄</b></div>
+				<div style="float:right;">
+					<select name="type" onchange="window.location=('profile.php?action=log&type='+this.options[this.selectedIndex].value)">
+						<option value="all">全部</option>
+						<option value="topped" $type_sel[topped]>{$logtype[topped]}</option>
+						<option value="digest" $type_sel[digest]>{$logtype[digest]}</option>
+						<option value="highlight" $type_sel[highlight]>{$logtype[highlight]}</option>
+						<option value="push" $type_sel[push]>{$logtype[push]}</option>
+						<option value="locked" $type_sel[locked]>{$logtype[locked]}</option>
+						<option value="delete" $type_sel[delete]>{$logtype[delete]}</option>
+						<option value="move" $type_sel[move]>{$logtype[move]}</option>
+						<option value="copy" $type_sel[copy]>{$logtype[copy]}</option>
+						<option value="edit" $type_sel[edit]>{$logtype[edit]}</option>
+						<option value="credit" $type_sel[credit]>{$logtype[credit]}</option>
+					</select>
+				</div>
+			</div>
+		</td>
+	</tr>
+	<tr align="center">
+		<td class="cbg" width="3%">ID</td>
+		<td class="cbg" width="8%">類型</td>
+		<td class="cbg" width="15%">管理員</td>
+		<td class="cbg" width="15%">論壇</td>
+		<td class="cbg" width="15%">操作日期</td>
+		<td class="cbg">描述</td>
+	</tr>
+<!--
+EOT;
+$num=($page-1)*$db_perpage;
+foreach($logdb as $key => $value){
+$num++;
+print <<<EOT
+-->
+<tr class="f_one" align="center">
+<td>$num</td>
+<td>{$logtype[$value[type]]}</td>
+<td><a href="profile.php?action=show&username=$value[username2]" target="_blank">$value[username2]</a></td>
+<td><a href="thread.php?fid=$value[field1]" target="_blank">{$forum[$value[field1]][name]}</a></td>
+<td>$value[date]</td>
+<td><div style="TABLE-LAYOUT: fixed;WORD-WRAP: break-word" align="left">$value[descrip]</div></td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+ &nbsp; $pages
+<script language="JavaScript">
+function Bjump(value){
+	if(value!= '') {
+		window.location=('$basename&action=log&type='+value);
+	}
+}
+</script>
+<!--
+EOT;
+}elseif($action=='buy'){
+if(!$job){print <<<EOT
+-->
+<table cellspacing="1" cellpadding="5" width="$tablewidth" $i_table align="center">
+<tr class="head"><td colspan="6">特殊組購買</td></tr>
+<tr class="cbg" align="center">
+<td>用戶組頭餃</td>
+<td>日價格</td>
+<td>最短購買天數</td>
+<td>到期時間</td>
+<td>購買</td>
+</tr>
+<!--
+EOT;
+foreach($specialdb as $key=>$val) {
+print <<<EOT
+-->
+<tr align="center" class="f_one">
+	<td>$val[grouptitle]</td>
+	<td>{$val[sright][sellprice]}</td>
+	<td>{$val[sright][selllimit]}</td>
+	<td>$val[enddate]</td>
+	<td>
+<!--
+EOT;
+if(!$val['startdate'] || $timestamp > $val['startdate'] + $val['days']*86400){print <<<EOT
+-->
+		<a href="profile.php?action=buy&job=buy&gid=$val[gid]">購買</a>
+<!--
+EOT;
+}else{print <<<EOT
+-->
+		-
+<!--
+EOT;
+}print <<<EOT
+-->
+	</td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<!--
+EOT;
+}elseif($job=='buy'){print <<<EOT
+-->
+<form method="post" action="profile.php?action=buy&">
+<input type="hidden" name="job" value="buy" />
+<input type="hidden" name="step" value="2" />
+<input type="hidden" name="gid" value="$gid" />
+<table cellspacing="1" cellpadding="5" width="$tablewidth" $i_table align="center">
+<tr class="head"><td colspan="2">特殊組購買</td></tr>
+<tr class="f_one">
+	<td>用戶組頭餃</td>
+	<td><b>{$rt[grouptitle]}</b>:{$rt[sright][sellinfo]}</td>
+</tr>
+<tr class="f_one">
+	<td>日價格</td>
+	<td>{$rt[sright][sellprice]}</td>
+</tr>
+<tr class="f_one">
+	<td>最短購買天數</td>
+	<td>{$rt[sright][selllimit]}</td>
+</tr>
+<tr class="f_one">
+	<td>購買天數</td>
+	<td><input type="text" name="days" size="20" /></td>
+</tr>
+<tr class="f_one">
+	<td>請輸入密碼</td>
+	<td><input type="password" name="pwpwd" size="20" /></td>
+</tr>
+<tr class="f_one">
+	<td>將該用戶組頭餃作為</td>
+	<td>
+		<input type="radio" name="options" value="1" checked />論壇顯示頭餃
+		<input type="radio" name="options" value="2" />附加頭餃
+	</td>
+</tr>
+</table>
+<br />
+<center><input type="submit" value="提 交" /></center>
+</form>
+<!--
+EOT;
+}}elseif($action=='favor'){print <<<EOT
+-->
+<table width="$tablewidth" cellspacing="1" cellpadding="4" align="center">
+	<tr>
+		<td width="23%" valign="top">
+		<form method="post" name="form" action="profile.php?action=favor&">
+		<input type="hidden" name="job" value="addtype" />
+		<table cellspacing="1" cellpadding="4" width="100%" $i_table align="center">
+			<tr>
+				<td class="head"><b>收藏夾目錄</b></td></tr>
+			<tr><td class="f_one">
+					<table width="100%" cellspacing="1" cellpadding="4" align="center">
+						<tr>
+							<td><img src="$imgpath/wind/cate_$imgtype[tid].gif" />&nbsp;<b>文章收藏夾</b>
+							</td>
+						</tr>
+						<tbody id="cate_tid" style="$styletype[tid]">
+						<tr>
+							<td>&nbsp;&nbsp;&nbsp;--&nbsp; <a href="profile.php?action=favor">全部收藏</a></td>
+						</tr>
+						<tr>
+							<td>&nbsp;&nbsp;&nbsp;--&nbsp; 
+							<a href="profile.php?action=favor&type=0">默認分類</a>
+							</td>
+						</tr>
+<!--
+EOT;
+foreach($typeid as $key=>$value){
+$k=$key+1;
+print <<<EOT
+-->
+						<tr>
+							<td>&nbsp;&nbsp;&nbsp;--&nbsp; 
+							<a href="profile.php?action=favor&type=$k">$value</a>&nbsp;&nbsp;[<a href="profile.php?action=favor&job=deltype&type=$k" onclick="return Checkinfo();">刪除</a>]
+							</td>
+						</tr>
+<!--
+EOT;
+} print <<<EOT
+-->
+					</table>
+				</td>
+			</tr>
+			<tr class="cbg">
+				<td>收藏夾管理</td></tr>
+			<tr class="f_one">
+				<td align="center"><br />新目錄名&nbsp;<input type="text" name="type" size="10" />
+				&nbsp;<input type="submit" value="提 交" /><br /><br />
+				</td>
+			</tr>
+		</table></form>
+		</td>
+		<td width="*" valign="top">
+		<form method="post" name="form" action="profile.php?action=favor&">
+		<table cellspacing="1" cellpadding="5" width="100%" $i_table align="center">
+			<tr class="head"><td colspan="7">收藏夾</td></tr>
+			<tr class="cbg" align="center">
+				<td width="5%">ID</td>
+				<td>標題</td>
+				<td width="15%">論壇</td>
+				<td width="15%">作者</td>
+				<td width="15%">收藏夾目錄</td>
+				<td width="5%"></td>
+			</tr>
+<!--
+EOT;
+foreach($favordb as $id=>$favor) {
+$id++;
+print <<<EOT
+-->
+			<tr align="center" class="f_one">
+				<td>$id</td>
+				<td align="left"><a href="read.php?fid=$favor[fid]&tid=$favor[tid]" target="_blank">$favor[subject]</a></td>
+				<td><a href="thread.php?fid=$favor[fid]">$favor[forum]</a></td>
+				<td><a href="profile.php?action=show&uid=$favor[authorid]">$favor[author]</a></td>
+				<td class="smalltxt">$favor[sel]</td>
+				<td><input type="checkbox" name="delid[]" value="$favor[tid]" /></td>
+			</tr>
+<!--
+EOT;
+} print <<<EOT
+-->
+		</table>
+		<br />
+		<center>
+		<input type="radio" name="job" value="change" checked />&nbsp;文件夾轉換
+		<select name="type"><option value="0"></option>
+<!--
+EOT;
+foreach($typeid as $key=>$value){
+$k=$key+1;
+print <<<EOT
+-->
+		<option value="$k">$value</option>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+		</select>&nbsp;<input type="radio" name="job" value="clear" />&nbsp;刪除<br /><br />
+		<input type="button" name="chkall" value="全 選" onclick="CheckAll(this.form)" />
+		<input type="submit" value="提 交" />
+		</center>
+		</form>
+		</td>
+	</tr>
+</table>
+<script language="JavaScript">
+function CheckAll(form){
+	for (var i=0;i<form.elements.length-5;i++){
+		var e = form.elements[i];
+		e.checked == true ? e.checked = false : e.checked = true;
+	}
+}
+function Checkinfo(){
+	if(confirm('確定要刪除該分類嗎?')){
+		return true;
+	}else{
+		return false;
+	}
+}
+</script>
+<!--
+EOT;
+}?>-->

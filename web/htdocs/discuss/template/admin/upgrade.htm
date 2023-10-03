@@ -1,0 +1,115 @@
+<!--<?php
+include_once PrintEot('left');
+if (empty($action)){
+print <<<EOT
+-->
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b>會員組提升方案</b></td></tr>
+<tr><td class=b><br>
+<ul>
+PHPWind 論壇系統提供了一套靈活的等級提升方案，可以根據<b>綜合積分</b>來劃分用戶等級，設定一個好的等級提升方案能更好的體現論壇等級系統的價值<br><br><b>綜合積分︰</b>綜合積分是按照<b>會員組提升方案</b>中設定的積分比率來計算的，可以根據<b>論壇積分狀況統計</b>合理的設置<b>會員組提升方案</b><br>計算方法︰各項積分*比率的和為綜合積分的值<br><br>如等級提升方案設置<br>發貼數 : 1<br>威望 &nbsp; &nbsp;: 0.5<br>金錢 &nbsp; &nbsp;: -1<br>其他 &nbsp; &nbsp;: 0<br><br>綜合積分計算方法如下︰<br>發貼數*1 + 威望*0.5 + 金錢*(-1)
+</ul>
+<br></td></tr></table>
+<br>
+<table width=98% align=center cellspacing=1 cellpadding=5 class=i_table>
+<tr><td class=head colspan=5>論壇積分狀況統計</td></tr>
+<tr>
+	<td class=head_2 width="30%">積分</td>
+	<td class=head_2>積分總和</td>
+	<td class=head_2>平均每人</td>
+</tr>
+<tr>
+	<td class=b width="30%">發帖數</td>
+	<td class=b>$credit[postnum]</td>
+	<td class=b>$creditrate[postnum]</td>
+</tr>
+<tr>
+	<td class=b>精華</td>
+	<td class=b>$credit[digests]</td>
+	<td class=b>$creditrate[digests]</td>
+</tr>
+<tr>
+	<td class=b>{$db_rvrcname}</td>
+	<td class=b>$credit[rvrc]</td>
+	<td class=b>$creditrate[rvrc]</td>
+</tr>
+<tr>
+	<td class=b>{$db_moneyname}</td>
+	<td class=b>$credit[money]</td>
+	<td class=b>$creditrate[money]</td>
+</tr>
+<tr>
+	<td class=b>{$db_creditname}</td>
+	<td class=b>$credit[credit]</td>
+	<td class=b>$creditrate[credit]</td>
+</tr>
+<tr>
+	<td class=b>在線時間</td>
+	<td class=b>$credit[onlinetime]</td>
+	<td class=b>$creditrate[onlinetime]</td>
+</tr>
+<!--
+EOT;
+foreach($_CREDITDB as $key=>$val){print <<<EOT
+-->
+<tr>
+	<td class=b>$val[0]</td>
+	<td class=b>{$credit[$key]}</td>
+	<td class=b>$creditrate[$key]</td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<br>
+<form action="$basename" method=post>
+<input type=hidden name=action value='delete'>
+<table width=98% align=center cellspacing=1 cellpadding=5 class=i_table>
+<tr><td class=head colspan=5><b>會員組提升方案</b></td></tr>
+<tr>
+	<td class="head_2" width="30%">積分</td>
+	<td class="head_2">比率</td>
+</tr>
+<tr>
+	<td class=b>發帖數</td>
+	<td class=b><input type="text" size="5" name="upgrade[postnum]" value="$db_upgrade[postnum]"></td>
+</tr>
+<tr>
+	<td class=b>精華</td>
+	<td class=b><input type="text" size="5" name="upgrade[digests]" value="$db_upgrade[digests]"></td>
+</tr>
+<tr>
+	<td class=b>{$db_rvrcname}</td>
+	<td class=b><input type="text" size="5" name="upgrade[rvrc]" value="$db_upgrade[rvrc]"></td>
+</tr>
+<tr>
+	<td class=b>{$db_moneyname}</td>
+	<td class=b><input type="text" size="5" name="upgrade[money]" value="$db_upgrade[money]"></td>
+</tr>
+<tr>
+	<td class=b>{$db_creditname}</td>
+	<td class=b><input type="text" size="5" name="upgrade[credit]" value="$db_upgrade[credit]"></td>
+</tr>
+<tr>
+	<td class=b>在線時間</td>
+	<td class=b><input type="text" size="5" name="upgrade[onlinetime]" value="$db_upgrade[onlinetime]"></td>
+</tr>
+<!--
+EOT;
+foreach($_CREDITDB as $key=>$val){print <<<EOT
+-->
+<tr>
+	<td class=b>$val[0]</td>
+	<td class=b><input type="text" size="5" name="upgrade[$key]" value="$db_upgrade[$key]"></td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<br><center><input type=submit value='提交'></center></form>
+<!--
+EOT;
+}include_once PrintEot('adminbottom');
+?>-->

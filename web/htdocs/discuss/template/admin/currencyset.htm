@@ -1,0 +1,105 @@
+<!--<?php
+include_once PrintEot('left');
+print <<<EOT
+-->
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+<tr><td class="head" colspan="7"><b>提示信息</b></td></tr>
+<tr><td class="b">說明︰<br>1. 論壇交易幣是用戶在論壇進行各種交易的貨幣，可用于購買會員道具。<br>2. 用戶的交易幣可通過帳戶充值或管理員獎勵等方式獲得。<br>3. 按照系統設置的轉換比例，可以通過轉換交易幣獲得論壇積分或將論壇積分轉換為交易幣<br> &nbsp; &nbsp; 論壇積分︰{$db_rvrcname}，{$db_moneyname}，{$db_creditname}和自定義積分等<br><br></td></tr>
+</table><br>
+<!--
+EOT;
+if (!$action){print <<<EOT
+-->
+<form action="$basename" method="post">
+<input type="hidden" name="action" value="setname">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2">交易幣設置</td></tr>
+	<tr>
+		<td class="b" width="20%">交易幣名稱</td>
+		<td class="b">
+			<input type="text" name="config[db_currencyname]" value="$db_currencyname">
+		</td>
+	</tr>
+	<tr>
+		<td class="b" width="20%">與人民幣的轉化比率</td>
+		<td class="b">
+			<input type="text" name="config[db_rmbrate]" value="$db_rmbrate">&nbsp;&nbsp;通過支付 1 RMB , 可獲得的交易幣
+		</td>
+	</tr>
+	<tr>
+		<td class="b" width="20%">最少支付金額</td>
+		<td class="b">
+			<input type="text" name="config[db_rmblest]" value="$db_rmblest">
+		</td>
+	</tr>
+</table>
+<br><center><input type="submit" value="提 交"></center></form>
+
+<form action="$basename" method="post">
+<input type="hidden" name="action" value="virement">
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+	<tr><td class=head colspan=2>{$db_currencyname}轉帳設置</td></tr>
+	<tr>
+		<td class=b width="20%">是否開啟轉帳功能</td>
+		<td class=b>
+			<input type="radio" name="config[cy_virement]" value="1" $virement_Y>是
+			<input type="radio" name="config[cy_virement]" value="0" $virement_N>否
+		</td>
+	</tr>
+	<tr>
+		<td class=b width="20%">轉帳手續費比率(%)</td>
+		<td class=b><input type="text" name="config[cy_virerate]" value="$cy_virerate" size=20></td>
+	</tr>
+	<tr>
+		<td class=b width="20%">最低轉帳{$db_currencyname}數</td>
+		<td class=b><input type="text" name="config[cy_virelimit]" value="$cy_virelimit" size=20></td>
+	</tr>
+</table>
+<br><center><input type=submit value='提 交'></center></form>
+
+<form action="$basename" method="post">
+<input type="hidden" name="action" value="currrate">
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b>{$db_currencyname}轉換比例</b></td></tr>
+<tr><td class=b colspan=2>以下設置為每<font color=blue><b>轉換一個{$db_currencyname}</b></font>獲得對應的積分數 (留空或設置為 0，不開啟對應積分的轉換功能)</td></tr>
+<tr><td class=b width="20%">{$db_rvrcname}</td>
+<td class=b><input type="text" name="currrate1[rvrc]" value="$currrate1[rvrc]"></td></tr>
+<tr><td class=b>{$db_moneyname}</td>
+<td class=b><input type="text" name="currrate1[money]" value="$currrate1[money]"></td></tr>
+<tr><td class=b>{$db_creditname}</td>
+<td class=b><input type="text" name="currrate1[credit]" value="$currrate1[credit]"></td></tr>
+<!--
+EOT;
+foreach($_CREDITDB as $key => $value){print <<<EOT
+-->
+<tr><td class=b>$value[0]</td>
+<td class=b><input type="text" name="currrate1[$key]" value="{$currrate1[$key]}"></td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+<tr><td class=b colspan=2>以下設置為每<font color=blue><b>獲得一個{$db_currencyname}</b></font>需要對應的積分數 (留空或設置為 0，不開啟對應積分的轉換功能)</td></tr>
+<tr><td class=b>{$db_rvrcname}</td>
+<td class=b><input type="text" name="currrate2[rvrc]" value="$currrate2[rvrc]"></td></tr>
+<tr><td class=b>{$db_moneyname}</td>
+<td class=b><input type="text" name="currrate2[money]" value="$currrate2[money]"></td></tr>
+<tr><td class=b>{$db_creditname}</td>
+<td class=b><input type="text" name="currrate2[credit]" value="$currrate2[credit]"></td></tr>
+<!--
+EOT;
+foreach($_CREDITDB as $key => $value){print <<<EOT
+-->
+<tr><td class=b>$value[0]</td>
+<td class=b><input type="text" name="currrate2[$key]" value="{$currrate2[$key]}"></td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+
+</table>
+<br><center><input type=submit value='提 交'></center></form>
+<!--
+EOT;
+}include_once PrintEot('adminbottom');
+?>
+-->

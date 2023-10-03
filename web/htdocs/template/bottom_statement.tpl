@@ -1,0 +1,40 @@
+<!-- this link is duplcated css , just for test-->
+<LINK REL="stylesheet" href="css/index_default.css" TYPE="text/css">
+
+<table width="720" border="0" align="left">
+  <tr>
+    <td height="32" colspan="3" align="left" valign="top"><img src="template/images/statement.jpg" width="807" height="24" border="0" ></a></td>
+  </tr>
+  <tr>
+    <td width="60" height="726">&nbsp;</td>
+    <td width="650" align="left" valign="top"><p id="content" class="bot_content"> 　　demo studio依照以下服務條款之約定，提供DE-MO街拍流行情報之網路服務。請您仔細閱讀以下條款內容，並隨時注意條款的修改狀況。當您使用DE-MO街拍流行情報時，即表示您已了解並同意接受以下服務條款之所有內容；本公司可能於任何時間修改服務條款之內容，您若於修改後繼續使用DE-MO街拍流行情報 ，表示您了解並同意修改後的條款。如果您不同意以下條款的內容，煩請停止使用demo studio。</p> <p id="content" class="bot_content">&nbsp;</p> <p id="content" class="bot_content">■<strong>資訊與服務之提供<br></strong><IMG height="7" src="template/images/dot.gif" width="640"><BR>
+        　demo studio對於所提供的服務，並不擔保完全穩定、安全、無誤、及不中斷。您應自行承擔使用各項服務的風險及其可能造成之損害。<BR>
+        <BR>
+        <BR>
+        ■<strong>系統規範<br></strong><IMG height="7" src="template/images/dot.gif" width="640"><BR>
+        　本服務有時可能會出現中斷或故障等現象，或許將造成使用上的不便、資料喪失、錯誤、遭人篡改或其他經濟上損失等情形。為提供您更穩定優質的服務，我們會定期進行系統維護升級作業，在系統維護期間內，某些服務可能受到短暫時間約10~15分鐘的影響，致使您無法正常使用，如遇此狀況請您稍後再試。<BR>
+      </p> <p id="content" class="bot_content">■<strong>隱私權保護<BR>
+      </strong><IMG height="7" src="template/images/dot.gif" width="640"><BR>
+      　對於您使用demo studio的服務所留下的個人資料，本公司基於對隱私權的尊重，將儘可能予以保護。相關細節請參閱「demo studio隱私權政策」。<BR>    
+    </p> <p id="content" class="bot_content">■<strong>使用者的義務<br> </strong><IMG height="7" src="template/images/dot.gif" width="640"><BR>
+      　demo studio為一提供公眾服務之開放場所，您在使用demo studio提供的服務時，應遵守中華民國法令及一切國際條約與慣例。當您在使用設立於台灣地區以外之網站時，亦應遵守各該網站當地之法令及網路慣例。   您在網際網路上發表的一切言論，以及從事的一切行為，應由您自己負全部的法律責任，與demo studio無涉。若您透過demo studio提供的服務侵害本公司或第三人的權利，或從事其他不法行為，本公司將停止提供對您的服務，並依情形移送檢警機關依法偵辦。您承諾絕不為任何非法目的或以任何非法方式使用本服務，並承諾遵守中華民國相關法規及一切使用網際網路之國際慣例。您若係中華民國以外之使用者，並同意遵守所屬國家或地域之法令。您同意並保證不得利用本服務從事侵害他人權益或違法之行為，包括但不限於：<BR>
+      　A.   上載、張貼、公布或傳送任何誹謗、侮辱、具威脅性、攻擊性、不雅、猥褻、不實、違反公共秩序或善良風俗或其他不法之文字、圖片 　　&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;或任何形式的檔案於本服務上<BR>
+      　B.   侵害他人名譽、隱私權、營業秘密、商標權、著作權、專利權、其他智慧財產權及其他權利； <BR>
+      　C. 違反依法律或契約所應負之保密義務；<BR>
+      　D.   冒用他人名義使用本服務；<BR>
+      　E. 上載、張貼、傳輸或散佈任何含有電腦病毒或任何對電腦軟、硬體產生中斷、破壞或限制功能之程式碼之資料；<BR>
+      　F.   從事不法交易行為或張貼虛假不實、引人犯罪之訊息；<BR>
+      　G. 販賣槍枝、毒品、禁藥、盜版軟體或其他違禁物；<BR>
+      　H.   提供賭博資訊或以任何方式引誘他人參與賭博；<BR>
+      　I. 濫發廣告郵件、垃圾郵件、連鎖信、違法之多層次傳銷訊息等； <BR>
+      　J.   以任何方法傷害未成年人；<BR>
+      　K. 偽造訊息來源或以任何方式干擾傳輸來源之認定；<BR>
+      　L.   干擾或中斷本服務或伺服器或連結本服務之網路，或不遵守連結至本服務之相關需求、程序、政策或規則等；　<BR>
+      　M. 對於恐怖行動提供任何實質支持或資源；<BR>
+      　N.   追蹤他人或其他干擾他人或為前述目前蒐集或儲存他人之個人資訊；<BR>
+      　O. 其他Yahoo!奇摩有正當理由認為不適當之行為。 <p id="content" class="bot_content">■<strong> 網路犯罪之處理<br></strong><IMG height="7" src="template/images/dot.gif" width="640"><BR>
+    　 侵入電腦系統或干擾其運作、散佈電腦病毒、誹謗他人名譽或侵害他人智慧財產權等，均屬犯罪行為。一經發覺，本公司將立即報請檢警機關處理，並全力配合犯罪之偵查。若您發現有網友利用demo studio提供的服務從事前述犯罪行為，請您儘速通知本公司處理，以維護健全的網路秩序。</p></td>
+    <td width="10">&nbsp;</td>
+  </tr>
+</table>
+

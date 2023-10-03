@@ -1,0 +1,402 @@
+<!--<?php
+print <<<EOT
+-->
+<table width="$tablewidth" cellspacing="0" cellpadding="0" align="center">
+<tr><td align="left"><img src="$imgpath/$stylepath/index/home.gif" align="absbottom" /> 
+<b><a href="$db_bfn">$db_bbsname </a> -> 
+<!--
+EOT;
+if(!$action){print <<<EOT
+-->
+<a href="userpay.php">{$db_currencyname}充值</a>
+<!--
+EOT;
+}elseif($action=='change'){print <<<EOT
+-->
+{$db_currencyname}轉換
+<!--
+EOT;
+}elseif($action=='list'){print <<<EOT
+-->
+{$db_currencyname}訂單
+<!--
+EOT;
+}elseif($action=='virement'){print <<<EOT
+-->
+{$db_currencyname}轉帳
+<!--
+EOT;
+}elseif($action=='log'){print <<<EOT
+-->
+{$db_currencyname}記錄
+<!--
+EOT;
+}elseif($action=='pay'){print <<<EOT
+-->
+通過快錢支付
+<!--
+EOT;
+}print <<<EOT
+-->
+</b></td>
+<td align="right"></td></tr></table>
+<br />
+<table width="$tablewidth" cellspacing="1" cellpadding="4" align="center" $i_table style="TABLE-LAYOUT: fixed;WORD-WRAP: break-word;">
+	<tr align="center">
+		<td class="f_one"><a href="profile.php">控制面板首頁</a></td>
+		<td class="f_one"><a href="profile.php?action=modify">編輯個人資料</a></td>
+		<td class="f_one"><a href="profile.php?action=show&uid=$winddb[uid]">查看個人資料</a></td>
+		<td class="f_one"><a href="profile.php?action=friend">好友列表</a></td>
+		<td class="f_one"><a href="profile.php?action=permission">用戶權限查看</a></td>
+<!--
+EOT;
+if($_G['atclog']){print <<<EOT
+-->
+		<td class="f_one"><a href="profile.php?action=log">帖子操作記錄</a></td>
+<!--
+EOT;
+}print <<<EOT
+-->
+		<td class="f_one"><a href="userpay.php">{$db_currencyname}管理</a></td>
+		<td class="f_one"><a href="profile.php?action=buy">特殊組購買</a></td>
+		<td class="f_one"><a href="profile.php?action=favor">收藏夾</a></td>
+		<td class="f_one"><a href="personal.php">我的主題</a></td>
+	</tr>
+</table>
+<br />
+<table width="$tablewidth" cellspacing="0" cellpadding="3" align="center">
+<tr>
+<td width="20%" valign="top">
+<table width="100%" cellspacing="1" cellpadding="5" align="center" $i_table>
+<tr><td class="head" align="center" colspan="2"><b>{$db_currencyname}管理</b></td></tr>
+<tr class="f_one"><td><a href="userpay.php">{$db_currencyname}充值</a></td></tr>
+<tr class="f_one"><td><a href="userpay.php?action=virement">{$db_currencyname}轉帳</a></td></tr>
+<tr class="f_one"><td><a href="userpay.php?action=change">{$db_currencyname}轉換</a></td></tr>
+<tr class="f_one"><td><a href="userpay.php?action=list">{$db_currencyname}訂單</a></td></tr>
+<tr class="f_one"><td><a href="userpay.php?action=log">{$db_currencyname}記錄</a></td></tr>
+</table>
+<br />
+<table width="100%" cellspacing="1" cellpadding="3" align="center" $i_table>
+<tr><td class="head" align="center" colspan="2"><b>基本信息</b></td></tr>
+<tr class="f_one"><td>
+{$db_currencyname} : $userdb[currency]<br />
+$db_creditname : $userdb[credit] $db_creditunit<br />
+精華 : $userdb[digests]<br />
+發帖 : $userdb[postnum]<br />
+$db_rvrcname : $userrvrc $db_rvrcunit<br />
+$db_moneyname : $userdb[money] $db_moneyunit<br />
+活期存款 : $userdb[deposit] $db_moneyunit<br />
+定期存款 : $userdb[ddeposit] $db_moneyunit<br />
+<!--
+EOT;
+if($_CREDITDB){
+foreach($_CREDITDB as $key => $value){
+$usercredit = $creditdb ? $creditdb[$key][1] : 0;
+print <<<EOT
+-->
+$value[0] : $usercredit $value[1]<br />
+<!--
+EOT;
+}}print <<<EOT
+-->
+</td></tr></table>
+</td><td valign="top">
+
+<table width="100%" cellspacing="1" cellpadding="4" align="center" $i_table>
+<tr><td class="head" colspan="5"><b>{$db_currencyname}管理</b></td></tr>
+<tr align="center"><td class="cbg" colspan="5">
+<a href="userpay.php?action=list">所有交易訂單</a> | 
+<a href="userpay.php?action=list&state=2">已成功訂單</a> | 
+<a href="userpay.php?action=list&state=1">未成功訂單</a></td></tr>
+<tr class="f_one"><td>
+<b>{$db_currencyname}的作用和充值說明︰</b><br>
+1. 論壇{$db_currencyname}可用于購買論壇道具和享受更多論壇功能<br>
+2. 通過網絡支付可對您的{$db_currencyname}帳戶進行充值<br>
+3. 每通過網絡支付 <font color="blue">1元</font>， 可獲得論壇{$db_currencyname} <font color="blue">{$db_rmbrate} 個</font><br>
+4. {$db_currencyname}的獲取流程︰進入<a href="userpay.php"><font color="blue">{$db_currencyname}充值</font></a>頁面，填寫您要充值的金額，然後提交，程序會自動引導您完成{$db_currencyname}帳戶的充值過程<br>
+5. 通過網絡支付成功後程序將會自動對您論壇帳號進行{$db_currencyname}充值
+<!--
+EOT;
+if(!$action){print <<<EOT
+-->
+<br /><br />
+<b>{$db_currencyname}充值過程︰</b><br>
+1. 填寫信息︰進入<a href="userpay.php"><font color="blue">{$db_currencyname}充值</font></a>頁面，填寫充值金額，並選擇支付方式，提交進入下一步<br>
+2. 生成訂單︰系統自動生成一條充值訂單記錄，等待用戶付款，此時訂單狀態為“<b>未支付訂單</b>”<br>
+3. 用戶付款︰進入付款頁面，當您付款給成功後，訂單信息會變為“<b>已完成訂單</b>”狀態，同時系統會給您的{$db_currencyname}帳戶沖入相應的金額
+<!--
+EOT;
+}elseif($action=="list"){print <<<EOT
+-->
+<br /><br />
+<b>訂單狀態說明︰</b><br> 1. 未支付訂單︰未充值成功的訂單，用戶尚未付款成功<br> 2. 已完成訂單︰已充值成功的訂單，用戶已經完成付款，{$db_currencyname}充值成功.
+<!--
+EOT;
+}print <<<EOT
+-->
+</td></tr>
+</table><br />
+<!--
+EOT;
+if(!$action){print <<<EOT
+-->
+<form method="post" action="userpay.php?" target="_blank">
+<input type="hidden" name="action" value="pay" />
+<table width="100%" cellspacing="1" cellpadding="4" align="center" $i_table>
+	<tr><td class="head" colspan="2"><b>網上支付</b></td></tr>
+	<tr class="f_one">
+		<td width="35%">請輸入要支付的金額（最低 {$db_rmblest} 元人民幣 ）︰</td>
+		<td>
+			<input type="text" name="number" value="10" size="8" />
+			<input type="radio" name="method" value="3" checked /> 通過快錢支付
+			<input type="radio" name="method" value="1" /> 貝寶支付
+			<input type="radio" name="method" value="2" /> 支付寶支付
+		</td>
+	</tr>
+</table>
+<br /><center><input type="submit" value="提 交" /></center></form>
+</td></tr></table>
+<!--
+EOT;
+}elseif($action == 'change'){
+if($currrate1){print <<<EOT
+-->
+<form action="userpay.php?" method="post">
+<input type="hidden" name="action" value="change" />
+<input type="hidden" name="type" value="currency1" />
+<input type="hidden" name="step" value="2" />
+<table width="100%" cellspacing="1" cellpadding="4" align="center" $i_table>
+<tr><td class="head" colspan="3"><b><b>{$db_currencyname} 轉換</b></b></td></tr>
+<tr><td class="f_one" colspan="3"><b>{$db_currencyname} -> 論壇積分</b></td></tr>
+<!--
+EOT;
+if($currrate1[rvrc]){print <<<EOT
+-->
+<tr class="f_one"><td>轉換</td>
+<td><input type="text" name="changenum[rvrc]" value="0" /> 個 {$db_currencyname} 為 {$db_rvrcname}</td><td>1 個{$db_currencyname} = {$rvrc_1} {$db_rvrcname}</td></tr>
+<!--
+EOT;
+}if($currrate1[money]){print <<<EOT
+-->
+<tr class="f_one"><td>轉換</td>
+<td><input type="text" name="changenum[money]" value="0" /> 個 {$db_currencyname} 為 {$db_moneyname}</td><td>1 個{$db_currencyname} = {$currrate1[money]} {$db_moneyname}</td></tr>
+<!--
+EOT;
+}if($currrate1[credit]){print <<<EOT
+-->
+<tr class="f_one"><td>轉換</td>
+<td><input type="text" name="changenum[credit]" value="0" /> 個 {$db_currencyname} 為 {$db_creditname}</td><td>1 個{$db_currencyname} = {$currrate1[credit]} {$db_creditname}</td></tr>
+<!--
+EOT;
+}foreach($_CREDITDB as $key => $value){
+if($currrate1[$key]){print <<<EOT
+-->
+<tr class="f_one"><td>轉換</td>
+<td><input type="text" name="changenum[$key]" value="0" /> 個 {$db_currencyname} 為 {$value[0]}</td><td>1 個{$db_currencyname} = {$currrate1[$key]} {$value[0]}</td></tr>
+<!--
+EOT;
+}}print <<<EOT
+-->
+</table>
+<br /><center><input type="submit" value="提 交" /></center></form>
+<!--
+EOT;
+}if($currrate2){print <<<EOT
+-->
+<br />
+<form action="userpay.php?" method="post">
+<input type="hidden" name="action" value="change" />
+<input type="hidden" name="type" value="currency2" />
+<input type="hidden" name="step" value="2" />
+<table width="100%" cellspacing="1" cellpadding="4" align="center" $i_table>
+<tr><td class="head" colspan="3"><b><b>{$db_currencyname} 轉換</b></b></td></tr>
+<tr><td class="f_one" colspan="3"><b>論壇積分 -> {$db_currencyname}</b><br /><br />說明︰</b>論壇積分轉換成{$db_currencyname}，轉換的積分數必須為轉換比例的整數倍，不足部分程序會自動忽略<br>如︰20 {$db_rvrcname} = 1 個{$db_currencyname}，轉換的{$db_rvrcname}數必須是 20 的整數倍。</td></tr>
+<!--
+EOT;
+if($currrate2[rvrc]){print <<<EOT
+-->
+<tr class="f_one"><td>轉換</td>
+<td><input type="text" name="changenum[rvrc]" value="0" /> {$db_rvrcname} 為  {$db_currencyname}</td><td>{$rvrc_2} {$db_rvrcname} = 1 個{$db_currencyname}</td></tr>
+<!--
+EOT;
+}if($currrate2[money]){print <<<EOT
+-->
+<tr class="f_one"><td>轉換</td>
+<td><input type="text" name="changenum[money]" value="0" /> {$db_moneyname} 為 {$db_currencyname}</td><td>{$currrate2[money]} {$db_moneyname} = 1 個{$db_currencyname}</td></tr>
+<!--
+EOT;
+}if($currrate2[credit]){print <<<EOT
+-->
+<tr class="f_one"><td>轉換</td>
+<td><input type="text" name="changenum[credit]" value="0" /> {$db_creditname} 為 {$db_currencyname}</td><td>{$currrate2[credit]} {$db_creditname} = 1 個{$db_currencyname}</td></tr>
+<!--
+EOT;
+}foreach($_CREDITDB as $key => $value){
+if($currrate2[$key]){
+print <<<EOT
+-->
+<tr class="f_one"><td>轉換</td>
+<td><input type="text" name="changenum[$key]" value="0" /> {$value[0]} 為 {$db_currencyname}</td><td>{$currrate2[$key]} {$value[0]} = 1 個{$db_currencyname}</td></tr>
+<!--
+EOT;
+}}print <<<EOT
+-->
+</table>
+<br /><center><input type="submit" value="提 交" /></center></form>
+<!--
+EOT;
+}print <<<EOT
+-->
+</td></tr></table>
+<!--
+EOT;
+}elseif($action=='list'){print <<<EOT
+-->
+<table width="$tablewidth" cellspacing="1" cellpadding="4" align="center" $i_table>
+<tr><td class="head" colspan="5"><b>{$windid} 的訂單記錄</b></td></tr>
+<tr class="cbg" align="center">
+<td>ID</td>
+<td>訂單號</td>
+<td>支付金額</td>
+<td>交易狀態</td>
+<td>交易時間</td>
+</tr>
+<!--
+EOT;
+$id=($page-1)*$db_perpage;
+foreach($orderdb as $key => $value){
+if($value[state]==0){
+$state='未支付訂單';
+}elseif($value[state]==1){
+$state='已支付訂單，等待用戶確認';
+}elseif($value[state]==2){
+$state='已完成訂單';
+}
+$id++;
+print <<<EOT
+-->
+<tr class="f_one" align="center">
+<td>$id</td>
+<td>$value[order_no]</td>
+<td>$value[number]</td>
+<td>$state</td>
+<td>$value[date]</td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<center>$pages</center>
+</td></tr></table>
+<!--
+EOT;
+}elseif($action=='log'){print <<<EOT
+-->
+<form method="post" action="userpay.php?action=log">
+<table width="100%" cellspacing="1" cellpadding="5" align="center" $i_table>
+	<tr><td class="head" colspan="2"><b>{$db_currencyname}記錄搜索</b></td></tr>
+	<tr>
+		<td class="f_one" width="30%">關鍵字</td>
+		<td class="f_one"><input type="text" name="keyword" size="40" /></td>
+	</tr>
+</table>
+<br />
+<center><input type="submit" value="提 交" /></center>
+</form>
+<br />
+<table width="100%" cellspacing="1" cellpadding="5" align="center" $i_table>
+<tr><td class="head" colspan="8"><b>{$db_currencyname}記錄</b></td></tr>
+<tr class="cbg" align="center">
+<td width="3%">ID</td>
+<td width="5%">操作</td>
+<td>描述</td>
+<td width="5%">價格</td>
+<td width="5%">數量</td>
+<td>IP</td>
+<td>時間</td>
+</tr>
+<!--
+EOT;
+$id=($page-1)*$db_perpage;
+foreach($logdb as $key => $value){
+$id++;
+print <<<EOT
+-->
+<tr class="f_one" align="center">
+<td>$id</td>
+<td>$value[type]</td>
+<td align="left">$value[descrip]</td>
+<td>$value[money]</td>
+<td>$value[nums]</td>
+<td>$value[ip]</td>
+<td>$value[time]</td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+ &nbsp; &nbsp; $pages
+</td></tr></table>
+<!--
+EOT;
+}elseif($action=='virement'){print <<<EOT
+-->
+<form method="post" action="userpay.php?">
+<input type="hidden" name="action" value="virement" />
+<input type="hidden" name="step" value="2" />
+<table width="100%" cellspacing="1" cellpadding="4" align="center" $i_table>
+	<tr><td class="head" colspan="2"><b>{$db_currencyname}轉帳 (手續費:$cy_virerate%)</b></td></tr>
+	<tr class="f_one">
+		<td width="20%">轉入用戶名</td>
+		<td><input type="text" name="pwuser" size="20" /></td>
+	</tr>
+	<tr class="f_one">
+		<td>轉帳{$db_currencyname}數</td>
+		<td><input type="text" name="currency" size="20" /> 最低轉帳金額︰{$cy_virelimit} {$db_currencyname}</td>
+	</tr>
+	<tr class="f_one">
+		<td>請輸入密碼</td>
+		<td><input type="password" name="pwpwd" size="20" /></td>
+	</tr>
+</table>
+<br /><center><input type="submit" value="提 交" /></center></form>
+
+</td></tr></table>
+<!--
+EOT;
+}elseif($action=='pay' && $method==3){print <<<EOT
+-->
+<form action="$abillpost" method="POST" >
+<input type="hidden" name="merchant_id" value="$merchant_id" /> 
+<input type="hidden" name="orderid" value="$orderid" /> 
+<input type="hidden" name="amount" value="$amount" />
+<input type="hidden" name="commodity_info"  value="$commodity_info" />
+<input type="hidden" name="merchant_url"  value="$merchant_url" />
+<input type="hidden" name="pname"  value="$pname" />
+<input type="hidden" name="currency" value="$currency" />
+<input type="hidden" name="isSupportDES" value="2" />
+<input type="hidden" name="mac" value="$mac" />
+<table cellPadding="3" cellSpacing="1" width="98%" $i_table  align="center">
+<tr><td class="head" colspan="2" class="f_one">通過快錢支付</td></tr>
+<tr> 
+	<td class="f_one">訂單號︰</td>
+	<td class="f_one">$order_no</td>
+</tr>
+<tr> 
+	<td  class="f_one">購買商品︰</td>
+	<td class="f_one"> 購買論壇交易幣</td>
+</tr> 
+<tr> 
+	<td  class="f_one">總價格︰</td>
+	<td class="f_one"><font color="#FF0000"> ￥$amount</font></td>
+</tr>
+</table>
+<br />
+<center><input type="submit" value="提 交" /></center>
+</form>
+</td></tr></table>
+<!--
+EOT;
+}?>-->

@@ -1,0 +1,12 @@
+<?php
+$admindb=array(
+  'demo'=>array(
+    'uid'=>'1',
+    'gid'=>'3',
+  ),
+  'nico'=>array(
+    'uid'=>'25',
+    'gid'=>'5',
+  ),
+);
+?>

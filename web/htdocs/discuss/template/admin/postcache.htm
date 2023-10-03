@@ -1,0 +1,131 @@
+<!--<?php
+include_once PrintEot('left');
+print <<<EOT
+-->
+<table width=98% align=center cellspacing=1 cellpadding=5 class=i_table>
+<tr><td class=head colspan=2><b>提示信息</b></td></tr>
+<tr><td class=b><br>
+<ul>
+1.可以添加發表帖子時的新動作和表情（同時必須將相應的動作和表情圖片上傳到相應的目錄，否則瀏覽帖子時無法顯示圖片）<br><br><font color=blue>注</font>︰動作圖片目錄/post/act，表情圖片目錄/post/smile。
+</ul>
+</td></tr></table><br>
+
+<form method="post" action="$basename">
+<table cellspacing="1" cellpadding="5" border="0" width="98%" align="center" class=i_table>
+<tr class=i_table><td colspan="6" class=head><b>發帖動作編輯</b></td></tr>
+<tr class=head_2 align=center>
+<td width="5%">ID</td><td>動作名稱</td><td >動作說明</td>
+<td>圖片文件名</td><td>圖片</td><td width="45">刪</td></tr>
+<!--
+EOT;
+$num=0;
+foreach($motiondb as $motion){
+$num++;
+print <<<EOT
+-->
+<tr align=center><td class=b>$num</td><td class=b>$motion[name]</td>
+<td class=b>$motion[descrip]</td>
+<td class=b>$motion[images]</td>
+<td class=b><img width=30 height=30 src="$imgpath/post/act/$motion[images]"></td>
+<td class=b><input type='checkbox' name='delid[]' value='$motion[id]'></td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<input name=action type=hidden value="delete">
+<input name="table" type=hidden value="pw_actions">
+<br><center><input type="button" name="chkall" value="全 選" onclick="CheckAll(this.form)"><input type="submit" name="delete" value="提 交"></center>
+</form>
+<form method="post" action="$basename">
+<table cellspacing="1" cellpadding="5" border="0" width="98%" align="center" class=i_table>
+<tr><td colspan="3" class=head><b>添加動作</b> <a href="javascript:addact();">[+]</a> <a href="javascript:removeact();">[-]</a></td></tr>
+<tr class=head_2 align="center">
+	<td width="25%">動作名稱</td>
+	<td width="*">動作說明</td>
+	<td width="25%">圖片文件名</td>
+</tr>
+<tr class=b align="center">
+	<td><input type="text" name="names[1]"></td>
+	<td><input type="text" name="descrips[1]" size="60"></td>
+	<td><input type="text" name="images[1]"></td>
+</tr>
+<!--
+EOT;
+for($i=2;$i<=10;$i++){
+$id='act_'.$i;
+print <<<EOT
+-->
+<tr class=b align="center" id="$id" style="display:none">
+	<td><input type="text" name="names[$i]"></td>
+	<td><input type="text" name="descrips[$i]" size="60"></td>
+	<td><input type="text" name="images[$i]"></td>
+</tr>
+<!--
+EOT;
+} print <<<EOT
+-->
+<input name=action type=hidden value="addact">
+</table><br>
+<center><input type="submit" name="add" value="提 交"></center></form>
+
+<form method="post" action="$basename">
+<table cellspacing="1" cellpadding="5" border="0" width="60%" align="center" class=i_table>
+<tr><td colspan="4" class=head><b>發帖表情編輯</b></td></tr>
+<tr class=head_2><td align=center width="5%">ID</td>
+<td align=center>圖片文件名</td><td align=center>圖片</td>
+<td align=left width="5%">刪</td></tr>
+<!--
+EOT;
+$num=0;
+foreach($facedb as $face){
+$num++;
+print <<<EOT
+-->
+<tr><td class=b align=center>$num</td>
+<td class=b align=center>$face[image]</td>
+<td class=b align=center><img src="$imgpath/post/smile/$face[image]"></td>
+<td class=b ><input type='checkbox' name='delid[]' value='$face[id]'></td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<input name=action type=hidden value="delete">
+<input name="table" type=hidden value="pw_smiles">
+<br><center><input type="button" name="chkall" value="全 選" onclick="CheckAll(this.form)"><input type="submit" name="delete" value="提 交"></center>
+</form>
+<form method="post" action="$basename">
+<table cellspacing="0" cellpadding="1" border="0" width="60%" align="center" class=i_table>
+<tr><td align="center">
+<table border="0" cellspacing="0" cellpadding="4" width="100%" class=b>
+<tr><td colspan="2" class=head><b>添加表情</b></td></tr>
+<tr class=b>
+<td width="20%" >圖片文件名<br>(多個以,分開)</td>
+<td width="80%"><input type="text" name='face1' size='60'></td>
+</tr>
+<input name=action type=hidden value="addface">
+</table></td></tr></table><br>
+<center><input type="submit" name="add" value="提 交"></center>
+</form>
+<script type="text/javascript">
+var act = 1;
+function addact() {
+	if(act < 10) {
+		act++;
+		document.getElementById("act_"+act).style.display = "";
+	}
+}
+function removeact() {
+	if(act > 1){
+		document.getElementById("act_"+act).style.display = "none";
+		act--;
+	}
+}
+</script>
+<!--
+EOT;
+include_once PrintEot('adminbottom');
+?>
+-->

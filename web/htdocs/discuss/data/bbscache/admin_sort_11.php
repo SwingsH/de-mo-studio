@@ -1,0 +1,17 @@
+<?php
+$admindb=array(
+  'demo'=>array(
+    'uid'=>'1',
+    'gid'=>'3',
+    'delete'=>'1',
+    'edit'=>'13',
+    'highlight'=>'4',
+  ),
+  'nico'=>array(
+    'uid'=>'25',
+    'gid'=>'5',
+    'delete'=>'1',
+    'highlight'=>'3',
+  ),
+);
+?>

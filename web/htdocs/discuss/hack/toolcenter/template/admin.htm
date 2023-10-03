@@ -1,0 +1,263 @@
+<!--<?php
+include_once PrintEot('left');
+print <<<EOT
+-->
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+	<tr>
+		<td class=b>
+			[<a href="$admin_file?adminjob=hack&hackset=toolcenter">參數設置</a>]
+			[<a href="$admin_file?adminjob=hack&hackset=toolcenter&job=toolinfo">道具資料</a>]
+			[<a href="$admin_file?adminjob=hack&hackset=toolcenter&job=usertool">用戶道具</a>]
+			[<a href="$admin_file?adminjob=hack&hackset=toolcenter&job=tradelog">交易信息</a>]
+		</td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+if(!$job){print <<<EOT
+-->
+<form action="$basename" method="post">
+<input type="hidden" name="step" value="2">
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2>參數設置</td></tr>
+<tr><td class=b  width="60%">是否開啟會員道具功能<br>(需要到插件中心 管理中同時啟用該插件方為有效)</td><td class=b>
+<input type="radio" value="1" name="toolifopen" $toolifopen_Y> 開啟 
+<input type="radio" value="0" name="toolifopen" $toolifopen_N>關閉</td></tr>
+<tr><td class=b>是否允許用戶進行道具買賣交易</td><td class=b>
+<input type="radio" value="1" name="allowtrade" $allowtrade_Y> 開啟 
+<input type="radio" value="0" name="allowtrade" $allowtrade_N>關閉</td></tr>
+</td></tr>
+</table>
+<br><center><input type=submit value='提 交'></center></form>
+<!--
+EOT;
+}elseif($job=='toolinfo'){
+if(!$action){print <<<EOT
+-->
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=7>道具資料</td></tr>
+<tr><td class=b>說明︰<br>1、管理員可以根據道具需求情況，定期添加庫存。 <br>2、管理員可設置是否啟用道具，用戶只能購買已經啟用的道具。</td></tr>
+</table>
+<form action="$basename" method="post">
+<input type="hidden" name="action" value="submit">
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=7>道具資料</td></tr>
+<tr class=c align="center">
+<td>ID</td>
+<td>名稱</td>
+<td>描述</td>
+<td>順序</td>
+<td>價格</td>
+<td>庫存</td>
+<td>啟用</td>
+</tr>
+<!--
+EOT;
+foreach($tooldb as $key => $value){
+$id=$value[id];
+$ifchecked = $value[state] ? 'checked' : '';
+print <<<EOT
+-->
+<tr class=b align="center">
+<td>$id</td>
+<td><a href="$basename&action=edit&id=$id">$value[name]</a></td>
+<td align="left">$value[descrip]</td>
+<td>$value[vieworder]</td>
+<td>$value[price]</td>
+<td>$value[stock]</td>
+<td><input type="checkbox" name="tools[$id]" value="1" $ifchecked></td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<br><center><input type="button" name="chkall" value="全 選" onclick="CheckAll(this.form)"><input type=submit value='提 交'></center></form>
+<!--
+EOT;
+}elseif($action=='edit'){print <<<EOT
+-->
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=7>道具資料</td></tr>
+<tr><td class=b>說明︰<br>1. 管理員可以設置使用道具基本信息和使用條件<br>2. 用戶可以購買所有已經啟用的道具，<br>3. 用戶積分需要達到道具的積分要求才能使用道具，用戶可通過發表文章等途徑提高積分，已達到道具使用要求。<br>4. 如果設置了“允許使用道具的用戶組”，那麼只有指定的用戶組才能使用該道具。（留空不限制）<br>5. 如果設置了“允許使用道具的版塊”，那麼只有在指定的版塊才能使用該道具。（留空不限制）</td></tr>
+</table><br>
+<form action="$basename" method="post">
+<input type="hidden" name="action" value="edit">
+<input type="hidden" name="step" value="2">
+<input type="hidden" name="id" value="$id">
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2 align="center"><b>道具資料</b></td></tr>
+<tr><td class=b width="20%">名稱</td>
+<td class=b><input type="text" name="name" value="$rt[name]"></td></tr>
+<tr><td class=b width="20%">順序</td>
+<td class=b><input type="text" name="vieworder" value="$rt[vieworder]"></td></tr>
+<tr><td class=b>描述</td>
+<td class=b><input type="text" name="descrip" value="$rt[descrip]" size="90"></td></tr>
+<tr><td class=b>圖標</td>
+<td class=b><input type="text" name="logo" value="$rt[logo]" size="90"></td></tr>
+<tr><td class=b>狀態</td>
+<td class=b><input type="radio" name="state" value="1" $state_Y>開啟<input type="radio" name="state" value="0" $state_N>關閉</td></tr>
+<tr><td class=b>價格</td>
+<td class=b><input type="text" name="price" value="$rt[price]"></td></tr>
+<tr><td class=b>庫存</td>
+<td class=b><input type="text" name="stock" value="$rt[stock]"></td></tr>
+<tr><td class=head colspan=2 align="center"><b>使用積分限制</b></td></tr>
+<tr><td class=b>發帖</td>
+<td class=b><input type="text" name="condition[credit][postnum]" value="{$condition[credit][postnum]}"></td></tr>
+<tr><td class=b>精華</td>
+<td class=b><input type="text" name="condition[credit][digests]" value="{$condition[credit][digests]}"></td></tr>
+<tr><td class=b>{$db_rvrcname}</td>
+<td class=b><input type="text" name="condition[credit][rvrc]"    value="{$condition[credit][rvrc]}"></td></tr>
+<tr><td class=b>{$db_moneyname}</td>
+<td class=b><input type="text" name="condition[credit][money]"   value="{$condition[credit][money]}"></td></tr>
+<tr><td class=b>{$db_creditname}</td>
+<td class=b><input type="text" name="condition[credit][credit]"  value="{$condition[credit][credit]}"></td></tr>
+<!--
+EOT;
+foreach($_CREDITDB as $key => $value){print <<<EOT
+-->
+<tr><td class=b>$value[0]</td>
+<td class=b><input type="text" name="condition[credit][$key]" value="{$condition[credit][$key]}"></td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+<tr><td class=head colspan=2 align="center"><b>用戶組與版塊限制</b></td></tr>
+<tr><td class=b>允許使用道具的用戶組</td>
+<td class=b>$usergroup</td></tr>
+<tr><td class=b>允許使用道具的版塊</td>
+<td class=b>$forumcheck</td></tr>
+</table>
+<br><center><input type=submit value='提 交'></center></form>
+<!--
+EOT;
+}}elseif($job=='usertool'){print <<<EOT
+-->
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=7>用戶道具</td></tr>
+<tr><td class=b>說明︰<br>1.管理員可以編輯或刪除用戶道具資料。</td></tr>
+</table><br>
+<!--
+EOT;
+if (!$action || $action=='search'){print <<<EOT
+-->
+<form action="$basename" method="post">
+<input type="hidden" name="action" value="search">
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=8>用戶道具</td></tr>
+<tr class="b"><td width="20%">用戶名</td>
+<td><input type="text" name="username"> <input type="submit" value="提 交"></td></tr>
+</table></form><br>
+
+<form action="$basename" method="post">
+<input type="hidden" name="action" value="submit">
+ &nbsp; $pages
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=9>用戶道具</td></tr>
+<tr class="c" align="center">
+<td>ID</td>
+<td>用戶名</td>
+<td>名稱</td>
+<td>道具數量</td>
+<td>轉讓數量</td>
+<td>轉讓價格</td>
+<td>庫存</td>
+<td>價格</td>
+<td>刪除</td>
+</tr>
+<!--
+EOT;
+$id=($page-1)*$db_perpage;
+foreach($tooldb as $key => $value){
+$id++;
+print <<<EOT
+-->
+<tr class=b align="center">
+<td>$id</td>
+<td><a href="$basename&action=edit&uid=$value[uid]&id=$value[toolid]">$value[username]</a></td>
+<td><a href="$admin_file?adminjob=hack&hackset=toolcenter&job=toolinfo&action=edit&id=$value[toolid]">$value[name]</a></td>
+<td>$value[nums]</td>
+<td>$value[sellnums]</td>
+<td>$value[sellprice]</td>
+<td>$value[stock]</td>
+<td>$value[price]</td>
+<td><a href="$basename&action=del&uid=$value[uid]&id=$value[toolid]">刪除</a></td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<br><center><input type=submit value='提 交'></center></form>
+<!--
+EOT;
+}elseif($action=='edit'){print <<<EOT
+-->
+<form action="$basename" method="post">
+<input type="hidden" name="action" value="edit">
+<input type="hidden" name="step" value="2">
+<input type="hidden" name="uid" value="$uid">
+<input type="hidden" name="id" value="$id">
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2 align="center"><b>道具資料</b></td></tr>
+<tr><td class=b width="20%">名稱</td>
+<td class=b>$rt[name]</td></tr>
+<tr><td class=b width="20%">用戶名</td>
+<td class=b>$rt[username]</td></tr>
+<tr><td class=b>道具數量</td>
+<td class=b><input type="text" name="nums" value="$rt[nums]"></td></tr>
+<tr><td class=b>轉讓數量</td>
+<td class=b><input type="text" name="sellnums" value="$rt[sellnums]"></td></tr>
+<tr><td class=b>轉讓價格</td>
+<td class=b><input type="text" name="sellprice" value="$rt[sellprice]"></td></tr>
+</table>
+<br><center><input type=submit value='提 交'></center></form>
+<!--
+EOT;
+}}elseif($job=='tradelog'){print <<<EOT
+-->
+<form action="$basename" method="post">
+<input type="hidden" name="action" value="search">
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=8>{$db_currencyname}日志管理</td></tr>
+<tr class="b"><td width="20%">用戶名</td>
+<td><input type="text" name="username"> <input type="submit" value="提 交"></td></tr>
+</table></form><br>
+ &nbsp; $pages
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=8>交易信息</td></tr>
+<tr class="c" align="center">
+<td>ID</td>
+<td>出售者</td>
+<td>名稱</td>
+<td>描述</td>
+<td>道具數量</td>
+<td>轉讓數量</td>
+<td>轉讓價格</td>
+</tr>
+<!--
+EOT;
+$id=($page-1)*$db_perpage;
+foreach($tooldb as $key => $value){
+$id++;
+print <<<EOT
+-->
+<tr class="b" align="center">
+<td>$id</td>
+<td><a href="$admin_file?adminjob=hack&hackset=toolcenter&job=usertool&action=edit&uid=$value[uid]&id=$value[toolid]">$value[username]</a></td>
+<td><a href="$admin_file?adminjob=hack&hackset=toolcenter&job=toolinfo&action=edit&id=$value[toolid]">$value[name]</a></td>
+<td align="left">$value[descrip]</td>
+<td>$value[nums]</td>
+<td>$value[sellnums]</td>
+<td>$value[sellprice]</td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<!--
+EOT;
+}include_once PrintEot('adminbottom');
+?>-->

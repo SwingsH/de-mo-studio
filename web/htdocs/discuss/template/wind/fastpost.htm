@@ -1,0 +1,169 @@
+<!--<?php
+$ifanonymous=($forumset['anonymous'] && $_G['anonymous']) ? '' :"disabled";
+print <<<EOT
+-->
+<form name="FORM" method="post" action="post.php?" onsubmit="return checkpost(document.FORM);">
+<table cellspacing="1" cellpadding="0" align="center" width="$tablewidth" $i_table>
+<tr>
+<td colspan="2">
+<table cellspacing="0" cellpadding="0" width="100%">
+<td class="head"><b>快速發帖</b></td>
+<td class="head" align="right">
+<a href="javascript:scroll(0,0)"><b>頂端</b></a>
+</td></tr></table></td></tr>
+<tr><td valign="top" width="20%" bgcolor="$forumcolorone" style="padding:7px">
+<b>內容</b><br />
+<font face="verdana">  HTML 代碼不可用
+$windcode
+<br />
+<input type="checkbox" name="act_anonymous" value="1" $ifanonymous />匿名帖
+<br />
+<input type="checkbox" name="atc_hide" value="1" $htmlpost />隱藏此帖
+<br />
+<input type="checkbox" name="atc_requiresell" value="1" $htmlsell />出售此帖
+<input maxlength="3" size="3" name="atc_money" value="0" />$money_title
+<br />
+<input type="checkbox" name="atc_requirervrc" value="1" $htmlhide />加密此帖
+<input maxlength="6" size="3" name="atc_rvrc" value="0" /><br /><br />
+[<a  href="javascript:checklength(document.FORM,'$db_postmax');">查看帖子長度</a>]
+</td>
+
+<td width="80%" bgcolor="$forumcolorone" style="padding:7px">
+標題:
+<!--
+EOT;
+if(!$psot_sta && ($t_per>0 || $admincheck) && $t_exits==1){ print <<<EOT
+-->
+<select name="p_type" style="width:60px;">
+<option value="0"></option>
+<!--
+EOT;
+foreach($t_typedb as $key=>$value){
+if($value){
+print <<<EOT
+-->
+<option value="$key">$value</option>
+<!--
+EOT;
+}}print <<<EOT
+-->
+</select>
+<input type="text" name="atc_title" value="$titletop1" size="55" />
+<!--
+EOT;
+}else{print <<<EOT
+-->
+<input type="text" name="atc_title" value="$titletop1" size="65" />
+<!--
+EOT;
+}list(,,$postgd)=explode("\t",$db_gdcheck);
+if($postgd){
+$rawwindid=addslashes($windid);
+print <<<EOT
+-->
+認證碼: <input type="text" maxLength="4" name="gdcode" size="7">&nbsp;<img src="ck.php?windid=$rawwindid" align="absmiddle" onclick="this.src='ck.php?'" />
+<!--
+EOT;
+}print <<<EOT
+-->
+<br />
+<input type="checkbox" name="atc_usesign" value="1" checked />使用簽名
+<input type="checkbox" name="atc_convert" value="1" checked />Wind Code自動轉換
+<input type="hidden" name="atc_autourl" value="1" />
+表情:
+<!--
+EOT;
+$s_count=0;
+include_once(R_P.'data/bbscache/postcache.php');
+$t_count=count($face);
+foreach($face as $key=>$facedb){
+$s_count++;
+print <<<EOT
+-->
+<img src="$imgpath/post/smile/$facedb" onclick="javascript:addsmile('[s:$key]')" style="cursor:pointer;" />
+<!--
+EOT;
+if($s_count>7) break;
+}
+$t_count > $s_count && require_once PrintEot('face');
+$verify = substr(md5($windid.$winduid.$groupid.$db_hash),0,8);
+print <<<EOT
+-->
+<br />
+<textarea onkeydown="quickpost(event)" name="atc_content" cols="100" rows="8"></textarea>
+<input type="hidden" value="2" name="step" />
+<input type="hidden" value="$psot_sta" name="action" />
+<input type="hidden" value="$fid" name="fid" />
+<input type="hidden" value="$tid" name="tid" />
+<input type="hidden" value="$winddb[editor]" name="editor" />
+<input type="hidden" value="none" name="atc_attachment" />
+<input type="hidden" name="verify" value="$verify" />
+
+<br /><font color="red"> 按 Ctrl+Enter 直接提交&nbsp;&nbsp;&nbsp;</font>
+<input type="submit" name="Submit" value="提 交" /> 
+<br /><br />
+</td></tr></table></form>
+<script language="JavaScript">
+var cate=$db_forcetype;
+function checkpost(obj){
+	if(cate==1 && obj.p_type!=null && obj.p_type.value==0){
+		alert("沒有選擇主題分類");
+		obj.p_type.focus();
+		return false;
+	}
+	if(obj.atc_title.value==""){
+		alert("標題不能為空");
+		obj.atc_title.focus();
+		return false;
+	}else if(obj.atc_title.value.length>$db_titlemax){
+		alert("標題超過最大長度 $db_titlemax 個字節");
+		obj.atc_title.focus();
+		return false;
+	}
+	if(obj.atc_content.value.length<$db_postmin){
+		alert("文章內容少于 $db_postmin 個字節");
+		obj.atc_content.focus();
+		return false;
+	}else if(obj.atc_content.value.length>$db_postmax){
+		alert("文章內容大于 $db_postmax 個字節");
+		obj.atc_content.focus();
+		return false;
+	}
+	checkCnt();
+}
+cnt = 0;
+function checkCnt(){
+	document.FORM.Submit.disabled=true;
+	cnt++;
+	if (cnt!=1){
+		alert('Submission Processing. Please Wait');
+		return false;
+	}
+}
+function quickpost(event)
+{
+	if((event.ctrlKey && event.keyCode == 13)||(event.altKey && event.keyCode == 83))
+	{
+		cnt++;
+		if (cnt==1){
+			this.document.FORM.submit();
+		}else{
+			alert('Submission Processing. Please Wait');
+		}
+	}	
+}
+function checklength(theform,postmaxchars) {
+	if (postmaxchars != 0) {
+		message = '\\n最大的字符為'+postmaxchars+' 字節';
+	}else {
+		message = ''; 
+	}
+	alert('您的信息已經有 '+theform.atc_content.value.length+' 字節'+message);
+}
+function addsmile(NewCode) {
+    document.FORM.atc_content.value += ' '+NewCode+' '; 
+}
+</script>
+<!--
+EOT;
+?>

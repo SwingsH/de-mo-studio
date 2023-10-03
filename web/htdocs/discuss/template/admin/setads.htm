@@ -1,0 +1,35 @@
+<!--<?php
+include_once PrintEot('left');
+print <<<EOT
+-->
+<table width='98%' align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b>提示信息</b></td></tr>
+<tr><td class=b><br>
+<ul>
+<li>功能說明:<br>就是鼓勵會員宣傳網站的功能。只要用戶把您站點的 url 推薦給其他朋友，並引導其他人訪問您的網站。那他的{$db_creditname}數值將會加一點， {$db_creditname}越大越是表明某會員對網站的宣傳力度越大!<br>使用方法: 在論壇任意一動態頁面的 url 後加上 a=用戶名 或 u=用戶數字ID <br> 比如以下方法均正確(用戶名 yuling 數字ID: 3558)<br> 
+<a href="http://www.phpwind.net/index.php?a=phpwind">http://www.phpwind.net/index.php?a=yuling</a><br>
+<a href="http://www.phpwind.net/index.php?u=3558">http://www.phpwind.net/index.php?u=3558</a><br>
+<a href="http://www.phpwind.net/read.php?fid=7&tid=154&a=phpwind">http://www.phpwind.net/read.php?fid=7&tid=154&a=yuling</a><br>
+<a href="http://www.phpwind.net/read.php?fid=7&tid=154&u=3558">http://www.phpwind.net/read.php?fid=7&tid=154&u=3558</a><br><br>
+<li>注意︰<font color='blue'>需要注冊</font>是指︰會員引導的朋友需要注冊之後， 會員才會增加貢獻值；而<font color='blue'>勿需注冊</font>則不限制，只要引導其他人訪問該網站，就會增加!<br>
+
+</li>
+</ul>
+<br></td></tr></table>
+<br>
+<form action="$basename" method=post name=creat>
+<table width='98%' align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b>功能設置</b></td></tr>
+<tr class=b><td width='25%'>是否允許用戶使用宣傳代碼!</td>
+<td><input type=radio value=2 $ads_2 name=ads>需要注冊
+<input type=radio value=1 $ads_1 name=ads>勿需注冊
+<input type=radio value=0 $ads_0 name=ads>關閉
+</td></tr></table>
+<input type=hidden name="action" value="submit">
+<br><center>
+<input type=submit value="提 交"></center></form>
+<!--
+EOT;
+include_once PrintEot('adminbottom');
+?>
+-->

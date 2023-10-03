@@ -1,0 +1,35 @@
+<content width="350" height="482" hcover="false" transparency="true" prepage="swf/bookpages/book7/book_cover.jpg">
+	<page
+		src="swf/bookpages/book7/page1.jpg"
+		preLoad="true"
+	/>
+	<page
+		src="swf/bookpages/book7/page2.jpg"
+		canTear="true"
+	/>
+	<page
+		src="swf/bookpages/book7/page3.jpg"
+		preLoad="false"		
+	/>
+	<page
+		src="swf/bookpages/book7/page4.jpg"
+		afterTear="someFunction,param1,'param2','param3'"
+		preLoad="true"
+	/>
+	<page
+		src="swf/bookpages/book7/page5.jpg"
+	/>
+	<page
+		src="swf/bookpages/book7/page6.jpg"
+	/>
+	<page
+		src="swf/bookpages/book7/page8.jpg"
+	/>
+	<page
+		src="swf/bookpages/book7/page9.jpg"
+	/>
+	<page
+		src="swf/bookpages/book7/page10.jpg"
+	/>
+	
+</content>

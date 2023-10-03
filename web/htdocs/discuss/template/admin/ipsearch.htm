@@ -1,0 +1,110 @@
+<!--<?php
+include_once PrintEot('left');
+if (empty($action)){
+print <<<EOT
+-->
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b>提示信息</b></td></tr>
+<tr><td class=b><br>
+IP搜索工具:<br>1.可以根據用戶名搜索該用戶使用過的所有IP.<br>2.可以根據IP地址搜索使用過該IP的所有用戶(<font color=blue>此項功能存在負載性,大型站點請謹慎使用!</font>).<br>
+<br></td></tr></table><br>
+
+<form action="$basename&" method=post>
+<input type="hidden" name="action" value="byname">
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2>根據用戶名搜索</td></tr>
+<tr><td class=b width="35%">用戶名</td>
+<td class=b><input type=text size=20 name="username"> <input name="type" type=checkbox value=1 checked='checked'>  精確匹配</td></tr>
+</table>
+<br><center><input type=submit value="提 交"></center></form>
+
+<form action="$basename&" method=post>
+<input type="hidden" name="action" value="byip">
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2>根據IP地址搜索</td></tr>
+<tr><td class=b width="35%">IP</td>
+<td class=b><input type=text size=20 name="userip"> <input name="type" type=checkbox value=1 checked='checked'>  精確匹配</td></tr>
+</table>
+<br><center><input type=submit value="提 交"></center></form>
+<!--
+EOT;
+}elseif($action=="byname"){print <<<EOT
+-->
+<center>$pages</center>
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=8>根據用戶名搜索</td></tr>
+<tr align=center>
+<td width="5%" class=head_2>ID</td>
+<td class=head_2>用戶名</td>
+<td class=head_2>IP</td>
+<td class=head_2>使用時間</td>
+</tr>
+<!--
+EOT;
+for($i=$start;$i<$end;$i++){
+$value=$ipdb[$i];
+$id=$i+1;
+print <<<EOT
+-->
+<tr align=center>
+<td class=b>$id</td>
+<td class=b><a href="$admin_file?adminjob=setuser&action=edit&uid=$value[uid]" title="查看用戶資料">$value[username]</a></td>
+<td class=b><a href="$basename&action=byip&userip=$value[userip]&type=1" title="搜索該IP相關記錄">$value[userip]</a></td>
+<td class=b>$value[lasttime]</td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<!--
+EOT;
+}elseif($action=="byip"){print <<<EOT
+print <<<EOT
+-->
+<center>$pages</center>
+<form name="form1">
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=8>根據IP地址搜索</td></tr>
+<tr align=center>
+<td width="3%" class=head_2>ID</td>
+<td width="20%" class=head_2>IP</td>
+<td width="20%" class=head_2>用戶名</td>
+<td class=head_2>使用時間</td>
+<td width="15%" class=head_2>選項</td>
+</tr>
+<!--
+EOT;
+for($i=$start;$i<$end;$i++){
+$value=$userdb[$i];
+$id=$i+1;
+print <<<EOT
+-->
+<tr align=center>
+<td class=b>$id</td>
+<td class=b>$value[userip]</td>
+<td class=b>$value[username]</td>
+<td class=b>$value[lasttime]</td>
+<td class=b>
+<select name="ipoption_$id" onchange="ip_jump('ipoption_$id');">
+<option></option>
+<option value="$basename&action=byname&username=$value[username]&type=1">查看該用戶使用過IP</option>
+<option value="$admin_file?adminjob=setuser&action=edit&uid=$value[uid]">查看用戶資料</option>
+<option value="$admin_file?adminjob=superdel&a_type=article&action=deltpc&fid=-1&author=$value[username]">
+查看該用戶的主題</option>
+<option value="$admin_file?adminjob=superdel&a_type=article&action=delrpl&fid=-1&author=$value[username]">
+查看該用戶的回復</option>
+</select>
+</td>
+</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table></form>
+<!--
+EOT;
+}include_once PrintEot('adminbottom');
+?>
+-->

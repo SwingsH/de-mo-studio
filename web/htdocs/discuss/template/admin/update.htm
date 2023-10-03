@@ -1,0 +1,83 @@
+<!--<?php
+include_once PrintEot('left');
+print <<<EOT
+-->
+
+<form action="$basename&" method=post>
+<input type=hidden name=action value='cache'>
+<table width=60% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr align=center><td class=head colspan=2><b>更新論壇緩存</b></td></tr>
+<tr><td class=b  colspan=2>提示:將更新論壇所有緩存數據<br><font color="blue">當剛完成數據轉換或前台不能正常訪問時，可以使用此功能更新緩存</font></td></tr></table>
+<br><center><input type=submit value="提 交"></center></form>
+
+<form action="$basename&" method=post>
+<input type=hidden name=action value='bbsinfo'>
+<table width=60% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr align=center><td class=head colspan=2><b>更新會員總數</b></td></tr>
+<tr><td class=b  colspan=2>提示:將更新論壇會員數統計，可修復會員總數統計錯誤問題</td></tr></table>
+<br><center><input type=submit value="提 交"></center></form>
+
+<form action="$basename&" method="post">
+<input type="hidden" name="action" value="online">
+<table width="60%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+<tr align=center><td class=head colspan=2><b>初始化在線列表</b></td></tr>
+<tr><td class=b  colspan=2>提示:將初始化在線列表<br><font color="blue">當前台在線用戶列表發生錯亂時，可以使用此功能修復</font></td></tr></table>
+<br><center><input type=submit value="提 交"></center></form>
+
+<form action="$basename&" method=post>
+<input type=hidden name=action value='topped'>
+<table width=60% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr align=center><td class=head colspan=2><b>更新置頂帖統計</b></td></tr>
+<tr><td class=b  colspan=2>提示:將更新所有版塊的置頂帖個數統計<br><font color="blue">當置頂帖顯示不正常時，可以使用此功能修復</font></td></tr></table>
+<br><center><input type=submit value="提 交"></center></form>
+
+<form action="$basename&" method=post>
+<input type=hidden name=action value='forum'>
+<table width=60% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr align=center><td class=head colspan=2><b>更新版塊帖子數記錄</b></td></tr>
+<tr><td class=b colspan=2>提示:將更新所有版塊的主題數和文章數統計<br><font color="blue">當剛完成數據轉換或前台版塊文章數統計不正常時，可以使用此功能修復</font></td></tr>
+<tr class=b align=center><td>每批更新個數</td>
+<td><input type=text size=20 name="percount" value=100>
+</td></tr></table>
+<br><center><input type=submit value="提 交"></center></form>
+
+<form action="$basename&" method=post>
+<input type=hidden name=action value='usergroup'>
+<table width=60% align=center cellspacing=0 cellpadding=0 class=i_table>
+<tr><td><table width=100% cellspacing=1 cellpadding=3>
+<tr align=center><td class=head colspan=2><b>更新系統組成員頭餃</b></td></tr>
+<tr><td class=b  colspan=2>提示:將更新所有系統組用戶頭餃<br><font color="blue">使用此功能可修復版主頭餃錯誤和系統組頭餃錯誤的問題</font></td></tr>
+</table></td></tr></table>
+<br><center><input type=submit value="提 交"></center></form>
+
+<form action="$basename&" method=post>
+<input type=hidden name=action value='group'>
+<table width=60% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr align=center><td class=head colspan=2><b>更新會員組頭餃</b></td></tr>
+<tr><td class=b  colspan=2>提示:將根據升級積分依據更新用戶的頭餃<br><font color="blue">每次更改升級點數需求或會員組提升方式後需要使用此功能更新會員組頭餃</font></td></tr>
+<tr class=b align=center><td>每批更新個數</td>
+<td><input type=text size=20 name="percount" value=2000></td></tr></table>
+<br><center><input type=submit value="提 交"></center></form>
+
+<form action="$basename&" method=post>
+<input type=hidden name=action value='digest'>
+<table width=60% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr align=center><td class=head colspan=2><b>更新會員精華數</b></td></tr>
+<tr><td class=b colspan=2>提示:使用此功能可以修復所有會員的精華帖個數統計</td></tr>
+<tr class=b align=center><td>每批更新個數</td>
+<td><input type=text size=20 name="percount" value=1000></td></tr></table>
+<br><center><input type=submit value="提 交"></center></form>
+
+<form action="$basename&" method=post>
+<input type=hidden name=action value='thread'>
+<table width=60% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr align=center><td class=head colspan=2><b>更新主題回復數記錄</b></td></tr>
+<tr><td class=b colspan=2>提示:將根據數據庫中的回復記錄來更新主題的回復數統計<br><font color="blue">當瀏覽帖子頁面回復顯示不正常時，可以使用此功能修復 (不建議使用)</font></td></tr>
+<tr class=b align=center><td>每批更新個數</td>
+<td><input type=text size=20 name="percount" value=2000></td></tr></table>
+<br><center><input type=submit value="提 交"></center></form>
+<!--
+EOT;
+include_once PrintEot('adminbottom');
+?>
+-->

@@ -1,0 +1,45 @@
+﻿body {
+	SCROLLBAR-FACE-COLOR:C0C0C0;
+	SCROLLBAR-HIGHLIGHT-COLOR:FFFFFF;
+	SCROLLBAR-DARKSHADOW-COLOR:C0C0C0;
+	SCROLLBAR-SHADOW-COLOR:FFFFFF;
+	SCROLLBAR-3DLIGHT-COLOR:C0C0C0;
+	SCROLLBAR-ARROW-COLOR:808040;
+	SCROLLBAR-TRACK-COLOR:CACACA;
+}
+body, div, span, p, h1, h2, li, td, th
+			{
+			font-family: Verdana,新細明體, Arial, Tahoma;
+			font-size: 12px;
+			color: #ffffff;
+			}
+input, select, textarea
+			{
+			font-family: Verdana,新細明體, Arial, Tahoma;
+			font-size: 12px;
+			color: #606060;
+			border-width: 1;
+			border-color: #000000;
+			}
+a			{ color: #8D8633; font-weight: bold; text-decoration: none;}
+a:hover 	{ text-decoration: none; color: orange; background-color:#C0C0C0; }
+form 		{ margin: 0px; }
+hr 			{ color: #e0e0e0; height: 1px; }
+.back1		{ background-color: #F0F0F0;}
+.back2		{ background-color: #E5E5E5;}
+.back3		{ background-color: #E0E0E0;}
+.back4		{ background-color: #D5D5D5;}
+.back5		{ background-color: #505660;}
+.text1xs	{ color: #888888; font-size: 11px; }
+.text1e		{ color: #FF3F3F; font-weight: bold; }
+.text1f		{ color: #93B9DF; font-weight: bold; }
+.text1h		{ color: #FFB401; }
+.text2		{ font-size: 12px; }
+.text2b 	{ font-size: 12px; font-weight: bold; }
+.text3		{ font-size: 13px; font-weight: bold; }
+.text4		{ font-size: 14px; font-weight: bold; }
+.txtsmall1	{ font-family: Verdana, Arial; font-size: 12px; font-weight: bold; color: #909090; }
+.txtsmall2	{ font-family: Verdana, Arial; font-size: 13px; color: #606060; }
+.txtsmall3	{ font-family: Verdana, Arial; font-size: 12px; font-weight: none; color: #909090; }
+.txtlarge1	{ font-family: Verdana, Arial; font-size: 13px; color: #606060; }
+.topmenu 	{ background-color: #000000; color: #888888;}

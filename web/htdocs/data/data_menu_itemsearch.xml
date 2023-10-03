@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<data>
+	<class name="頭部" adtxt="海洋盒子" adurl="http://tw.user.bid.yahoo.com/tw/show/auctions?userID=my_oceanbox&u=:my_oceanbox" adtxt2="ANGEL-NEW ERA專賣" adurl2="http://tw.user.bid.yahoo.com/tw/show/auctions?userID=angel_shop2006&u=:angel_shop2006">
+		<item sort="1">
+			<name>帽子</name>
+			<url>item.php?i=1</url>
+		</item>
+		<item sort="2">
+			<name>眼鏡</name>
+			<url>item.php?i=16</url>
+		</item>
+		<item sort="3">
+			<name>髮型</name>
+			<url>item.php?i=18</url>
+		</item>
+		<item sort="4">
+			<name>耳環</name>
+			<url>item.php?i=17</url>
+		</item>
+	</class>
+	<class name="上半身" adtxt="凱蒂菈克的貓" adurl="http://tw.user.bid.yahoo.com/tw/show/auctions?userID=stilaandeva&u=%3astilaandeva" adtxt2="山本吉田"  adurl2="http://tw.user.bid.yahoo.com/tw/show/auctions?userID=catsbag1013&u=:catsbag1013">
+		<item sort="1">
+			<name>項鍊</name>
+			<url>item.php?i=2</url>
+		</item>
+		<item sort="2">
+			<name>外套</name>
+			<url>item.php?i=3</url>
+		</item>
+		<item sort="3">
+			<name>背包</name>
+			<url>item.php?i=5</url>
+		</item>
+		<item sort="4">
+			<name>上衣</name>
+			<url>item.php?i=4</url>
+		</item>
+	</class>
+	<class name="手部"  adtxt="媒甲樂園" adurl="http://www.nailpark.com.tw/">
+		<item sort="1">
+			<name>手鍊</name>
+			<url>item.php?i=6</url>
+		</item>
+		<item sort="2">
+			<name>手錶</name>
+			<url>item.php?i=7</url>
+		</item>
+		<item sort="3">
+			<name>戒指</name>
+			<url>item.php?i=12</url>
+		</item>
+		<item sort="4">
+			<name>指甲彩繪</name>
+			<url>item.php?i=20</url>
+		</item>
+	</class>
+	<class name="下半身" adtxt="Ann's 甜美女鞋" adurl="http://buy.yahoo.com.tw/?catitemid=15665"  adtxt2="icemi 艾紗流行" adurl2="http://buy.yahoo.com.tw/?catitemid=24525" >
+		<item sort="1">
+			<name>褲子</name>
+			<url>item.php?i=8</url>
+		</item>
+		<item sort="2">
+			<name>裙子</name>
+			<url>item.php?i=9</url>
+		</item>
+		<item sort="3">
+			<name>鞋子</name>
+			<url>item.php?i=10</url>
+		</item>
+		<item sort="4">
+			<name>腰帶</name>
+			<url>item.php?i=11</url>
+		</item>
+          </class>
+         <?php /* hidden陳仲傑
+            <class name="其它">
+		<item sort="1">
+			<name>刺青</name>
+			<url>item.php?i=19</url>
+		</item>
+		<item sort="2">
+			<name>其他</name>
+			<url>item.php?i=21</url>
+		</item>
+	
+	    </class> 
+            陳仲傑   hidden */ ?> 
+          
+
+</data>

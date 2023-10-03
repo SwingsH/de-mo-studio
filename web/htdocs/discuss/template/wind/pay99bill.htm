@@ -1,0 +1,100 @@
+<!--<?php 
+print <<<EOT
+-->
+<table width="$tablewidth" cellspacing="0" cellpadding="0" align="center">
+<tr><td align="left"><img src="$imgpath/$stylepath/index/home.gif" align="absbottom" /> <b><a href="$db_bfn"> $db_bbsname</a> -> 快錢支付</b></td></tr>
+</table><br />
+<!--
+EOT;
+if($type=='user'){print <<<EOT
+-->
+<form name="frm" method="post" action="https://www.99bill.com/webapp/receiveMerchantInfoAction.do">
+<input name="merchant_id" type="hidden" value="$merchant_id" />
+<input name="orderid"  type="hidden" value="$orderid" />
+<!--
+EOT;
+if($amount){ print <<<EOT
+-->
+<input name="amount"  type="hidden" value="$amount" />
+<!--
+EOT;
+} print <<<EOT
+-->
+<input name="currency"  type="hidden" value="1" />
+<input name="isSupportDES"  type="hidden" value="1" />
+<input name="pname"  type="hidden" value="$windid" />
+<!--
+EOT;
+if($commodity_info){ print <<<EOT
+-->
+<input name="commodity_info"  type="hidden"  value="$commodity_info" />
+<!--
+EOT;
+} print <<<EOT
+-->
+<table cellPadding="3" cellSpacing="1" width="98%" $i_table  align="center">
+	<tr><td class="head" colspan="2" class="f_one">通過快錢支付</td></tr>
+	<tr>
+		<td class="f_one">訂單金額:</td>
+<!--
+EOT;
+if($amount){ print <<<EOT
+-->
+		<td class="f_one">$amount&nbsp;元</td>
+<!--
+EOT;
+}else{ print <<<EOT
+-->
+		<td class="f_one"><input type="text" name="amount" size="10" />&nbsp;元</td>
+<!--
+EOT;
+} print <<<EOT
+-->
+	</tr>
+	<tr>
+		<td class="f_one">支付人:</td>
+		<td class="f_one">$windid</td>
+	</tr>
+	<tr>
+		<td class="f_one">商品名稱:</td>
+<!--
+EOT;
+if($commodity_info){ print <<<EOT
+-->
+		<td class="f_one">$commodity_info</td>
+<!--
+EOT;
+}else{ print <<<EOT
+-->
+		<td class="f_one"><input type="text" name="commodity_info" /></td>
+<!--
+EOT;
+} print <<<EOT
+-->		
+	</tr>
+</table>
+<br />
+<center><input TYPE="submit" value="確定支付" /></center>
+</form>
+<!--
+EOT;
+}else{print <<<EOT
+-->
+<table cellPadding="3" cellSpacing="1" width="98%" $i_table  align="center">
+	<tr><td class="head" colspan="2"> 您網上在線支付情況反饋如下︰</td></tr>
+	<tr>
+	  <td class="f_one" width="20%">定單號︰</td>
+	  <td class="f_one">$orderidtrue</td>
+	</tr>
+	<tr>
+	  <td class="f_one">支付金額︰</td>
+	  <td class="f_one"> $amount &nbsp; 元</td>
+	</tr>
+	<tr>
+	  <td class="f_one">成功與否︰</td>
+	  <td class="f_one"> $succeed </td>
+	</tr>
+</table>
+<!--
+EOT;
+}?>-->

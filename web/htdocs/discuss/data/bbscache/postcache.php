@@ -1,0 +1,13 @@
+<?php
+$motion=array(
+);
+$face=array(
+	'1'=>'smile.gif',
+	'2'=>'mrgreen.gif',
+	'3'=>'question.gif',
+	'4'=>'wink.gif',
+	'5'=>'redface.gif',
+	'6'=>'sad.gif',
+	'7'=>'cool.gif',
+	'8'=>'crazy.gif',
+);

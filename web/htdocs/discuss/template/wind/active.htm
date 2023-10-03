@@ -1,0 +1,206 @@
+<!--<?php
+print <<<EOT
+-->
+<table width="$tablewidth" cellspacing="0" cellpadding="0" align="center">
+<tr><td align="left"><img src="$imgpath/$stylepath/index/home.gif" align="absbottom"> <b><a href="$db_bfn">$db_bbsname</a> -> 活動中心</b></td></tr>
+</table><br>
+<table width="$tablewidth" align="center" cellspacing="1" cellpadding="5" $i_table>
+<tr class="head"><td colspan="2">活動標題︰$act[tsubject]</td></tr>
+<tr>
+	<td width="20%" class="t_one">活動標題︰</td>
+	<td class="t_one"><a href="read.php?tid=$tid">$act[subject]</a></td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">活動時間︰</td>
+	<td class="t_one">$act[starttime] &nbsp;-&nbsp; $act[endtime]</td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">活動地點︰</td>
+	<td class="t_one">$act[location]</td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">人數限制︰</td>
+	<td class="t_one">$act[num]</td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">已確認參加人數︰</td>
+	<td class="t_one">$act_y 人，[共計報名︰$act_total]</td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">性別要求︰</td>
+<!--
+EOT;
+if($act[sexneed]=='1'){ print <<<EOT
+-->
+	<td class="t_one">僅限男性</td>
+<!--
+EOT;
+}elseif($act[sexneed]=='2'){ print <<<EOT
+-->
+	<td class="t_one">僅限女性</td>
+<!--
+EOT;
+}else{ print <<<EOT
+-->
+	<td class="t_one">男女不限</td>
+<!--
+EOT;
+} print <<<EOT
+-->
+</tr>
+<tr>
+	<td width="20%" class="t_one">活動費用︰</td>
+	<td class="t_one">$act[costs] 元</td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">報名截止日期︰</td>
+	<td class="t_one">$act[deadline]</td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">活動相關內容︰</td>
+	<td class="t_one">$act[content]</td>
+</tr>
+</table>
+<br />
+<!--
+EOT;
+if($action=='apply'){ print <<<EOT
+-->
+<form action="active.php" method="post">
+<table width="$tablewidth" align="center" cellspacing="1" cellpadding="5" $i_table>
+<tr class="head"><td colspan="2">活動申請</td></tr>
+<tr>
+	<td width="20%" class="t_one">聯系方式</td>
+	<td class="t_one"><input type="text" name="contact" /> &nbsp;Tel、QQ、Email 等</td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">留言︰</td>
+	<td class="t_one"><textarea name="message" rows="5" wrap="hard" cols="60"></textarea></td>
+</tr>
+</table><br />
+<center><input type="hidden" name="action" value="apply" />
+<input type="hidden" name="step" value="2" />
+<input type="hidden" name="actid" value="$actid" />
+<input type="hidden" name="tid" value="$tid" />
+<input type="submit" value="提 交" /></center></form>
+<!--
+EOT;
+}elseif($action=='view'){ print <<<EOT
+-->
+<form action="active.php" method="post">
+<table width="$tablewidth" align="center" cellspacing="1" cellpadding="5" $i_table>
+<tr class="head"><td colspan="8">活動成員</td></tr>
+<tr align="center">
+	<td width="8%" class="t_one">序號</td>
+	<td width="12%" class="t_one">姓名</td>
+	<td width="6%" class="t_one">性別</td>
+	<td width="12%" class="t_one">狀態</td>
+	<td width="18%" class="t_one">申請時間</td>
+	<td width="12%" class="t_one">聯系方式</td>
+	<td width="*" class="t_one">留言</td>
+<!--
+EOT;
+if($admincheck){ print <<<EOT
+-->
+	<td width="5%" class="t_one"></td>
+<!--
+EOT;
+} print <<<EOT
+-->
+</tr>
+<!--
+EOT;
+$i=0;
+foreach($actdb as $key=>$value){
+$i++;
+print <<<EOT
+-->
+<tr align="center">
+	<td class="t_one">$i</td>
+	<td class="t_one"><a href="profile.php?action=show&uid=$value[winduid]">$value[username]</a></td>
+<!--
+EOT;
+if($value[gender]==1){ print <<<EOT
+-->
+	<td class="t_one">男</td>
+<!--
+EOT;
+}elseif($value[gender]==2){ print <<<EOT
+-->
+	<td class="t_one">女</td>
+<!--
+EOT;
+}else{ print <<<EOT
+-->
+	<td class="t_one">保密</td>
+<!--
+EOT;
+}if($value[state]==1){ print <<<EOT
+-->
+	<td class="t_one"><font color="blue">已審核</font></td>
+<!--
+EOT;
+}elseif($value[state]==2){ print <<<EOT
+-->
+	<td class="t_one"><font color="red">已拒絕</font></td>
+<!--
+EOT;
+}else{ print <<<EOT
+-->
+	<td class="t_one">未審核</td>
+<!--
+EOT;
+}print <<<EOT
+-->
+	<td class="t_one">$value[applydate]</td>
+	<td class="t_one">$value[contact]</td>
+	<td class="t_one">$value[message]</td>
+<!--
+EOT;
+if($admincheck){ print <<<EOT
+-->
+	<td class="t_one"><input type="checkbox" name="selid[]" value="$value[id]" /></td>
+<!--
+EOT;
+} print <<<EOT
+-->
+</tr>
+<!--
+EOT;
+} print <<<EOT
+-->
+</table><br />&nbsp;&nbsp;$pages
+<input type="hidden" name="tid" value="$tid" />
+<input type="hidden" name="actid" value="$actid" />
+<!--
+EOT;
+if($admincheck){ print <<<EOT
+-->
+<center>管理選項︰<input type="radio" name="action" value="pass" checked />批準
+<input type="radio" name="action" value="unpass" />拒絕
+<input type="radio" name="action" value="cancle" />取消活動<br><br>
+<input type='button' name='chkall' value='全 選' onclick='CheckAll(this.form)' />
+<input type='submit' value='提 交' /></center>
+<!--
+EOT;
+}else{ print <<<EOT
+-->
+<center><input type="hidden" name="action" value="exit" />
+<input type='submit' value='取消參加' /></center>
+<!--
+EOT;
+} print <<<EOT
+-->
+</form>
+<script language=JavaScript>
+function CheckAll(form){
+	for (var i=0;i<form.elements.length-5;i++){
+		var e = form.elements[i];
+		e.checked == true ? e.checked = false : e.checked = true;
+	}
+}
+</script>
+<!--
+EOT;
+}
+?>

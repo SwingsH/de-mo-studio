@@ -1,0 +1,64 @@
+<!--<?php
+include_once PrintEot('left');
+print <<<EOT
+-->
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b><b>提示信息</b></b></td></tr>
+<tr><td class=b><br>
+<ul><li>版塊開啟 "回復審核" 功能時，只有經過管理員審核的回復才會在主題中顯示</li></ul>
+<br></td></tr></table>
+<br>
+
+<form action="$basename&" method=post>
+<input type=hidden name=job value='search'>
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head>回復驗證</td></tr>
+<tr><td width="35%" class=b>所屬分類 : <select name="fid"><option>選擇分類</option>$forumcache</select> &nbsp; 
+作者 : <input type=text size=20 name="username"> &nbsp; 
+<input type=submit value="提 交"></td></tr>
+</table>
+</form>
+
+ &nbsp; $pages
+<form action="$basename&" method=post>
+<input type=hidden name=job value=search>
+<input type=hidden name=step value=2>
+<table width='98%' align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=7>回復驗證</td></tr>
+<tr align=center class=head_2>
+<td width='5%'>ID</td>
+<td>標題</td>
+<td>所在主題</td>
+<td width='15%'>作者</td>
+<td width='15%'>所屬分類</td>
+<td width='15%'>發表時間</td>
+<td width='6%'></td></tr>
+<!--
+EOT;
+$num=($page-1)*$db_perpage;
+foreach($postdb as $key=>$post){
+$num++;
+print <<<EOT
+-->
+<tr align=center class=b>
+<td>$num</td>
+<td><a href="$admin_file?adminjob=content&type=post&id=$post[pid]" target="_blank">$post[subject]</a></td>
+<td><a href="read.php?tid=$post[tid]" target='_blank'>所在主題</a></td>
+<td><a href="profile.php?action=show&uid=$post[authorid]" target='_blank'>$post[author]</td>
+<td>$post[name]</td>
+<td class='smalltxt'>$post[postdate]</td>
+<td><input type=checkbox name="selid[]" value='$post[pid]'></td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</td></tr></table>
+<br><center><input type=radio name="type" value=del>刪除<input type=radio name="type" value=pass checked>通過
+<br><br>
+<input type="button" name="chkall" value="全 選" onclick="CheckAll(this.form)">
+<input type=submit value="提 交"></center></form>
+<!--
+EOT;
+include_once PrintEot('adminbottom');
+?>
+-->

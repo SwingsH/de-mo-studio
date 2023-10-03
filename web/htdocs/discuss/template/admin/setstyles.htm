@@ -1,0 +1,118 @@
+<!--<?php
+include_once PrintEot('left');
+if(empty($action)){
+print <<<EOT
+-->
+<form action="$basename&action=see" method="post">
+<table cellspacing=1 cellpadding=3 width=98% align=center class=i_table>
+<tr>
+<td class=head align=left colspan=2>
+<b>顏色風格設定</b>(當前默認風格︰$skin)
+</td></tr>
+<tr class=b>
+<td>是否照顧800*600用戶(建議選擇是,這樣更美觀)</td>
+<td><INPUT type=radio value=1 $open_seecheck name=setting_seecheck>是 &nbsp;&nbsp;<INPUT type=radio value=0 $close_seecheck name=setting_seecheck>否 <input type=submit value="提 交"></td>
+</tr></form>
+<tr class=b><td>新增風格風格核心文件</td>
+<td><a href="$basename&action=add"><b>新增風格風格核心文件</b></a></td></tr>
+<tr class=b><td>編輯此風格的核心文件</td><td>
+<form action="$basename&action=edit" method="post"> 
+{$get_style}
+<input type=submit value="提 交">
+</form></td></tr>
+<tr class=b><td>刪除此風格的核心文件</td><td>
+<form action="$basename" method="post">
+<input type=hidden name="job" value="submit">
+<input type=hidden name="skin" value=$skin> 
+{$get_style}
+<input type=submit value="提 交"></td></tr></table><br></td></tr></form>
+<form action="$basename&" method="post">
+<tr><td align=center>
+<table cellspacing=1 cellpadding=3 width=98% align=center class=i_table>
+<tr>
+<td class=head valign=middle align=left>
+編輯當前默認風格︰<b>$skin</b> 的css  (更改默認風格請到核心設置里設置)
+</td></tr>
+<tr>
+<td class=b valign=middle align=left>
+幫助:<br>.cfont 為論壇類別名字的顏色<br>.head 為表格頭一行的顏色 主要是在行里需要使用深顏色時使用 可以加圖片<br>.cbg 為論壇類別下一行的顏色(與上一行形成對比) 可以加圖片<br>.fnamecolor 各版塊名字顏色<br>.smalltxt 為實現小字體控制等, 一般應用在版塊簡介.最新帖子導航和首頁歡迎攔里!<br>.tpc_title 里font-size為 帖子標題的字體大小<br>.tpc_content 里 font-size帖子內容字體大小 line-height為行與行的間距<br>.i_table 為表格內部表格線為白色  外部為 boardcolor 色!<br>
+</td></tr><tr>
+<td valign=middle align=center class=b>
+<textarea  name=style_css rows=12 cols=95 style="background-color:#F0F0f3; border: 1 double #B4B4B4" title="請慎重,這里的一舉一動將改變論壇整個風格">
+{$style_css}</textarea><br>
+<input type="hidden" name="action" value="editcss">
+<input type=hidden name="tplpath" value="$tplpath"><input type=submit value="提 交">
+</td></tr>
+</table></td></tr></form>
+<!--
+EOT;
+}elseif(($action=='add'||$action=='edit')&&$job!="submit"){
+print <<<EOT
+-->
+<br>
+<table cellspacing=1 cellpadding=3 width=98% align=center class=i_table>
+<tr><td class=head align=center colspan=2>
+<b>風格核心文件編輯</b></td></tr>
+<form action="$basename" method="post">
+<input type=hidden name="action" value="$action">
+<input type=hidden name="job" value="submit">
+<input type=hidden name="stylefile" value=$stylefile>
+<tr class=b><td>編輯的風格名稱</td><td>$stylefile</td></tr>
+<tr class=b>
+<td>此風格在image目錄下的文件夾名稱:(請不要任意修改,如果需要請先手動修改image下的目錄名)</td>
+<td><INPUT size=35 value="$stylepath" name=setting[0]></td>
+</tr>
+<tr class=b><td>此風格在template目錄下的風格文件夾名稱:</td>
+<td><INPUT size=35  value="$tplpath" name=setting[1]></td>
+</tr>
+<tr class=b>
+<td>表格內部是否使用白色:(如果要使用,請務必寫 yes 不使用請寫 no)</td>
+<td><INPUT size=35 value="$yeyestyle" name=setting[2]></td>
+</tr>
+<tr class=b><td>表格邊框顏色︰(<font color=$tablecolor>■■■■</font>  例: #000000)</td>
+<td><INPUT size=35 value="$tablecolor" name=setting[3]></td>
+</tr>
+<tr class=b><td>表格寬度︰(例: 98% 或 920)</td>
+<td><INPUT size=35 value="$tablewidth" name=setting[4]></td>
+</tr>
+<tr class=b><td>頭部和尾部表格寬度︰(例: 98% 或 920)</td>
+<td><INPUT size=35 value="$mtablewidth" name=setting[5]></td>
+</tr>
+<tr class=b>
+<td>論壇版塊列表顏色一︰(<font color=$forumcolorone>■■■■</font> 例: #E9EEF3)</td>
+<td><INPUT size=35 value="$forumcolorone" name=setting[6]></td>
+</tr>
+<tr class=b>
+<td>論壇版塊列表顏色二︰(<font color=$forumcolortwo>■■■■</font> 例: #E4EAF2)</td>
+<td><INPUT size=35 value="$forumcolortwo" name=setting[7]></td>
+</tr>
+<tr class=b>
+<td>版塊內文章列表顏色一︰(<font color=$threadcolorone>■■■■</font> 例: #E9EEF3)</td>
+<td><INPUT size=35 value="$threadcolorone" name=setting[8]></td>
+</tr>
+<tr class=b>
+<td>文章列表顏色二︰(<font color=$threadcolortwo>■■■■</font> 例: #E4EAF2)</td>
+<td><INPUT size=35 value="$threadcolortwo" name=setting[9]></td>
+</tr>
+<tr class=b>
+<td>閱讀主題時文章背景顏色一︰(<font color=$readcolorone>■■■■</font> 例: #E9EEF3)</td>
+<td><INPUT size=35 value="$readcolorone" name=setting[10]></td>
+</tr>
+<tr class=b>
+<td>閱讀主題時文章背景顏色二︰(<font color=$readcolortwo>■■■■</font> 例: #E4EAF2)</td>
+<td><INPUT size=35 value="$readcolortwo" name=setting[11]></td>
+</tr>
+<tr class=b>
+<td>開發程序備用顏色︰(<font color=$maincolor>■■■■</font> 例: #F3F3F3)</td>
+<td><INPUT size=35 value="$maincolor" name=setting[12]></td>
+</tr>
+<tr class=head_2><td colspan=2 align=center ><input type=submit value="提 交">
+<input type=reset value="重 置">
+</tr></form></td></tr>
+</table>
+<!--
+EOT;
+}
+include_once PrintEot('adminbottom');
+?>
+-->

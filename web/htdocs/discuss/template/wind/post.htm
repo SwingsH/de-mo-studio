@@ -1,0 +1,579 @@
+<!--<?php 
+print <<<EOT
+-->
+<script language="JavaScript" src="$db_bbsurl/$js_path"></script>
+<table width="$tablewidth" cellspacing="0" cellpadding="0" align="center">
+<tr><td align="left"><img src="$imgpath/$stylepath/index/home.gif" align="absbottom" /> <b><a href="$db_bfn">$db_bbsname</a> $msg_guide</b></td></tr>
+</table><br />
+<table cellspacing="0" cellpadding="0" width="$tablewidth" align="center">
+<tr><td>
+<!--
+EOT;
+if($action=='modify'){print <<<EOT
+-->
+<form method="post" name="form" action="post.php?">
+<table cellPadding="3" cellSpacing="1" width="100%" $i_table>
+<tr><td class="head" colspan="2"><b>修改文章</b></td></tr>
+<tr><td height="25" class="t_one" colspan="2"><b>刪除帖子(此操作不可恢復，請慎重使用！)</b></td></tr>
+<tr class="t_one"><td>
+<div style="float:left;"><b>注意: 如果這個帖子是主題內的第一個帖子且已有人回復此帖，需擁有管理權限才能刪除。</b></div>
+<div style="float:right;">
+<!--
+EOT;
+if($postgd){
+$rawwindid=addslashes($windid);
+print <<<EOT
+-->
+<b>認證碼</b>
+<input type="text" name="gdcode" size="8" />&nbsp;<img src="ck.php?windid=$rawwindid" align="absmiddle" onclick="this.src='ck.php?'" />
+<!--
+EOT;
+}print <<<EOT
+-->
+<input type="submit" value="直接刪除" /></div>
+</td></tr></table><br />
+<input type="hidden" value="1" name="step" />
+<input type="hidden" value="$action" name="action" />
+<input type="hidden" value="$fid" name="fid" />
+<input type="hidden" value="$tid" name="tid" />
+<input type="hidden" value="$pid" name="pid" />
+<input type="hidden" value="$pollid" name="pollid" />
+<input type="hidden" value="$article" name="article" />
+<input type="hidden" name="verify" value="$verify" />
+</form>
+<!--
+EOT;
+}print <<<EOT
+-->
+<form method="post" name="FORM" action="post.php?" enctype="multipart/form-data" onsubmit="return checkpost(document.FORM);">
+<input type="hidden" name="verify" value="$verify" />
+<table cellPadding="3" cellSpacing="1" width="100%" $i_table align="center">
+<tr><td class="head" colspan="3">&nbsp;</td></tr>
+<!--
+EOT;
+if(($t_per>0 || $admincheck) && $t_exits==1){
+print <<<EOT
+-->
+<tr><td class="t_one">主題分類</td>
+<td class="t_one">
+<select name="p_type">
+<option value="0">默認分類</option>
+<!--
+EOT;
+foreach($t_typedb as $key=>$value){
+if($value){
+print <<<EOT
+-->
+<option $t_checked[$key] value="$key">$value</option>
+<!--
+EOT;
+}
+}print <<<EOT
+-->
+</select></td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+<tr><td width="20%" class="t_one"><b>標題</b></td>
+<td class="t_one">
+<input name="atc_title" size="60" value="$atc_title" tabindex="1" />
+<!--
+EOT;
+if($foruminfo['allowreward'] && !$sale && !$active && $action=='new' && $_G['allowreward']){
+print <<<EOT
+-->
+<input type="checkbox" name="reward" value="1" onclick="return viewdetail();" />&nbsp;懸賞貼
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</td></tr>
+<!--
+EOT;
+if($foruminfo['allowreward'] && !$sale && !$active && $action=='new' && $_G['allowreward']){print <<<EOT
+-->
+<tbody id="ifreward" style="display:none">
+<tr>
+	<td width="20%" class="t_one">懸賞貼設置</td>
+	<td class="t_one">
+		最佳答案︰懸賞&nbsp;<select name="ctype[best]">$creditselect</select>&nbsp;<input name="bonus[best]" value="$rw_b_val" size="4" /> 點 (最少 $rw_b_val 點)<br />
+		熱心助人︰懸賞&nbsp;<select name="ctype[active]">$creditselect</select>&nbsp;<input name="bonus[active]" value="$rw_a_val" size="4" /> 點 (最少 $rw_a_val 點)
+	</td>
+</tr>
+</tbody>
+<script language="JavaScript">
+function viewdetail(){
+	obj=document.getElementById("ifreward");
+	if(document.FORM.reward.checked==true){
+		obj.style.display="";
+	}else{
+		obj.style.display="none";
+	}		
+}
+</script>
+<!--
+EOT;
+}if($postgd){
+$rawwindid=addslashes($windid);
+print <<<EOT
+-->
+<tr class="t_one"><td><b>認證碼</b></td>
+<td><input type="text" name="gdcode" size="8" tabindex="2" />&nbsp;<img src="ck.php?windid=$rawwindid" align="absmiddle" onclick="this.src='ck.php?'" /></td></tr>
+<!--
+EOT;
+} print <<<EOT
+-->
+<tr><td class="t_one"><b>Icon</b></td>
+<td class="t_one">
+<!--
+EOT;
+foreach($icondb as $key=>$icon){
+print <<<EOT
+-->
+<input name="atc_iconid" type="radio" value="$key" /><img src="$imgpath/post/emotion/$icon" />
+<!--
+EOT;
+if($key%7==0){
+print <<<EOT
+-->
+<br />
+<!--
+EOT;
+}} print <<<EOT
+-->
+</td></tr>
+<!--
+EOT;
+if(is_array($votearray) || $action=='vote'){ print <<<EOT
+-->
+<tr><td class="t_one">投票有效天數︰</td><td class="t_one"><input type="text" name="timelimit" value="$timelimit" size="10" $voteable /><input type="hidden" name="vote" value="1" />
+<!--
+EOT;
+if(!$vote_close && $action=='modify'){ print <<<EOT
+-->
+<input type="checkbox" name="vote_close" value="1" />結束投票
+<!--
+EOT;
+} print <<<EOT
+-->
+</td></tr>
+<tr><td class="t_one"><b>投票選項:<br>每行寫一個投票選項<br>最多可以有 $db_selcount 個選項<br>多選
+<input type="checkbox" value="1" name="multiplevote" $multi $voteable /><br />
+最多選擇個數<input maxlength="10" size="1" name="mostvotes" value="$mostnum" $voteable /><br />
+是否允許修改投票結果<input type="checkbox" value="1" name="modifiable" $ifmodify $voteable /><br />
+強制投票才能查看結果<input type="checkbox" value="1" name="previewable" $ifpreview $voteable />
+</b></td>
+<td class="t_one">
+<!--
+EOT;
+if($action=='modify'){
+foreach($votearray['options'] as $key=>$votes){
+$votes[0]=stripslashes($votes[0]);
+print <<<EOT
+-->
+<input class="text" maxLength="60" name="vt_selarray[$key]" size="60" value="$votes[0]" $voteable /><br />
+<!--
+EOT;
+}print <<<EOT
+-->
+<input class="text" maxLength="60" name="vt_selarray[]" size="60" value="" $voteable /> 新的投票項（留空忽略）<br />
+<!--
+EOT;
+}elseif($action=='vote'){print <<<EOT
+-->
+<textarea name="vt_select" rows="10" wrap="hard" cols="80">$vt_select</textarea>
+<!--
+EOT;
+}print <<<EOT
+-->
+</td></tr>
+<!--
+EOT;
+}if($action=='new' && $sale && $forumset[allowsale]!=2){print <<<EOT
+-->
+<tr>
+	<td width="20%" class="t_one">賣家︰</td>
+	<td class="t_one"><input name="seller" size="30" value="$winddb[email]" /></td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">商品名稱︰</td>
+	<td class="t_one"><input name="subject" size="30" /> 價格︰<input name="price" size="7" /></td>
+</tr>
+<tbody id="salemethod" style="display:none">
+<tr>
+	<td width="20%" class="t_one">郵費承擔方︰</td>
+	<td class="t_one">
+		<input type="radio" value="1" name="transport" onclick="this.form.ordinary_fee.disabled=true;this.form.express_fee.disabled=true;" /> 賣家承擔運費&nbsp;&nbsp; 
+		<input type="radio" value="2" name="transport" onclick="this.form.ordinary_fee.disabled=false;this.form.express_fee.disabled=false;" /> 買家承擔運費<br />
+		<input type="hidden" value="3" />
+		平郵&nbsp;<input disabled size="7" name="ordinary_fee" /> 元 &nbsp;&nbsp; 
+		快遞&nbsp;<input disabled size="7" name="express_fee" /> 元
+	</td>
+</tr>
+</tbody>
+<tr>
+	<td width="20%" class="t_one">演示地址︰</td>
+	<td class="t_one"><input name="demo" size="30" /></td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">聯系方式︰</td>
+	<td class="t_one"><input name="contact" size="30" /></td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">收款方式</td>
+	<td class="t_one">
+		<input type="radio" name="method" value="3" onclick="showmethod(this.value);" checked />使用快錢收款
+		<input type="radio" name="method" value="1" onclick="showmethod(this.value);" />使用貝寶收款
+		<input type="radio" name="method" value="2" onclick="showmethod(this.value);" />使用支付寶收款
+	</td>
+</tr>
+<script language="JavaScript">
+function showmethod(method){
+	obj=document.getElementById("salemethod");
+	if(method==2){
+		obj.style.display="";
+	}else{
+		obj.style.display="none";
+	}		
+}
+</script>
+<!--
+EOT;
+}elseif($active && $forumset[allowactive]){ print <<<EOT
+-->
+<tr>
+	<td width="20%" class="t_one">活動標題︰</td>
+	<td class="t_one"><input type="text" name="active_subject" value="$active_subject" size="60" /> <font color="red">*</font>(必填)</td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">活動時間︰</td>
+	<td class="t_one"><input type="text" name="active_starttime" id="starttime" value="$active_starttime" onClick="javascript:ShowCalendar(this.id)" />&nbsp;-&nbsp;<input type="text" name="active_endtime" id="endtime" value="$active_endtime" onClick="javascript:ShowCalendar(this.id)" /> <font color="red">*</font>(必填)</td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">活動地點︰</td>
+	<td class="t_one"><input type="text" name="active_location" value="$active_location" size="15" /></td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">人數限制︰</td>
+	<td class="t_one"><input type="text" name="active_num" value="$active_num" size="5" />&nbsp;人（不限制人數，請留空）</td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">性別要求︰</td>
+	<td class="t_one">
+		<input name="active_sex" type="radio" value="0" $sel_0 />不限
+		<input name="active_sex" type="radio" value="1" $sel_1 />男
+		<input name="active_sex" type="radio" value="2" $sel_2 />女
+	</td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">活動費用︰</td>
+	<td class="t_one"><input type="text" name="active_costs" size="8" value="$active_costs" /> 元</td>
+</tr>
+<tr>
+	<td width="20%" class="t_one">報名截止日期︰</td>
+	<td class="t_one">
+	<input name="active_deadline" id="deadline" value="$active_deadline" type="text" onClick="javascript:ShowCalendar(this.id)" /> <font color="red">*</font>(必填)
+	<script language="JavaScript" src="$imgpath/date.js"></script>
+	</td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+<tr><td valign="top"  class="t_one">
+<!--
+EOT;
+if($editor=='wysiwyg_editor'){
+$htmcheck=$action=='new' ? 'checked' : ($ifsign>=2 ? 'checked':'');
+$db_htmifopen && strpos($REQUEST_URI,'.php?')!==false && $REQUEST_URI=str_replace('.php?',$db_dir,$REQUEST_URI);
+$jump=base64_encode("http://$_SERVER[HTTP_HOST]".$REQUEST_URI);
+print <<<EOT
+-->
+<input type="hidden" name="c_editor" value="1" />
+切換到 <a href="job.php?action=switch&cur=$winddb[editor]&jump=$jump"><b>Wind Code</b></a> 編輯器<br />
+<br /><b>內容</b><br /><br />
+<input type="hidden" name="atc_html" value="1" />
+<!--
+EOT;
+}else{
+if($gp_wysiwyg){
+$db_htmifopen && strpos($REQUEST_URI,'.php?')!==false && $REQUEST_URI=str_replace('.php?',$db_dir,$REQUEST_URI);
+$jump=base64_encode("http://$_SERVER[HTTP_HOST]".$REQUEST_URI);
+print <<<EOT
+-->
+切換到 <a href="job.php?action=switch&cur=$winddb[editor]&jump=$jump"><b>所見即所得</b></a> 編輯器<br /><br />
+<!--
+EOT;
+}print <<<EOT
+-->
+Wind 代碼<br />
+<input onclick="checkmode(2)" type="radio" checked="checked" value="2" name="mode" />提示插入<br />
+<input onclick="checkmode(0)" type="radio" value="0" name="mode" />直接插入<br />
+<input onclick="checkmode(1)" type="radio" value="1" name="mode" />幫助信息 <br />
+<br /><b>內容</b><br /><br />
+<!--
+EOT;
+if($gp_htmlcode){print <<<EOT
+-->
+<input type="checkbox" name="atc_html" value="1" $htmcheck /><font face="verdana">使用HTML代碼</font>
+<!--
+EOT;
+}else{print <<<EOT
+-->
+<font face="verdana">HTML 代碼不可用</font>
+<!--
+EOT;
+}}print <<<EOT
+-->
+<br />
+<font face="verdana">Wind Code</font>可用<br>點擊<a target=_blank href=faq.php?faqjob=1><font color=blue><b>這里</b></font></a>看使用方法<br><b>Wind代碼選項:</b><br />$windcode<br /><br />
+<input type="checkbox" name="atc_autourl" value="1" checked />自動分析url<br />
+<input type="checkbox" name="atc_usesign" value="1" checked />使用簽名<br />
+<input type="checkbox" name="atc_convert" value="1" checked />Wind Code自動轉換<br />
+<input name="atc_email" type="checkbox"  value="1" $hideemail />新回復郵件通知
+<!--
+EOT;
+if($SYSTEM[typeadmin] && ($action=='new' || $action=='vote')){
+print <<<EOT
+-->
+<br />
+<input name="digest" type="radio" value="0" checked />普通帖<br />
+<input name="digest" type="radio" value="1" />精華1<input name="digest" type="radio" value="2" />精華2
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</td>
+<td colspan="2" align="left" class="t_one">
+<!--
+EOT;
+require_once PrintEot($editor);
+if($editor=='editor'){
+print <<<EOT
+-->
+<br />
+推薦使用:
+[<a href="javascript:copytext('FORM.atc_content')">復制到剪貼板</a>]-- 
+[<a href="javascript:replac()">替換文本</a>]<br />
+使用動作:<select onchange="Addaction(this.options[this.selectedIndex].value);this.selectedIndex=0">
+<option value="" selected></option>
+<!--
+EOT;
+foreach($motion as $key=>$motiondb){
+print <<<EOT
+-->	
+<option value="[p:$key]">$motiondb[0]</option>
+<!--
+EOT;
+}print <<<EOT
+-->
+</select>
+[<a href="javascript:checklength(document.FORM);">查看帖子長度</a>] 最大:$db_postmax 字節<br />
+<input type="checkbox" name="act_anonymous" value="1" $ifanonymous />
+匿名帖，普通會員將無法看到是誰發的帖<br />
+<input type="checkbox" name="atc_hide" value="1" $htmlpost />
+隱藏此帖，只有用戶回復了此帖才可以查看帖子內容(請勿惡意隱藏)<br />
+<input type="checkbox" name="atc_requirervrc" value="1" $htmlhide />
+加密此帖，只對部分用戶可見，用戶{$db_rvrcname}需大于
+<input maxlength="6" size="6" name="atc_rvrc" value="0" /><br />
+<!--
+EOT;
+if($action=='new' || $action=='modify' && $pid=='tpc'){print <<<EOT
+-->
+<input type="checkbox" name="atc_requiresell" value="1" $htmlsell />
+出售此帖，會員需付
+<input maxlength="6" size="6" name="atc_money" value="0" />
+{$db_moneyname} 才能看到帖子內容(回復帖不能出售).(不能大于:<font color=blue>1000</font>)<br />
+<!--
+EOT;
+}print <<<EOT
+-->
+表情<br />
+<table width="63%" cellspacing="0" cellpadding="0">
+<tr><td>
+<div style="overflow:auto;height=0;"> 
+<table width="100%" cellspacing="0" cellpadding="0"> 
+<tr><td>
+<!--
+EOT;
+$s_count=0;
+include_once(R_P.'data/bbscache/postcache.php');
+$t_count=count($face);
+foreach($face as $key=>$facedb){
+$s_count++;
+print <<<EOT
+-->
+<img src="$imgpath/post/smile/$facedb" onclick="javascript:addsmile('[s:$key]')" style="cursor:pointer;" />
+<!--
+EOT;
+if($s_count>7) break;
+}
+$t_count > $s_count && require_once PrintEot('face');
+print <<<EOT
+-->
+<td></tr></table></div></td></tr></table>
+<!--
+EOT;
+}print <<<EOT
+-->
+</td></tr>
+<!--
+EOT;
+if($foruminfo['cms'] && ($action=="new" || ($action=='modify' && $article==0))){print <<<EOT
+-->
+<tr><td class="t_one"><b>關鍵字</b>(<font color=blue>可不填</font>)每個不多于20字節<br>相同關鍵字, 將視為相關文章</td>
+<td class="t_one">
+1. <input class="subject" maxLength="20" name="keyword[]" size="10" value="$kname[0]" />
+2. <input class="subject" maxLength="20" name="keyword[]" size="10" value="$kname[1]" />
+3. <input class="subject" maxLength="20" name="keyword[]" size="10" value="$kname[2]" /></td></tr>
+<!--
+EOT;
+}if($attach){print <<<EOT
+-->
+<tr><td align="left" valign="top" class="t_one"><b>該帖包含附件:<br>(不想保留的附件去掉ˇ)</b></td>
+<td align="left" valign="top" class="t_one">
+<table width="100%" cellspacing="0" cellpadding="0" id="ajaxtable">
+<!--
+EOT;
+$num=0;
+foreach($attach as $key => $value){
+$num++;
+print <<<EOT
+-->
+<tr>
+	<td>
+		<input type="checkbox" name="keep[]" value="$value[aid]" checked />
+		所需{$db_rvrcname}︰<input type="text" name="downrvrc[$value[aid]]" value="$value[needrvrc]" size="1" /> &nbsp;
+		描述︰<input type="text" name="attdesc[$value[aid]]" value="$value[desc]" size="25" /> &nbsp;
+		附件︰
+		<span id="attach_$key"><font color="red"><b>$value[name]</b></font>&nbsp;($value[size]K)&nbsp;<a href="javascript:" onclick="amodify($key)">[更新]</a></span>
+		&nbsp; &nbsp;<a href="javascript:" onclick="addattach('$value[aid]')"><b>添加到帖子中</b></a>
+	</td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<script type="text/javascript" language="JavaScript" src="$imgpath/ajax.js"></script>
+<script type="text/javascript" language="JavaScript" src="$imgpath/ajax_attach.js"></script>
+<!--
+EOT;
+}if($db_allowupload && $gp_allowupload){
+print <<<EOT
+-->
+<tr><td align="left" valign="top" class="t_one">附件最大:$db_uploadmaxsize (K)</td>
+<td align="left" valign="top" class="t_one">
+<b>有效文件類型:$db_uploadfiletype</b><br />
+<input name="muti" type="checkbox" value="1" onclick="showmuti()" />多個附件<br />
+<input name="modify" type="checkbox" value="1" />如果附件中帶有圖片，並希望進行圖文混排操作，請在選中此項
+<br /><br />
+所需{$db_rvrcname}︰ <input type="text" name="atc_downrvrc1" value="0" size="1" /> &nbsp;
+描述︰ <input type="text" name="atc_desc1" size="25" /> &nbsp;
+附件︰ <input type="file" class="subject" name="atc_attachment1" />
+<span id="attach2" style="DISPLAY: none">
+<!--
+EOT;
+for($i=2;$i<=$db_attachnum;$i++){
+print <<<EOT
+-->	
+<br />
+所需{$db_rvrcname}︰ <input type="text" name="atc_downrvrc$i" value="0" size="1" /> &nbsp;
+描述︰ <input type="text" name="atc_desc$i" size="25" /> &nbsp;
+附件︰ <input type="file" class="subject" name="atc_attachment$i" />
+<!--
+EOT;
+}print <<<EOT
+-->
+</td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table><br /><br />
+<tr><td align="center">
+<input type="hidden" value="2" name="step" />
+<input type="hidden" value="$pid" name="pid" />
+<input type="hidden" value="$action" name="action" />
+<input type="hidden" value="$fid" name="fid" />
+<input type="hidden" value="$tid" name="tid" />
+<input type="hidden" value="$article" name="article" />
+<input type="hidden" value="$sale" name="sale" />
+<input type="hidden" value="$active" name="active" />
+<script language="JavaScript">
+document.FORM.atc_title.focus();
+var cate=$db_forcetype; //是否強制分類，開啟設為1，關閉設為0；
+function checkpost(obj){
+	if(obj.p_type!=null && obj.p_type.value==0 && cate==1){
+		alert("沒有選擇主題分類");
+		obj.p_type.focus();
+		return false;
+	}
+	if(obj.atc_title.value==""){
+		alert("標題不能為空");
+		obj.atc_title.focus();
+		return false;
+	}else if(obj.atc_title.value.length>$db_titlemax){
+		alert("標題超過最大長度 $db_titlemax 個字節");
+		obj.atc_title.focus();
+		return false;
+	}
+	if(obj.atc_content.value.length<$db_postmin){
+		alert("文章內容少于 $db_postmin 個字節");
+		obj.atc_content.focus();
+		return false;
+	}else if(obj.atc_content.value.length>$db_postmax){
+		alert("文章內容大于 $db_postmax 個字節");
+		obj.atc_content.focus();
+		return false;
+	}
+	checkCnt();
+}
+cnt = 0;
+function checkCnt(){
+	document.FORM.Submit.disabled=true;
+	cnt++;
+	if (cnt!=1){
+		alert('Submission Processing. Please Wait');
+		return false;
+	}
+}
+function showmuti(){
+if (document.FORM.muti.checked == true){
+		attach2.style.display = '';
+	}else{
+		attach2.style.display = 'none';
+	}
+}
+function gopreview()
+{
+	document.preview.atc_content.value=document.FORM.atc_content.value;
+	document.preview.submit()
+}
+</script>
+<input type="submit" value="提 交" name="Submit" tabindex="3"/> 
+<input type="button" value="預 覽" name="Button" onclick="gopreview();" />         
+</td>
+</tr>
+</form>
+<form name="preview" action="job.php?previewjob=preview" method="post" target="preview_page">
+<input type="hidden" name="atc_content" value="" />
+</form>
+</table>
+<!--
+EOT;
+if($action=="reply" || $action=="quote"){print <<<EOT
+-->
+<br /><center>主題回顧</center>
+$post_reply
+<!--
+EOT;
+}print <<<EOT
+-->
+<br />
+<!--
+EOT;
+?>-->

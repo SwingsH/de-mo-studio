@@ -1,0 +1,80 @@
+<!--<?php
+include_once PrintEot('left');
+if(empty($action)){
+print <<<EOT
+-->
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+	<tr><td class=head colspan=2><b>提示信息</b></td></tr>
+	<tr>
+		<td class=b>
+<pre>
+
+此功能為博客與論壇整合設置，使用此功能需要預先安裝好博客系統，同時到博客後台進行博客與論壇整合的相關設置
+如果您已經安裝好博客系統，您必要完成下面的參數設置才能使您的論壇與博客整合
+<font color=blue>注︰以下填寫的信息必須準確無誤，否則可能造成論壇與博客不能整合成功</font>
+
+
+是否開啟博客功能           是否為您的論壇開啟博客功能
+
+博客訪問網址               博客訪問地址，最後不要加 ‘/’
+
+博客二級域名設置           博客後台設置的“二級域名”
+
+博客用戶組權限             可設置哪些用戶組可以使用博客功能（使用此功能建議關閉博客注冊功能）
+</pre>
+		</td>
+	</tr>
+</table>
+<br><br>
+
+<form action="$basename" method="post">
+<input type=hidden name="action" value="unsubmit">
+<table width=98% align="center" cellpadding=3 cellspacing=1 class=i_table>
+<tr class=head align=center><td colspan="2">博客整合設置</td></tr>
+<tr class=b>
+	<td>是否開啟博客整合功能<br>(需要到插件中心 管理中同時啟用該插件方為有效)</td>
+	<td>
+		<input type=radio name="config[bg_ifopen]" value="1" $ifopen_Y> 是 
+		<input type=radio name="config[bg_ifopen]" value="0" $ifopen_N> 否 
+		[ <a href="http://blog.phpwind.net" target=_blank><font color="blue">Download PHPWind Blog System</font></a> ]
+	</td>
+</tr>
+<!--
+<tr class=b>
+	<td>博客數據庫名稱</td>
+	<td><input size=35 name="config[bg_blogdbname]" value="$bg_blogdbname"></td>
+</tr>
+<tr class=b>
+	<td>博客數據庫表前綴</td>
+	<td><input size=35 name="config[bg_blogpre]" value="$bg_blogpre"></td>
+</tr>
+
+<tr class=b>
+	<td>安全校驗碼︰</td>
+	<td><input size=35 name="config[bg_verifycode]" value="$bg_verifycode"></td>
+</tr> -->
+<tr class=b>
+	<td>博客訪問網址︰(注意不要在最後加 / )</td>
+	<td><input size=35 name="config[bg_blogurl]" value="$bg_blogurl"></td>
+</tr>
+<tr class=b>
+	<td>博客二級域名設置︰(格式如︰phpwind.net)</td>
+	<td><input size=35 name="config[bg_domain]" value="$bg_domain"></td>
+</tr>
+<tr class=b>
+	<td>博客用戶組權限</td>
+	<td>
+		<table cellspacing='0' cellpadding='0' border='0' width='100%' align='center'>
+			<tr class=b>$usergroup</tr>
+		</table>
+	</td>
+</tr>
+</table>
+<br>
+<center><input type=submit value="提 交"></center>
+</form>
+<br>
+<!--
+EOT;
+}include_once PrintEot('adminbottom');
+?>-->

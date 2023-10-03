@@ -1,0 +1,667 @@
+<!--<?php
+include_once PrintEot('left');
+if (empty($action)){
+print <<<EOT
+-->
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b>提示信息</b></td></tr>
+<tr><td class=b>
+<b>&nbsp;&nbsp;論壇的用戶組分為會員組和系統組，會員組級別按照會員發的帖子數自動進行級別判斷並更新。<br>&nbsp;&nbsp;系統組為屬于論壇管理層，系統組成員由論壇管理員設定，管理員可以在<a href="$admin_file?adminjob=setuser"><font color=blue>會員管理</font></a>內編輯用戶組成員。</b><br><br>&nbsp;&nbsp;<b>默認組說明︰</b><br>&nbsp;&nbsp;<b>default</b>︰默認權限設置（沒設置過權限的用戶組使用，可以節約不必要的資源）<br>&nbsp;&nbsp;<b>guest</b>︰論壇游客權限設置<br><br>&nbsp;&nbsp;<b>系統組說明︰</b><br>&nbsp;&nbsp;<b>管理員(manager)</b>︰由論壇創始人在<font color=blue>會員管理</font>內進行設置<br>&nbsp;&nbsp;<b>總版主(superadmin)</b>︰前台管理員，擁有前台所有管理權限<br>&nbsp;&nbsp;<b>版主(admin)</b>:負責分版塊的管理工作<br>&nbsp;&nbsp;<b>禁言組(banned)</b>︰此用戶組禁止發言<br>&nbsp;&nbsp;<b>未驗證會員(newrg)</b>︰等待驗證的用戶組<br><br>&nbsp;&nbsp;<b>等級圖片號說明︰</b><br>&nbsp; &nbsp;3 代表 <img src="$imgpath/wind/level/3.gif">&nbsp; &nbsp;4 代表 <img src="$imgpath/wind/level/4.gif">&nbsp; &nbsp;5 代表 <img src="$imgpath/wind/level/5.gif">&nbsp; &nbsp;6 代表 <img src="$imgpath/wind/level/6.gif"><br>&nbsp; &nbsp;7 代表 <img src="$imgpath/wind/level/7.gif">&nbsp; &nbsp;8 代表 <img src="$imgpath/wind/level/8.gif">&nbsp; &nbsp;9 代表 <img src="$imgpath/wind/level/9.gif">&nbsp; &nbsp;10 代表 <img src="$imgpath/wind/level/10.gif"><br>&nbsp; &nbsp;11 代表 <img src="$imgpath/wind/level/11.gif">&nbsp;12 代表 <img src="$imgpath/wind/level/12.gif"><br><br>&nbsp;&nbsp;<b>組ID說明︰</b><br>&nbsp; &nbsp;所有普通會員組在線標記圖片為: 6.gif &nbsp; <img src="$imgpath/wind/group/6.gif"><br>&nbsp; &nbsp;管理組和特殊組在線標記圖片名為為Gid , 例 :<br>&nbsp; &nbsp;比如組ID為 16,會員在線標記圖片為: 16.gif &nbsp; <img src="$imgpath/wind/group/16.gif"><br>&nbsp; &nbsp;比如組ID為 3,會員在線標記圖片為: 3.gif &nbsp; <img src="$imgpath/wind/group/3.gif"><br><br>&nbsp;&nbsp;&nbsp;<font color=blue>注︰</font>可以在<a href="./admin.php?adminjob=settings#set10"><font color=blue>核心設置</font></a>里選擇參與在線顯示的用戶組
+</td></tr></table><br>
+
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class="b"><b><a href="#1">[新增會員組]</a> <a href="#2">[新增系統組]</a> <a href="#3">[新增特殊組]</a></b>
+</td></tr></table>
+
+<form action="$basename&" method="post">
+<input type=hidden name="action" value="menedit">
+<table width=98% align=center cellspacing=0 cellpadding=0 class=i_table>
+<tr><td><table width=100% cellspacing=1 cellpadding=3>
+<tr><td class=head colspan=5><b>會員組編輯</b></td></tr>
+<tr align=center><td bgcolor='$c'>頭餃</td><td bgcolor='$c'>等級圖片號</td>
+<td bgcolor='$c'>升級點數需求</td><td bgcolor='$c'>編輯</td>
+<td bgcolor='$c'>刪除</td></tr>
+<!--
+EOT;
+foreach($memberdb as $member){
+$key=$member[gid];
+$j_url=EncodeUrl("$basename&action=delgroup&delid=$key");
+print <<<EOT
+-->
+<tr><td class=b align=middle>組ID為:$member[gid]
+<input type=text size=40 name='memtitle[$key]' value='$member[grouptitle]'></td>
+<td class=b align=middle>
+<input type=text size=40 name='mempic[$key]' value='$member[groupimg]'></td>
+<td bgcolor='F5F5FF' align=middle>
+<input type=text size=10 name='mempost[$key]' value='$member[grouppost]'></td>
+<td class=b align=middle><input type=button value='權限' onclick=location.href='$basename&action=editgroup&gid=$key'></td>
+<td class=b valign=middle align=left><input type=button value='刪除'  
+onclick="return checkgroupset('$j_url')"></td></tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table></td></tr></table>
+<br><center><input type=submit value="提 交">
+</center></form>
+
+<form action="$basename&" method="post">
+<input type=hidden name="action" value="addmengroup">
+<table width=50% align=center cellspacing=0 cellpadding=0 class=i_table>
+<tr><td><table width=100% cellspacing=1 cellpadding=3>
+<tr><td class=head colspan=5><a name=1><b>新增會員組</b><a></td></tr>
+<td class=b valign=middle align=left width=40%>
+頭餃</td>
+<td class=b valign=middle align=left>
+<input type=text size=40 name='newtitle'></td></tr>
+<tr><td class=b valign=middle align=left width=40%>
+等級圖片號</td>
+<td class=b valign=middle align=left>
+<input type=text size=40 name='newpic'></td></tr>
+<tr><td class=b valign=middle align=left width=40%>
+升級點數需求</td><td bgcolor='F5F5FF' valign=middle align=left>
+<input type=text size=40 name='newpost'></td></tr>
+</table></td></tr></table>
+<br><center><input type=submit value="提 交"></center></form>
+
+<form action="$basename&" method="post">
+<input type=hidden name="action" value="defedit">
+<table width=98% align=center cellspacing=0 cellpadding=0 class=i_table>
+<tr><td><table width=100% cellspacing=1 cellpadding=3>
+<tr><td class=head colspan=4>默認用戶組</td></tr>
+<tr align=center><td bgcolor='$c'>頭餃</td>
+<td bgcolor='$c'>等級圖片號</td><td bgcolor='$c'>編輯</td></tr>
+<!--
+EOT;
+foreach($defaultdb as $default){
+$key=$default[gid];
+print <<<EOT
+-->
+<tr><td class=b align=middle>組ID為:$default[gid]
+<input type=text size=40 name='deftitle[$key]' value='$default[grouptitle]'></td>
+<td class=b align=middle>
+<input type=text size=40 name='defpic[$key]' value='$default[groupimg]'></td>
+<td class=b align=middle><input type=button value='權限' onclick=location.href='$basename&action=editgroup&gid=$key'></td></tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table></td></tr></table>
+<br><center><input type=submit value="提 交">
+</center></form>
+
+<form action="$basename&" method="post">
+<input type=hidden name="action" value="sysedit">
+<table width=98% align=center cellspacing=0 cellpadding=0 class=i_table>
+<tr><td><table width=100% cellspacing=1 cellpadding=3>
+<tr><td class=head colspan=4><b>系統組編輯</b></td></tr>
+<tr align=center><td bgcolor='$c'>頭餃</td>
+<td bgcolor='$c'>等級圖片號</td><td bgcolor='$c'>編輯</td><td bgcolor='$c'>刪除</td></tr>
+<!--
+EOT;
+foreach($sysdb as $sys){
+$key=$sys[gid];
+$j_url=EncodeUrl("$basename&action=delgroup&delid=$key");
+print <<<EOT
+-->
+<tr><td class=b align=center>組ID為:$sys[gid]
+<input type=text size=40 name='systitle[$key]' value='$sys[grouptitle]'></td>
+<td class=b align=center>
+<input type=text size=40 name='syspic[$key]' value='$sys[groupimg]'></td>
+<td class=b align=center>
+<input type=button value='權限' onclick=location.href="$basename&action=editgroup&gid=$key">
+</td>
+<td class=b align=center>
+<!--
+EOT;
+if($key>7){
+print <<<EOT
+-->
+<input type=button value='刪除' onclick="return checkgroupset('$j_url')">
+</td>
+<!--
+EOT;
+}}
+print <<<EOT
+-->
+</table></td></tr></table>
+<br><center><input type=submit value="提 交">
+</center></form>
+<form action="$basename&" method="post">
+<input type=hidden name="action" value="addadmingroup">
+<table width=50% align=center cellspacing=0 cellpadding=0 class=i_table>
+<tr><td><table width=100% cellspacing=1 cellpadding=3>
+<tr><td class=head colspan=5><a name=2><b>新增系統組</b></td></tr>
+<td class=b valign=middle align=left width=40%>頭餃</td>
+<td class=b valign=middle align=left><input type=text size=40 name='newtitle'></td></tr>
+<tr><td class=b valign=middle align=left width=40%>等級圖片號</td>
+<td class=b valign=middle align=left><input type=text size=40 name='newpic'></td></tr>
+</table></td></tr></table>
+<br><center><input type=submit value="提 交"></center></form>
+<!--
+EOT;
+if($vipdb){
+print <<<EOT
+-->
+<form action='$basename&' method='post'><input type=hidden name='action' value='vipedit'>
+<table width=98% align=center cellspacing=0 cellpadding=0 class=i_table>
+<tr><td><table width=100% cellspacing=1 cellpadding=3>
+<tr><td class=head colspan=4><b>特殊組編輯</b></td></tr>
+<tr align=center><td bgcolor='$c'>頭餃</td>
+<td bgcolor='$c'>等級圖片號</td><td bgcolor='$c'>編輯</td><td bgcolor='$c'>刪除</td></tr>
+<!--
+EOT;
+foreach($vipdb as $vip){
+$key=$vip[gid];
+$j_url=EncodeUrl("$basename&action=delgroup&delid=$key");
+print <<<EOT
+-->
+<tr><td class=b align=center>組ID為:$vip[gid]
+<input type=text size=40 name='viptitle[$key]' value='$vip[grouptitle]'></td>
+<td class=b align=center>
+<input type=text size=40 name='vippic[$key]' value='$vip[groupimg]'></td>
+<td class=b align=center>
+<input type=button value='權限' onclick=location.href='$basename&action=editgroup&gid=$key'>
+<td class=b align=center>
+<input type=button value='刪除' onclick="return checkgroupset('$j_url')">
+</tr>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+</table></td></tr></table>
+<br><center><input type=submit value="提 交">
+</center></form>
+<!--
+EOT;
+}
+print <<<EOT
+-->
+<form action="$basename&" method="post">
+<input type=hidden name="action" value="addvipgroup">
+<table width=50% align=center cellspacing=0 cellpadding=0 class=i_table>
+<tr><td><table width=100% cellspacing=1 cellpadding=3>
+<tr><td class=head colspan=5><a name=3><b>新增特殊組</b></td></tr>
+<td class=b valign=middle align=left width=40%>頭餃</td>
+<td class=b valign=middle align=left><input type=text size=40 name='newtitle'></td></tr>
+<tr><td class=b valign=middle align=left width=40%>等級圖片號</td>
+<td class=b valign=middle align=left><input type=text size=40 name='newpic'></td></tr>
+</table></td></tr></table>
+<br><center><input type=submit value="提 交"></center></form>
+<!--
+EOT;
+}elseif($action=='editgroup'){
+print <<<EOT
+-->
+<form action="$basename&" method=POST name=mod>
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr>
+<td class=head align=center colspan=2>
+<a class=bold>用戶組編輯</a></td>
+</tr>
+<tr class=b><td width=60%>用戶組頭餃</td>
+<td><select name="selectfid" onChange="level_jump('$admin_file')">
+$groupselect
+</select><br><br>
+<!--
+EOT;
+if($gp_gptype=='member'){
+if($default){
+print <<<EOT
+-->
+<font color=blue>默認用戶組</font>
+<!--
+EOT;
+}else{
+print <<<EOT
+-->
+<font color=red>獨立用戶組權限</font>-- 
+<a href='$basename&action=editgroup&gid=$gid&step=3'>點擊采用默認用戶組權限</a>
+<!--
+EOT;
+}}print <<<EOT
+-->
+</td></tr>
+</td></tr></table>
+<input type=hidden name="action" value="editgroup">
+<input type=hidden name="gid" value="$gid">
+<input type=hidden name="gptype" value="$gp_gptype">
+<input type=hidden name="step" value="2">
+<br><br>
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head align=center colspan=3><b>基本權限</b></td></tr>
+<tr class=b><td width="3%"><input type="checkbox" name="othergroup[]" value='allowhide'></td>
+<td width="60%">是否允許隱身登錄</td>
+<td><input type=radio value=1 $hide_Y name=group[allowhide]>是 
+<input type=radio value=0 $hide_N name=group[allowhide]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='allowread'></td>
+<td>是否允許瀏覽帖子</td>
+<td><input type=radio value=1 $read_Y name=group[allowread]>是 
+<input type=radio value=0 $read_N name=group[allowread]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='allowsearch'></td>
+<td>搜索權限控制</td>
+<td><input type=radio value=0 $search_N name=group[allowsearch]>不允許 <br>
+<input type=radio value=1 $search_1 name=group[allowsearch]>只允許搜索主題<br>
+<input type=radio value=2 $search_2 name=group[allowsearch]>允許搜索主題和內容</td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='allowmember'></td>
+<td>是否允許查看會員列表</td>
+<td><input type=radio value=1 $member_Y name=group[allowmember]>是
+<input type=radio value=0 $member_N name=group[allowmember]>否</td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='allowprofile'></td>
+<td>是否允許查看會員資料</td>
+<td><input type=radio value=1 $profile_Y name="group[allowprofile]">是 
+<input type=radio value=0 $profile_N name="group[allowprofile]">否 </td></tr>
+<tr class=b>
+	<td><input type="checkbox" name="othergroup[mright][]" value='atclog'></td>
+	<td>是否允許查看帖子操作記錄 (允許用戶查看自己的帖子被操作情況)</td>
+	<td>
+		<input type=radio value=1 name="mright[atclog]" $atclog_Y>是 
+		<input type=radio value=0 name="mright[atclog]" $atclog_N>否
+	</td>
+</tr>
+<tr class=b><td><input type="checkbox" name="othergroup[mright][]" value='show'></td>
+<td>是否允許使用展區功能</td>
+<td><input type=radio value=1 $show_Y name="mright[show]">是 
+<input type=radio value=0 $show_N name="mright[show]">否 </td></tr>
+<tr class=b>
+<td><input type="checkbox" name="othergroup[]" value='allowreport'></td>
+<td>是否允許使用報告功能</td>
+<td><input type=radio value=1 $report_Y name=group[allowreport]>是 
+<input type=radio value=0 $report_N name=group[allowreport]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='upload'></td>
+<td>是否允許用戶使用頭像上傳功能</td>
+<td><input type=radio value=1 $uploadimg_Y name=group[upload]>是
+<input type=radio value=0 $uploadimg_N name=group[upload]>否 </td></tr> 
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='allowportait'></td>
+<td>是否允許用戶使用自定義頭像</td>
+<td><input type=radio value=1 $portait_Y name=group[allowportait]>是
+<input type=radio value=0 $portait_N name=group[allowportait]>否 </td></tr> 
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='allowhonor'></td>
+<td>是否允許自定義榮譽頭餃</td>
+<td><input type=radio value=1 $honor_Y name=group[allowhonor]>是
+<input type=radio value=0 $honor_N name=group[allowhonor]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='allowmessege'></td>
+<td>是否允許發送短消息</td>
+<td><input type=radio value=1 $messege_Y name=group[allowmessege]>是
+<input type=radio value=0 $messege_N name=group[allowmessege]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='allowsort'></td>
+<td>是否允許查看統計與排行</td>
+<td><input type=radio value=1 $sort_Y name=group[allowsort]>是
+<input type=radio value=0 $sort_N name=group[allowsort]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='alloworder'></td>
+<td>是否允許使用主題排序(主題列表頁面 )</td>
+<td><input type=radio value=1 $order_Y name=group[alloworder]>是
+<input type=radio value=0 $order_N name=group[alloworder]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[mright][]" value='viewipfrom'></td>
+<td>是否允許查看ip來源 (如果論壇核心設置中關閉此功能，則此項設置無效)</td>
+<td><input type=radio value=1 name="mright[viewipfrom]" $viewipfrom_Y>是
+<input type=radio value=0 name="mright[viewipfrom]" $viewipfrom_N>否 </td></tr>
+<tr class=b>
+<td><input type="checkbox" name="othergroup[]" value='searchtime'></td>
+<td>兩次搜索時間間隔(秒)</td>
+<td><input size=35 value="$gp_searchtime" name=group[searchtime]></td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='signnum'></td>
+<td>個人簽名最大字節數</td>
+<td><input size=35 value="$gp_signnum" name=group[signnum]></td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[mright][]" value='imgwidth'></td>
+<td>簽名中的圖片最大寬度（留空使用核心里的設置）</td>
+<td><input size="5" name="mright[imgwidth]" value="$imgwidth"></td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[mright][]" value='imgheight'></td>
+<td>簽名中的圖片最大高度（留空使用核心里的設置）</td>
+<td><input  size="5" name="mright[imgheight]" value="$imgheight"></td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[mright][]" value='fontsize'></td>
+<td>簽名中[size]標簽的最大值（留空使用核心里的設置）</td>
+<td><input name="mright[fontsize]" value="$fontsize"></td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='maxmsg'></td>
+<td>最大短消息數目</td>
+<td><input size=35 value="$gp_maxmsg" name="group[maxmsg]"></td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[mright][]" value='msggroup'></td>
+<td>是否允許使用“只接收特定用戶組的短消息”的功能</td>
+<td><input type=radio value=1 name="mright[msggroup]" $msggroup_Y>是
+<input type=radio value=0 name="mright[msggroup]" $msggroup_N>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[mright][]" value='maxfavor'></td>
+<td>收藏夾容量</td>
+<td><input size=35 value="$maxfavor" name="mright[maxfavor]"></td></tr></table><br><br>
+
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head align=center colspan=3><b>帖子權限</b></td></tr>
+<tr class=b><td width="3%"><input type="checkbox" name="othergroup[]" value='allowpost'>
+<td width="60%">是否允許發表主題</td>
+<td><input type=radio value=1 $post_Y name=group[allowpost]>是 
+<input type=radio value=0 $post_N name=group[allowpost]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='allowrp'></td>
+<td>是否允許回復主題</td>
+<td><input type=radio value=1 $reply_Y name=group[allowrp]>是 
+<input type=radio value=0 $reply_N name=group[allowrp]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='allownewvote'></td>
+<td>是否允許發起投票</td>
+<td><input type=radio value=1 $postvote_Y name=group[allownewvote]>是 
+<input type=radio value=0 $postvote_N name=group[allownewvote]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[mright][]" value='modifyvote'></td>
+<td>是否允許投票發起人修改投票選項</td>
+<td><input type=radio value=1 name="mright[modifyvote]" $modifyvote_Y>是 
+<input type=radio value=0 name="mright[modifyvote]" $modifyvote_N>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='allowvote'></td>
+<td>是否允許參與投票</td>
+<td><input type=radio value=1 $vote_Y name=group[allowvote]>是 
+<input type=radio value=0 $vote_N name=group[allowvote]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[mright][]" value='viewvote'></td>
+<td>是否允許查看投票用戶</td>
+<td><input type=radio value=1 name="mright[viewvote]" $viewvote_Y>是 
+<input type=radio value=0 name="mright[viewvote]" $viewvote_N>否 </td></tr>
+
+<tr class=b><td><input type="checkbox" name="othergroup[]" value="allowactive"></td>
+<td>是否允許發起活動</td>
+<td><input type=radio value=1 $active_Y name=group[allowactive]>是 
+<input type=radio value=0 $active_N name=group[allowactive]>否 </td></tr>
+
+<tr class="b"><td><input type="checkbox" name="othergroup[mright][]" value="allowreward"></td>
+<td>是否允許發懸賞帖</td>
+<td><input type="radio" value="1" $reward_Y name="mright[allowreward]">是 
+<input type="radio" value="0" $reward_N name="mright[allowreward]">否 </td></tr>
+
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='htmlcode'></td>
+<td>是否允許發html帖<br>這將使用戶擁有直接編輯 html 源代碼的權利!</td>
+<td><input type=radio value=1 $html_Y name=group[htmlcode]>是 
+<input type=radio value=0 $html_N name=group[htmlcode]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='wysiwyg'></td>
+<td>是否允許使用所見即所得編輯器</td>
+<td><input type=radio value=1 $wysiwyg_Y name=group[wysiwyg]>是 
+<input type=radio value=0 $wysiwyg_N name=group[wysiwyg]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='allowhidden'></td>
+<td>是否允許發隱藏帖</td>
+<td><input type=radio value=1 $hidden_Y name=group[allowhidden]>是 
+<input type=radio value=0 $hidden_N name=group[allowhidden]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='allowencode'></td>
+<td>是否允許發加密帖</td>
+<td><input type=radio value=1 $encode_Y name=group[allowencode]>是 
+<input type=radio value=0 $encode_N name=group[allowencode]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='allowsell'></td>
+<td>是否允許發出售帖</td>
+<td><input type=radio value=1 $sell_Y name=group[allowsell]>是 
+<input type=radio value=0 $sell_N name=group[allowsell]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[mright][]" value='anonymous'></td>
+<td>是否允許發匿名帖</td>
+<td><input type=radio value=1 $anonymous_Y name="mright[anonymous]">是 
+<input type=radio value=0 $anonymous_N name="mright[anonymous]">否 </td></tr>
+<tr class=b>
+<td><input type="checkbox" name="othergroup[]" value='allowdelatc'></td>
+<td>是否允許刪除自己的帖子</td>
+<td><input type=radio value=1 $delatc_Y name=group[allowdelatc]>是 
+<input type=radio value=0 $delatc_N name=group[allowdelatc]>否 
+</td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[mright][]" value='atccheck'></td>
+<td>發表的文章是否需要管理員審核（此項只有是開啟版塊文章審核時有效）</td>
+<td><input type=radio value=1 $atccheck_Y name=mright[atccheck]>是 
+<input type=radio value=0 $atccheck_N name=mright[atccheck]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[mright][]" value='markable'></td>
+<td>是否開啟論壇評分權限(下面3項起作用的前提是開啟此選項)<br><font color=blue> 說明︰</font><br>若開啟版主評分權限, 則版主在所有版塊內都擁有評分權限, 若關閉版主的評分權限, 則版主只在自己管理的版塊內擁有評分權限. </td>
+<td><input type=radio value=0 $markable_0 name=mright[markable]>無<br>
+<input type=radio value=1 $markable_1 name=mright[markable]>允許評分<br>
+<input type=radio value=2 $markable_2 name=mright[markable]>允許重復評分</td></tr>
+<tr class=b><td rowspan=3><input type="checkbox" name="othergroup[mright][]" value='markdb'></td>
+<td>評分上限<font color=blue> 說明︰</font>每天允許的最大評分點數</td>
+<td><input type=text value='$maxcredit' name=markdb[maxcredit]></td></tr>
+<tr class=b><td>評分限制<font color=blue> 說明︰</font>每次評分的最大和最小值</td><td>
+最小 <input type=text size=3 value='$minper' name=markdb[minper]>
+最大 <input type=text size=3 value='$maxper' name=markdb[maxper]></td></tr>
+<tr class=b><td>允許的評分類型</td><td>$credit_type</td></tr>
+
+<tr class=b><td><input type="checkbox" name="othergroup[mright][]" value='postlimit'></td>
+<td>每天最多允許發表多少篇帖子(設置為0不限制)</td>
+<td><input size=35 value="$postlimit" name="mright[postlimit]"></td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='postpertime'></td>
+<td>灌水預防(多少秒間隔內不能發帖,設為0則不做限制)</td>
+<td><input size=35 value="$gp_postpertime" name="group[postpertime]"></td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='edittime'></td>
+<td>編輯時間約束(分鐘)超過設定時間後拒絕用戶編輯。留空或者鍵入0則沒有約束</td>
+<td><input size=35 value="$gp_edittime" name="group[edittime]"></td></tr></table><br><br>
+
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head align=center colspan=3><b>附件權限</b></td></tr>
+<tr class=b><td width=3%><input type="checkbox" name="othergroup[]" value='allowupload'></td>
+<td width=60%>是否允許上傳附件</td>
+<td><input type=radio value=1 $upload_Y name=group[allowupload]>是 
+<input type=radio value=0 $upload_N name=group[allowupload]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='allowdownload'></td>
+<td>是否允許下載附件</td>
+<td><input type=radio value=1 $download_Y name=group[allowdownload]>是 
+<input type=radio value=0 $download_N name=group[allowdownload]>否 </td></tr>
+<tr class=b>
+<td><input type="checkbox" name="othergroup[]" value='uploadmoney'></td>
+<td>上傳附件被扣金錢為</td>
+<td><input size=35 value="$gp_uploadmoney" name=group[uploadmoney]></td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='allownum'></td>
+<td>一天最多上傳附件個數</td>
+<td><input size=35 value="$gp_allownum" name=group[allownum]></td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[mright][]" value='uploadmaxsize'></td>
+<td>上傳附件大小上限(k)<br><font color=blue> 說明︰</font>留空或設置為"0"使用論壇核心設置中的設置</td>
+<td><input size=35 value="$uploadmaxsize" name=mright[uploadmaxsize]></td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[mright][]" value='uploadtype'></td>
+<td>上傳附件允許後綴(空格隔開)<br><font color=blue> 說明︰</font>留空使用論壇核心設置中的設置</td>
+<td><input size=35 value="$uploadtype" name=mright[uploadtype]></td></tr></table><br><br>
+<!--
+EOT;
+if($gp_gptype=='system' ||$gp_gptype=='special'){print <<<EOT
+-->
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b>管理權限說明</b></td></tr>
+<tr><td class=b><br><ul>1.以下所有管理權限針對所有論壇版塊.<br></ul><br></td></tr></table><br>
+<!--
+EOT;
+if($gp_gptype=='special'){print <<<EOT
+-->
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head align=center colspan=3><a class=bold>管理權限</a></td></tr>
+<tr class=b>
+	<td width="3%"><input type="checkbox" name="othergroup[sright][]" value='allowbuy'></td>
+	<td width="60%">允許購買<br>是否允許用戶使用{$db_currencyname}來購買該用戶組權限</td>
+	<td>
+		<input type=radio value=1 $allowbuy_Y name=sright[allowbuy]>是 
+		<input type=radio value=0 $allowbuy_N name=sright[allowbuy]>否
+	 </td>
+</tr>
+<tr class=b>
+	<td width="3%"><input type="checkbox" name="othergroup[sright][]" value='sellprice'></td>
+	<td width="60%">特殊組購買日價格<br>用戶使用{$db_currencyname}購買特殊組權限的日價格</td>
+	<td><input type="text" name="sright[sellprice]" value="$sellprice"></td>
+</tr>
+<tr class=b>
+	<td width="3%"><input type="checkbox" name="othergroup[sright][]" value='selllimit'></td>
+	<td width="60%">特殊組購買最短天數<br>用戶至少需要購買特殊組的天數限制</td>
+	<td><input type="text" name="sright[selllimit]" value="$selllimit"></td>
+</tr>
+<tr class=b>
+	<td width="3%"><input type="checkbox" name="othergroup[sright][]" value='sellinfo'></td>
+	<td width="60%">特殊組描述<br>可以填寫購買說明和該用戶組擁有的特殊權限</td>
+	<td><textarea name="sright[sellinfo]" rows="5" cols="30">$sellinfo</textarea></td>
+</tr>
+</table>
+<br>
+<!--
+EOT;
+}print <<<EOT
+-->
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head align=center colspan=3>
+<a class=bold>管理權限</a></td></tr>
+<tr class=b><td width="3%"><input type="checkbox" name="othergroup[]" value='allowadmincp'></td>
+<td width="60%">是否允許進後台</td>
+<td><input type=radio value=1 $allowadmincp_Y name=sysgroup[allowadmincp]>是 
+<input type=radio value=0 $allowadmincp_N name=sysgroup[allowadmincp]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='viewhide'></td>
+<td>是否允許查看加密帖(隱藏，加密，出售，匿名)</td>
+<td><input type=radio value=1 $viewhide_Y name=sysgroup[viewhide]>是 
+<input type=radio value=0 $viewhide_N name=sysgroup[viewhide]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='postpers'></td>
+<td>是否允許灌水<font color=blue> 說明︰</font>不受灌水時間限制</td>
+<td><input type=radio value=1 $postpers_Y name=sysgroup[postpers]>是 
+<input type=radio value=0 $postpers_N name=sysgroup[postpers]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='replylock'></td>
+<td>是否允許回復鎖定帖</td>
+<td><input type=radio value=1 $replylock_Y name=sysgroup[replylock]>是 
+<input type=radio value=0 $replylock_N name=sysgroup[replylock]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='viewip'></td>
+<td>是否允許查看IP<font color=blue> 說明︰</font>瀏覽帖子時顯示</td><td>
+<!--
+EOT;
+if($gid==5){print <<<EOT
+-->
+<input type=radio value=2 $viewip_2 name=sysgroup[viewip]>所管理版塊 
+<input type=radio value=1 $viewip_1 name=sysgroup[viewip]>全部版塊
+<!--
+EOT;
+}else{print <<<EOT
+-->
+<input type=radio value=1 $viewip_1 name=sysgroup[viewip]>是 
+<!--
+EOT;
+}
+print <<<EOT
+-->
+<input type=radio value=0 $viewip_0 name=sysgroup[viewip]>否 </td></tr>
+<!--
+EOT;
+if($gid!=5){print <<<EOT
+-->
+<tr class=b><td><input type="checkbox" name="othergroup[sright][]" value='topped'></td>
+<td>置頂權限</td><td>
+<input type=radio value=0 $topped_0 name=sright[topped]>無<br>
+<input type=radio value=1 $topped_1 name=sright[topped]>版塊置頂<br>
+<input type=radio value=2 $topped_2 name=sright[topped]>版塊置頂,分類置頂<br>
+<input type=radio value=3 $topped_3 name=sright[topped]>版塊置頂,分類置頂,總置頂
+</td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='typeadmin'></td>
+<td>是否擁有前台" <font color=blue>精、鎖、提、亮</font> "管理權限</td>
+<td><input type=radio value=1 $typeadmin_Y name=sysgroup[typeadmin]>是 
+<input type=radio value=0 $typeadmin_N name=sysgroup[typeadmin]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[sright][]" value='tpctype'></td>
+<td>是否允許進行<font color="blue">主題分類管理</font><font color=blue> 說明︰</font>主題分類批量管理權限</td>
+<td><input type=radio value=1 $tpctype_Y name=sright[tpctype]>是 
+<input type=radio value=0 $tpctype_N name=sright[tpctype]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[sright][]" value='tpccheck'></td>
+<td>是否允許進行<font color="blue">主題驗證管理</font><font color=blue> 說明︰</font>前台主題驗證管理權限</td>
+<td><input type=radio value=1 $tpccheck_Y name=sright[tpccheck]>是 
+<input type=radio value=0 $tpccheck_N name=sright[tpccheck]>否 </td></tr>
+
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='delatc'></td>
+<td>是否允許批量刪除主題<font color=blue> 說明︰</font>前台帖子管理權限</td>
+<td><input type=radio value=1 $adelatc_Y name=sysgroup[delatc]>是 
+<input type=radio value=0 $adelatc_N name=sysgroup[delatc]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='moveatc'></td>
+<td>是否允許批量移動帖子<font color=blue> 說明︰</font>前台帖子管理權限</td>
+<td><input type=radio value=1 $moveatc_Y name=sysgroup[moveatc]>是 
+<input type=radio value=0 $moveatc_N name=sysgroup[moveatc]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='copyatc'></td>
+<td>是否允許批量復制帖子<font color=blue> 說明︰</font>前台帖子管理權限</td>
+<td><input type=radio value=1 $copyatc_Y name=sysgroup[copyatc]>是 
+<input type=radio value=0 $copyatc_N name=sysgroup[copyatc]>否 </td></tr>
+
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='modother'></td>
+<td>是否允許刪除單一帖子（包括回復）</td>
+<td><input type=radio value=1 $modother_Y name=sysgroup[modother]>是 
+<input type=radio value=0 $modother_N name=sysgroup[modother]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='deltpcs'></td>
+<td>是否允許編輯帖子<font color=blue> 說明︰</font>編輯用戶帖子</td>
+<td><input type=radio value=1 $deltpcs_Y name=sysgroup[deltpcs]>是 
+<input type=radio value=0 $deltpcs_N name=sysgroup[deltpcs]>否 </td></tr>
+
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='viewcheck'></td>
+<td>是否允許查看需要驗證的帖子</td>
+<td><input type=radio value=1 $viewcheck_Y name=sysgroup[viewcheck]>是 
+<input type=radio value=0 $viewcheck_N name=sysgroup[viewcheck]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='viewclose'></td>
+<td>是否允許查看關閉帖子</td>
+<td><input type=radio value=1 $viewclose_Y name=sysgroup[viewclose]>是 
+<input type=radio value=0 $viewclose_N name=sysgroup[viewclose]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='delattach'></td>
+<td>是否允許刪除附件</td>
+<td><input type=radio value=1 $delattach_Y name=sysgroup[delattach]>是 
+<input type=radio value=0 $delattach_N name=sysgroup[delattach]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[sright][]" value='shield'></td>
+<td>是否允許屏蔽單一主題</td>
+<td><input type=radio value=1 $shield_Y name=sright[shield]>是
+<input type=radio value=0 $shield_N name=sright[shield]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[sright][]" value='unite'></td>
+<td>是否允許合並主題</td>
+<td><input type=radio value=1 $unite_Y name=sright[unite]>是
+<input type=radio value=0 $unite_N name=sright[unite]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[sright][]" value='remind'></td>
+<td>是否允許帖子管理提醒功能</td>
+<td><input type=radio value=1 $remind_Y name=sright[remind]>是
+<input type=radio value=0 $remind_N name=sright[remind]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='banuser'></td>
+<td>是否<font color="blue">開啟會員禁言權限</font><font color=blue> 說明︰</font>下面2項起作用的前提是開啟此選項</td>
+<td><input type=radio value=1 $banuser_Y name=sysgroup[banuser]>是 
+<input type=radio value=0 $banuser_N name=sysgroup[banuser]>否 </td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='bantype'></td>
+<td>是否允許永久禁言</td>
+<td><input type=radio value=1 $bantype_Y name=sysgroup[bantype]>是 
+<input type=radio value=0 $bantype_N name=sysgroup[bantype]>否 </td></tr>
+<tr class=b><td><input type="checkbox" name="othergroup[]" value='banmax'></td>
+<td>禁言時間限制<font color=blue> 說明︰</font>封禁會員的最大天數</td><td>
+<input type=text size=3 value='$banmax' name=sysgroup[banmax]></td></tr></table><br><br>
+<!--
+EOT;
+if($gid!=5){
+print <<<EOT
+-->
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head align=center colspan=3><a class=bold>管理權限</a></td></tr>
+<tr class=b>
+	<td width="3%"><input type="checkbox" name="othergroup[sright][rightwhere]" value='rightwhere'></td>
+	<td width="25%">用戶組權限所在範圍</td>
+	<td>
+		<table style="TABLE-LAYOUT:fixed;WORD-WRAP:break-word;">
+			<tr>
+<!--
+EOT;
+$num=0;
+foreach($forum as $value){
+if($value[type]!='category' && !$value[cms]){
+$ifcheck=${'selids_'.$value[fid]};
+$num++;
+print <<<EOT
+-->
+				<td valign="top">
+					<input type="checkbox" name="selids[]" value='$value[fid]' $ifcheck>$value[name]
+				</td>
+<!--
+EOT;
+if($num==4){
+$num=0;
+print <<<EOT
+-->
+			</tr>
+			<tr>
+<!--
+EOT;
+}}}print <<<EOT
+-->
+			</tr>
+		</table>
+	</td>
+</tr>
+</table><br><br>
+<!--
+EOT;
+}}print <<<EOT
+-->
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr class=head align=center><td colspan=2>高級設置</td></tr>
+<tr class=b><td width="63%" valign="top">用戶組權限橫向操作<br><br>功能說明︰<br>利用此功能可將一個或多個權限設置同時應用到其它用戶組中，不再需要逐個用戶組設置，使操作更加簡便<br><br>操作說明︰<br>1. <font color=blue>選中</font>需要進行橫向操作的<font color=blue>權限設置前面的復選框</font><br>2. 在右邊的復選框中<font color=blue>選擇</font>需要進行橫向操作的<font color=blue>用戶組</font><br>3. 然後提交即可完成用戶組橫向操作<br><br>注︰<br>1. 選擇用戶組時可使用 ‘Ctrl’ 鍵進行多選，也可使用 ‘Shift’ 鍵或拖動鼠標連續選擇多個用戶組<br>2. 不使用此功能，請不要選中<font color=blue>權限設置前面的復選框</font>和右邊的復選框中<font color=blue>用戶組</font></td>
+<td><select name='othergid[]' size='22' multiple>$groupselect</select></td></tr>
+</td></tr></table>
+<br><center><input type=submit value="提 交"></center></form>
+<!--
+EOT;
+}include_once PrintEot('adminbottom');
+?>
+-->

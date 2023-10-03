@@ -1,0 +1,109 @@
+<!--<?php
+include_once PrintEot('left');
+$userpayinfo=readover(R_P.'data/bbscache/userpay.txt');
+print <<<EOT
+-->
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+	<tr><td class=head colspan=7><b>提示信息</b></td></tr>
+	<tr><td class=b>
+	$userpayinfo
+<!--
+EOT;
+if(!$userpayinfo){print <<<EOT
+-->
+<br><b>網上支付功能說明︰</b><br>
+1. <b>PHPWind 網上支付</b>功能同時支持“貝寶支付”，“支付寶支付”，“快錢支付”三種支付手段<br>
+2. 開通<b>PHPWind 網上支付</b>功能只需擁有一個“<b>貝寶</b>”帳號或一個“<b>支付寶</b>”帳號或一個“<b>快錢</b>”帳號，並完成相關設置即可，不需要支付任何費用<br>
+<br>
+<b>使用網上支付相關說明︰</b><br>
+1. 開啟網上支付功能即被視為接受“PHPWind”相關協議，如有任何疑義，請關閉此功能<br>
+2. 支付過程出現問題請及時和PHPWind 官方取得聯系<br>
+3. 因使用網站自身安全原因引起的非法支付PHPWind 不負任何責任
+<br><br><br>
+<strong>（一）開通快錢支付步驟︰<br /><br /></strong>
+1. 注冊一個“<b>快錢</b>”帳號，<a href="https://www.99bill.com/webapp/jsp/AccountManage/accountRegAction.do?cmd=initializtion&genID=php3" target="_blank"><font color="#0000ff">注冊快錢帳號</font></a><br />
+2. 設置<b>快錢密鑰</b>，登錄快錢網站︰進入 我的快錢 -> 支付網關 <b>設置您的快錢密鑰</b>，快錢密鑰是包含字母或數字的16位字符串</font><br />
+3. 將您的“<b>快錢商戶號</b>”和“<b>快錢密鑰</b>”填入下面相應<b>快錢信息</b>的文本框中，提交後即可開始使用<b>PHPWind 網上支付</b>功能<br /> 
+4. 由您通過快錢支付產生的相應費用請以快錢網站為準 <br />
+<br>
+ &nbsp; &nbsp; <b>獲取快錢商戶號和快錢密鑰</b>︰登錄快錢網站︰進入 我的快錢 -> 支付網關 獲得相應的快錢商戶號和密鑰
+<br><br><br>
+<b>（二）開通貝寶支付步驟︰</b><br><br>
+1. 注冊一個“<b>貝寶</b>”帳號，<a href="https://www.paypal.com/cn/cgi-bin/webscr?cmd=_registration-run" target="_blank"><font color=blue>注冊貝寶帳號</font></a><br>
+2. 將“<b>貝寶</b>”帳號填寫到論壇後台<br>
+ &nbsp; &nbsp; 進入論壇後台 -> 網上支付設置 -> 網上支付 -> 貝寶信息 將您的貝寶帳號填寫在“貝寶帳號”欄，提交！<br>
+3. 開啟貝寶“<b>即時付款通知</b>”<br>
+ &nbsp; &nbsp; 登錄貝寶網站︰進入 我的貝寶 -> 用戶信息 -> 即時付款通知習慣設定 -> 編輯 開啟“<b>即時付款通知</b>”並填寫“<b>通知URL</b>”<br>
+ &nbsp; &nbsp; <b>通知URL</b>是 您的論壇網址 + '/paypal.php?verifycode=' + 貝寶公共密鑰<br>
+ &nbsp; &nbsp; 格式如︰<font color=blue>http://www.phpwind.net/paypal.php?verifycode=貝寶公共密鑰</font><br>
+4. 完成以上步驟後即可開始使用<b>PHPWind 網上支付</b>功能
+<br><br>
+ &nbsp; &nbsp; <b>獲取貝寶公共密鑰</b>︰進入 論壇後台 -> 網上支付設置 -> 網上支付 -> 貝寶信息 -> 貝寶公共密鑰<br>
+ &nbsp; &nbsp; 注︰貝寶公共密鑰是系統為您的網站自動生成的，請不要隨意改動
+
+<br><br><br>
+<b>（三）開通支付寶支付步驟︰</b><br><br>
+1. 注冊一個“<b>支付寶</b>”帳號,登錄支付寶網站，進入商家工具<br>
+2. 設置<b>安全校驗碼</b>，設置成功後您會得到一個<b>安全校驗碼</b>，<b>安全校驗碼</b>一般是一個長度為32的字符串<br>
+3. 設置<b>通知URL</b>，<b>通知URL</b>是您的論壇網址 + '/alipay.php'，格式如︰<b>http://www.phpwind.net/alipay.php</b><br>
+4. 將您的“<b>支付寶</b>”帳號和“<b>安全校驗碼</b>”填入下面相應<b>支付寶信息</b>的文本框中，提交後即可開始使用<b>PHPWind 網上支付</b>功能
+
+<br><br>
+<!--
+EOT;
+}print <<<EOT
+-->	
+	</td></tr>
+</table>
+<br>
+
+<form action="$basename&" method="post">
+<input type="hidden" name="action" value="currrate">
+<table width="98%" align=center cellspacing=1 cellpadding=3 class=i_table>
+	<tr><td class=head colspan=2><b>網上支付設置</b></td></tr>
+	<tr>
+		<td class=b width="20%">是否開啟網上支付功能</td>
+		<td class=b>
+			<input type="radio" name="userpay[ol_onlinepay]" value="1" $onlinepay_Y>是
+			<input type="radio" name="userpay[ol_onlinepay]" value="0" $onlinepay_N>否
+		</td>
+	</tr>
+	<tr>
+		<td class=b width="20%">網上支付功能關閉原因</td>
+		<td class=b><textarea name="userpay[ol_whycolse]" rows="5" cols="50">$ol_whycolse</textarea></td>
+	</tr>
+	<tr><td class=head_2 colspan=2><b>快錢信息</b></td></tr>
+	<tr>
+		<td class=b width="20%">商戶編號</td>
+		<td class=b><input type="text" name="userpay[ol_99bill]" value="$ol_99bill"></td>
+	</tr>
+	<tr>
+		<td class=b width="20%">快錢密鑰</td>
+		<td class=b><input type="text" name="userpay[ol_99billcode]" value="$ol_99billcode" size="50"></td>
+	</tr>
+	<tr><td class=head_2 colspan=2><b>貝寶信息</b></td></tr>
+	<tr>
+		<td class=b width="20%">貝寶帳號</td>
+		<td class=b><input type="text" name="userpay[ol_paypal]" value="$ol_paypal"></td>
+	</tr>
+	<tr>
+		<td class=b width="20%">貝寶公共密鑰</td>
+		<td class=b><input type="text" name="userpay[ol_paypalcode]" value="$ol_paypalcode" size="50"></td>
+	</tr>
+	<tr><td class=head_2 colspan=2><b>支付寶信息</b></td></tr>
+	<tr>
+		<td class=b width="20%">支付寶帳號</td>
+		<td class=b><input type="text" name="userpay[ol_payto]" value="$ol_payto"></td>
+	</tr>
+	<tr>
+		<td class=b width="20%">安全校驗碼</td>
+		<td class=b><input type="text" name="userpay[ol_md5code]" value="$ol_md5code" size="50"></td>
+	</tr>
+</table>
+<br>
+<center><input type=submit value='提 交'></center>
+</form>
+<!--
+EOT;
+include_once PrintEot('adminbottom');
+?>-->

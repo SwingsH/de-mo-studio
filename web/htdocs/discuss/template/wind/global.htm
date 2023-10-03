@@ -1,0 +1,126 @@
+<script language="javascript">
+cnt = 0;
+function checkCnt() {
+  cnt++;
+  if (cnt==1) return true;
+  alert('Submission Processing. Please Wait');
+  return false;
+}
+
+ie = (document.all)? true:false;
+if (ie){
+	function quickpost(eventobject){
+		if((event.ctrlKey && window.event.keyCode == 13)||(event.altKey && window.event.keyCode == 83)){
+			this.document.FORM.submit();
+		}
+	}
+}
+
+function checklength(theform,postmaxchars) {
+	if (postmaxchars != 0) {
+		message = '\n最大的字符為'+postmaxchars+' 字節';
+	}else {
+		message = ''; 
+	}
+	alert('您的信息已經有 '+theform.atc_content.value.length+' 字節'+message);
+}
+
+function Addtoie(value,title){
+	window.external.AddFavorite(value,title);
+}
+
+function showimage(imgpath,value)
+{
+	if(value!= '') {	
+	document.images.useravatars.src=imgpath+'/face/'+value;
+	} else{
+	document.images.useravatars.src=imgpath+'/face/none.gif';
+	}
+}
+
+function regcheck(formct){
+	if (formct.regname.value=='' || formct.regpwd.value=='' || formct.regpwdrepeat.value==''){
+		alert('會員名或密碼為空,請填寫');
+		return false; 
+	}
+	if (formct.regpwd.value!=formct.regpwdrepeat.value){
+		alert('兩次輸入的密碼不一致，請檢查後重試。');
+		return false; 
+	}
+	if (formct.regpwd.value.length<6){
+		alert('密碼太少，請用6位以上');
+		return false;
+	}
+}
+
+function CheckAll(form){
+	for (var i=0;i<form.elements.length;i++){
+		var e = form.elements[i];
+		e.checked == true ? e.checked = false : e.checked = true;
+	}
+}
+
+function checkset(chars){
+	if(!confirm("將刪除收件箱和發件箱內所有消息，請確認！"))return false;
+	location.href=chars;
+}
+
+function showmuti(){
+	if (document.FORM.muti.checked == true){
+		attach2.style.display = '';
+	}else{
+		attach2.style.display = 'none';
+	}
+}
+
+function gopreview()
+{
+	document.preview.preatc.value=document.FORM.atc_content.value;
+	document.preview.submit();
+}
+
+function procheck(formct)
+{
+	if (formct.prointroduce.value.length>200)
+	{
+		alert('自我介紹太長，請刪掉一些，控制在200個字節以內');
+		return false;
+	}
+}
+
+function Fjump(value){
+	if(value!= '') {
+		window.location=('thread.php?fid='+value);
+	}
+}
+function Fjumpr(value,path)
+{
+	if(value!= '') {
+		window.location=(path+'/thread.php?fid='+value);
+	}
+}
+
+function Addreason(reason){
+
+	document.form1.reason.value=reason; 
+	document.form1.reason.focus(); 
+	return; 
+}
+
+function Ajump(value){
+	if(value!= '') {
+		window.location=('profile.php?action=show&username='+value);
+	}
+}
+
+function Pjump(value){
+
+	if(event.altKey) {
+		window.location=(value);
+	}
+}
+
+function delsubmit(){
+	document.delatc.submit();
+}
+</script>

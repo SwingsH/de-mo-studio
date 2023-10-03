@@ -1,0 +1,103 @@
+<!--<?php 
+print <<<EOT
+-->
+<table width="$tablewidth" cellspacing="0" cellpadding="0" align="center"><tr><td align="left">
+<img src="$imgpath/$stylepath/index/home.gif" align="absbottom" /> <b><a href="./$db_bfn">$db_bbsname </a> -> 論壇提示</b></td></tr></table>
+<br />
+<table width="$tablewidth" cellspacing="1" cellpadding="3" $i_table align="center">
+<tr class="head"><td colspan="2" class="head">$db_bbsname 提示信息</td></tr>
+<!--
+EOT;
+if($dejump!='1' && $groupid=='guest' && !strpos($REQUEST_URI,'register') && !strpos($REQUEST_URI,'login') && (!$passport_ifopen || $passport_type != 'client')){
+$db_htmifopen && strpos($REQUEST_URI,'.php?')!==false && $REQUEST_URI=str_replace('.php?',$db_dir,$REQUEST_URI);
+$jumpurl="http://$_SERVER[HTTP_HOST]".$REQUEST_URI;
+$hideback=1;
+print <<<EOT
+-->
+<tr class="f_one">
+<td><br />
+&nbsp; &nbsp; 您沒有登錄或者您沒有權限訪問此頁面，可能有如下幾個原因:
+<ol>
+<li>$msg_info
+<li>您還不是論壇會員,請先登錄論壇<br>
+</ol>
+<form action="login.php?" method="post" name="login">
+<fieldset style="margin:0% 22% 0% 22%;">
+<legend>登錄</legend>
+<table width="85%" cellpadding="5" cellspacing="1" align="center">
+<tr class="f_one">
+	<td width="30%">用戶名</td><td> <input type="text" size="40" tabindex="1" name="pwuser" /></td>
+</tr>
+<tr class="f_one">
+	<td>密碼</td><td> <input type="password" size="40" tabindex="2" name="pwpwd" /></td>
+</tr>
+<!--
+EOT;
+list(,$logingd)=explode("\t",$db_gdcheck);
+if($logingd){
+$rawwindid=addslashes($windid);
+print <<<EOT
+-->
+<tr class="f_one">
+	<td>認證碼</td>
+	<td>
+		<input type="text" maxLength="4" name="gdcode" size="8"  tabindex="3" />&nbsp;
+		<img src="ck.php?windid=$rawwindid" align="absmiddle" onclick="this.src='ck.php?'" />
+	</td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+<tr><td>隱身登錄</td>
+	<td>
+		<input name="hideid" type="radio" value="1" />          是 &nbsp
+		<input name="hideid" type="radio" value="0" checked tabindex="4" />  否 &nbsp 
+	</td>
+</tr>
+</table>
+</fieldset><br />
+<center><input type="submit" value="登 錄" tabindex="4" /></center>
+<input type="hidden" name="jumpurl" value="$jumpurl" />
+<input type="hidden" name="step" value="2" />
+<input type="hidden" name="cktime" value="31536000" /></form><br /><br />
+<script language="JavaScript">
+document.login.pwuser.focus();
+</script>
+<!--
+EOT;
+}else{
+$hideback=0;
+print <<<EOT
+-->
+<tr class="f_one">
+<td>
+<center><br /><br /><br />$msg_info<br />
+<!--
+EOT;
+if($dejump=='fpwd'){ print <<<EOT
+-->
+{$printmsgpwd}
+<!--
+EOT;
+} print <<<EOT
+-->
+<br />
+</center> <br /><br />
+</td></tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table><br /><br />
+<!--
+EOT;
+if(!$hideback){print <<<EOT
+-->
+<center><input type="submit" value="返 回 繼 續 操 作" onclick="javascript:history.go(-1);" /></center>
+<br /><br />
+<!--
+EOT;
+}footer();
+?>
+-->

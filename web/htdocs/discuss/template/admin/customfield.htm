@@ -1,0 +1,178 @@
+<!--<?php
+include_once PrintEot('left');
+print <<<EOT
+-->
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td class="head" colspan="2"><b>提示信息</b></td></tr>
+	<tr>
+		<td class="b"><br><ul>此功能允許管理員自定義增加用戶欄目信息，讓用戶在注冊和編輯個人資料時填寫這些欄目信息<br><br><b>允許編輯︰</b>&nbsp;&nbsp;&nbsp;當設置欄目不允許用戶編輯時，用戶在第一次填寫信息後，將不能自行修改欄目信息<br><br><b>必填內容︰</b>&nbsp;&nbsp;&nbsp;當設置欄目為必填項目時，用戶注冊或編輯個人資料時，必須填寫欄目信息後才能提交成功<br><br><b>用戶組權限︰</b>當設置欄目用戶組權限後，只有指定用戶組有權限查看用戶欄目信息<br><br><b>帖子中顯示︰</b>可以設置在帖子頁面左側用戶信息處顯示欄目信息</ul><br></td>
+	</tr>
+</table>
+<br>
+<!--
+EOT;
+if(empty($action)){print <<<EOT
+-->
+<form method="post" action="$basename&">
+<input name="action" type="hidden" value="del">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td colspan="10" class="head">用戶欄目管理</td></tr>
+	<tr class="head_2"  align="center">
+		<td width="5%">ID</td>
+		<td width="5%">順序</td>
+		<td width="5%">啟用</td>
+		<td width="25%">欄目標題</td>
+		<td width="20%">欄目類型</td>
+		<td width="10%">必填</td>
+		<td width="10%">允許編輯</td>
+		<td width="10%">帖子中顯示</td>
+		<td width="5%">編輯</td>
+		<td width="5%">刪</td>
+	</tr>
+<!--
+EOT;
+$num=0;
+foreach($customfielddb as $key => $val){
+$state = $val[state] ? 是 : 否;
+$required = $val[required] ? 是 : 否;
+$editable = $val[editable] ? 是 : 否;
+$viewinread = $val[viewinread] ? 是 : 否;
+$type_sel=array(
+	'1'=>'單行文本框',
+	'2'=>'多行文本框',
+	'3'=>'單選框',
+);
+$type=$type_sel[$val[type]];
+$num++;
+print <<<EOT
+-->
+	<tr align="center">
+		<td class="b">$num</td>
+		<td class="b">$val[vieworder]</td>
+		<td class="b">$state</td>
+		<td class="b">$val[title]</td>
+		<td class="b">$type</td>
+		<td class="b">$required</td>
+		<td class="b">$editable</td>
+		<td class="b">$viewinread</td>
+		<td class="b"><a href="$basename&action=edit&id=$val[id]">編輯</a></td>
+		<td class="b"><input type="checkbox" name="selid[]" value="$val[id]"></td>
+	</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table>
+<br>
+<center>
+	<input type="button" name="chkall" value="全 選" onclick="CheckAll(this.form)">
+	<input type="submit" name="delete" value="提 交">
+</center>
+</form>
+<!--
+EOT;
+}elseif($action=='add' || $action=='edit'){print <<<EOT
+-->
+<form method="post" action="$basename&">
+<input type="hidden" name="action" value="$action">
+<input type="hidden" name="step" value="2">
+<input type="hidden" name="id" value="$id">
+$type_hidden
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+	<tr><td colspan="2" class="head">用戶欄目管理</td></tr>
+	<tr>
+		<td width="40%" class="b"><b>欄目標題</b><br>請控制在50字節以內</td>
+		<td class="b"><input type="text" size="40" name="title" value="$rt[title]"></td>
+	</tr>
+	<tr>
+		<td class="b"><b>欄目描述</b><br>請控制在255字節以內</td>
+		<td class="b"><textarea name="descrip" rows="6" cols="40">$rt[descrip]</textarea></td>
+	</tr>
+	<tr>
+		<td class="b"><b>是否啟用該欄目</b><br>欄目填加後您可以選擇暫時關閉該欄目使用</td>
+		<td class="b">
+			<input type="radio" name="state" value="1" $state_1>是
+			<input type="radio" name="state" value="0" $state_0>否
+		</td>
+	</tr>
+	<tr>
+		<td class="b"><b>順序</b></td>
+		<td class="b"><input type="text" size="40" name="vieworder" value="$rt[vieworder]"></td>
+	</tr>
+	<tr>
+		<td class="b"><b>長度控制</b><br>用戶輸入長度限制(最大︰255字節)</td>
+		<td class="b"><input type="text" size="40" name="maxlen" value="$rt[maxlen]"></td>
+	</tr>
+	<tr>
+		<td class="b"><b>必填內容</b><br>是否要求用戶在注冊和編輯個人資料時必須填寫此項</td>
+		<td class="b">
+			<input type="radio" name="required" value="1" $required_1>是
+			<input type="radio" name="required" value="0" $required_0>否
+		</td>
+	</tr>
+	<tr>
+		<td class="b"><b>在帖子中顯示</b><br>在帖子頁面左側用戶信息處顯示</td>
+		<td class="b">
+			<input type="radio" name="viewinread" value="1" $viewinread_1>是
+			<input type="radio" name="viewinread" value="0" $viewinread_0>否
+		</td>
+	</tr>
+	<tr>
+		<td class="b"><b>允許編輯</b><br>用戶第一次填寫信息後，是否允許再次自行修改</td>
+		<td class="b">
+			<input type="radio" name="editable" value="1" $editable_1>是
+			<input type="radio" name="editable" value="0" $editable_0>否
+		</td>
+	</tr>
+	<tr>
+		<td class="b"><b>查看權限</b><br>允許查看用戶此欄目信息的用戶組，不選將對所有用戶組開放查看權限</td>
+		<td class="b">
+			<table cellspacing='0' cellpadding='0' border='0' width='100%' align='center'>
+				<tr>
+<!--
+EOT;
+$num=0;
+foreach($ltitle as $key => $value){
+if($key==1 || $key==2)continue;
+$ifchecked=${'viewright_'.$key};
+$num++;
+print <<<EOT
+-->
+					<td><input type='checkbox' name='groups[]' value='$key' $ifchecked>$value</td>
+<!--
+EOT;
+if($num==4){
+$num=0;
+print <<<EOT
+-->
+				</tr><tr>
+<!--
+EOT;
+}}print <<<EOT
+-->
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td width="40%" class="b"><b>欄目類型</b><br>一旦選定，請不要隨意修改，否則將可能造成欄目信息顯示錯誤</td>
+		<td class="b">
+			<select name="type" $type_disabled>
+				<option value="1" $type_1>單行文本框</option>
+				<option value="2" $type_2>多行文本框</option>
+				<option value="3" $type_3>單選框</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td class="b"><b>選項內容</b><br>當欄目類型為單選框時需要設置選項內容，每行為一個選項<br>格式︰索引=內容，建議使用數字做索引<br>例如︰<br>1=諾基亞<br>2=摩托羅拉<br>3=三星</td>
+		<td class="b"><textarea name="options" rows="6" cols="40">$rt[options]</textarea></td>
+	</tr>
+</table>
+<br>
+<center><input type="submit" name="add" value="提 交"></center>
+</form>
+<!--
+EOT;
+}include_once PrintEot('adminbottom');
+?>-->

@@ -1,0 +1,58 @@
+<!--<?php
+include_once PrintEot('left');
+if (empty($action)){
+print <<<EOT
+-->
+<table width=98% align=center cellspacing=1 cellpadding=3 class=i_table>
+<tr><td class=head colspan=2><b>提示信息</b></td></tr>
+<tr><td class=b><br>
+<pre>
+<b>系統介紹︰</b>
+
+    “<b>論壇營銷計劃</b>”利用 PHPWind 平台把傳統營銷概念與論壇強大互動性相結合，充分挖掘論壇潛在價值，
+解決網站經濟來源問題，為站長解除後顧之憂。
+    一方面借助 PHPWind 品牌優勢，吸引廣大商家的加盟，解決廣告來源問題；一方面 PHPWind 擁有強大
+的用戶基礎，論壇類型幾乎覆蓋所有行業，用戶群集中，能滿足廣大商家的需求；自 PHPWind 5.0版本起，
+系統後台集成了“<b>論壇營銷計劃</b>” 功能，站長只需要在後台進行相關設置即可加入“<b>論壇營銷計劃</b>”。
+
+
+<b>功能說明︰</b>
+
+    區別于傳統營銷系統，站長無須通過申請廣告，獲取代碼，投放廣告等煩瑣的過程，“<b>論壇營銷計劃</b>”自
+動幫您完成以上步驟。系統會自動為每個網站生成一對密鑰和一個唯一識別碼，做為網站的唯一標識。更多信息
+請關注 PHPWind 最新消息。
+</pre>
+
+<br></td></tr></table><br>
+<form action="$basename&" method=post>
+<input type=hidden name=action value='submit'>
+<table width=70% cellspacing=1 cellpadding=6 class=i_table align="center">
+	<tr><td class=head colspan=2>論壇營銷計劃</td></tr>
+	<tr>
+		<td class=b width=30%>密鑰一</td>
+		<td class=b>$db_siteid</td>
+	</tr>
+	<tr>
+		<td class=b width=30%>密鑰二</td>
+		<td class=b>$db_siteownerid</td>
+	</tr>
+	<tr>
+		<td class=b width=30%>唯一識別碼</td>
+		<td class=b>$db_sitehash</td>
+	</tr>
+	<tr>
+		<td class=b width=30%>營銷類型</td>
+		<td class=b>
+			<input type="checkbox" name="ifopen_s" value='1' $ifopen_s>站點營銷
+			<input type="checkbox" name="ifopen_t" value='1' $ifopen_t>帖子營銷
+		</td>
+	</tr>	
+</table>
+<input type="hidden" name="action" value="submit" />
+<br><center><input type='submit' value='提 交'></center></form>
+<!--
+EOT;
+}
+include_once PrintEot('adminbottom');
+?>
+-->

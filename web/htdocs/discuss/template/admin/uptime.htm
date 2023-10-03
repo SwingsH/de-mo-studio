@@ -1,0 +1,148 @@
+<!--<?php
+include_once PrintEot('left');
+print <<<EOT
+-->
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+<tr><td class="head" colspan="2"><b>提示信息</b></td></tr>
+<tr><td class="b">
+<br>可以給所有系統組成員指定有效期，到期自動收回頭餃!<br><br>
+</td></tr></table><br />
+<!--
+EOT;
+if(empty($action)){ print <<<EOT
+-->
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+<tr><td class="b">
+[<b>系統組列表</b>]
+[<a href="$basename&action=setlevel">有效期設置</a>]
+</td></tr></table><br />
+
+<form action="$basename" method="post">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+<tr class="head"><td colspan="3">搜索</td></tr>
+<tr class="b" align="center">
+	<td>用戶名︰<input type="text" name="username"></td>
+	<td>用戶組id︰<select name="gid">$grouplist</option></td>
+	<td><input type="submit" value="提 交"></td>
+</tr>
+</table></form>
+
+<form action="$basename" method="post">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+<tr><td class="head" colspan="8">系統組列表</td></tr>
+<tr class="head_2" align="center">
+<td width="6%"></td>
+<td width="8%">ID</td>
+<td width="10%">用戶名</td>
+<td width="15%">限期頭餃</td>
+<td width="15%">到期用戶組變為</td>
+<td width="*">開始日期</td>
+<td width="10%">有效期限</td>
+<td width="8%"></td>
+</tr>
+<!--
+EOT;
+$i=($page-1)*$db_perpage;
+foreach($memberdb as $key=>$member){
+$i++;
+print <<<EOT
+-->
+<tr class="b" align="center">
+<td><input type="checkbox" name="selid[$member[gid]][]" value="$member[uid]" /></td>
+<td>$i</td>
+<td>$member[username]</td>
+<td>$member[slevel]</td>
+<td>$member[tolevel]</td>
+<td>$member[startdate]</td>
+<td>$member[days] 天</td>
+<td><a href="$basename&action=edit&uid=$member[uid]&gid=$member[gid]"><b>編輯</b></a></td>
+</tr>
+<!--
+EOT;
+}print <<<EOT
+-->
+</table><br />&nbsp;&nbsp;$pages
+<input type="hidden" name="action" value="del" />
+<br /><center><input type="button" name="chkall" value="全 選" onclick="CheckAll(this.form)" />&nbsp;
+<input type="submit" value="刪除所選項" /></center></form>
+<!--
+EOT;
+}elseif($action=='setlevel'){ print <<<EOT
+-->
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+<tr><td class="b">
+[<a href="$basename">系統組列表</a>]
+[<b>有效期設置</b>]
+</td></tr></table><br />
+<!--
+EOT;
+if(!$_POST['step']){ print <<<EOT
+-->
+<form action="$basename" method="post">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+<tr class="head"><td colspan="2">有效期設置</td></tr>
+<tr class="b"><td width="30%">用戶名</td><td><input type="text" name="username"></td></tr>
+</table>
+<input type="hidden" name="action" value="setlevel" />
+<input type="hidden" name="step" value="1" />
+<br /><center><input type="submit" value="提 交" /></center></form>
+<!--
+EOT;
+}elseif($_POST['step']==1){
+print <<<EOT
+-->
+<form action="$basename" method="post">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+<tr class="head"><td colspan="4">有效期設置</td></tr>
+<tr class="head_2" align="center">
+	<td width="15%">用戶名</td>
+	<td width="15%">限期用戶組</td>
+	<td width="15%">到期用戶組變為</td>
+	<td>有效期限</td>
+</tr>
+<tr class="b" align="center">
+	<td>$rt[username]</td>
+	<td><select name="gid">$groupstitle</select></td>
+	<td><select name="togid"><option value=""></option>$groupstitle</select></td>
+	<td><input type="text" name="days" value="30"> 天</td>
+</tr>
+</table>
+<input type="hidden" name="action" value="setlevel" />
+<input type="hidden" name="step" value="2" />
+<input type="hidden" name="uid" value="$rt[uid]" />
+<br /><center><input type="submit" value="提 交" /></center></form>
+<!--
+EOT;
+}}elseif($action=='edit'){print <<<EOT
+-->
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+<tr><td class="b">
+[<a href="$basename">系統組列表</a>]
+[<b>有效期設置</b>]
+</td></tr></table><br />
+
+<form action="$basename" method="post">
+<table width="98%" align="center" cellspacing="1" cellpadding="3" class="i_table">
+<tr class="head"><td colspan="4">有效期設置</td></tr>
+<tr class="head_2" align="center">
+	<td width="15%">用戶名</td>
+	<td width="15%">限期用戶組</td>
+	<td width="15%">到期用戶組變為</td>
+	<td>有效期限</td>
+</tr>
+<tr class="b" align="center">
+	<td>$men[username]</td>
+	<td><select name="gid">$grouplist</select></td>
+	<td><select name="togid"><option value=""></option>$togrouplist</select></td>
+	<td><input type="text" name="days" value="$men[days]" size="10"> 天 <input type="checkbox" name="treset" value="1">時間重設(該用戶頭餃有效期從當前時間重新開始)</td>
+</tr>
+</table>
+<input type="hidden" name="action" value="edit" />
+<input type="hidden" name="step" value="3" />
+<input type="hidden" name="uid" value="$uid" />
+<br /><center><input type="submit" value="提 交" /></center></form>
+<!--
+EOT;
+}include_once PrintEot('adminbottom');
+?>
+-->

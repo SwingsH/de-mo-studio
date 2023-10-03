@@ -1,0 +1,87 @@
+<!--<?php
+print <<<EOT
+-->
+<form action="job.php?votejop=vote" method="post" name="vote">
+<table width="$tablewidth" align="center" cellspacing="1" cellpadding="3" $i_table>
+<tr bgcolor="$forumcolorone"><td class="head" colspan="2">щ布肈$subject
+<!--
+EOT;
+if($vote_close){ print <<<EOT
+-->
+(セΩщ布挡)
+<!--
+EOT;
+} print <<<EOT
+-->
+</td><td align="right" class="head">
+<a href="read.php?fid=$fid&tid=$tid&viewvoter=$ifview">琩щ布穦</a></td></tr>
+<!--
+EOT;
+foreach($votedb as $key=>$vote){
+print <<<EOT
+-->
+<tr height="30">
+<td align="left" bgcolor="$forumcolorone" width="30%">
+<!--
+EOT;
+if(!$havevote || $action=='modify'){
+print <<<EOT
+-->
+<input type="$votetype" value="$key" name="voteid[]" />
+<!--
+EOT;
+}print <<<EOT
+-->
+
+<b>$vote[name]</b> </td>
+<td bgcolor="$forumcolorone">
+<img src="$imgpath/post/vote/bar1.gif" width="$vote[width]" height="10" />&nbsp;$vote[num]&nbsp;布</td>
+<td bgcolor="$forumcolorone">$vote[voter]</td>
+</tr>
+<!--
+EOT;
+}if((!$havevote || $modifiable) && $vote_close==0){
+print <<<EOT
+-->
+<tr height="22" bgcolor="$forumcolorone" align="center"><td colspan="4">
+<!--
+EOT;
+if($havevote=='havevote' && $action!='modify' && $modifiable){print <<<EOT
+-->
+&nbsp;* <b><a href="read.php?fid=$fid&tid=$tid&action=modify">эщ布</a></b>
+<!--
+EOT;
+}else{
+if($action=='modify'){print <<<EOT
+-->
+<input type="hidden" value="modify" name="voteaction" />
+<!--
+EOT;
+}if($multi){print <<<EOT
+-->
+匡计$multi&nbsp;&nbsp;
+<!--
+EOT;
+}print <<<EOT
+-->
+<input type="hidden" value="$pollid" name="pollid" />
+&nbsp;&nbsp;<input type="submit" value="矗 ユ" />
+<!--
+EOT;
+}}print <<<EOT
+-->
+</td></tr>
+<tr><td class="head" colspan="4">羆Τ<b>{$votesum}</b>把籔セΩщ布 祇癬$tpc_date
+<!--
+EOT;
+if($tpc_endtime){ print <<<EOT
+-->
+&nbsp;  $tpc_endtime 挡
+<!--
+EOT;
+} print <<<EOT
+-->
+</td></tr></table></form><br />
+<!--
+EOT;
+?>
