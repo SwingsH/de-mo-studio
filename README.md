@@ -21,7 +21,7 @@
 - 內容已經相當老舊，本人對PHP也不太感興趣，因此專案僅會做恢復與移植，不會有新功能
 - 個人照片皆有肖像權，請勿於其他地方做商業使用
 
-- 最原始的模板引擎 (Template Syetem) Savant2
+- 最原始的模板引擎 (Template System) Savant2
 - PHP 與 Flash 溝通機制 AMFPHP
 - 目標環境 PHP 5.1 - PHP 5.2.11
 - 沒有使用任何框架的，古老架構的 PHP
