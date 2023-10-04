@@ -269,7 +269,7 @@ class QuickView
 }
 
 if($_GET['t']){
-	$qv = &new QuickView();
+	$qv = new QuickView();
 	$qv->by_date();
 }
 ?>

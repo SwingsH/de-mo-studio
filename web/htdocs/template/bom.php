@@ -1,28 +1,28 @@
 <html>
-����O BOM (Byte-Order Mark)�H
+什麼是 BOM (Byte-Order Mark)？
 <p>
-�b�@�ǥ��x�W�A�O��N���ƭȸ��j�� byte ��b�e���A�o�٬� Big Endian (BE) ���t�ΡF���ǥ��x�h�ۤϡA�O��N���ƭȸ��p�� byte ��b�e���A�٬� Little Endian (LE) ���t�ΡC
+在一些平台上，是把代表數值較大的 byte 放在前面，這稱為 Big Endian (BE) 的系統；有些平台則相反，是把代表數值較小的 byte 放在前面，稱為 Little Endian (LE) 的系統。
 <p>
-�Y�� LE �覡�s�X�ABOM �|���ܬ� 0xFF 0xFE�A�Ӧb Unicode ���w�q���O���s�b U+FFFE �o�Ӧr����.
+若採 LE 方式編碼，BOM 會表示為 0xFF 0xFE，而在 Unicode 的定義中是不存在 U+FFFE 這個字元的.
 <p>
-�Y�� BE �覡�s�X�ABOM �|���ܬ� 0xFE 0xFF�A�� U+FEFF ��n�O�b Unicode �������Ħr���A�N�����O�@�Ӥ����Ŷ��� space �Ÿ��A�ҥH�Y�ϨS�Q������ BOM�A�]���|��\���̲��Ϳ��~���T��. 
+若採 BE 方式編碼，BOM 會表示為 0xFE 0xFF，而 U+FEFF 剛好是在 Unicode 中的有效字元，代表的是一個不佔空間的 space 符號，所以即使沒被解釋為 BOM，也不會對閱覽者產生錯誤的訊息. 
 <p>
-�p�󲾰��H (�ϥ� PHP)
+如何移除？ (使用 PHP)
 <p>
-BOM�H���O���}�Y���@�����ê��r�šA�Ω����Y�ǽs�边�ѧO�o�O��UTF-8�s�X�����C��PHP�bŪ�����ɷ|��o�Ǧr��Ū�X�A�q�ӧΦ��F���}�Y�t���@�ǵL�k�ѧO���r�Ū����D�C
-�n�˴��@��UTF-8���O�_�t��BOM�H���A�N�O�˴����}�Y���r�T�ӲšA�O�_��0xEF, 0xBB, 0xBF�C
+BOM信息是文件開頭的一串隱藏的字符，用於讓某些編輯器識別這是個UTF-8編碼的文件。但PHP在讀取文件時會把這些字符讀出，從而形成了文件開頭含有一些無法識別的字符的問題。
+要檢測一個UTF-8文件是否含有BOM信息，就是檢測文件開頭的字三個符，是否為0xEF, 0xBB, 0xBF。
 <p>
-�U�観�Ӥp�{���A�ϥΪ̥i�H�j�M�Y�ӥؿ��U�Ҧ����A���˴��O�_�[�FBOM�C
+下方有個小程式，使用者可以搜尋某個目錄下所有文件，並檢測是否加了BOM。
 <p>
 
 <?php 
-//�����Ω�ֳt����UTF8�s�X�����O���O�[�FBOM�A�åi�۰ʲ��� 
+//此文件用於快速測試UTF8編碼的文件是不是加了BOM，並可自動移除 
 //By Bob Shen 
 
-$basedir="."; //�ק惡�欰�ݭn�˴����ؿ��A�I���ܷ��e�ؿ� 
-$auto=1; //�O�_�۰ʲ����o�{��BOM�H���C1���O�A0���_�C 
+$basedir="."; //修改此行為需要檢測的目錄，點表示當前目錄 
+$auto=1; //是否自動移除發現的BOM信息。1為是，0為否。 
 
-//�H�U���Χ�&#21160; 
+//以下不用改&#21160; 
 
 if ($dh = opendir($basedir)) { 
 while (($file = readdir($dh)) !== false) { 
@@ -61,31 +61,31 @@ fclose($filenum);
 <p>
 -------------------
 <p>
-2005-11-1 �ץ�
+2005-11-1 修正
 <p>
-�������յ��G�G
+本次測試結果：
 <p>
 1. UltraEdit 10
-���I�G�ӷ~�n��C
-�u�I�G�����ŦX�ݨD�C
+缺點：商業軟體。
+優點：完全符合需求。
 <p>
 2. EditPlus
-���I�G�L�k���� BOM �X�A�ɧU��L�覡�������ᤤ���ܦ��ýX�C�ӷ~�n��C
-�u�I�G�i�ۭq�{���y�k�榡�B����ơC
+缺點：無法移除 BOM 碼，借助其他方式移除之後中文變成亂碼。商業軟體。
+優點：可自訂程式語法格式、中文化。
 <p>
 2.1 EditPlus 2.20
-���I�G�ӷ~�n��C
-�u�I�G�����ŦX�ݨD�C
+缺點：商業軟體。
+優點：完全符合需求。
 <p>
 3. PSPad editor
-���I�G�L�k���� BOM �X
-�u�I�G�㦳 16 �i��s��Ҧ��B�����.....�p�G���O�n���� BOM �X�A�H��ڴN�|��ΤF�C
+缺點：無法移除 BOM 碼
+優點：具有 16 進位編輯模式、中文化.....如果不是要移除 BOM 碼，以後我就會改用了。
 <p>
 4. Zend Studio Client
-���I�G�ӷ~�n��B�ܺC (���վ��������O)�C
-�u�I�G���G�]�i�H�ŦX�ݨD�A���L�]���ӺC�F�A�S���J�Ӵ��չL�C
+缺點：商業軟體、很慢 (測試機器不夠力)。
+優點：似乎也可以符合需求，不過因為太慢了，沒有仔細測試過。
 <p>
 5. Notepad++
-���I�G�L�k���� BOM �X�C
-�u�I�G�㦳�P�|�h���\��B�i�ۭq�{���y�k�榡�B����ơC 
+缺點：無法移除 BOM 碼。
+優點：具有摺疊層次功能、可自訂程式語法格式、中文化。 
 </html>

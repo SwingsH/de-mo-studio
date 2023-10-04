@@ -18,7 +18,7 @@ function __autoload($class) {
 
 require_once 'Savant2.php';
 
-$savant =& new Savant2();
+$savant = new Savant2();
 
 echo "<pre>";
 

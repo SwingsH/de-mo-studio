@@ -225,7 +225,7 @@ class Savant2_Compiler_basic extends Savant2_Compiler {
 	function Savant2_Compiler_basic($conf = array())
 	{
 		parent::Savant2_Compiler($conf);
-		$this->ca =& new PHPCodeAnalyzer();
+		$this->ca = new PHPCodeAnalyzer();
 		$this->allowedFunctions = $this->allowedFunctions();
 		$this->allowedStatic = $this->allowedStatic();
 	}
@@ -334,8 +334,8 @@ class Savant2_Compiler_basic extends Savant2_Compiler {
 			
 			// disallow PHP short tags (if turned on)
 			if (ini_get('short_open_tag')) {
-				$php = str_replace('<?', '&lt;?', $php);
-				$php = str_replace('<?=', '&lt;?=', $php);
+				$php = str_replace('<?php', '&lt;?', $php);
+				$php = str_replace('<?php echo ', '&lt;?=', $php);
 			}
 			
 			// disallow closing tags

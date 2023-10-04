@@ -1,10 +1,10 @@
-<?
+<?php
 
 require_once('../../dm_db.php');
 require_once('../../dm_classes.php');
 require_once('../../dm.function.default.php');
 
-$log = &new ErrorLog('../../log/', '1to999999.txt');
+$log = new ErrorLog('../../log/', '1to999999.txt');
 
 // sprintf('%02d',$arr_mix[0]) 
 

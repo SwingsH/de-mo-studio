@@ -36,7 +36,7 @@ function insert_vote( $did ){
 	@session_start();
 	$_SESSION['voted_did_'.$did] = date('Y/m/d-H:i:s');
 
-	$log = &new ErrorLog('../../log/');
+	$log = new ErrorLog('../../log/');
 	$log->save("DemoVote.php Vote NO: " .$did ." " .session_id()." FROM ".$_SERVER['HTTP_HOST']. " IP:".get_client_ip());
 
 	// Upadte Log db
@@ -66,7 +66,7 @@ function insert_vote( $did ){
 
 function update_votelog( $did , $sid , $ip){
 	$db = db_connect();
-	$log = &new ErrorLog('../../log/');
+	$log = new ErrorLog('../../log/');
 	$is_voted = false ;
 	
 	// Check Log
